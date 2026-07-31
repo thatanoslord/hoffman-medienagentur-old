@@ -1,0 +1,331 @@
+
+    body{
+        margin: 0;
+        padding: 0;
+        /* font-family: 'Inter', sans-serif; */
+        /* background-color: #070707;  */
+    }
+    .process-sticky {
+  position: relative;
+  height: 218vh;
+  background: #000;
+}
+
+.process-sticky-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.process-sticky-shell {
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 70px 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.process-sticky-header {
+  display: grid;
+  grid-template-columns: minmax(0, 500px) minmax(0, 470px);
+  justify-content: space-between;
+  align-items: end;
+  column-gap: 20px;
+  row-gap: 24px;
+  margin-bottom: 70px;
+}
+
+.process-sticky-header h2 {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-transform: none;
+}
+
+.process-sticky-header p {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #b2b2b2;
+  max-width: 470px;
+}
+
+.process-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.process-line-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 236px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.process-line-mask {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.process-line {
+  width: 2000px;
+  height: 1px;
+  margin-top: 0.5px;
+  background:  linear-gradient(90deg, #3633c6 0%, #a1a0ea 100%);
+  transform: translateX(-1320px);
+  transform-origin: left center;
+  transition: transform 0.5s ease-out;
+}
+
+.process-track {
+  position: relative;
+  height: 475px;
+  width: 100%;
+  z-index: 2;
+}
+
+.process-stage-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 406px;
+  min-height: 538px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #111111;
+  border: 1px solid rgba(188, 188, 188, 0.22);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: -30px 30px 89px rgba(3, 3, 3, 1);
+  transition:
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    outline-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    outline-style 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-stage-card:hover {
+  border-color: rgba(232, 231, 222, 0.52);
+  outline: 1px dashed rgba(232, 231, 222, 0.55);
+  outline-offset: -1px;
+}
+
+.process-stage-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.process-stage-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.process-stage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.process-stage-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.process-stage-step {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 500;
+  text-transform: uppercase;
+  /* color: #bba068; */
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: linear-gradient(90deg, #3633c6 0%, #a1a0ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.process-stage-heading h3 {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+
+.process-stage-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(188, 188, 188, 0.22);
+}
+
+.process-stage-content p {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #8f8f8f;
+}
+
+.process-scroll-zones {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.process-zone {
+  height: 43.6vh;
+}
+
+/* Header entrance */
+.process-header-reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.6);
+  transition:
+    opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-header-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Tablet */
+@media (max-width: 1199.98px) {
+  .process-sticky-shell {
+    padding: 60px 24px;
+  }
+
+  .process-sticky-header {
+    grid-template-columns: 1fr;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 50px;
+  }
+
+  .process-sticky-header h2 {
+    font-size: 3.2rem;
+    max-width: 560px;
+  }
+
+  .process-sticky-header p {
+    max-width: 620px;
+  }
+
+  .process-line-wrap {
+    top: 236px;
+  }
+
+  .process-stage-card {
+    width: 340px;
+    min-height: 450px;
+  }
+
+  .process-stage-image {
+    height: 250px;
+  }
+}
+
+/* Phone */
+@media (max-width: 767.98px) {
+  .process-sticky {
+    height: 235vh;
+  }
+
+  .process-sticky-shell {
+    padding: 48px 20px;
+  }
+
+  .process-sticky-header {
+    margin-bottom: 36px;
+  }
+
+  .process-sticky-header h2 {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .process-sticky-header p {
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 100%;
+  }
+
+  .process-track {
+    height: 440px;
+  }
+
+  .process-stage-card {
+    width: min(82vw, 320px);
+    min-height: 420px;
+    padding: 20px;
+  }
+
+  .process-stage-image {
+    height: 220px;
+  }
+
+  .process-stage-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .process-stage-heading h3 {
+    text-align: left;
+  }
+
+  .process-line-wrap {
+    top: 205px;
+  }
+
+  .process-zone {
+    height: 47vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-header-reveal,
+  .process-stage-card,
+  .process-line {
+    transition: none !important;
+  }
+
+  .process-header-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+   

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+   
+
+   <style>
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #070707; 
+    }
+    .process-sticky {
+  position: relative;
+  height: 218vh;
+  background: radial-gradient(
+  203.301% 90.5016% at 50.5333% 0%,
+  #f5f5f5 22.9436%,
+  rgb(238, 236, 255) 28.3643%,
+  rgb(218, 214, 255) 33.2604%,
+  rgb(174, 166, 251) 40.2947%,
+  rgb(126, 114, 231) 46.6164%,
+  rgb(87, 74, 188) 52.9953%,
+  rgb(45, 34, 133) 60.6561%,
+  rgb(25, 15, 101) 66.2876%,
+  rgb(7, 0, 62) 72.7383%,
+  rgb(0, 0, 0) 89.9086%
+);
+}
+
+.process-sticky-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.process-sticky-shell {
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 70px 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.process-sticky-header {
+  display: grid;
+  grid-template-columns: minmax(0, 500px) minmax(0, 470px);
+  justify-content: space-between;
+  align-items: end;
+  column-gap: 20px;
+  row-gap: 24px;
+  margin-bottom: 70px;
+}
+
+.process-sticky-header h2 {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  /* line-height: 1.1; */
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.process-sticky-header p {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #b2b2b2;
+  max-width: 470px;
+}
+
+.process-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.process-line-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 236px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.process-line-mask {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.process-line {
+  width: 2000px;
+  height: 1px;
+  margin-top: 0.5px;
+  
+  transform: translateX(-1320px);
+  transform-origin: left center;
+  transition: transform 0.5s ease-out;
+}
+
+.process-track {
+  position: relative;
+  height: 475px;
+  width: 100%;
+  z-index: 2;
+}
+
+.process-stage-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 406px;
+  min-height: 473px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #111111;
+  border: 1px solid rgba(188, 188, 188, 0.22);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: -30px 30px 89px rgba(3, 3, 3, 1);
+  transition:
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    outline-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    outline-style 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-stage-card:hover {
+  border-color: rgba(232, 231, 222, 0.52);
+  outline: 1px dashed rgba(232, 231, 222, 0.55);
+  outline-offset: -1px;
+}
+
+.process-stage-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.process-stage-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.process-stage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.process-stage-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.process-stage-step {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #bba068;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.process-stage-heading h3 {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.45rem;
+  line-height: 1;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+
+.process-stage-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(188, 188, 188, 0.22);
+}
+
+.process-stage-content p {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #8f8f8f;
+}
+
+.process-scroll-zones {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.process-zone {
+  height: 43.6vh;
+}
+
+/* Header entrance */
+.process-header-reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.6);
+  transition:
+    opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-header-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Tablet */
+@media (max-width: 1199.98px) {
+  .process-sticky-shell {
+    padding: 60px 24px;
+  }
+
+  .process-sticky-header {
+    grid-template-columns: 1fr;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 50px;
+  }
+
+  .process-sticky-header h2 {
+    font-size: 3.2rem;
+    max-width: 560px;
+  }
+
+  .process-sticky-header p {
+    max-width: 620px;
+  }
+
+  .process-line-wrap {
+    top: 236px;
+  }
+
+  .process-stage-card {
+    width: 340px;
+    min-height: 450px;
+  }
+
+  .process-stage-image {
+    height: 250px;
+  }
+}
+
+/* Phone */
+@media (max-width: 767.98px) {
+  .process-sticky {
+    height: 235vh;
+  }
+
+  .process-sticky-shell {
+    padding: 48px 20px;
+  }
+
+  .process-sticky-header {
+    margin-bottom: 36px;
+  }
+
+  .process-sticky-header h2 {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .process-sticky-header p {
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 100%;
+  }
+
+  .process-track {
+    height: 440px;
+  }
+
+  .process-stage-card {
+    width: min(82vw, 320px);
+    min-height: 420px;
+    padding: 20px;
+  }
+
+  .process-stage-image {
+    height: 220px;
+  }
+
+  .process-stage-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .process-stage-heading h3 {
+    text-align: left;
+  }
+
+  .process-line-wrap {
+    top: 205px;
+  }
+
+  .process-zone {
+    height: 47vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-header-reveal,
+  .process-stage-card,
+  .process-line {
+    transition: none !important;
+  }
+
+  .process-header-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+   </style>
+</head>
+<body>
+    <section class="process-sticky" id="processSticky">
+  <div class="process-sticky-pin">
+    <div class="process-sticky-shell">
+      <div class="process-sticky-header process-header-reveal" id="processHeaderReveal">
+        <h2>A Structured Process. Built Around Your Business.</h2>
+        <p>
+          Every successful digital project starts with understanding not assumptions. From the first conversation to long-term support, we work as your trusted technology partner, delivering solutions that align with your business goals today and scale with you tomorrow.
+        </p>
+      </div>
+
+      <div class="process-stage">
+        <div class="process-line-wrap" aria-hidden="true">
+          <div class="process-line-mask">
+            <div class="process-line" style="background: linear-gradient(90deg, #bba068 0%, #876d35 100%);" id="processGoldLine"></div>
+          </div>
+        </div>
+
+        <div class="process-track" id="processTrack">
+          <article class="process-stage-card" id="processCard1">
+            <div class="process-stage-image">
+              <img
+                src="https://framerusercontent.com/images/z4Lf6BnFc6okyn5VM19Az7vRAg.png"
+                alt=""
+                width="1464"
+                height="1200"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="process-stage-content">
+              <div class="process-stage-heading">
+                <span class="process-stage-step">STEP 1</span>
+                <h3>Discovery Call</h3>
+              </div>
+              <div class="process-stage-divider"></div>
+              <p>
+                We begin by understanding your business, your challenges, and your ambitions. This first conversation helps us identify opportunities, define priorities, and determine how we can create the greatest value for your organisation.
+              </p>
+            </div>
+          </article>
+
+          <article class="process-stage-card" id="processCard2">
+            <div class="process-stage-image">
+              <img
+                src="https://framerusercontent.com/images/ujfAofThUxadZG3dCh6PsvmtrGY.jpg"
+                alt="A person reviews colorful sticky notes and sketches of a mobile app design on a corkboard, focusing on wireframes and layout drafts."
+                width="1098"
+                height="900"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="process-stage-content">
+              <div class="process-stage-heading">
+                <span class="process-stage-step">STEP 2</span>
+                <h3>Strategy & Solution Design</h3>
+              </div>
+              <div class="process-stage-divider"></div>
+              <p>
+                Based on your objectives, we develop a tailored digital strategy. Whether it's a new website, AI automation, content production, IT infrastructure, or Digital Product Passport readiness, every recommendation is built specifically for your business.
+              </p>
+            </div>
+          </article>
+
+          <article class="process-stage-card" id="processCard3">
+            <div class="process-stage-image">
+              <img
+                src="https://framerusercontent.com/images/lqQvhMmYR4eERqWIbXOuuliDers.jpg"
+                alt="Three individuals collaborate over a large desk, discussing architectural blueprints, with one person pointing to a specific part of the plan using a pencil, surrounded by drafting tools including a ruler."
+                width="1098"
+                height="900"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="process-stage-content">
+              <div class="process-stage-heading">
+                <span class="process-stage-step">STEP 3</span>
+                <h3>Build & Implementation</h3>
+              </div>
+              <div class="process-stage-divider"></div>
+              <p>
+               Once the strategy is approved, our team brings it to life. We design, develop, integrate, and deploy every solution with performance, security, and long-term scalability at its core.
+              </p>
+            </div>
+          </article>
+
+          <article class="process-stage-card" id="processCard4">
+            <div class="process-stage-image">
+              <img
+                src="https://framerusercontent.com/images/Ws61w1VrfbXktkYR6ygwql8pio.jpg"
+                alt="A sleek bronze balance scale stands elegantly on a tiered black platform against a dark background, symbolizing justice and fairness."
+                width="1098"
+                height="900"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="process-stage-content">
+              <div class="process-stage-heading">
+                <span class="process-stage-step">STEP 4</span>
+                <h3>Growth & Long-Term Partnership</h3>
+              </div>
+              <div class="process-stage-divider"></div>
+              <p>
+               Digital transformation doesn't end at launch. We continue to optimise, maintain, and expand your digital ecosystem, helping your business adapt, grow, and stay ahead in an evolving digital landscape.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="process-scroll-zones" aria-hidden="true">
+    <div class="process-zone"></div>
+    <div class="process-zone"></div>
+    <div class="process-zone"></div>
+    <div class="process-zone"></div>
+    <div class="process-zone"></div>
+  </div>
+</section>
+<script>
+(function () {
+  const section = document.getElementById('processSticky');
+  const header = document.getElementById('processHeaderReveal');
+  const line = document.getElementById('processGoldLine');
+
+  const cards = [
+    document.getElementById('processCard1'),
+    document.getElementById('processCard2'),
+    document.getElementById('processCard3'),
+    document.getElementById('processCard4')
+  ];
+
+  const desktopStates = [
+    [
+      { x: 5000, r: -4 },
+      { x: 5000, r: 0 },
+      { x: 5000, r: 0 },
+      { x: 5000, r: -6 }
+    ],
+    [
+      { x: 0, r: 0 },
+      { x: 5000, r: 7 },
+      { x: 5000, r: -9 },
+      { x: 5000, r: 8 }
+    ],
+    [
+      { x: 0, r: 0 },
+      { x: 350, r: 0 },
+      { x: 5000, r: -9 },
+      { x: 5000, r: 8 }
+    ],
+    [
+      { x: 0, r: 0 },
+      { x: 350, r: 0 },
+      { x: 700, r: 0 },
+      { x: 5000, r: 8 }
+    ],
+    [
+      { x: 0, r: -8 },
+      { x: 350, r: 8 },
+      { x: 700, r: -7 },
+      { x: 1050, r: 7 }
+    ]
+  ];
+
+  const tabletStates = [
+    [
+      { x: 720, r: -5 },
+      { x: 720, r: 5 },
+      { x: 720, r: -5 },
+      { x: 720, r: 5 }
+    ],
+    [
+      { x: 250, r: -6 },
+      { x: 720, r: 5 },
+      { x: 720, r: -5 },
+      { x: 720, r: 5 }
+    ],
+    [
+      { x: 250, r: -6 },
+      { x: 130, r: 6 },
+      { x: 720, r: -5 },
+      { x: 720, r: 5 }
+    ],
+    [
+      { x: 250, r: -6 },
+      { x: 130, r: 6 },
+      { x: 5, r: -5 },
+      { x: 720, r: 5 }
+    ],
+    [
+      { x: 250, r: -6 },
+      { x: 130, r: 6 },
+      { x: 5, r: -5 },
+      { x: -115, r: 5 }
+    ]
+  ];
+
+  const phoneStates = [
+    [
+      { x: 320, r: 0 },
+      { x: 320, r: 0 },
+      { x: 320, r: 0 },
+      { x: 320, r: 0 }
+    ],
+    [
+      { x: 85, r: 0 },
+      { x: 320, r: 0 },
+      { x: 320, r: 0 },
+      { x: 320, r: 0 }
+    ],
+    [
+      { x: 85, r: 0 },
+      { x: 35, r: 0 },
+      { x: 320, r: 0 },
+      { x: 320, r: 0 }
+    ],
+    [
+      { x: 85, r: 0 },
+      { x: 35, r: 0 },
+      { x: -15, r: 0 },
+      { x: 320, r: 0 }
+    ],
+    [
+      { x: 85, r: 0 },
+      { x: 35, r: 0 },
+      { x: -15, r: 0 },
+      { x: -65, r: 0 }
+    ]
+  ];
+
+  const linePositions = {
+    desktop: [-2000, -1040, -760, -430, -110, 100],
+    tablet:  [-1300, -700, -500, -280, -90, 0],
+    phone:   [-520, -390, -260, -140, -60, 0]
+  };
+
+  let headerShown = false;
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function clamp(num, min, max) {
+    return Math.max(min, Math.min(max, num));
+  }
+
+  function getMode() {
+    if (window.innerWidth <= 767.98) return 'phone';
+    if (window.innerWidth <= 1199.98) return 'tablet';
+    return 'desktop';
+  }
+
+  function getStates(mode) {
+    if (mode === 'phone') return phoneStates;
+    if (mode === 'tablet') return tabletStates;
+    return desktopStates;
+  }
+
+  function getLinePositions(mode) {
+    if (mode === 'phone') return linePositions.phone;
+    if (mode === 'tablet') return linePositions.tablet;
+    return linePositions.desktop;
+  }
+
+  function applyState(progress) {
+    const mode = getMode();
+    const states = getStates(mode);
+    const lineStops = getLinePositions(mode);
+
+    const stageProgress = clamp(progress * 4, 0, 3.999);
+    const stageIndex = Math.floor(stageProgress);
+    const stageT = stageProgress - stageIndex;
+
+    const current = states[stageIndex];
+    const next = states[Math.min(stageIndex + 1, states.length - 1)];
+
+    cards.forEach((card, i) => {
+      const x = lerp(current[i].x, next[i].x, stageT);
+      const r = lerp(current[i].r, next[i].r, stageT);
+      card.style.transform = `translateX(${x}px) rotate(${r}deg)`;
+    });
+
+    const lineCurrent = lineStops[stageIndex];
+    const lineNext = lineStops[Math.min(stageIndex + 1, lineStops.length - 1)];
+    const lineX = lerp(lineCurrent, lineNext, stageT);
+    line.style.transform = `translateX(${lineX}px)`;
+  }
+
+  function onScroll() {
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+    const total = section.offsetHeight - window.innerHeight;
+    const traveled = clamp(-rect.top, 0, total);
+    const progress = total > 0 ? traveled / total : 0;
+
+    if (!headerShown) {
+      const revealPoint = window.innerHeight * 0.85;
+      if (rect.top < revealPoint) {
+        header.classList.add('is-visible');
+        headerShown = true;
+      }
+    }
+
+    applyState(progress);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+
+</body>
+</html>
