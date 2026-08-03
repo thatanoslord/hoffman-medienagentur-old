@@ -1,699 +1,753 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Features Section</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Features Section</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400&display=swap');
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400&display=swap");
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-    }
-
-    body {
-      font-family: 'Sora', sans-serif;
-    }
-
-
-    .ai-features {
-      background: rgb(0, 0, 0);
-      padding: 30px 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ai-features__inner {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .ai-features__heading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .ai-features__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      color: rgb(255, 255, 255);
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 18px;
-    }
-
-    .ai-features__eyebrow-icon {
-      width: 20px;
-      height: 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      animation: aiFeaturesSpin 3.5s linear infinite;
-      transform-origin: 50% 50%;
-    }
-
-    .ai-features__eyebrow-icon svg {
-      display: block;
-      width: 20px;
-      height: 20px;
-    }
-
-    .ai-features__title {
-      
-      font-size: 48px;
-    max-width: 1296px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-  
-    line-height: 1.2;
-    text-transform: uppercase;
-    color: #ffffff;
-    text-align: center;
-    
-    transform: translateY(40px);
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-    }
-
-    .ai-features__grid {
-      margin-top: 80px;
-      display: grid;
-      grid-template-columns: 640px 640px;
-      gap: 20px;
-      align-items: stretch;
-      justify-content: center;
-    }
-
-    .ai-feature-hero,
-    .ai-feature-grid {
-      min-height: 65vh;
-    }
-
-    .ai-feature-hero {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      isolation: isolate;
-      background: #08080b;
-    }
-
-    .ai-feature-hero__media {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .ai-feature-hero__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: saturate(1.05) contrast(1.04);
-    }
-
-    .ai-feature-hero__wave {
-      position: absolute;
-      inset: -20%;
-      opacity: 0.2;
-      mix-blend-mode: screen;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(121, 92, 255, 0.45), transparent 32%),
-        radial-gradient(circle at 78% 20%, rgba(149, 118, 255, 0.30), transparent 28%),
-        radial-gradient(circle at 72% 78%, rgba(55, 91, 255, 0.28), transparent 35%),
-        linear-gradient(135deg, rgba(16, 10, 44, 0.7), rgba(0, 0, 0, 0.2) 45%, rgba(8, 12, 38, 0.7));
-      filter: blur(26px);
-      animation: aiFeatureWave 16s ease-in-out infinite alternate;
-    }
-
-    .ai-feature-hero__shade {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.22) 35%, rgba(0, 0, 0, 0.68) 100%);
-    }
-
-    .ai-feature-hero__content {
-      position: relative;
-      z-index: 1;
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 32px;
-      flex: 1;
-    }
-
-    .ai-feature-hero__statement {
-      margin: 0;
-      max-width: 14ch;
-      color: rgb(255, 255, 255);
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 1.28;
-      letter-spacing: -0.03em;
-    }
-
-    .ai-feature-hero__cta {
-      position: relative;
-      width: 100%;
-      height: 52px;
-      border-radius: 999px;
-      background: rgb(255, 255, 255);
-      color: rgb(23, 23, 23);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-    }
-
-    .ai-feature-hero__cta-text {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: calc(100% - 40px);
-      transform: translate(-50%, -50%);
-      text-align: center;
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    .ai-feature-hero__cta-text--top {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
-
-    .ai-feature-hero__cta-text--bottom {
-      opacity: 0;
-      transform: translate(-50%, 150%);
-    }
-
-    .ai-feature-hero__cta:hover .ai-feature-hero__cta-text--top {
-      opacity: 0;
-      transform: translate(-50%, -210%);
-    }
-
-    .ai-feature-hero__cta:hover .ai-feature-hero__cta-text--bottom {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
-
-    .ai-feature-grid {
-      position: relative;
-      border: 1px solid rgb(50, 50, 50);
-      border-radius: 12px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      background: rgb(0, 0, 0);
-      isolation: isolate;
-    }
-
-    .ai-feature-grid-1 {
-      position: relative;
-      border: 1px solid rgb(50, 50, 50);
-      border-radius: 12px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      
-      background: rgb(0, 0, 0);
-      isolation: isolate;
-    }
-    .ai-feature-grid-1 > :nth-child(1){
-      border-right: 1px solid rgb(50, 50, 50);
-      
-    }
-
-    
-
-    .ai-feature-grid > * {
-      min-width: 0;
-      min-height: 0;
-    }
-
-    .ai-feature-grid > :nth-child(1),
-    .ai-feature-grid > :nth-child(2) {
-      border-bottom: 1px solid rgb(50, 50, 50);
-    }
-
-    .ai-feature-grid > :nth-child(1),
-    .ai-feature-grid > :nth-child(3) {
-      border-right: 1px solid rgb(50, 50, 50);
-    }
-
-    .ai-feature-tile {
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: rgb(0, 0, 0);
-      position: relative;
-      z-index: 2;
-    }
-
-    .ai-feature-tile__icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 999px;
-      background: rgb(23, 23, 23);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
-    .ai-feature-tile__icon img {
-      width: 30px;
-      height: 30px;
-      display: block;
-    }
-
-    .ai-feature-tile__copy {
-      margin-top: auto;
-    }
-
-    .ai-feature-tile__copy h4 {
-      margin: 0 0 10px;
-      color: rgb(255, 255, 255);
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.18;
-      letter-spacing: -0.02em;
-    }
-    .ai-feature-tile__subtitle {
-      display: block;
-      margin-bottom: 10px;
-      color: rgb(255, 255, 255);
-      /* opacity: 0.72; */
-      font-size: 18px;
-      font-weight: 500;
-      line-height: 1.55;
-    }
-
-    .ai-feature-tile__copy p {
-      margin: 0;
-      color: rgb(255, 255, 255);
-      opacity: 0.72;
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.55;
-      /* max-width: 24ch; */
-    }
-
-    .ai-feature-image-tile {
-      position: relative;
-      /* overflow: hidden; */
-      background: transparent;
-      z-index: 2;
-    }
-
-    .ai-feature-image-tile img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transform-origin: bottom right;
-      will-change: transform;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .js-word-reveal .word {
-      display: inline-block;
-      white-space: pre;
-      opacity: 0;
-      filter: blur(10px);
-      transform: translateY(10px);
-      transition:
-        opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: calc(var(--word-index) * 0.05s);
-    }
-
-    .js-word-reveal.is-visible .word {
-      opacity: 1;
-      filter: blur(0);
-      transform: translateY(0);
-    }
-
-    @keyframes aiFeaturesSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes aiFeatureWave {
-      0% {
-        transform: translate3d(-2%, -1%, 0) scale(1.03);
+      * {
+        box-sizing: border-box;
       }
-      50% {
-        transform: translate3d(2%, 1%, 0) scale(1.08);
-      }
-      100% {
-        transform: translate3d(-1%, 2%, 0) scale(1.04);
-      }
-    }
 
-    @media (max-width: 1359.98px) {
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+      }
+
+      body {
+        font-family: "Sora", sans-serif;
+      }
+
       .ai-features {
-        padding: 100px 30px;
+        background: rgb(0, 0, 0);
+        padding: 30px 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ai-features__inner {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .ai-features__heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .ai-features__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        color: rgb(255, 255, 255);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 18px;
+      }
+
+      .ai-features__eyebrow-icon {
+        width: 20px;
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        animation: aiFeaturesSpin 3.5s linear infinite;
+        transform-origin: 50% 50%;
+      }
+
+      .ai-features__eyebrow-icon svg {
+        display: block;
+        width: 20px;
+        height: 20px;
       }
 
       .ai-features__title {
-        font-size: 52px;
+        font-size: 48px;
+        max-width: 1296px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #ffffff;
+        text-align: center;
+
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
       }
 
       .ai-features__grid {
-        margin-top: 50px;
-        grid-template-columns: 1fr;
-        gap: 30px;
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: 640px 640px;
+        gap: 20px;
+        align-items: stretch;
+        justify-content: center;
       }
 
-      .ai-feature-hero {
-        min-height: 414px;
-      }
-
+      .ai-feature-hero,
       .ai-feature-grid {
-        min-height: 800px;
-      }
-
-      .ai-feature-hero__statement {
-        font-size: 28px;
-      }
-
-      .ai-feature-tile {
-        gap: 50px;
-      }
-    }
-
-    @media (max-width: 767.98px) {
-      .ai-features {
-        padding: 80px 20px;
-      }
-
-      .ai-features__title {
-        font-size: 42px;
-      }
-
-      .ai-features__grid {
-        margin-top: 40px;
+        min-height: 65vh;
       }
 
       .ai-feature-hero {
-        min-height: 285px;
-        padding: 24px 20px 20px;
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        isolation: isolate;
+        background: #08080b;
+      }
+
+      .ai-feature-hero__media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .ai-feature-hero__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: saturate(1.05) contrast(1.04);
+      }
+
+      .ai-feature-hero__wave {
+        position: absolute;
+        inset: -20%;
+        opacity: 0.2;
+        mix-blend-mode: screen;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(121, 92, 255, 0.45),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 78% 20%,
+            rgba(149, 118, 255, 0.3),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 72% 78%,
+            rgba(55, 91, 255, 0.28),
+            transparent 35%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(16, 10, 44, 0.7),
+            rgba(0, 0, 0, 0.2) 45%,
+            rgba(8, 12, 38, 0.7)
+          );
+        filter: blur(26px);
+        animation: aiFeatureWave 16s ease-in-out infinite alternate;
+      }
+
+      .ai-feature-hero__shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.14) 0%,
+          rgba(0, 0, 0, 0.22) 35%,
+          rgba(0, 0, 0, 0.68) 100%
+        );
       }
 
       .ai-feature-hero__content {
-        gap: 20px;
+        position: relative;
+        z-index: 1;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 32px;
+        flex: 1;
       }
 
       .ai-feature-hero__statement {
-        font-size: 24px;
-        max-width: 100%;
+        margin: 0;
+        max-width: 14ch;
+        color: rgb(255, 255, 255);
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1.28;
+        letter-spacing: -0.03em;
+      }
+
+      .ai-feature-hero__cta {
+        position: relative;
+        width: 100%;
+        height: 52px;
+        border-radius: 999px;
+        background: rgb(255, 255, 255);
+        color: rgb(23, 23, 23);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+      .ai-feature-hero__cta-text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: calc(100% - 40px);
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1;
+        transition:
+          transform 0.5s ease,
+          opacity 0.5s ease;
+      }
+
+      .ai-feature-hero__cta-text--top {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+
+      .ai-feature-hero__cta-text--bottom {
+        opacity: 0;
+        transform: translate(-50%, 150%);
+      }
+
+      .ai-feature-hero__cta:hover .ai-feature-hero__cta-text--top {
+        opacity: 0;
+        transform: translate(-50%, -210%);
+      }
+
+      .ai-feature-hero__cta:hover .ai-feature-hero__cta-text--bottom {
+        opacity: 1;
+        transform: translate(-50%, -50%);
       }
 
       .ai-feature-grid {
-        display: flex;
-        flex-direction: column;
-        min-height: auto;
+        position: relative;
+        border: 1px solid rgb(50, 50, 50);
+        border-radius: 12px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        background: rgb(0, 0, 0);
+        isolation: isolate;
+      }
+
+      .ai-feature-grid-1 {
+        position: relative;
+        border: 1px solid rgb(50, 50, 50);
+        border-radius: 12px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        background: rgb(0, 0, 0);
+        isolation: isolate;
+      }
+      .ai-feature-grid-1 > :nth-child(1) {
+        border-right: 1px solid rgb(50, 50, 50);
       }
 
       .ai-feature-grid > * {
-        border-right: 0 !important;
-        border-bottom: 1px solid rgb(50, 50, 50) !important;
+        min-width: 0;
+        min-height: 0;
       }
 
-      .ai-feature-grid > *:last-child {
-        border-bottom: 0 !important;
+      .ai-feature-grid > :nth-child(1),
+      .ai-feature-grid > :nth-child(2) {
+        border-bottom: 1px solid rgb(50, 50, 50);
       }
 
-      .ai-feature-tile,
-      .ai-feature-image-tile {
-        min-height: 260px;
+      .ai-feature-grid > :nth-child(1),
+      .ai-feature-grid > :nth-child(3) {
+        border-right: 1px solid rgb(50, 50, 50);
       }
 
       .ai-feature-tile {
-        padding: 30px 20px;
-        gap: 40px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: rgb(0, 0, 0);
+        position: relative;
+        z-index: 2;
+      }
+
+      .ai-feature-tile__icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 999px;
+        background: rgb(23, 23, 23);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      .ai-feature-tile__icon img {
+        width: 30px;
+        height: 30px;
+        display: block;
+      }
+
+      .ai-feature-tile__copy {
+        margin-top: auto;
+      }
+
+      .ai-feature-tile__copy h4 {
+        margin: 0 0 10px;
+        color: rgb(255, 255, 255);
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+      }
+      .ai-feature-tile__subtitle {
+        display: block;
+        margin-bottom: 10px;
+        color: rgb(255, 255, 255);
+        /* opacity: 0.72; */
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.55;
+      }
+
+      .ai-feature-tile__copy p {
+        margin: 0;
+        color: rgb(255, 255, 255);
+        opacity: 0.72;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.55;
+        /* max-width: 24ch; */
       }
 
       .ai-feature-image-tile {
-        min-height: 320px;
-        border-radius: 0 0 12px 12px;
+        position: relative;
+        /* overflow: hidden; */
+        background: transparent;
+        z-index: 2;
       }
-    }
-  </style>
-</head>
-<body>
-<div style="height: 1000px; background: #000;"></div>
-  <section class="ai-features" id="features">
-    <div class="ai-features__inner">
-      <header class="ai-features__heading">
-        
 
-        <h2 class="ai-features__title js-word-reveal">
-          Your personal AI control system.
-        </h2>
-      </header>
+      .ai-feature-image-tile img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transform-origin: bottom right;
+        will-change: transform;
+        pointer-events: none;
+        z-index: 1;
+      }
 
-      <div class="ai-features__grid">
-        <article class="ai-feature-hero">
-          <div class="ai-feature-hero__media">
-            <img
-              src="https://framerusercontent.com/images/jCJp2CHXLUXKSLzy64yo49RN2Q.png?width=1280&height=1600"
-              alt="Abstract AI interface background"
-              width="1280"
-              height="1600"
-              loading="lazy"
+      .js-word-reveal .word {
+        display: inline-block;
+        white-space: pre;
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(10px);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+          filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: calc(var(--word-index) * 0.05s);
+      }
+
+      .js-word-reveal.is-visible .word {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+      }
+
+      @keyframes aiFeaturesSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes aiFeatureWave {
+        0% {
+          transform: translate3d(-2%, -1%, 0) scale(1.03);
+        }
+        50% {
+          transform: translate3d(2%, 1%, 0) scale(1.08);
+        }
+        100% {
+          transform: translate3d(-1%, 2%, 0) scale(1.04);
+        }
+      }
+
+      @media (max-width: 1359.98px) {
+        .ai-features {
+          padding: 100px 30px;
+        }
+
+        .ai-features__title {
+          font-size: 52px;
+        }
+
+        .ai-features__grid {
+          margin-top: 50px;
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .ai-feature-hero {
+          min-height: 414px;
+        }
+
+        .ai-feature-grid {
+          min-height: 800px;
+        }
+
+        .ai-feature-hero__statement {
+          font-size: 28px;
+        }
+
+        .ai-feature-tile {
+          gap: 50px;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .ai-features {
+          padding: 80px 20px;
+        }
+
+        .ai-features__title {
+          font-size: 42px;
+        }
+
+        .ai-features__grid {
+          margin-top: 40px;
+        }
+
+        .ai-feature-hero {
+          min-height: 285px;
+          padding: 24px 20px 20px;
+        }
+
+        .ai-feature-hero__content {
+          gap: 20px;
+        }
+
+        .ai-feature-hero__statement {
+          font-size: 24px;
+          max-width: 100%;
+        }
+
+        .ai-feature-grid {
+          display: flex;
+          flex-direction: column;
+          min-height: auto;
+        }
+
+        .ai-feature-grid > * {
+          border-right: 0 !important;
+          border-bottom: 1px solid rgb(50, 50, 50) !important;
+        }
+
+        .ai-feature-grid > *:last-child {
+          border-bottom: 0 !important;
+        }
+
+        .ai-feature-tile,
+        .ai-feature-image-tile {
+          min-height: 260px;
+        }
+
+        .ai-feature-tile {
+          padding: 30px 20px;
+          gap: 40px;
+        }
+
+        .ai-feature-image-tile {
+          min-height: 320px;
+          border-radius: 0 0 12px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div style="height: 1000px; background: #000"></div>
+    <section class="ai-features" id="features">
+      <div class="ai-features__inner">
+        <header class="ai-features__heading">
+          <h2 class="ai-features__title js-word-reveal">
+            Your personal AI control system.
+          </h2>
+        </header>
+
+        <div class="ai-features__grid">
+          <article class="ai-feature-hero">
+            <div class="ai-feature-hero__media">
+              <img
+                src="https://framerusercontent.com/images/jCJp2CHXLUXKSLzy64yo49RN2Q.png?width=1280&height=1600"
+                alt="Abstract AI interface background"
+                width="1280"
+                height="1600"
+                loading="lazy"
+              />
+              <div class="ai-feature-hero__wave"></div>
+              <div class="ai-feature-hero__shade"></div>
+            </div>
+
+            <div class="ai-feature-hero__content">
+              <h3 class="ai-feature-hero__statement js-word-reveal">
+                Manage every workflow and insight from one intelligent real-time
+                AI platform.
+              </h3>
+
+              <a href="./pricing" class="ai-feature-hero__cta">
+                <span
+                  class="ai-feature-hero__cta-text ai-feature-hero__cta-text--top"
+                >
+                  View our transparent pricing
+                </span>
+                <span
+                  class="ai-feature-hero__cta-text ai-feature-hero__cta-text--bottom"
+                >
+                  View our transparent pricing
+                </span>
+              </a>
+            </div>
+          </article>
+
+          <div class="ai-feature-grid">
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/j5JnwNnQuCPy3LYaA5WTBkC0U.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>01. IGNITION</h4>
+                <span class="ai-feature-tile__subtitle"
+                  >Premium Websites & Digital Visibility</span
+                >
+                <p>
+                  High-performance multilingual websites built for speed, search
+                  visibility, AI discovery, and long-term growth.
+                </p>
+              </div>
+            </article>
+
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/XNWmQFjRjTzFODjZPPkd2LA7294.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>02. ENGINE</h4>
+                <span class="ai-feature-tile__subtitle">Content & Media</span>
+                <p>
+                  Professional video production, podcasts, photography and
+                  multilingual content that keeps your brand visible every day.
+                </p>
+              </div>
+            </article>
+
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/dFpLgXkJcdrrPil925Y1LS6k42I.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>03. AI OPS</h4>
+                <span class="ai-feature-tile__subtitle">Automation & AI</span>
+                <p>
+                  AI agents, intelligent workflows, chatbots, AI phone systems
+                  and cloud integrations that save time and scale operations.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="ai-feature-image-tile js-image-settle"
+              aria-hidden="true"
             >
-            <div class="ai-feature-hero__wave"></div>
-            <div class="ai-feature-hero__shade"></div>
+              <img
+                src="macbook.png"
+                alt=""
+                width="640"
+                height="800"
+                loading="lazy"
+              />
+            </article>
           </div>
 
-          <div class="ai-feature-hero__content">
-            <h3 class="ai-feature-hero__statement js-word-reveal">
-              Manage every workflow and insight from one intelligent real-time AI platform.
-            </h3>
+          <div class="ai-feature-grid-1" style="grid-column: 1 / -1">
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/j5JnwNnQuCPy3LYaA5WTBkC0U.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>04. Digital Product Passport</h4>
+                <span class="ai-feature-tile__subtitle"
+                  >Future-Ready Compliance</span
+                >
+                <p>
+                  Prepare your business today for tomorrow's European Digital
+                  Product Passport requirements with expert guidance and
+                  implementation.
+                </p>
+              </div>
+            </article>
 
-            <a href="./pricing" class="ai-feature-hero__cta">
-              <span class="ai-feature-hero__cta-text ai-feature-hero__cta-text--top">
-                View our transparent pricing
-              </span>
-              <span class="ai-feature-hero__cta-text ai-feature-hero__cta-text--bottom">
-                View our transparent pricing
-              </span>
-            </a>
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/XNWmQFjRjTzFODjZPPkd2LA7294.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>05. IT & Infrastructure</h4>
+                <span class="ai-feature-tile__subtitle"
+                  >Technology Without Complexity</span
+                >
+                <p>
+                  Cloud systems, business email, domains, managed hosting,
+                  servers and on-site IT support all from one trusted partner.
+                </p>
+              </div>
+            </article>
           </div>
-        </article>
-
-        <div class="ai-feature-grid">
-          <article class="ai-feature-tile">
-            <div class="ai-feature-tile__icon">
-              <img
-                src="https://framerusercontent.com/images/j5JnwNnQuCPy3LYaA5WTBkC0U.svg?width=30&height=30"
-                alt=""
-                width="30"
-                height="30"
-                loading="lazy"
-              >
-            </div>
-            <div class="ai-feature-tile__copy">
-              <h4>01. IGNITION</h4>
-              <span class="ai-feature-tile__subtitle">Premium Websites & Digital Visibility</span>
-              <p>High-performance multilingual websites built for speed, search visibility, AI discovery, and long-term growth.</p>
-            </div>
-          </article>
-
-          <article class="ai-feature-tile">
-            <div class="ai-feature-tile__icon">
-              <img
-                src="https://framerusercontent.com/images/XNWmQFjRjTzFODjZPPkd2LA7294.svg?width=30&height=30"
-                alt=""
-                width="30"
-                height="30"
-                loading="lazy"
-              >
-            </div>
-            <div class="ai-feature-tile__copy">
-              <h4>02. ENGINE</h4>
-              <span class="ai-feature-tile__subtitle">Content & Media</span>
-              <p>Professional video production, podcasts, photography and multilingual content that keeps your brand visible every day.</p>
-            </div>
-          </article>
-
-          <article class="ai-feature-tile">
-            <div class="ai-feature-tile__icon">
-              <img
-                src="https://framerusercontent.com/images/dFpLgXkJcdrrPil925Y1LS6k42I.svg?width=30&height=30"
-                alt=""
-                width="30"
-                height="30"
-                loading="lazy"
-              >
-            </div>
-            <div class="ai-feature-tile__copy">
-              <h4>03. AI OPS</h4>
-              <span class="ai-feature-tile__subtitle">Automation & AI</span>
-              <p>AI agents, intelligent workflows, chatbots, AI phone systems and cloud integrations that save time and scale operations.</p>
-            </div>
-          </article>
-
-          <article class="ai-feature-image-tile js-image-settle" aria-hidden="true">
-            <img
-              src="macbook.png"
-              alt=""
-              width="640"
-              height="800"
-              loading="lazy"
-            >
-          </article>
-        </div>
-
-        <div class="ai-feature-grid-1" style=" grid-column: 1 / -1;">
-          <article class="ai-feature-tile">
-            <div class="ai-feature-tile__icon">
-              <img
-                src="https://framerusercontent.com/images/j5JnwNnQuCPy3LYaA5WTBkC0U.svg?width=30&height=30"
-                alt=""
-                width="30"
-                height="30"
-                loading="lazy"
-              >
-            </div>
-            <div class="ai-feature-tile__copy">
-              <h4>04. Digital Product Passport</h4>
-              <span class="ai-feature-tile__subtitle">Future-Ready Compliance</span>
-              <p>Prepare your business today for tomorrow's European Digital Product Passport requirements with expert guidance and implementation.</p>
-            </div>
-          </article>
-
-          <article class="ai-feature-tile">
-            <div class="ai-feature-tile__icon">
-              <img
-                src="https://framerusercontent.com/images/XNWmQFjRjTzFODjZPPkd2LA7294.svg?width=30&height=30"
-                alt=""
-                width="30"
-                height="30"
-                loading="lazy"
-              >
-            </div>
-            <div class="ai-feature-tile__copy">
-              <h4>05. IT & Infrastructure</h4>
-              <span class="ai-feature-tile__subtitle">Technology Without Complexity</span>
-              <p>Cloud systems, business email, domains, managed hosting, servers and on-site IT support all from one trusted partner.</p>
-            </div>
-          </article>
-
-          
         </div>
       </div>
-    </div>
-  </section>
-<div style="height: 1000px; background: #000;"></div>
-  <script>
-    (function () {
-      const splitTargets = document.querySelectorAll('.js-word-reveal');
+    </section>
+    <div style="height: 1000px; background: #000"></div>
+    <script>
+      (function () {
+        const splitTargets = document.querySelectorAll(".js-word-reveal");
 
-      splitTargets.forEach((el) => {
-        const text = el.textContent.trim().replace(/\s+/g, ' ');
-        const words = text.split(' ');
-        el.textContent = '';
+        splitTargets.forEach((el) => {
+          const text = el.textContent.trim().replace(/\s+/g, " ");
+          const words = text.split(" ");
+          el.textContent = "";
 
-        words.forEach((word, index) => {
-          const span = document.createElement('span');
-          span.className = 'word';
-          span.style.setProperty('--word-index', index);
-          span.textContent = word + (index < words.length - 1 ? ' ' : '');
-          el.appendChild(span);
+          words.forEach((word, index) => {
+            const span = document.createElement("span");
+            span.className = "word";
+            span.style.setProperty("--word-index", index);
+            span.textContent = word + (index < words.length - 1 ? " " : "");
+            el.appendChild(span);
+          });
         });
-      });
 
-      const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.22,
+            rootMargin: "0px 0px -40px 0px",
+          },
+        );
+
+        document.querySelectorAll(".js-word-reveal").forEach((el) => {
+          revealObserver.observe(el);
         });
-      }, {
-        threshold: 0.22,
-        rootMargin: '0px 0px -40px 0px'
-      });
 
-      document.querySelectorAll('.js-word-reveal').forEach((el) => {
-        revealObserver.observe(el);
-      });
+        const section = document.querySelector(".ai-features");
+        const imageTile = document.querySelector(".js-image-settle");
+        const image = imageTile ? imageTile.querySelector("img") : null;
 
-      const section = document.querySelector('.ai-features');
-      const imageTile = document.querySelector('.js-image-settle');
-      const image = imageTile ? imageTile.querySelector('img') : null;
+        function clamp(value, min, max) {
+          return Math.min(Math.max(value, min), max);
+        }
 
-      function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
-      }
+        function lerp(start, end, t) {
+          return start + (end - start) * t;
+        }
 
-      function lerp(start, end, t) {
-        return start + (end - start) * t;
-      }
+        function updateImageScrollScale() {
+          if (!section || !imageTile || !image) return;
 
-      function updateImageScrollScale() {
-        if (!section || !imageTile || !image) return;
+          const sectionRect = section.getBoundingClientRect();
+          const vh = window.innerHeight;
 
-        const sectionRect = section.getBoundingClientRect();
-        const vh = window.innerHeight;
+          const rawProgress = (vh - sectionRect.top) / vh;
+          const progress = clamp(rawProgress, 0, 1);
 
-        const rawProgress = (vh - sectionRect.top) / vh;
-        const progress = clamp(rawProgress, 0, 1);
+          const startScale = 3;
+          const endScale = 1;
+          const startX = 0;
+          const endX = 0;
+          const startY = 0;
+          const endY = 0;
 
-        const startScale = 3;
-        const endScale = 1;
-        const startX = 0;
-        const endX = 0;
-        const startY = 0;
-        const endY = 0;
+          const scale = lerp(startScale, endScale, progress);
+          const x = lerp(startX, endX, progress);
+          const y = lerp(startY, endY, progress);
 
-        const scale = lerp(startScale, endScale, progress);
-        const x = lerp(startX, endX, progress);
-        const y = lerp(startY, endY, progress);
+          image.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+        }
 
-        image.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
-      }
+        let ticking = false;
 
-      let ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            updateImageScrollScale();
+            ticking = false;
+          });
+        }
 
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-          updateImageScrollScale();
-          ticking = false;
-        });
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      updateImageScrollScale();
-    })();
-  </script>
-</body>
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        updateImageScrollScale();
+      })();
+    </script>
+  </body>
 </html>
