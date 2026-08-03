@@ -55,8 +55,8 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   line-height: 24px;
-  font-weight: 400;
-  color: #b2b2b2;
+  font-weight: 500;
+  color: #f5ecec;
   max-width: 470px;
 }
 
@@ -165,7 +165,7 @@
   /* color: #bba068; */
   letter-spacing: 0.04em;
   white-space: nowrap;
-  background: linear-gradient(90deg, #3633c6 0%, #a1a0ea 100%);
+  background: linear-gradient(90deg,#a1a0ea 100%, #3633c6 0%, #a1a0ea 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -192,10 +192,10 @@
 .process-stage-content p {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 22px;
   font-weight: 400;
-  color: #8f8f8f;
+  color: #fafafa;
 }
 
 .process-scroll-zones {
@@ -230,19 +230,27 @@
   }
 
   .process-sticky-header {
-    grid-template-columns: 1fr;
-    justify-content: start;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 50px;
+    position: relative;
+    top:100px;
   }
 
   .process-sticky-header h2 {
     font-size: 3.2rem;
-    max-width: 560px;
+    max-width: 627px;
+    text-align: center;
   }
 
   .process-sticky-header p {
-    max-width: 620px;
+    max-width: 700px;
+    text-align: center;
+  }
+  .process-stage {
+    top:150px;
   }
 
   .process-line-wrap {
@@ -251,7 +259,7 @@
 
   .process-stage-card {
     width: 340px;
-    min-height: 450px;
+    min-height: 560px;
   }
 
   .process-stage-image {
