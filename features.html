@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+  :root {
+    --bg: #09090b;
+    --surface: #18181b;
+    --surface-2: #27272a;
+    --border: #3f3f46;
+    --border-hover: #52525b;
+    --text: #ffffff;
+    --muted: #a1a1aa;
+    --muted-2: #71717a;
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --radius: 20px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .features-section {
+    background: var(--bg);
+    padding: 96px 24px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .features-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin: 0 0 32px;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    grid-auto-rows: 200px;
+  }
+
+  .bento-card {
+    background: var(--surface);
+    border: 1px solid #27272a;
+    border-radius: var(--radius);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition:
+      transform 0.35s var(--ease),
+      border-color 0.35s var(--ease),
+      background-color 0.35s var(--ease),
+      box-shadow 0.35s var(--ease);
+  }
+
+  .bento-card:hover {
+    border-color: var(--border-hover);
+  }
+
+  .card-typography:hover,
+  .card-global:hover {
+    transform: scale(1.02);
+  }
+
+  .bento-card:not(.card-typography):not(.card-global):hover {
+    transform: scale(0.98);
+  }
+
+  .card-global:hover {
+    box-shadow: var(--shadow);
+  }
+
+  .card-visual {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-copy {
+    margin-top: 16px;
+  }
+
+  .card-copy h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .card-copy p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 36ch;
+  }
+
+  .with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .with-icon svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+  }
+
+  .type-tester,
+  .layout-wrap,
+  .speed-indicator,
+  .security-badge {
+    height: 100%;
+  }
+
+  .type-tester {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .type-aa {
+    color: var(--text);
+    font-family: 'poppins', sans-serif;
+    font-size: clamp(56px, 8vw, 128px);
+    font-weight: 500;
+    display: inline-block;
+    transform: scale(1);
+    transition: transform 0.8s var(--ease);
+    will-change: transform;
+  }
+
+  .type-aa.scaled {
+    transform: scale(1.5);
+  }
+
+  .layout-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .layout-animation {
+    width: 100%;
+    max-width: 140px;
+    height: 100%;
+    display: grid;
+    gap: 6px;
+    align-content: center;
+    transition: all 0.5s var(--ease);
+  }
+
+  .layout-animation.grid-cols-1 { grid-template-columns: 1fr; }
+  .layout-animation.grid-cols-2 { grid-template-columns: 1fr 1fr; }
+  .layout-animation.grid-cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .layout-animation div {
+    height: 20px;
+    width: 100%;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s var(--ease);
+  }
+
+  .speed-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .speed-display {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loader {
+    height: 32px;
+    width: 96px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: loaderPulse 1s infinite;
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  }
+
+  .loader.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    position: absolute;
+  }
+
+  .speed-text {
+    position: absolute;
+    color: var(--text);
+    font-size: clamp(32px, 4vw, 40px);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(5px);
+    transition:
+      opacity 0.45s var(--ease),
+      transform 0.45s var(--ease),
+      filter 0.45s var(--ease);
+  }
+
+  .speed-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  .speed-label {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .progress-track {
+    width: 100%;
+    max-width: 120px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: #fff;
+    border-radius: 999px;
+    transition: width 0.7s var(--ease);
+  }
+
+  .progress-fill.loaded {
+    width: 100%;
+  }
+
+  .security-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .shield-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1);
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease,
+      color 0.3s ease;
+    color: #52525b;
+  }
+
+  .shield-box.active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    color: #fff;
+  }
+
+  .shield-box svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .globe-wrap {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+  }
+
+  .globe-icon {
+    position: relative;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .globe-icon svg,
+  .phone-icon svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .pulse {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    animation: pulseRing 3s infinite ease-out;
+  }
+
+  .pulse-1 { animation-delay: 0s; }
+  .pulse-2 { animation-delay: 0.8s; }
+  .pulse-3 { animation-delay: 1.6s; }
+  .pulse-4 { animation-delay: 2.4s; }
+  .pulse-5 { animation-delay: 3.2s; }
+
+  .card-copy-overlay {
+    margin-top: auto;
+    position: relative;
+    z-index: 3;
+    background: rgba(24, 24, 27, 0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  .phone-icon {
+    color: #fff;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.7s var(--ease),
+      transform 0.7s var(--ease);
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  @keyframes loaderPulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.4; }
+  }
+
+  @keyframes pulseRing {
+    0% {
+      transform: scale(0.5);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .card-typography {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .card-global {
+      grid-column: span 2;
+      grid-row: span 2;
+      padding: 24px;
+    }
+
+    .bento-card:not(.card-typography):not(.card-global):not(.card-wide) {
+      grid-column: span 2;
+    }
+
+    .card-wide {
+      grid-column: span 3;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .features-section {
+      padding: 72px 20px;
+    }
+
+    .bento-card {
+      padding: 24px;
+    }
+
+    .card-copy h3 {
+      font-size: 22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+    <section class="features-section" id="features">
+  <div class="features-container">
+    <p class="eyebrow reveal">Features</p>
+
+    <div class="bento-grid">
+      <!-- 1 Typography -->
+      <article class="bento-card card-typography reveal">
+        <div class="card-visual type-tester">
+          <span class="type-aa" id="typeAa">Aa</span>
+        </div>
+        <div class="card-copy">
+          <h3>Typography</h3>
+          <p>Beautiful, responsive type that scales perfectly.</p>
+        </div>
+      </article>
+
+      <!-- 2 Layouts -->
+      <article class="bento-card reveal">
+        <div class="card-visual layout-wrap">
+          <div class="layout-animation grid-cols-2" id="layoutAnimation">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="card-copy">
+          <h3>Layouts</h3>
+          <p>Flexible grids that adapt.</p>
+        </div>
+      </article>
+
+      <!-- 3 Global CDN -->
+      <article class="bento-card card-global reveal">
+        <div class="card-visual center">
+          <div class="globe-wrap">
+            <div class="globe-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20"></path>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <span class="pulse pulse-1"></span>
+            <span class="pulse pulse-2"></span>
+            <span class="pulse pulse-3"></span>
+            <span class="pulse pulse-4"></span>
+            <span class="pulse pulse-5"></span>
+          </div>
+        </div>
+        <div class="card-copy card-copy-overlay">
+          <h3 class="with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20"></path>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            Global CDN
+          </h3>
+          <p>Lightning-fast content delivery worldwide with edge locations.</p>
+        </div>
+      </article>
+
+      <!-- 4 Speed -->
+      <article class="bento-card reveal">
+        <div class="card-visual speed-indicator">
+          <div class="speed-display">
+            <div class="loader" id="speedLoader"></div>
+            <span class="speed-text" id="speedText">100ms</span>
+          </div>
+          <span class="speed-label">Load Time</span>
+          <div class="progress-track">
+            <div class="progress-fill" id="speedProgress"></div>
+          </div>
+        </div>
+        <div class="card-copy">
+          <h3>Speed</h3>
+          <p>Blazing fast performance.</p>
+        </div>
+      </article>
+
+      <!-- 5 Security -->
+      <article class="bento-card card-wide reveal">
+        <div class="card-visual security-badge" id="securityBadge">
+          <div class="shield-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+              <path d="M7 11V8a5 5 0 0 1 10 0v3"></path>
+            </svg>
+          </div>
+          <div class="shield-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+              <path d="M7 11V8a5 5 0 0 1 10 0v3"></path>
+            </svg>
+          </div>
+          <div class="shield-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+              <path d="M7 11V8a5 5 0 0 1 10 0v3"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="card-copy">
+          <h3 class="with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+              <path d="M7 11V8a5 5 0 0 1 10 0v3"></path>
+            </svg>
+            Security First
+          </h3>
+          <p>Enterprise-grade encryption and data protection built-in.</p>
+        </div>
+      </article>
+
+      <!-- 6 Mobile -->
+      <article class="bento-card card-wide reveal">
+        <div class="card-visual center">
+          <div class="phone-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="7" y="2" width="10" height="20" rx="2"></rect>
+              <path d="M12 18h.01"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="card-copy">
+          <h3>Mobile Ready</h3>
+          <p>Optimized for all devices and screen sizes.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<script>
+  (function () {
+    const aa = document.getElementById("typeAa");
+    const layout = document.getElementById("layoutAnimation");
+    const loader = document.getElementById("speedLoader");
+    const speedText = document.getElementById("speedText");
+    const progress = document.getElementById("speedProgress");
+    const shields = document.querySelectorAll("#securityBadge .shield-box");
+    const reveals = document.querySelectorAll(".reveal");
+
+    let typeScaled = false;
+    setInterval(() => {
+      typeScaled = !typeScaled;
+      aa.classList.toggle("scaled", typeScaled);
+    }, 2000);
+
+    const layouts = ["grid-cols-2", "grid-cols-3", "grid-cols-1"];
+    let layoutIndex = 0;
+    setInterval(() => {
+      layout.classList.remove(...layouts);
+      layoutIndex = (layoutIndex + 1) % layouts.length;
+      layout.classList.add(layouts[layoutIndex]);
+    }, 2500);
+
+    setTimeout(() => {
+      loader.classList.add("hidden");
+      speedText.classList.add("visible");
+      progress.classList.add("loaded");
+    }, 500);
+
+    let shieldIndex = 0;
+    setInterval(() => {
+      if (shieldIndex >= shields.length) {
+        shields.forEach((shield) => shield.classList.remove("active"));
+        shieldIndex = 0;
+        return;
+      }
+      shields[shieldIndex].classList.add("active");
+      shieldIndex++;
+    }, 800);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    reveals.forEach((el, index) => {
+      if (index > 0 && index <= 5) {
+        el.classList.add(`reveal-delay-${index}`);
+      }
+      observer.observe(el);
+    });
+  })();
+</script>
+</body>
+</html>
+
+
+
+

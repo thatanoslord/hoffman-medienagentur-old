@@ -1,0 +1,5254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>HOFFMANN MEDIENAGENTUR</title>
+    <link rel="stylesheet" href="process.css" />
+
+    <link rel="stylesheet" href="features.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background: #000;
+        font-family: "DM Sans", "Inter", sans-serif;
+        color: #fff;
+        margin: 0;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1296px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .btn-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        border-radius: 45px;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background: #fff;
+        color: #000;
+        font-weight: 400;
+      }
+      .btn-pill img {
+        width: 20px;
+        height: 20px;
+      }
+      .section-title {
+        font-size: 40px;
+        text-transform: uppercase;
+        text-align: center;
+        color: #fff;
+        font-weight: 300;
+        margin-bottom: 16px;
+      }
+      .section-desc {
+        color: #9b9b9b;
+        font-size: 18px;
+        text-align: center;
+        line-height: 1.7em;
+        max-width: 700px;
+        margin: 0 auto 40px;
+      }
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .ticker-track {
+        display: flex;
+        gap: 167px;
+        width: max-content;
+      }
+      .service-card,
+      .work-card {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+      }
+      .card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 24px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 20%,
+          rgba(0, 0, 0, 0.85) 90%
+        );
+      }
+      .counter-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px;
+        margin-top: 40px;
+      }
+      .counter-item span.num {
+        font-size: 40px;
+        font-weight: 300;
+      }
+      .counter-item h6 {
+        font-size: 20px;
+        font-weight: 400;
+        margin: 8px 0 4px;
+        color: #fff;
+      }
+      .counter-item p {
+        color: #9b9b9b;
+        font-size: 16px;
+        margin: 0;
+      }
+      .testimonial-card {
+        border: 1px solid rgba(188, 188, 188, 0.1);
+        border-radius: 16px;
+        padding: 24px;
+      }
+      footer {
+        background: #0b0b0b;
+        text-align: center;
+        padding: 100px 24px 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin: 32px 0;
+      }
+      .footer-social a {
+        color: #fff;
+      }
+    </style>
+    <style>
+      /* NAVIGATION */
+      .site-header {
+        position: fixed;
+        /* top: 20px; */
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .site-header-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        /* padding: 20px 30px; */
+        pointer-events: auto;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .nav-desktop {
+        height: 91px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .nav-logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 139px;
+        height: 39px;
+        color: #000000;
+        font-family: "DM Sans", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        min-width: 286px;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .nav-links a {
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        color: #000000;
+        text-decoration: none;
+      }
+
+      .nav-cta-wrap {
+        /* width: 171px; */
+        display: flex;
+        justify-content: flex-end;
+        transition: all 0.5s ease-in-out;
+      }
+
+      /* Reuse button system for nav */
+      .nav-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 187px;
+        height: 51px;
+        border-radius: 45px;
+        overflow: hidden;
+        padding: 10px 24px 10px 10px;
+        gap: 14px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: left;
+        box-sizing: border-box;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background: #000000;
+        color: #ffffff;
+        transition: padding 0.5s ease-in-out;
+      }
+
+      .nav-btn .btn-icon {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .nav-btn .btn-label {
+        white-space: nowrap;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .nav-btn:hover {
+        padding: 10px 10px 10px 24px;
+      }
+
+      .nav-btn:hover .btn-icon {
+        transform: translateX(120px);
+      }
+
+      .nav-btn:hover .btn-label {
+        transform: translateX(-28px);
+      }
+
+      /* Desktop scroll state */
+      .site-header.is-scrolled .site-header-inner {
+        /* max-width: 345px; */
+        padding: 15px 30px;
+        justify-content: center;
+        display: flex;
+      }
+
+      .site-header.is-scrolled .nav-desktop {
+        height: 57px;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 50px;
+        width: fit-content;
+        border-radius: 50px;
+        padding: 0px 24px;
+      }
+
+      .site-header.is-scrolled .nav-logo,
+      .site-header.is-scrolled .nav-cta-wrap {
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        overflow: hidden;
+      }
+
+      .site-header.is-scrolled .nav-links {
+        min-width: auto;
+      }
+
+      .site-header.is-scrolled .nav-links a {
+        color: #fff;
+      }
+
+      /* MOBILE/TABLET */
+      .nav-mobile {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        /* background: #fff; */
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .nav-mobile-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-mobile-logo {
+        width: 139px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        color: #000;
+        font-family: "DM Sans", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .nav-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 48px;
+        min-height: 25px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: #000;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .nav-mobile-panel {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease-in-out,
+          opacity 0.5s ease-in-out,
+          padding-top 0.7s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-top: 0;
+      }
+
+      .nav-mobile.open .nav-mobile-panel {
+        /* gap: 20px; */
+        max-height: 800px;
+        opacity: 1;
+        padding-top: 100px;
+      }
+      .nav-mobile-logo {
+        color: #fff;
+      }
+      .nav-mobile-panel a {
+        font-family: "DM Sans", sans-serif;
+        font-size: 72px;
+        font-weight: 600;
+        color: #f5f2f2;
+        text-decoration: none;
+        text-align: center;
+      }
+      .terms-privacy {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.7s ease-in-out,
+          opacity 0.9s ease-in-out,
+          padding-top 1.1s ease-in-out;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        /* padding-top: 20px !important; */
+        justify-content: space-around;
+      }
+      .terms-privacy a {
+        font-size: 40px;
+      }
+
+      .nav-mobile.open .terms-privacy {
+        max-height: 800px;
+        opacity: 1;
+        padding: 50px 15px !important;
+      }
+      .social-media-icons {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 1.1s ease-in-out,
+          opacity 1.3s ease-in-out,
+          padding-top 1.5s ease-in-out;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        /* padding-top: 20px !important; */
+        justify-content: space-around;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-mobile.open .social-media-icons {
+        max-height: 800px;
+        opacity: 1;
+        padding: 50px 90px !important;
+        column-gap: 70px;
+      }
+      .social-media-icons a {
+        font-size: 52px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+      .nav-mobile.open a:hover {
+        color: #6b6868;
+      }
+
+      /* Tablet */
+      @media (max-width: 1359.98px) {
+        .site-header {
+          top: 0;
+        }
+
+        .site-header-inner {
+          max-width: 100%;
+          padding: 20px 30px;
+        }
+
+        .nav-desktop {
+          display: none;
+        }
+
+        .nav-mobile {
+          display: flex;
+          min-height: 79px;
+          justify-content: center;
+          padding: 30px 30px;
+          background: rgba(0, 0, 0, 0.15);
+          backdrop-filter: blur(30px);
+          -webkit-backdrop-filter: blur(30px);
+          border-radius: 20px;
+          /* border: 1px solid rgba(255, 255, 255, 0.3); */
+          box-shadow:
+            1px 0px 20px rgb(0 0 0 / 17%),
+            inset 0 0px 20px 49px rgb(151 151 151 / 6%),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+            inset 0 0 25px 0px rgb(0 0 0 / 5%);
+          position: relative;
+          overflow: hidden;
+        }
+        .nav-menu-toggle {
+          color: #fff;
+          font-size: 38px;
+          font-weight: 600;
+        }
+        /* .nav-mobile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.nav-mobile::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+} */
+
+        .site-header.is-scrolled .site-header-inner {
+          max-width: 100%;
+          padding: 20px 30px;
+        }
+      }
+
+      /* Phone */
+      @media (max-width: 767.98px) {
+        .site-header-inner {
+          padding: 20px;
+        }
+
+        .nav-mobile {
+          min-height: auto;
+        }
+
+        .site-header.is-scrolled .site-header-inner {
+          padding: 20px;
+        }
+      }
+      /* rotation */
+      @keyframes rotateShape {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotateShapeLeft {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .hero-shape-left {
+        position: absolute;
+        top: 55%;
+        left: -100px;
+        transform: translateY(-50%);
+        width: 230px;
+        height: 226px;
+        animation: rotateShapeLeft 14s linear infinite;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-shape-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      .hero-shape {
+        position: absolute;
+        top: 25%;
+        right: -60px;
+        transform: translateY(-50%);
+        width: 260px;
+        height: 260px;
+        animation: rotateShape 12s linear infinite;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .hero-shape img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      #hero-section {
+        background: radial-gradient(
+          153.944% 89.968% at 50.5333% 0.853789%,
+          #fff 22.9436%,
+          #eeecff 28.3643%,
+          #dad6ff 33.2604%,
+          #aea6fb 40.2947%,
+          #7e72e7 46.6164%,
+          #574abc 52.9953%,
+          #2d2285 60.6561%,
+          #190f65 66.2877%,
+          #07003e 72.7383%,
+          #000 89.9086%
+        );
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        max-width: unset;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      /* Container */
+      .hero-wrap {
+        max-width: 1296px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* Title area — narrow + scale-up entrance */
+      .hero-title-area {
+        width: 100%;
+        max-width: 1000px;
+        opacity: 0;
+        transform: scale(0.7);
+        animation: heroTitleReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes heroTitleReveal {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Headline */
+      .hero-headline {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 1.2;
+        letter-spacing: 0;
+        color: var(--token-12580d95-56c2-46f0-a3e0-a74a86081f78, #fff);
+        font-size: 57px;
+        margin: 0;
+      }
+
+      @media (max-width: 1359.98px) and (min-width: 768px) {
+        .hero-headline {
+          font-size: 51px;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .hero-headline {
+          font-size: 36px;
+        }
+      }
+
+      /* Character span defaults (set by JS before animating) */
+      .hero-headline .char {
+        display: inline-block;
+        opacity: 0;
+        filter: blur(8px);
+        transform: translateY(20px);
+        animation: charReveal 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      @keyframes charReveal {
+        to {
+          opacity: 1;
+          filter: blur(0);
+          transform: translateY(0);
+        }
+      }
+
+      /* Supporting content block */
+      .hero-supporting {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 24px;
+      }
+
+      .hero-desc {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 1.7;
+        letter-spacing: 0;
+        text-align: center;
+        text-transform: none;
+        color: #e8e7de;
+        max-width: 639px;
+        margin: 24px auto 40px;
+        opacity: 0;
+        transform: scale(0.7);
+        animation: heroDescReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s
+          forwards;
+      }
+
+      @media (max-width: 1359.98px) and (min-width: 768px) {
+        .hero-desc {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .hero-desc {
+          font-size: 18px;
+        }
+      }
+
+      @keyframes heroDescReveal {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* brand section  */
+
+      .brand-section {
+        width: 100%;
+        padding: 70px 30px;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      .brand-section h2 {
+        margin: 10px auto;
+        display: flex;
+        justify-self: center;
+        margin: 30px 0 50px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        font-size: 48px;
+        text-align: center;
+      }
+
+      .brand-content {
+        max-width: 1296px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+      }
+
+      .brand-content.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .ticker-wrapper {
+        width: 100%;
+        height: 114px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        opacity: 0;
+        transform: translateX(50px);
+        transition:
+          opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s,
+          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+      }
+
+      .ticker-wrapper.in-view {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .ticker-row {
+        height: 37px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        -webkit-mask-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 1) 10%,
+          rgba(0, 0, 0, 1) 90%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 1) 10%,
+          rgba(0, 0, 0, 1) 90%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+
+      .ticker-track {
+        display: flex;
+        align-items: center;
+        gap: 167px;
+        width: max-content;
+        height: 100%;
+        will-change: transform;
+      }
+
+      .ticker-track img {
+        height: 36px;
+        width: auto;
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 1359.98px) and (min-width: 768px) {
+        .brand-section {
+          padding: 80px 30px;
+          height: 475px;
+        }
+        .brand-content {
+          max-width: 708px;
+        }
+        .ticker-wrapper {
+          height: 112px;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .brand-section {
+          display: none;
+          text-align: center;
+        }
+      }
+
+      /* button */
+      .hero-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 198px;
+        height: 51px;
+        border-radius: 45px;
+        overflow: hidden;
+        padding: 10px 24px 10px 10px;
+        gap: 14px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: left;
+        box-sizing: border-box;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: padding 0.5s ease-in-out;
+      }
+
+      .hero-btn .btn-icon {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .hero-btn .btn-label {
+        white-space: nowrap;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      /* Hover: padding swaps sides + icon slides to right + label slides left */
+      .hero-btn:hover {
+        padding: 10px 10px 10px 24px;
+      }
+
+      .hero-btn:hover .btn-icon {
+        transform: translateX(135px);
+      }
+
+      .hero-btn:hover .btn-label {
+        transform: translateX(-28px);
+      }
+
+      /* Variant 1 & 2: Hero Button (dark primary) — identical appearance */
+      .hero-btn-01,
+      .hero-btn-02 {
+        background: #ffffff;
+        border-color: #000;
+      }
+
+      .hero-btn-01 .btn-label,
+      .hero-btn-02 .btn-label {
+        color: #000000;
+      }
+
+      /* Variant 3 & 4: About Button (inverse light) — identical appearance */
+      .about-btn-01,
+      .about-btn-02 {
+        background: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+      }
+
+      .about-btn-01 .btn-label,
+      .about-btn-02 .btn-label {
+        color: #000;
+      }
+
+      /* Icon color treatments via CSS filter (swap light/dark icon assets in real use) */
+      .hero-btn-01 .btn-icon,
+      .hero-btn-02 .btn-icon {
+        filter: none; /* light icon, already white/light asset */
+      }
+
+      .about-btn-01 .btn-icon,
+      .about-btn-02 .btn-icon {
+        filter: invert(1); /* dark icon, inverted from light source asset */
+      }
+
+      /* Icon-hidden state, for "Icon visibility: optional" control */
+      .hero-btn.no-icon .btn-icon {
+        display: none;
+      }
+
+      .hero-btn.no-icon:hover .btn-label {
+        transform: none;
+      }
+
+      /* aboutus */
+
+      /* ABOUT SECTION */
+      .about-section {
+        /* position: sticky; */
+        top: 80px;
+        width: 100%;
+        /* min-height: 712px; */
+        padding: 130px 30px;
+        background: #f5f5f5;
+        overflow: hidden;
+      }
+
+      .about-container {
+        max-width: 1296px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .about-heading-wrap {
+        margin-bottom: 64px;
+      }
+
+      .about-heading {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        max-width: 1296px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        font-size: 48px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #000000;
+        text-align: left;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .about-heading.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .about-bottom {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        column-gap: 80px;
+        position: relative;
+      }
+
+      .about-metrics-wrap {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-end;
+        gap: 0;
+        min-height: 182px;
+        margin-left: 300px;
+      }
+
+      .about-metric {
+        width: 240px;
+        min-height: 182px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 24px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .about-metric.in-view,
+      .about-cta-wrap.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .about-divider {
+        width: 1px;
+        height: 182px;
+        background: #1f1f1f;
+        opacity: 0.22;
+        margin: 0 40px;
+      }
+
+      .about-num {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-family: "DM Sans", sans-serif;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 1;
+        color: #000000;
+      }
+
+      .about-prefix {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        color: #000000;
+      }
+
+      .about-label-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .about-label {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #222222;
+      }
+
+      .about-copy {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.7;
+        color: #6d6d6d;
+        text-align: left;
+      }
+
+      .about-cta-wrap {
+        grid-column: 1 / 2;
+        margin-top: 40px;
+        margin-left: 300px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      /* ornaments */
+      @keyframes aboutSpinLeft {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes aboutSpinRight {
+        0% {
+          transform: scale(0.7) rotate(0deg);
+        }
+        100% {
+          transform: scale(0.7) rotate(360deg);
+        }
+      }
+
+      .about-ornament-left {
+        position: absolute;
+        left: 0;
+        bottom: 18px;
+        width: 240px;
+        height: 240px;
+        pointer-events: none;
+      }
+
+      .about-ornament-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        animation: aboutSpinLeft 14.8s linear infinite;
+        animation-play-state: paused;
+      }
+
+      .about-ornament-right {
+        position: absolute;
+        top: -85px;
+        right: -72px;
+        width: 133px;
+        height: 165px;
+        pointer-events: none;
+      }
+
+      .about-ornament-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        animation: aboutSpinRight 16s linear infinite;
+        animation-play-state: paused;
+      }
+
+      /* play ornaments only while visible */
+      .about-section.in-view .about-ornament-left img,
+      .about-section.in-view .about-ornament-right img {
+        animation-play-state: running;
+      }
+
+      /* tablet */
+      @media (max-width: 1359.98px) and (min-width: 768px) {
+        .about-section {
+          /* min-height: 930px; */
+          padding: 80px 30px;
+        }
+
+        .about-heading-wrap {
+          margin-bottom: 50px;
+        }
+
+        .about-heading {
+          font-size: 50px;
+        }
+
+        .about-bottom {
+          display: block;
+        }
+
+        .about-metrics-wrap {
+          margin-left: 0;
+          min-height: auto;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+          justify-content: start;
+        }
+
+        .about-metric {
+          width: 100%;
+          min-height: auto;
+        }
+
+        .about-divider,
+        .about-ornament-left {
+          display: none;
+        }
+
+        .about-ornament-right {
+          width: 90px;
+          height: 114px;
+          top: -18px;
+          right: 0;
+        }
+
+        .about-cta-wrap {
+          margin-left: 0;
+          margin-top: 40px;
+        }
+      }
+
+      /* phone */
+      @media (max-width: 767.98px) {
+        .about-section {
+          min-height: 886px;
+          padding: 60px 20px;
+        }
+
+        .about-heading-wrap {
+          margin-bottom: 40px;
+        }
+
+        .about-heading {
+          font-size: 34px;
+        }
+
+        .about-bottom {
+          display: block;
+        }
+
+        .about-metrics-wrap {
+          margin-left: 0;
+          min-height: auto;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+
+        .about-metric {
+          width: 100%;
+          min-height: auto;
+          gap: 20px;
+        }
+
+        .about-metric.metric-awards {
+          grid-column: 1 / -1;
+        }
+
+        .about-num {
+          font-size: 40px;
+        }
+
+        .about-label {
+          font-size: 18px;
+        }
+
+        .about-copy {
+          font-size: 18px;
+        }
+
+        .about-divider,
+        .about-ornament-left,
+        .about-ornament-right {
+          display: none;
+        }
+
+        .about-cta-wrap {
+          margin-left: 0;
+          margin-top: 32px;
+        }
+      }
+
+      /* SERVICES SECTION */
+      .services-section {
+        width: 100%;
+        background: #0b0b0b;
+        padding: 130px 30px;
+      }
+
+      .services-container {
+        max-width: 1296px;
+        margin: 0 auto;
+      }
+
+      .services-header {
+        max-width: 690px;
+        margin: 0 auto 34px;
+        text-align: center;
+      }
+
+      .services-title {
+        margin: 0 0 10px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        font-size: 48px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #fff;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .services-desc {
+        margin: 0 auto;
+        max-width: 690px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.7;
+        color: #e8e7de;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.5s ease-in-out,
+          transform 0.5s ease-in-out;
+      }
+
+      .services-title.in-view,
+      .services-desc.in-view,
+      .service-card.in-view {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .service-card {
+        position: relative;
+        min-height: 220px;
+        overflow: hidden;
+        background-color: #111;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        color: #fff;
+        box-shadow:
+          0px 0px 20px 0px rgb(255 255 255 / 21%),
+          0 0px 20px 0px rgb(255 255 255 / 1%);
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: transparent;
+        pointer-events: none;
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      .service-card-small {
+        grid-column: span 2;
+        align-items: flex-start;
+        padding: 40px 0 40px 30px;
+      }
+
+      .service-card-wide {
+        grid-column: span 3;
+        align-items: flex-end;
+        padding: 30px;
+      }
+
+      .service-card-1 {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .service-card-2 {
+        opacity: 0;
+        transform: translateX(60px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .service-card-3,
+      .service-card-4,
+      .service-card-5 {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .service-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+      }
+
+      .service-card-small .service-content {
+        max-width: 88%;
+      }
+
+      .service-card-wide .service-content {
+        max-width: 90%;
+      }
+
+      .service-name {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        font-size: 32px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #fff;
+      }
+
+      .service-text {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.7;
+        color: #e8e7de;
+      }
+      .sub-header-services {
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        /* line-height: 1.7; */
+        color: #e8e7de;
+      }
+
+      .text-content {
+        gap: 10px;
+        display: flex;
+        flex-flow: column;
+      }
+
+      /* tablet */
+      @media (max-width: 1359.98px) and (min-width: 768px) {
+        .services-section {
+          padding: 80px 30px;
+        }
+
+        .services-header {
+          max-width: 708px;
+          margin-bottom: 50px;
+        }
+
+        .services-desc {
+          max-width: 496px;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 24px;
+        }
+
+        .service-card,
+        .service-card-small,
+        .service-card-wide {
+          grid-column: auto;
+          min-height: 219px;
+          align-items: flex-end;
+          padding: 50px 20px;
+        }
+
+        .service-card::before {
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.5) 20%,
+            rgba(0, 0, 0, 0.5) 77%
+          );
+        }
+
+        .service-card .service-content {
+          max-width: 100%;
+        }
+
+        .service-card-5 {
+          grid-column: 1 / 2;
+        }
+      }
+
+      /* phone */
+      @media (max-width: 767.98px) {
+        .services-section {
+          padding: 60px 20px;
+        }
+
+        .services-header {
+          max-width: 350px;
+          margin-bottom: 40px;
+        }
+
+        .services-title {
+          font-size: 34px;
+          margin-bottom: 20px;
+        }
+
+        .services-desc {
+          max-width: 100%;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .service-card,
+        .service-card-small,
+        .service-card-wide {
+          grid-column: auto;
+          min-height: 199px;
+          align-items: flex-end;
+          padding: 40px 20px;
+          transform: translateY(40px);
+        }
+
+        .service-card::before {
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.5) 20%,
+            rgba(0, 0, 0, 0.5) 77%
+          );
+        }
+
+        .service-card .service-content {
+          max-width: 100%;
+        }
+
+        .service-name {
+          font-size: 28px;
+        }
+      }
+
+      /* WORKS SECTION */
+      .works-section {
+        width: 100%;
+        background: #f5f5f5 !important;
+        padding: 130px 30px;
+      }
+
+      .works-container {
+        max-width: 1296px;
+        margin: 0 auto;
+      }
+
+      .works-header {
+        max-width: 550px;
+        margin: 0 auto 64px;
+        text-align: center;
+      }
+
+      .works-title {
+        margin: 0 0 24px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 48px;
+        font-weight: 300;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: #000000;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .works-desc {
+        margin: 0 auto;
+        max-width: 550px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.7;
+        color: #2c2c2c;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .works-title.in-view,
+      .works-desc.in-view,
+      .work-card.in-view,
+      .works-viewall.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .works-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .work-card,
+      .works-viewall {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        opacity: 0;
+        transform: translateY(80px);
+        transition:
+          opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .work-card {
+        min-height: 500px;
+        background-color: #111;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .work-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 8%,
+          rgba(0, 0, 0, 0.92) 100%
+        );
+        transition: background 0.4s ease-in-out;
+        z-index: 1;
+      }
+
+      .work-card:hover::before {
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.08) 8%,
+          rgba(0, 0, 0, 0.96) 100%
+        );
+      }
+
+      .work-card.featured {
+        grid-column: 1 / -1;
+        min-height: 600px;
+      }
+
+      .work-overlay {
+        position: absolute;
+        left: 50px;
+        bottom: 50px;
+        width: calc(100% - 100px);
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .work-card.featured .work-overlay {
+        width: 92%;
+        max-width: 92%;
+      }
+
+      .work-title {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 1.2;
+        color: #fff;
+        flex: 0 0 auto;
+      }
+
+      .work-summary {
+        margin: 0;
+        max-width: 44%;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.7;
+        color: #9b9b9b;
+        text-align: left;
+        flex: 1 1 auto;
+      }
+
+      /* view all card */
+      .works-viewall {
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+      }
+
+      .works-viewall.desktop {
+        width: 300px;
+        height: 300px;
+        border-radius: 999px;
+        justify-self: center;
+        align-self: center;
+        grid-column: 1 / -1;
+      }
+
+      .works-viewall-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: min-content;
+        color: #fff;
+      }
+
+      .works-viewall-label {
+        margin: 0;
+        font-family: "DM Sans", sans-serif;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 1.2;
+        color: #fff;
+        text-transform: none;
+        white-space: nowrap;
+      }
+
+      .works-viewall-arrow {
+        width: 35px;
+        height: 35px;
+        object-fit: contain;
+        flex: 0 0 auto;
+      }
+
+      /* tablet */
+      @media (max-width: 1359.98px) and (min-width: 768px) {
+        .works-section {
+          padding: 80px 30px;
+        }
+
+        .works-header {
+          max-width: 708px;
+          margin-bottom: 50px;
+        }
+
+        .works-desc {
+          max-width: 580px;
+        }
+
+        .works-card,
+        .work-card {
+          min-height: 500px;
+        }
+
+        .work-card.featured {
+          min-height: 368px;
+        }
+
+        .work-overlay {
+          left: 30px;
+          right: 30px;
+          bottom: 40px;
+          width: calc(100% - 60px);
+        }
+
+        .work-card.featured .work-overlay {
+          width: calc(100% - 60px);
+          max-width: none;
+        }
+
+        .works-viewall.desktop {
+          display: none;
+        }
+
+        .works-viewall.tablet {
+          display: flex;
+          justify-self: center;
+
+          grid-column: 1 / -1;
+          min-height: 368px;
+          width: 368px;
+          border-radius: 999px;
+          background-image:
+            linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.18) 0%,
+              rgba(0, 0, 0, 0.82) 100%
+            ),
+            url("https://framerusercontent.com/images/n7B4l7FJfR6dYwqgS6Eq1l8VnY.png?width=1200&height=617");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .works-viewall.tablet .works-viewall-inner {
+          gap: 20px;
+        }
+
+        .works-viewall.tablet .works-viewall-arrow {
+          width: 35px;
+          height: 35px;
+        }
+
+        .works-viewall.phone {
+          display: none;
+        }
+      }
+
+      /* phone */
+      @media (max-width: 767.98px) {
+        .works-section {
+          padding: 60px 20px;
+        }
+
+        .works-header {
+          max-width: 350px;
+          margin-bottom: 40px;
+        }
+
+        .works-title {
+          font-size: 34px;
+          margin-bottom: 20px;
+        }
+
+        .works-desc {
+          max-width: 100%;
+        }
+
+        .works-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .work-card,
+        .work-card.featured {
+          min-height: 359px;
+          grid-column: auto;
+        }
+
+        .work-overlay {
+          left: 20px;
+          bottom: 30px;
+          width: 85%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 16px;
+        }
+
+        .work-card.featured .work-overlay {
+          width: 85%;
+          max-width: 85%;
+        }
+
+        .work-summary {
+          max-width: 100%;
+        }
+
+        .works-viewall.desktop,
+        .works-viewall.tablet {
+          display: none;
+        }
+
+        .works-viewall.phone {
+          display: flex;
+          min-height: 350px;
+          width: 100%;
+          border-radius: 0;
+        }
+
+        .works-viewall.phone .works-viewall-inner {
+          gap: 6px;
+        }
+
+        .works-viewall.phone .works-viewall-arrow {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      /* desktop visibility defaults */
+      @media (min-width: 1360px) {
+        .works-viewall.tablet,
+        .works-viewall.phone {
+          display: none;
+        }
+      }
+
+      /* pricing */
+      /* .pricing-section {
+  position: relative;
+  width: 100%;
+  padding: 130px 0;
+  background: #0b0b0b;
+  overflow: hidden;
+}
+
+.pricing-container {
+  position: relative;
+  width: min(100%, 1400px);
+  margin: 0 auto;
+}
+
+.pricing-ornament {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  width: 130px;
+  height: 133px;
+  pointer-events: none;
+}
+
+.pricing-ornament img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  animation: pricing-spin 17s linear infinite;
+  animation-play-state: paused;
+}
+
+.pricing-section.is-inview .pricing-ornament img {
+  animation-play-state: running;
+}
+
+.pricing-intro {
+  width: 614px;
+  min-height: 142px;
+  margin: 0 auto 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.pricing-title {
+  margin: 0;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.pricing-description {
+  margin: 0;
+  max-width: 526px;
+  color: #9b9b9b;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 470px);
+  
+}
+
+.pricing-card {
+  width: 386px;
+  min-height: 512px;
+  padding: 30px;
+  border: 1px solid rgba(188, 188, 188, 0.1);
+  background: rgba(17, 17, 17, 0.88);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 24px;
+}
+
+.pricing-card--secondary,
+.pricing-card--primary {
+ 
+  box-shadow: none;
+}
+
+.pricing-card__top,
+.pricing-card__bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card__top {
+  gap: 20px;
+}
+
+.pricing-card__identity {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pricing-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pricing-card__meta h3 {
+  margin: 0;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.pricing-card__meta span {
+  color: #9b9b9b;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.pricing-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #000000;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pricing-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #9b9b9b;
+}
+
+.pricing-card__price {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.pricing-card__price strong {
+  margin: 0;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.pricing-card__price span {
+  color: #9b9b9b;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  transform: translateY(-4px);
+}
+
+.pricing-card__audience {
+  margin: 0;
+  color: #9b9b9b;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.pricing-card__bottom {
+  gap: 32px;
+  padding-top: 20px;
+}
+
+.pricing-features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricing-features li {
+  position: relative;
+  min-height: 24px;
+  padding-left: 36px;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.pricing-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #9b9b9b;
+  transform: translateY(-50%);
+}
+
+.pricing-features li::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: url("https://framerusercontent.com/images/F3tR5AYaC6k5ALnjCmxOKtLbrw.svg") center/contain no-repeat;
+  transform: translateY(-50%);
+}
+
+.pricing-btn {
+  width: 60%;
+ 
+  padding: 8px 10px;
+  border-radius: 45px;
+  text-decoration: none;
+  transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+  margin: 0 auto;
+}
+
+.pricing-btn__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.pricing-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.pricing-btn__icon img {
+  display: block;
+  width: 15px;
+  height: 10px;
+  object-fit: contain;
+}
+
+.pricing-btn__label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+  transition: transform 0.5s ease-in-out;
+}
+
+.pricing-btn--secondary {
+  background: rgba(188, 188, 188, 0.1);
+}
+
+.pricing-btn--secondary .pricing-btn__icon {
+  background: #ffffff;
+      width: 32px;
+    height: 32px;
+}
+
+.pricing-btn--secondary .pricing-btn__label {
+  color: #ffffff;
+}
+
+.pricing-btn--primary {
+  background: #ffffff;
+}
+
+.pricing-btn--primary .pricing-btn__icon {
+  background: #000000;
+}
+
+.pricing-btn--primary .pricing-btn__label {
+  color: #000000;
+}
+
+.pricing-btn:hover .pricing-btn__icon {
+  transform: translateX(6px);
+}
+
+.pricing-btn:hover .pricing-btn__label {
+  transform: translateX(-2px);
+}
+
+/* reveal */
+      .reveal-up,
+      .reveal-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .reveal-card {
+        transform: translateY(24px);
+      }
+
+      .reveal-up.is-visible,
+      .reveal-card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .pricing-description.reveal-up {
+        transition-duration: 0.5s;
+      }
+
+      @keyframes pricing-spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* tablet */
+      @media (max-width: 1359.98px) {
+        .pricing-section {
+          padding: 80px 30px;
+        }
+
+        .pricing-container {
+          width: 708px;
+        }
+
+        .pricing-ornament {
+          top: -4px;
+          right: 0;
+          width: 120px;
+          height: 121px;
+        }
+
+        .pricing-intro {
+          width: 100%;
+          margin-bottom: 50px;
+        }
+
+        .pricing-title {
+          font-size: 50px;
+        }
+
+        .pricing-grid {
+          grid-template-columns: repeat(2, 342px);
+          gap: 24px;
+        }
+
+        .pricing-card {
+          width: 342px;
+          min-height: 544px;
+        }
+
+        .pricing-card--premium {
+          min-height: 571px;
+        }
+      }
+
+      /* phone */
+      @media (max-width: 767.98px) {
+        .pricing-section {
+          padding: 60px 20px;
+        }
+
+        .pricing-container {
+          width: 350px;
+        }
+
+        .pricing-ornament {
+          display: none;
+        }
+
+        .pricing-intro {
+          width: 100%;
+          min-height: 152px;
+          margin-bottom: 40px;
+          gap: 20px;
+        }
+
+        .pricing-title {
+          font-size: 34px;
+        }
+
+        .pricing-description {
+          max-width: 100%;
+          font-size: 18px;
+        }
+
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .pricing-card {
+          width: 350px;
+          min-height: 525px;
+          padding: 30px;
+        }
+
+        .pricing-card--premium {
+          min-height: 551px;
+        }
+
+        .pricing-badge {
+          margin-top: 2px;
+        }
+      }
+      */
+
+
+/* Faq */
+.faq-section {
+        position: relative;
+        width: 100%;
+        padding: 130px 30px;
+        background: #f5f5f5 !important;
+        overflow: hidden;
+      }
+
+      .faq-container {
+        position: relative;
+        width: 100%;
+        max-width: 1296px;
+        margin: 0 auto;
+      }
+
+      .faq-ornament {
+        position: absolute;
+        left: -50px;
+        top: 10px;
+        width: 222px;
+        height: 258px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .faq-ornament img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: faqBreath 11s ease-in-out infinite;
+      }
+
+      .faq-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+      }
+
+      .faq-intro {
+        width: 620px;
+        min-height: 200px;
+        margin: 0 auto 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .faq-title h2 {
+        margin: 0;
+        color: #000000;
+        font-family: "DM Sans", sans-serif;
+        font-size: 48px;
+        line-height: 1.2;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+
+      .faq-description p {
+        margin: 0 auto;
+        width: 80%;
+        max-width: 496px;
+        color: #2c2c2c;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+      .faq-accordion {
+        display: flex;
+        gap: 20px;
+      }
+
+      .faq-table {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .faq-row {
+        width: 100%;
+      }
+
+      .faq-trigger {
+        width: 100%;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 24px;
+        align-items: center;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .faq-control {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        border: 1px solid #48484857;
+        background: #4848480f;
+        flex-shrink: 0;
+      }
+
+      .faq-control-plus,
+      .faq-control-minus {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 14px;
+        height: 1.5px;
+        background: #48484857;
+        transform: translate(-50%, -50%);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .faq-control-plus::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 1.5px;
+        height: 14px;
+        background: #48484857;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      .faq-text {
+        display: block;
+        min-width: 0;
+      }
+
+      .faq-question {
+        display: block;
+        color: #000000;
+        font-family: "DM Sans", sans-serif;
+        font-size: 24px;
+        line-height: 1.25;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .faq-answer {
+        display: block;
+        max-height: 1px;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0;
+        width: 85%;
+        color: #2e2e2e;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+        font-weight: 400;
+        transition:
+          max-height 0.4s ease-in-out,
+          opacity 0.4s ease-in-out,
+          margin-top 0.4s ease-in-out;
+      }
+
+      .faq-row.is-open .faq-answer {
+        max-height: 240px;
+        opacity: 1;
+        margin-top: 20px;
+      }
+
+      .faq-row.is-open .faq-control-plus {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+
+      .faq-row.is-open .faq-control-plus::after {
+        opacity: 0;
+      }
+
+      .faq-row.is-open .faq-control-minus {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .faq-row:not(.is-open) .faq-control-minus {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+
+      .faq-divider {
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin-top: 24px;
+        background: rgba(37, 37, 37, 0.192);
+      }
+
+      /* entrance reveal */
+      .reveal-up,
+      .reveal-row {
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .reveal-up.is-visible,
+      .reveal-row.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .faq-description.reveal-up {
+        transition-duration: 0.5s;
+      }
+
+      .reveal-row {
+        transform: translateY(40px);
+      }
+
+      @keyframes faqBreath {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(0.7);
+        }
+      }
+
+      /* tablet */
+      @media (max-width: 1200px) {
+        .faq-section {
+          padding: 80px 30px;
+        }
+        .faq-accordion {
+          flex-direction: column !important;
+        }
+
+        .faq-container {
+          max-width: 708px;
+        }
+
+        .faq-ornament {
+          left: -8px;
+          top: 78px;
+          width: 120px;
+          height: 120px;
+        }
+
+        .faq-intro {
+          width: 100%;
+          margin-bottom: 50px;
+        }
+
+        .faq-title h2 {
+          font-size: 50px;
+        }
+
+        .faq-table {
+          max-width: 708px;
+          gap: 24px;
+        }
+
+        .faq-trigger {
+          gap: 20px;
+        }
+
+        .faq-answer {
+          width: 100%;
+        }
+      }
+
+      /* phone */
+      @media (max-width: 767.98px) {
+        .faq-section {
+          padding: 60px 20px;
+        }
+
+        .faq-container {
+          max-width: 350px;
+        }
+        .faq-accordion {
+          display: flex;
+          flex-flow: column !important;
+        }
+        .faq-ornament {
+          display: none;
+        }
+
+        .faq-intro {
+          width: 100%;
+          min-height: 193px;
+          margin-bottom: 40px;
+          gap: 20px;
+        }
+
+        .faq-title h2 {
+          font-size: 34px;
+        }
+
+        .faq-description p {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .faq-table {
+          width: 350px;
+          max-width: 100%;
+        }
+
+        .faq-trigger {
+          grid-template-columns: 44px minmax(0, 1fr);
+          gap: 20px;
+        }
+
+        .faq-question {
+          font-size: 20px;
+          line-height: 1.35;
+        }
+
+        .faq-answer {
+          width: 100%;
+          font-size: 18px;
+        }
+
+        .faq-row.is-open .faq-answer {
+          max-height: 360px;
+        }
+      }
+
+      /* mobile faq version */
+      @media (max-width: 600.98px) {
+        .faq-accordion {
+          flex-direction: column;
+        }
+      }
+
+
+      
+      /* blogs */
+      .blog-section {
+        position: relative;
+        width: 100%;
+        padding: 130px 30px;
+        background: #000;
+        overflow: hidden;
+      }
+
+      .blog-container {
+        position: relative;
+        max-width: 1296px;
+        margin: 0 auto;
+      }
+
+      .blog-ornament {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 140px;
+        height: 137px;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .blog-ornament img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        animation: blogSpin 17s linear infinite;
+        animation-play-state: paused;
+      }
+
+      .blog-section.in-view .blog-ornament img {
+        animation-play-state: running;
+      }
+
+      .blog-intro {
+        position: relative;
+        z-index: 2;
+        width: 550px;
+        min-height: 143px;
+        margin: 0 auto 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .blog-title h2 {
+        margin: 0;
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 48px;
+        line-height: 1.2;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+
+      .blog-description p {
+        margin: 0;
+        color: #9b9b9b;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .blog-grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 48px;
+      }
+
+      .blog-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        max-width: 400px;
+        min-height: 420px;
+        text-decoration: none;
+        color: inherit;
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      .blog-card:hover {
+        opacity: 1;
+      }
+
+      .blog-media {
+        display: block;
+        width: 100%;
+        margin-bottom: 26px;
+      }
+
+      .blog-media img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1.54 / 1;
+        height: 260px;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        opacity: 0.82;
+      }
+
+      .blog-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        width: 100%;
+        margin-bottom: 12px;
+      }
+
+      .blog-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+
+      .blog-author img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .blog-author-copy {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .blog-author-name {
+        color: #e8e7de;
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.35;
+        font-weight: 400;
+      }
+
+      .blog-author-role {
+        color: #9b9b9b;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      .blog-date {
+        flex-shrink: 0;
+        color: #9b9b9b;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        line-height: 1.7;
+        font-weight: 400;
+        text-align: right;
+      }
+
+      .blog-card-title {
+        display: block;
+        color: #e8e7de;
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        line-height: 1.7;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: left;
+      }
+
+      /* reveal */
+      .reveal-up,
+      .reveal-blog {
+        opacity: 0;
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .reveal-up {
+        transform: translateY(50px);
+      }
+
+      .reveal-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .blog-description.reveal-up {
+        transition-duration: 0.5s;
+      }
+
+      .reveal-blog {
+        transform: translateY(80px);
+        transition:
+          opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal-blog.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes blogSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* tablet */
+      @media (max-width: 1359.98px) {
+        .blog-section {
+          padding: 80px 30px;
+        }
+
+        .blog-container {
+          max-width: 708px;
+        }
+
+        .blog-ornament {
+          width: 120px;
+          height: 121px;
+          top: 0;
+          right: 0;
+        }
+
+        .blog-intro {
+          width: 100%;
+          margin-bottom: 50px;
+        }
+
+        .blog-title h2 {
+          font-size: 50px;
+        }
+
+        .blog-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 32px;
+        }
+
+        .blog-card {
+          max-width: none;
+          min-height: 414px;
+        }
+
+        .blog-media img {
+          height: auto;
+        }
+      }
+
+      /* phone */
+      @media (max-width: 767.98px) {
+        .blog-section {
+          padding: 60px 20px;
+        }
+
+        .blog-container {
+          max-width: 350px;
+        }
+
+        .blog-ornament {
+          display: none;
+        }
+
+        .blog-intro {
+          width: 100%;
+          min-height: 152px;
+          margin-bottom: 40px;
+          gap: 20px;
+        }
+
+        .blog-title h2 {
+          font-size: 34px;
+        }
+
+        .blog-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .blog-card {
+          max-width: 350px;
+          min-height: 422px;
+        }
+
+        .blog-meta {
+          gap: 12px;
+        }
+
+        .blog-card-title {
+          font-size: 20px;
+          line-height: 1.55;
+        }
+      }
+
+      /* footer */
+      .site-footer {
+        position: relative;
+        width: 100%;
+        padding: 130px 30px 20px;
+        background: radial-gradient(
+          203.301% 90.5016% at 50.5333% 0%,
+          #f5f5f5 22.9436%,
+          rgb(238, 236, 255) 28.3643%,
+          rgb(218, 214, 255) 33.2604%,
+          rgb(174, 166, 251) 40.2947%,
+          rgb(126, 114, 231) 46.6164%,
+          rgb(87, 74, 188) 52.9953%,
+          rgb(45, 34, 133) 60.6561%,
+          rgb(25, 15, 101) 66.2876%,
+          rgb(7, 0, 62) 72.7383%,
+          rgb(0, 0, 0) 89.9086%
+        );
+        overflow: hidden;
+      }
+
+      .footer-shell {
+        max-width: 1296px;
+        margin: 0 auto;
+      }
+
+      .footer-cta {
+        max-width: 626px;
+        min-height: 260px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-cta-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-height: 170px;
+      }
+
+      .footer-cta-action {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .footer-cta-title h2 {
+        margin: 0;
+        color: #000000;
+        font-family: "DM Sans", sans-serif;
+        font-size: 48px;
+        line-height: 1.2;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .footer-cta-description p {
+        margin: 0 auto;
+        max-width: 500px;
+        color: #3f3f3f;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .footer-cta-btn {
+        background: #fff;
+        color: #000;
+        text-decoration: none;
+
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 198px;
+        height: 51px;
+        border-radius: 45px;
+        overflow: hidden;
+        padding: 10px 24px 10px 10px;
+        gap: 14px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: left;
+        box-sizing: border-box;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: padding 0.5s ease-in-out;
+      }
+
+      .footer-cta-btn-icon {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .footer-cta-btn-icon img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .footer-cta-btn-label {
+        white-space: nowrap;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        line-height: 1;
+        font-weight: 500;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .footer-cta-btn:hover {
+        padding: 11px 11px 11px 24px;
+      }
+
+      .footer-cta-btn:hover .footer-cta-btn-icon {
+        transform: translateX(128px);
+      }
+
+      .footer-cta-btn:hover .footer-cta-btn-label {
+        transform: translateX(-28px);
+      }
+
+      .footer-divider {
+        width: 100vw;
+        height: 1px;
+        margin: 0 calc(50% - 50vw);
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      .footer-lower {
+        position: relative;
+        padding-top: 76px;
+        min-height: 399px;
+      }
+
+      .footer-lower-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1296px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+      }
+
+      .footer-socials {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: center;
+        width: 100%;
+      }
+
+      .footer-link {
+        color: #fff;
+        text-decoration: none;
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        line-height: 1.4;
+        font-weight: 400;
+      }
+
+      .footer-link:nth-child(1) {
+        text-align: left;
+      }
+      .footer-link:nth-child(2) {
+        text-align: center;
+      }
+      .footer-link:nth-child(3) {
+        text-align: center;
+      }
+      .footer-link:nth-child(4) {
+        text-align: right;
+      }
+
+      .footer-wordmark {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        z-index: 2;
+      }
+
+      .footer-wordmark span {
+        display: block;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.96);
+        font-family: "DM Sans", sans-serif;
+        font-size: clamp(58px, 9vw, 145px);
+        line-height: 1;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0;
+        text-align: center;
+      }
+
+      .footer-copyright {
+        max-width: 100%;
+        margin: 0 auto;
+        color: #9b9b9b;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        line-height: 1.7;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .footer-copyright a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .footer-grid-bg {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%) scale(1.6);
+        width: 100vw;
+        height: 341px;
+        z-index: 1;
+        opacity: 0;
+        transition:
+          transform 1.7s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.5s ease-in-out;
+      }
+
+      .footer-grid-bg.is-visible {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+
+      .footer-grid-bg img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+        opacity: 0.52;
+      }
+
+      /* reveals */
+      .reveal-footer-up,
+      .reveal-footer-link,
+      .reveal-footer-brand,
+      .reveal-footer-copy {
+        opacity: 0;
+        transition:
+          opacity 0.4s ease-in-out,
+          transform 0.4s ease-in-out;
+      }
+
+      .reveal-footer-up {
+        transform: translateY(40px);
+      }
+
+      .reveal-footer-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .footer-cta-description.reveal-footer-up {
+        transition-duration: 0.5s;
+      }
+
+      .reveal-footer-link,
+      .reveal-footer-copy {
+        transform: translateY(24px);
+      }
+
+      .reveal-footer-link.is-visible,
+      .reveal-footer-copy.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-footer-brand {
+        transform: translateY(40px);
+      }
+
+      .reveal-footer-brand.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* tablet */
+      @media (max-width: 1359.98px) {
+        .site-footer {
+          padding: 80px 30px 20px;
+        }
+
+        .footer-shell,
+        .footer-lower-inner {
+          max-width: 708px;
+        }
+
+        .footer-cta {
+          min-height: 250px;
+        }
+
+        .footer-cta-action {
+          margin-top: 30px;
+        }
+
+        .footer-cta-title h2 {
+          font-size: 50px;
+        }
+
+        .footer-lower {
+          padding-top: 50px;
+        }
+
+        .footer-lower-inner {
+          gap: 20px;
+        }
+
+        .footer-wordmark span {
+          font-size: clamp(52px, 9vw, 108px);
+        }
+
+        .footer-copyright {
+          max-width: 40%;
+        }
+      }
+
+      /* phone */
+      @media (max-width: 767.98px) {
+        .site-footer {
+          padding: 60px 20px 20px;
+        }
+
+        .footer-shell,
+        .footer-lower-inner {
+          max-width: 350px;
+        }
+
+        .footer-cta-copy {
+          gap: 20px;
+        }
+
+        .footer-cta-action {
+          margin-top: 20px;
+        }
+
+        .footer-cta-title h2 {
+          font-size: 34px;
+        }
+
+        .footer-cta-description p {
+          max-width: 100%;
+        }
+
+        .footer-socials {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .footer-link {
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+        }
+
+        .footer-link:nth-child(1),
+        .footer-link:nth-child(2),
+        .footer-link:nth-child(3),
+        .footer-link:nth-child(4) {
+          text-align: left;
+        }
+
+        .footer-wordmark span {
+          font-size: clamp(42px, 14vw, 72px);
+        }
+
+        .footer-copyright {
+          max-width: 100%;
+        }
+
+        .footer-grid-bg {
+          height: 260px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="site-header-inner">
+        <!-- Desktop nav -->
+        <nav class="nav-desktop" aria-label="Primary navigation">
+          <a href="/" class="nav-logo"><img src="HMA - Logo soft.png" style="width: 65px; height: auto;"></a>
+
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/works">Works</a>
+            <a href="/blogs">Blogs</a>
+            <a href="/contact">Contact</a>
+          </div>
+
+          <div class="nav-cta-wrap">
+            <a href="/contact" class="nav-btn">
+              <img
+                class="btn-icon"
+                src="https://framerusercontent.com/images/6PeggEN47oUGrzPW3y21GD8Ck.svg?width=28&height=28"
+                alt=""
+              />
+              <span class="btn-label">Book A Call</span>
+            </a>
+          </div>
+        </nav>
+
+        <!-- Tablet / phone nav -->
+        <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation">
+          <div class="nav-mobile-top">
+            <a href="/" class="nav-mobile-logo">HOFFMANN<br />MEDIENAGENTUR.</a>
+            <button
+              class="nav-menu-toggle"
+              id="navToggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="navMobilePanel"
+            >
+              Menu
+            </button>
+          </div>
+
+          <div class="nav-mobile-panel" id="navMobilePanel">
+            <a href="/">Home</a>
+            <a href="/works">Works</a>
+            <a href="/blogs">Blogs</a>
+            <a href="/contact">Contact</a>
+          </div>
+
+          <div class="nav-mobile-panel terms-privacy" id="navMobilePanel">
+            <a href="/blogs"> Terms of Service</a>
+            <a href="/contact">privacy policy</a>
+          </div>
+          <div class="nav-mobile-panel social-media-icons" id="navMobilePanel">
+            <a href="/blogs"> <i class="ri-instagram-line"></i>Instagram</a>
+            <a href="/contact"> <i class="ri-twitter-line"></i>Twitter</a>
+            <a href="/contact"> <i class="ri-linkedin-line"></i>LinkedIn</a>
+            <a href="/contact"> <i class="ri-facebook-line"></i>Facebook</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section
+      id="hero-section"
+      class="container"
+      style="position: relative; overflow: hidden"
+    >
+      <div class="hero-wrap">
+        <div class="hero-title-area">
+          <h1 class="hero-headline" id="heroHeadline">
+            One Partner. Every Digital Solution Built at Elite Level.
+          </h1>
+        </div>
+        <div class="hero-supporting">
+          <p class="hero-desc">
+            From premium websites and AI automation to multilingual content, IT
+            infrastructure, and Digital Product Passport readiness we become the
+            digital partner your business grows with.
+          </p>
+          <a href="/contact" class="hero-btn hero-btn-01">
+            <img
+              class="btn-icon"
+              src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg"
+              alt=""
+            />
+            <span class="btn-label">Get In Touch</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-shape" id="shape">
+        <img
+          src="https://framerusercontent.com/images/8jgeFCCLbKSBcj3xLCb37yDZbY.svg?width=241&height=227"
+          alt="Rotating 3D Shape"
+        />
+      </div>
+      <div class="hero-shape-left" id="shapeLeft">
+        <img
+          src="https://framerusercontent.com/images/Wh8IWmBabzZ4Dnb7uEKtrw48xY.svg?width=230&height=226"
+          alt="Rotating 3D Shape Left"
+        />
+      </div>
+
+      <img
+        src="https://framerusercontent.com/images/YFlEZtZRPYYJiuJbhArFwEvXMaw.png"
+        style="
+          position: absolute;
+          bottom: 0px;
+          left: 0;
+          width: 100%;
+          z-index: -1;
+          opacity: 0.6;
+        "
+        alt=""
+      />
+    </section>
+
+    <!-- BRAND TICKER SECTION -->
+    <section class="brand-section" id="brandSection">
+      <h2
+        class="in-view"
+        style="
+          margin: 10px auto;
+          display: flex;
+          justify-self: center;
+          margin: 30px 0 50px;
+          font-family: &quot;DM Sans&quot;, sans-serif;
+          font-weight: 300;
+          font-size: 48px;
+        "
+      >
+        Trusted by ambitious companies building what's next.
+      </h2>
+      <div class="brand-content" id="brandContent">
+        <div class="ticker-wrapper" id="tickerWrapper">
+          <div class="ticker-row">
+            <div class="ticker-track" id="trackTop" data-direction="left">
+              <img
+                src="https://framerusercontent.com/images/QKNhYUW8SSEDamDM8Xhchzdx3I.svg"
+                width="181"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/z7p3CG2ZSwmDrAgMmnnbxlfoPhY.svg"
+                width="94"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/veQZt7MUn45KuBQH81D5XSXFp4.svg"
+                width="143"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/eaxRAC8Z5sX4VM3dfcy7qkrTziI.svg"
+                width="78"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/5Gq7vnlA0xRRng4Veg3vJSRHDo.svg"
+                width="139"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/QKNhYUW8SSEDamDM8Xhchzdx3I.svg"
+                width="181"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/z7p3CG2ZSwmDrAgMmnnbxlfoPhY.svg"
+                width="94"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/veQZt7MUn45KuBQH81D5XSXFp4.svg"
+                width="143"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/eaxRAC8Z5sX4VM3dfcy7qkrTziI.svg"
+                width="78"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/5Gq7vnlA0xRRng4Veg3vJSRHDo.svg"
+                width="139"
+                height="36"
+                alt="Logo"
+              />
+            </div>
+          </div>
+
+          <div class="ticker-row">
+            <div class="ticker-track" id="trackBottom" data-direction="right">
+              <img
+                src="https://framerusercontent.com/images/veQZt7MUn45KuBQH81D5XSXFp4.svg"
+                width="143"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/eaxRAC8Z5sX4VM3dfcy7qkrTziI.svg"
+                width="78"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/z7p3CG2ZSwmDrAgMmnnbxlfoPhY.svg"
+                width="94"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/5Gq7vnlA0xRRng4Veg3vJSRHDo.svg"
+                width="139"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/QKNhYUW8SSEDamDM8Xhchzdx3I.svg"
+                width="181"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/veQZt7MUn45KuBQH81D5XSXFp4.svg"
+                width="143"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/eaxRAC8Z5sX4VM3dfcy7qkrTziI.svg"
+                width="78"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/z7p3CG2ZSwmDrAgMmnnbxlfoPhY.svg"
+                width="94"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/5Gq7vnlA0xRRng4Veg3vJSRHDo.svg"
+                width="139"
+                height="36"
+                alt="Logo"
+              />
+              <img
+                src="https://framerusercontent.com/images/QKNhYUW8SSEDamDM8Xhchzdx3I.svg"
+                width="181"
+                height="36"
+                alt="Logo"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section class="about-section" id="aboutSection">
+      <div class="about-container">
+        <div class="about-heading-wrap">
+          <h2 class="about-heading" id="aboutHeading">
+            Driving the Future of Digital Innovation by Partnering with
+            Forward-Thinking Brands.
+          </h2>
+        </div>
+
+        <div class="about-bottom">
+          <div class="about-metrics-wrap">
+            <div class="about-metric" id="metricProjects">
+              <div class="about-num">
+                <span class="about-prefix">+</span
+                ><span
+                  class="count"
+                  data-start="00"
+                  data-end="50"
+                  data-speed="30"
+                  >0</span
+                >
+              </div>
+              <div class="about-label-wrap">
+                <h6 class="about-label">Projects</h6>
+                <p class="about-copy">
+                  Delivering premium digital solutions for ambitious businesses.
+                </p>
+              </div>
+            </div>
+
+            <div class="about-divider"></div>
+
+            <div class="about-metric" id="metricPartners">
+              <div class="about-num">
+                <span class="about-prefix">+</span
+                ><span class="count" data-start="0" data-end="4" data-speed="60"
+                  >0</span
+                >
+              </div>
+              <div class="about-label-wrap">
+                <h6 class="about-label">Languages Supported</h6>
+                <p class="about-copy">
+                  Serving international clients in German, English, French, and
+                  Arabic.
+                </p>
+              </div>
+            </div>
+
+            <div class="about-divider"></div>
+
+            <div class="about-metric" id="metricPartners">
+              <div class="about-num">
+                <span class="about-prefix"></span
+                ><span
+                  class="count"
+                  data-start="2000"
+                  data-end="2021"
+                  data-speed="60"
+                  >0</span
+                >
+              </div>
+              <div class="about-label-wrap">
+                <h6 class="about-label">Years of Experience</h6>
+                <p class="about-copy">
+                  Building trusted digital partnerships since 2021.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-cta-wrap" id="aboutCta">
+            <a href="/contact" class="hero-btn about-btn-01">
+              <img
+                class="btn-icon"
+                src="https://framerusercontent.com/images/6PeggEN47oUGrzPW3y21GD8Ck.svg"
+                alt=""
+              />
+              <span class="btn-label">Get In Touch</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="about-ornament-left" aria-hidden="true">
+          <img
+            src="https://framerusercontent.com/images/Q7O0CXJbuyTvohzA5UAIMG4E2UU.svg?width=153&height=158"
+            alt=""
+          />
+        </div>
+
+        <div class="about-ornament-right" aria-hidden="true">
+          <img
+            src="https://framerusercontent.com/images/EgGo1QPbKer1MEoyDHB7izOBXWw.svg?width=134&height=165"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <!-- <section class="services-section" id="servicesSection">
+  <div class="services-container">
+    <div class="services-header">
+      <h2 class="services-title" id="servicesTitle">Complete Digital Solutions.</h2>
+      <p class="services-desc" id="servicesDesc">
+Everything your business needs to build, grow and automate its digital presence delivered through one experienced partner.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card service-card-small service-card-1"
+        style="background-image:url('https://framerusercontent.com/images/afAg9eNgLVtcUKxVqH4fkVk.png?width=832&height=600');">
+        <div class="service-content">
+          <h3 class="service-name">01. IGNITION</h3>
+          <div class="text-content">
+            <span  class="sub-header-services">Premium Websites & Digital Visibility</span>
+          <p class="service-text">High-performance multilingual websites built for speed, search visibility, AI discovery, and long-term growth.</p>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="service-card service-card-small service-card-2"
+        style="background-image:url('https://framerusercontent.com/images/9c3vmSQDOUzoWjJZ6JgEgWRs.png?width=832&height=600');">
+        <div class="service-content">
+          <h3 class="service-name">02. ENGINE</h3>
+          <div class="text-content">
+            <span  class="sub-header-services">Content & Media</span>
+            <p class="service-text">Professional video production, podcasts, photography and multilingual content that keeps your brand visible every day.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card service-card-small service-card-3"
+        style="background-image:url('https://framerusercontent.com/images/t7N6VUDNprmVw5zExY4f8MCKA.png?width=832&height=600');">
+        <div class="service-content">
+          <h3 class="service-name">03. AI OPS</h3>
+          <div class="text-content">
+            <span  class="sub-header-services">Automation & AI</span>
+            <p class="service-text">AI agents, intelligent workflows, chatbots, AI phone systems and cloud integrations that save time and scale operations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card service-card-wide service-card-4"
+        style="background-image:url('https://framerusercontent.com/images/VuIH2k6C4orvVh4mmFYOr6UM.png?width=1272&height=600');">
+        <div class="service-content">
+          <h3 class="service-name">04. Digital Product Passport</h3>
+          <div class="text-content">
+            <span  class="sub-header-services">Future-Ready Compliance</span>
+            <p class="service-text">Prepare your business today for tomorrow's European Digital Product Passport requirements with expert guidance and implementation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card service-card-wide service-card-5"
+        style="background-image:url('https://framerusercontent.com/images/0slwv34IxUrMGqFQSJaj85snaL0.png?width=1272&height=600');">
+        <div class="service-content">
+          <h3 class="service-name">05. IT & Infrastructure</h3>
+          <div class="text-content">
+            <span  class="sub-header-services">Technology Without Complexity</span>
+            <p class="service-text">Cloud systems, business email, domains, managed hosting, servers and on-site IT support all from one trusted partner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+    <!-- new service section -->
+
+    <section class="ai-features" id="features">
+      <div class="ai-features__inner">
+        <header class="ai-features__heading">
+          <!-- <div class="ai-features__eyebrow">
+          <span class="ai-features__eyebrow-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" width="20" height="20">
+              <path d="M10 2.25 17 16.75H3L10 2.25Z" fill="none" stroke="currentColor" stroke-width="1.4"></path>
+            </svg>
+          </span>
+          <span>Real time ai control</span>
+        </div> -->
+
+          <h2 class="ai-features__title js-word-reveal">
+            Your personal AI control system.
+          </h2>
+
+          <p class="ai-features-sub">
+            Everything your business needs to build, grow and automate its
+            digital presence delivered through one experienced partner.
+          </p>
+        </header>
+
+        <div class="ai-features__grid">
+          <article class="ai-feature-hero">
+            <div class="ai-feature-hero__media">
+              <img
+                src="https://framerusercontent.com/images/jCJp2CHXLUXKSLzy64yo49RN2Q.png?width=1280&height=1600"
+                alt="Abstract AI interface background"
+                width="1280"
+                height="1600"
+                loading="lazy"
+              />
+              <div class="ai-feature-hero__wave"></div>
+              <div class="ai-feature-hero__shade"></div>
+            </div>
+
+            <div class="ai-feature-hero__content">
+              <h3 class="ai-feature-hero__statement js-word-reveal">
+                Manage every workflow and insight from one intelligent real-time
+                AI platform.
+              </h3>
+
+              <a href="./pricing" class="ai-feature-hero__cta">
+                <span
+                  class="ai-feature-hero__cta-text ai-feature-hero__cta-text--top"
+                >
+                  View our transparent pricing
+                </span>
+                <span
+                  class="ai-feature-hero__cta-text ai-feature-hero__cta-text--bottom"
+                >
+                  View our transparent pricing
+                </span>
+              </a>
+            </div>
+          </article>
+
+          <div class="ai-feature-grid">
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/j5JnwNnQuCPy3LYaA5WTBkC0U.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>01. IGNITION</h4>
+                <span class="ai-feature-tile__subtitle"
+                  >Premium Websites & Digital Visibility</span
+                >
+                <p>
+                  High-performance multilingual websites built for speed, search
+                  visibility, AI discovery, and long-term growth.
+                </p>
+              </div>
+            </article>
+
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/XNWmQFjRjTzFODjZPPkd2LA7294.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>02. ENGINE</h4>
+                <span class="ai-feature-tile__subtitle">Content & Media</span>
+                <p>
+                  Professional video production, podcasts, photography and
+                  multilingual content that keeps your brand visible every day.
+                </p>
+              </div>
+            </article>
+
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/dFpLgXkJcdrrPil925Y1LS6k42I.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>03. AI OPS</h4>
+                <span class="ai-feature-tile__subtitle">Automation & AI</span>
+                <p>
+                  AI agents, intelligent workflows, chatbots, AI phone systems
+                  and cloud integrations that save time and scale operations.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="ai-feature-image-tile js-image-settle"
+              aria-hidden="true"
+            >
+              <img
+                src="macbook.png"
+                alt=""
+                width="640"
+                height="800"
+                loading="lazy"
+              />
+            </article>
+          </div>
+
+          <div class="ai-feature-grid-1" style="grid-column: 1 / -1">
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/j5JnwNnQuCPy3LYaA5WTBkC0U.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>04. Digital Product Passport</h4>
+                <span class="ai-feature-tile__subtitle"
+                  >Future-Ready Compliance</span
+                >
+                <p>
+                  Prepare your business today for tomorrow's European Digital
+                  Product Passport requirements with expert guidance and
+                  implementation.
+                </p>
+              </div>
+            </article>
+
+            <article class="ai-feature-tile">
+              <div class="ai-feature-tile__icon">
+                <img
+                  src="https://framerusercontent.com/images/XNWmQFjRjTzFODjZPPkd2LA7294.svg?width=30&height=30"
+                  alt=""
+                  width="30"
+                  height="30"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ai-feature-tile__copy">
+                <h4>05. IT & Infrastructure</h4>
+                <span class="ai-feature-tile__subtitle"
+                  >Technology Without Complexity</span
+                >
+                <p>
+                  Cloud systems, business email, domains, managed hosting,
+                  servers and on-site IT support all from one trusted partner.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process-sticky" id="processSticky">
+      <div class="process-sticky-pin">
+        <div class="process-sticky-shell">
+          <div
+            class="process-sticky-header process-header-reveal"
+            id="processHeaderReveal"
+          >
+            <h2>A Structured Process. Built Around Your Business.</h2>
+            <p>
+              Every successful digital project starts with understanding not
+              assumptions. From the first conversation to long-term support, we
+              work as your trusted technology partner, delivering solutions that
+              align with your business goals today and scale with you tomorrow.
+            </p>
+          </div>
+
+          <div class="process-stage">
+            <div class="process-line-wrap" aria-hidden="true">
+              <div class="process-line-mask">
+                <div class="process-line" id="processGoldLine"></div>
+              </div>
+            </div>
+
+            <div class="process-track" id="processTrack">
+              <article class="process-stage-card" id="processCard1">
+                <div class="process-stage-image">
+                  <img
+                    src="/3ntiz.webp"
+                    alt=""
+                    width="1464"
+                    height="1200"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="process-stage-content">
+                  <div class="process-stage-heading">
+                    <span class="process-stage-step">STEP 1</span>
+                    <h3>Discovery Call</h3>
+                  </div>
+                  <div class="process-stage-divider"></div>
+                  <p>
+                    We begin by understanding your business, your challenges,
+                    and your ambitions. This first conversation helps us
+                    identify opportunities, define priorities, and determine how
+                    we can create the greatest value for your organisation.
+                  </p>
+                </div>
+              </article>
+
+              <article class="process-stage-card" id="processCard2">
+                <div class="process-stage-image">
+                  <img
+                    src="/team.webp"
+                    alt="A person reviews colorful sticky notes and sketches of a mobile app design on a corkboard, focusing on wireframes and layout drafts."
+                    width="1098"
+                    height="900"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="process-stage-content">
+                  <div class="process-stage-heading">
+                    <span class="process-stage-step">STEP 2</span>
+                    <h3>Strategy & Solution Design</h3>
+                  </div>
+                  <div class="process-stage-divider"></div>
+                  <p>
+                    Based on your objectives, we develop a tailored digital
+                    strategy. Whether it's a new website, AI automation, content
+                    production, IT infrastructure, or Digital Product Passport
+                    readiness, every recommendation is built specifically for
+                    your business.
+                  </p>
+                </div>
+              </article>
+
+              <article class="process-stage-card" id="processCard3">
+                <div class="process-stage-image">
+                  <img
+                    src="oldman.webp"
+                    alt="Three individuals collaborate over a large desk, discussing architectural blueprints, with one person pointing to a specific part of the plan using a pencil, surrounded by drafting tools including a ruler."
+                    width="1098"
+                    height="900"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="process-stage-content">
+                  <div class="process-stage-heading">
+                    <span class="process-stage-step">STEP 3</span>
+                    <h3>Build & Implementation</h3>
+                  </div>
+                  <div class="process-stage-divider"></div>
+                  <p>
+                    Once the strategy is approved, our team brings it to life.
+                    We design, develop, integrate, and deploy every solution
+                    with performance, security, and long-term scalability at its
+                    core.
+                  </p>
+                </div>
+              </article>
+
+              <article class="process-stage-card" id="processCard4">
+                <div class="process-stage-image">
+                  <img
+                    src="beepbeep.webp"
+                    alt="A sleek bronze balance scale stands elegantly on a tiered black platform against a dark background, symbolizing justice and fairness."
+                    width="1098"
+                    height="900"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="process-stage-content">
+                  <div class="process-stage-heading">
+                    <span class="process-stage-step">STEP 4</span>
+                    <h3>Growth & Long-Term Partnership</h3>
+                  </div>
+                  <div class="process-stage-divider"></div>
+                  <p>
+                    Digital transformation doesn't end at launch. We continue to
+                    optimise, maintain, and expand your digital ecosystem,
+                    helping your business adapt, grow, and stay ahead in an
+                    evolving digital landscape.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-scroll-zones" aria-hidden="true">
+        <div class="process-zone"></div>
+        <div class="process-zone"></div>
+        <div class="process-zone"></div>
+        <div class="process-zone"></div>
+        <div class="process-zone"></div>
+      </div>
+    </section>
+
+    <!-- RECENT WORKS SECTION -->
+    <section class="works-section" id="worksSection">
+      <div class="works-container">
+        <div class="works-header">
+          <h2 class="works-title" id="worksTitle">Recent Works</h2>
+          <p class="works-desc" id="worksDesc">
+            Every project is built around business goals not templates. Because
+            of client confidentiality, many projects are presented anonymously.
+          </p>
+        </div>
+
+        <div class="works-grid">
+          <a href="/works/defi-vault" class="work-card featured">
+            <div
+              class="work-card-bg"
+              style="
+                position: absolute;
+                inset: 0;
+                background-image: url(&quot;https://framerusercontent.com/images/kx5jmutPgS95GzEZ8sCgPfodmE.png?width=1296&height=600&quot;);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              "
+            ></div>
+            <div class="work-overlay">
+              <h6 class="work-title">DeFi Vault</h6>
+              <p class="work-summary">Yield-optimizing DeFi on Ethereum.</p>
+            </div>
+          </a>
+
+          <a href="/works/metamarket" class="work-card">
+            <div
+              class="work-card-bg"
+              style="
+                position: absolute;
+                inset: 0;
+                background-image: url(&quot;https://framerusercontent.com/images/PmW7jlWmu3NwKZcmYmRFJx0vQfc.png?width=636&height=500&quot;);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              "
+            ></div>
+            <div class="work-overlay">
+              <h6 class="work-title">MetaMarket</h6>
+              <p class="work-summary">
+                Cross-chain NFT marketplace with gasless minting.
+              </p>
+            </div>
+          </a>
+
+          <a href="/works/daostack" class="work-card">
+            <div
+              class="work-card-bg"
+              style="
+                position: absolute;
+                inset: 0;
+                background-image: url(&quot;https://framerusercontent.com/images/5M4q7W0j9c2AtKzQqfF8r3M2k.png?width=636&height=500&quot;);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              "
+            ></div>
+            <div class="work-overlay">
+              <h6 class="work-title">DAOstack</h6>
+              <p class="work-summary">
+                Governance tooling for modern decentralized communities.
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="/works"
+            class="works-viewall desktop"
+            aria-label="View all works"
+          >
+            <div class="works-viewall-inner">
+              <p class="works-viewall-label">View All Projects</p>
+              <img
+                class="works-viewall-arrow"
+                src="https://framerusercontent.com/images/6PeggEN47oUGrzPW3y21GD8Ck.svg"
+                alt=""
+              />
+            </div>
+          </a>
+
+          <a
+            href="/works"
+            class="works-viewall tablet"
+            aria-label="View all works"
+          >
+            <div class="works-viewall-inner">
+              <p class="works-viewall-label">View All Works</p>
+              <img
+                class="works-viewall-arrow"
+                src="https://framerusercontent.com/images/6PeggEN47oUGrzPW3y21GD8Ck.svg"
+                alt=""
+              />
+            </div>
+          </a>
+
+          <a
+            href="/works"
+            class="works-viewall phone"
+            aria-label="View all works"
+          >
+            <div class="works-viewall-inner">
+              <p class="works-viewall-label">View All Works</p>
+              <img
+                class="works-viewall-arrow"
+                src="https://framerusercontent.com/images/6PeggEN47oUGrzPW3y21GD8Ck.svg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- pricing -->
+
+    <!-- <section class="pricing-section" id="pricing">
+  <div class="pricing-container">
+    <div class="pricing-ornament" aria-hidden="true">
+      <img
+        src="https://framerusercontent.com/images/FRxB4bRBlXSCiD1I0SeXFePCfY.svg?width=132&height=133"
+        alt=""
+        width="130"
+        height="133"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="pricing-intro reveal-up">
+      <h2 class="pricing-title">Choose Your Plan</h2>
+      <p class="pricing-description">
+        Find the perfect package tailored to your needs and start building your
+        Web3 future today.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      <article class="pricing-card pricing-card--secondary">
+        <div class="pricing-card__top">
+          <div class="pricing-card__identity">
+            <div class="pricing-card__meta">
+              <h3>Free</h3>
+              <span>Billed Monthly</span>
+            </div>
+          </div>
+
+          <div class="pricing-card__content reveal-card">
+            <div class="pricing-card__price">
+              <strong>$0</strong>
+              <span>/ Month</span>
+            </div>
+
+            <p class="pricing-card__audience">Ideal for individual users</p>
+          </div>
+        </div>
+
+        <div class="pricing-card__bottom reveal-card">
+          <ul class="pricing-features">
+            <li>Access to simple features</li>
+            <li>1 User</li>
+            <li>1GB data</li>
+            <li>Basic Chat And Support</li>
+          </ul>
+
+          <a href="./contact" class="pricing-btn pricing-btn--secondary">
+            <span class="pricing-btn__inner">
+              <span class="pricing-btn__icon">
+                <img
+                  src="https://framerusercontent.com/images/sq2KKCw1d8OI8SJs8dH8zxZmkU.png"
+                  alt=""
+                  width="15"
+                  height="10"
+                >
+              </span>
+              <span class="pricing-btn__label">Get it now</span>
+            </span>
+          </a>
+        </div>
+      </article>
+
+      <article class="pricing-card pricing-card--primary">
+        <div class="pricing-card__top">
+          <div class="pricing-card__identity">
+            <div class="pricing-card__meta">
+              <h3>Pro</h3>
+              <span>Billed Monthly</span>
+            </div>
+            <span class="pricing-badge">Most Popular</span>
+          </div>
+
+          <div class="pricing-card__content reveal-card">
+            <div class="pricing-card__price">
+              <strong>$19</strong>
+              <span>/ Month</span>
+            </div>
+
+            <p class="pricing-card__audience">Ideal for small teams</p>
+          </div>
+        </div>
+
+        <div class="pricing-card__bottom reveal-card">
+          <ul class="pricing-features">
+            <li>Access To All Features</li>
+            <li>Up To 10 Users</li>
+            <li>5GB Data Per User</li>
+            <li>Priority Support</li>
+          </ul>
+
+          <a href="./contact" class="pricing-btn pricing-btn--primary">
+            <span class="pricing-btn__inner">
+              <span class="pricing-btn__icon">
+                <img
+                  src="https://framerusercontent.com/images/J1du26gDph7zZzJJ1QZiFrFIiRc.svg"
+                  alt=""
+                  width="15"
+                  height="10"
+                >
+              </span>
+              <span class="pricing-btn__label">Get it now</span>
+            </span>
+          </a>
+        </div>
+      </article>
+
+      <article class="pricing-card pricing-card--secondary pricing-card--premium">
+        <div class="pricing-card__top">
+          <div class="pricing-card__identity">
+            <div class="pricing-card__meta">
+              <h3>Premium</h3>
+              <span>Billed Monthly</span>
+            </div>
+          </div>
+
+          <div class="pricing-card__content reveal-card">
+            <div class="pricing-card__price">
+              <strong>$49</strong>
+              <span>/ Month</span>
+            </div>
+
+            <p class="pricing-card__audience">
+              Best choice for enterprises, agencies, and studios
+            </p>
+          </div>
+        </div>
+
+        <div class="pricing-card__bottom reveal-card">
+          <ul class="pricing-features">
+            <li>Access To All Features</li>
+            <li>Up To 20 Users</li>
+            <li>10GB Data Per User</li>
+            <li>Priority Support</li>
+          </ul>
+
+          <a href="./contact" class="pricing-btn pricing-btn--secondary">
+            <span class="pricing-btn__inner">
+              <span class="pricing-btn__icon">
+                <img
+                  src="https://framerusercontent.com/images/sq2KKCw1d8OI8SJs8dH8zxZmkU.png"
+                  alt=""
+                  width="15"
+                  height="10"
+                >
+              </span>
+              <span class="pricing-btn__label">Get it now</span>
+            </span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section> -->
+
+    <!-- BLOG / TESTIMONIAL SECTION -->
+    <section class="blog-section" id="blog">
+      <div class="blog-container">
+        <div class="blog-ornament" aria-hidden="true">
+          <img
+            src="https://framerusercontent.com/images/Q7O0CXJbuyTvohzA5UAIMG4E2UU.svg?width=153&height=158"
+            alt=""
+            width="140"
+            height="137"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="blog-intro">
+          <div class="blog-title reveal-up">
+            <h2>Insights & Perspectives</h2>
+          </div>
+
+          <div class="blog-description reveal-up">
+            <p>
+              Expert insights on AI, digital transformation, automation, SEO,
+              Digital Product Passport, and the future of modern business.
+            </p>
+          </div>
+        </div>
+
+        <div class="blog-grid">
+          <a
+            class="blog-card reveal-blog"
+            href="/blogs/what-web3-means-for-businesses-the-shift-to-a-decentralized-future"
+          >
+            <span class="blog-media">
+              <img
+                src="https://framerusercontent.com/images/YVhDn5sIdjceRrEaLaITRUimcr0.png"
+                alt="What Web3 Means for Businesses article image"
+                width="400"
+                height="260"
+                loading="lazy"
+              />
+            </span>
+
+            <span class="blog-meta">
+              <span class="blog-author">
+                <img
+                  src="https://framerusercontent.com/images/QIzgoZWNDFmpV5eg01lkrxTMJ2s.png"
+                  alt="Leo Grant portrait"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+
+                <span class="blog-author-copy">
+                  <span class="blog-author-name">Leo Grant</span>
+                  <span class="blog-author-role">Co-Founder</span>
+                </span>
+              </span>
+
+              <span class="blog-date">Jun 8, 2025</span>
+            </span>
+
+            <span class="blog-card-title">
+              WHAT WEB3 MEANS FOR BUSINESSES: THE SHIFT TO A DECENTRALIZED
+              FUTURE.
+            </span>
+          </a>
+
+          <a
+            class="blog-card reveal-blog"
+            href="/blogs/building-apps-your-step-by-step-guide-from-idea-to-successful"
+          >
+            <span class="blog-media">
+              <img
+                src="https://framerusercontent.com/images/YVhDn5sIdjceRrEaLaITRUimcr0.png"
+                alt="Building Apps article image"
+                width="400"
+                height="260"
+                loading="lazy"
+              />
+            </span>
+
+            <span class="blog-meta">
+              <span class="blog-author">
+                <img
+                  src="https://framerusercontent.com/images/QIzgoZWNDFmpV5eg01lkrxTMJ2s.png"
+                  alt="Arjun Mehta portrait"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+
+                <span class="blog-author-copy">
+                  <span class="blog-author-name">Arjun Mehta</span>
+                  <span class="blog-author-role">Product Designer</span>
+                </span>
+              </span>
+
+              <span class="blog-date">Apr 7, 2025</span>
+            </span>
+
+            <span class="blog-card-title">
+              BUILDING APPS: YOUR STEP-BY-STEP GUIDE FROM IDEA TO SUCCESSFUL.
+            </span>
+          </a>
+
+          <a
+            class="blog-card reveal-blog"
+            href="/blogs/nfts-in-2025-real-world-use-cases-beyond-digital-art"
+          >
+            <span class="blog-media">
+              <img
+                src="https://framerusercontent.com/images/A5GKYM2N6xkQmQPhR1H9KYk8LxU.png"
+                alt="NFTs in 2025 article image"
+                width="400"
+                height="260"
+                loading="lazy"
+              />
+            </span>
+
+            <span class="blog-meta">
+              <span class="blog-author">
+                <img
+                  src="https://framerusercontent.com/images/QIzgoZWNDFmpV5eg01lkrxTMJ2s.png"
+                  alt="Nina Rose portrait"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+
+                <span class="blog-author-copy">
+                  <span class="blog-author-name">Nina Rose</span>
+                  <span class="blog-author-role">CEO</span>
+                </span>
+              </span>
+
+              <span class="blog-date">Jun 22, 2025</span>
+            </span>
+
+            <span class="blog-card-title">
+              NFTS IN 2025: REAL-WORLD USE CASES BEYOND DIGITAL ART.
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- faqs -->
+
+    <section
+      class="faq-section"
+      style="background: #f5f5f5 !important; padding: 60px 0px"
+      id="faq"
+    >
+      <div class="faq-container">
+        <div class="faq-ornament" aria-hidden="true">
+          <img
+            src="https://framerusercontent.com/images/CVjPsD2Aw8U5Sa9WsGPSEds9is.svg?width=222&height=258"
+            alt=""
+            width="222"
+            height="258"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="faq-content">
+          <div class="faq-intro">
+            <div class="faq-title reveal-up">
+              <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+
+            <div class="faq-description reveal-up">
+              <p>
+                Got questions? We’ve answered the most common ones to help you
+                get started with confidence.
+              </p>
+            </div>
+          </div>
+          <div class="faq-accordion">
+            <div class="faq-table">
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="true">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >WHAT SERVICES DO YOU OFFER?</span
+                    >
+                    <span class="faq-answer">
+                      We offer Web3 strategy, tokenomics, smart contracts,
+                      DApps, and NFT launch support everything you need to build
+                      and grow in the decentralized space.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >WHICH BLOCKCHAINS DO YOU SUPPORT?</span
+                    >
+                    <span class="faq-answer">
+                      We support major blockchains such as Ethereum, Binance
+                      Smart Chain, Polygon, and Solana, ensuring versatile
+                      solutions for diverse project requirements.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >DO YOU OFFER SMART CONTRACT AUDITS?</span
+                    >
+                    <span class="faq-answer">
+                      We provide thorough smart contract audits that ensure your
+                      blockchain code is secure, fully functional, and
+                      compliant, minimizing risks before deployment.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >CAN YOU HELP LAUNCH AN NFT PROJECT?</span
+                    >
+                    <span class="faq-answer">
+                      We provide complete NFT launch support, including smart
+                      contract development, design, platform integration, and
+                      community strategy for success.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >WHAT’S YOUR TYPICAL PROJECT TIMELINE?</span
+                    >
+                    <span class="faq-answer">
+                      Our project timeline ranges from 2 to 12 weeks, depending
+                      on the project’s complexity, with detailed planning after
+                      initial consultation and assessment.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+            </div>
+            <div class="faq-table">
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="true">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >WHAT SERVICES DO YOU OFFER?</span
+                    >
+                    <span class="faq-answer">
+                      We offer Web3 strategy, tokenomics, smart contracts,
+                      DApps, and NFT launch support everything you need to build
+                      and grow in the decentralized space.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >WHICH BLOCKCHAINS DO YOU SUPPORT?</span
+                    >
+                    <span class="faq-answer">
+                      We support major blockchains such as Ethereum, Binance
+                      Smart Chain, Polygon, and Solana, ensuring versatile
+                      solutions for diverse project requirements.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >DO YOU OFFER SMART CONTRACT AUDITS?</span
+                    >
+                    <span class="faq-answer">
+                      We provide thorough smart contract audits that ensure your
+                      blockchain code is secure, fully functional, and
+                      compliant, minimizing risks before deployment.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >CAN YOU HELP LAUNCH AN NFT PROJECT?</span
+                    >
+                    <span class="faq-answer">
+                      We provide complete NFT launch support, including smart
+                      contract development, design, platform integration, and
+                      community strategy for success.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
+
+                  <span class="faq-text">
+                    <span class="faq-question"
+                      >WHAT’S YOUR TYPICAL PROJECT TIMELINE?</span
+                    >
+                    <span class="faq-answer">
+                      Our project timeline ranges from 2 to 12 weeks, depending
+                      on the project’s complexity, with detailed planning after
+                      initial consultation and assessment.
+                    </span>
+                  </span>
+                </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER / CTA SECTION -->
+    <footer class="site-footer" id="footer">
+      <div class="footer-shell">
+        <div class="footer-cta">
+          <div class="footer-cta-copy">
+            <div class="footer-cta-title reveal-footer-up">
+              <h2>LET’S BUILD THE FUTURE OF WEB3 TOGETHER</h2>
+            </div>
+
+            <div class="footer-cta-description reveal-footer-up">
+              <p>
+                Ready to launch? From start to scale, we turn your Web3 vision
+                into reality.
+              </p>
+            </div>
+          </div>
+
+          <div class="footer-cta-action reveal-footer-up">
+            <a href="/contact" class="footer-cta-btn">
+              <span class="footer-cta-btn-icon">
+                <img
+                  src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                />
+              </span>
+              <span class="footer-cta-btn-label">Get In Touch</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-lower">
+        <div class="footer-grid-bg reveal-grid" aria-hidden="true">
+          <img
+            src="https://framerusercontent.com/images/YFlEZtZRPYYJiuJbhArFwEvXMaw.png?width=6400&height=1369"
+            alt=""
+            width="1600"
+            height="341"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="footer-lower-inner">
+          <nav class="footer-socials" aria-label="Social links">
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Instagram</a
+            >
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Twitter (x)</a
+            >
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://behance.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Behance</a
+            >
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+          </nav>
+
+          <a href="/" class="footer-wordmark reveal-footer-brand">
+            <span>HOFFMANN MEDIENAGENTUR</span>
+          </a>
+
+          <p class="footer-copyright reveal-footer-copy">
+            © Copyright
+            <a href="#" target="_blank" rel="noopener noreferrer"></a>, 2026 All
+            Right Reserved by
+            <a href="/">Hoffmann Medienagentur</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- header -->
+
+    <script>
+      (function () {
+        var header = document.getElementById("siteHeader");
+        var toggle = document.getElementById("navToggle");
+        var mobileNav = document.getElementById("navMobile");
+
+        function handleScroll() {
+          if (window.innerWidth >= 1360) {
+            if (window.scrollY > 10000) {
+              header.classList.add("is-scrolled");
+            } else {
+              header.classList.remove("is-scrolled");
+            }
+          } else {
+            header.classList.remove("is-scrolled");
+          }
+        }
+
+        if (toggle && mobileNav) {
+          toggle.addEventListener("click", function () {
+            var isOpen = mobileNav.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            toggle.textContent = isOpen ? "Close" : "Menu";
+          });
+        }
+
+        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("resize", handleScroll);
+        handleScroll();
+      })();
+    </script>
+
+    <script>
+      (function () {
+        var el = document.getElementById("heroHeadline");
+        var text = el.textContent;
+        el.textContent = "";
+        text.split("").forEach(function (char, i) {
+          var span = document.createElement("span");
+          span.className = "char";
+          span.textContent = char === " " ? "\u00A0" : char;
+          span.style.animationDelay = 0.3 + i * 0.035 + "s";
+          el.appendChild(span);
+        });
+      })();
+    </script>
+
+    <!-- brand section reveal -->
+    <script>
+      (function () {
+        var content = document.getElementById("brandContent");
+        var wrapper = document.getElementById("tickerWrapper");
+
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                if (entry.target === content) content.classList.add("in-view");
+                if (entry.target === wrapper) wrapper.classList.add("in-view");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2 },
+        );
+
+        observer.observe(content);
+        observer.observe(wrapper);
+      })();
+    </script>
+
+    <script>
+      (function () {
+        function initTicker(trackId, baseSpeed) {
+          var track = document.getElementById(trackId);
+          var row = track.parentElement;
+          var direction = track.dataset.direction === "left" ? -1 : 1;
+          var currentSpeed = baseSpeed;
+          var targetSpeed = baseSpeed;
+          var pos = 0;
+          var halfWidth = 0;
+
+          function measure() {
+            halfWidth = track.scrollWidth / 2;
+          }
+          measure();
+          window.addEventListener("resize", measure);
+
+          row.addEventListener("mouseenter", function () {
+            targetSpeed = baseSpeed * 0.3;
+          });
+          row.addEventListener("mouseleave", function () {
+            targetSpeed = baseSpeed;
+          });
+
+          function animate() {
+            currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+            pos += direction * currentSpeed;
+
+            if (direction === -1 && pos <= -halfWidth) pos += halfWidth;
+            if (direction === 1 && pos >= 0) pos -= halfWidth;
+
+            track.style.transform = "translateX(" + pos + "px)";
+            requestAnimationFrame(animate);
+          }
+
+          if (direction === 1) pos = -halfWidth;
+
+          requestAnimationFrame(animate);
+        }
+
+        initTicker("trackTop", 0.6);
+        initTicker("trackBottom", 0.6);
+      })();
+    </script>
+
+    <!-- about us -->
+
+    <script>
+      (function () {
+        var aboutSection = document.getElementById("aboutSection");
+        var aboutHeading = document.getElementById("aboutHeading");
+        var aboutCta = document.getElementById("aboutCta");
+        var metricEls = document.querySelectorAll(".about-metric");
+        var countEls = document.querySelectorAll(".count");
+
+        function runCounter(el) {
+          var start = parseInt(el.getAttribute("data-start"), 10);
+          var end = parseInt(el.getAttribute("data-end"), 10);
+          var speed = parseInt(el.getAttribute("data-speed"), 10);
+          var current = start;
+          el.textContent = current;
+
+          var timer = setInterval(function () {
+            if (current < end) {
+              current++;
+              el.textContent = current;
+            } else {
+              clearInterval(timer);
+            }
+          }, speed);
+        }
+
+        var playedCounters = new WeakSet();
+
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+
+              if (entry.target === aboutSection) {
+                aboutSection.classList.add("in-view");
+              }
+
+              if (entry.target === aboutHeading) {
+                aboutHeading.classList.add("in-view");
+              }
+
+              if (entry.target.classList.contains("about-metric")) {
+                entry.target.classList.add("in-view");
+                var counter = entry.target.querySelector(".count");
+                if (counter && !playedCounters.has(counter)) {
+                  runCounter(counter);
+                  playedCounters.add(counter);
+                }
+              }
+
+              if (entry.target === aboutCta) {
+                aboutCta.classList.add("in-view");
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+
+        if (aboutSection) observer.observe(aboutSection);
+        if (aboutHeading) observer.observe(aboutHeading);
+        if (aboutCta) observer.observe(aboutCta);
+        metricEls.forEach(function (el) {
+          observer.observe(el);
+        });
+      })();
+    </script>
+
+    <!-- process -->
+
+    <script src="process.js"></script>
+
+    <!-- services -->
+
+    <script>
+      (function () {
+        var title = document.getElementById("servicesTitle");
+        var desc = document.getElementById("servicesDesc");
+        var cards = document.querySelectorAll(".service-card");
+
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("in-view");
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.2 },
+        );
+
+        if (title) observer.observe(title);
+        if (desc) observer.observe(desc);
+        cards.forEach(function (card) {
+          observer.observe(card);
+        });
+      })();
+    </script>
+
+    <!-- work -->
+    <script>
+      (function () {
+        var title = document.getElementById("worksTitle");
+        var desc = document.getElementById("worksDesc");
+        var cards = document.querySelectorAll(".work-card, .works-viewall");
+
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("in-view");
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.18 },
+        );
+
+        if (title) observer.observe(title);
+        if (desc) observer.observe(desc);
+        cards.forEach(function (card) {
+          observer.observe(card);
+        });
+      })();
+    </script>
+
+    <!-- pricing -->
+    <!-- <script>
+(function () {
+  const section = document.querySelector('.pricing-section');
+  const revealItems = document.querySelectorAll('.reveal-up, .reveal-card');
+
+  if (!section) return;
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        section.classList.add('is-inview');
+      } else {
+        section.classList.remove('is-inview');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sectionObserver.observe(section);
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  revealItems.forEach((item) => {
+    revealObserver.observe(item);
+  });
+})();
+</script> -->
+
+    <!-- FAQ -->
+    <script>
+      (function () {
+        const rows = document.querySelectorAll(".faq-row");
+        const revealItems = document.querySelectorAll(
+          ".reveal-up, .reveal-row",
+        );
+
+        rows.forEach((row) => {
+          const trigger = row.querySelector(".faq-trigger");
+
+          trigger.addEventListener("click", function () {
+            const isOpen = row.classList.contains("is-open");
+
+            rows.forEach((item) => {
+              item.classList.remove("is-open");
+              const btn = item.querySelector(".faq-trigger");
+              if (btn) btn.setAttribute("aria-expanded", "false");
+            });
+
+            if (!isOpen) {
+              row.classList.add("is-open");
+              trigger.setAttribute("aria-expanded", "true");
+            }
+          });
+        });
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+          },
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+
+    <!-- blogs -->
+    <script>
+      (function () {
+        const blogSection = document.querySelector(".blog-section");
+        const revealItems = document.querySelectorAll(
+          ".blog-section .reveal-up, .blog-section .reveal-blog",
+        );
+
+        if (!blogSection) return;
+
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                blogSection.classList.add("in-view");
+              } else {
+                blogSection.classList.remove("in-view");
+              }
+            });
+          },
+          {
+            threshold: 0.08,
+          },
+        );
+
+        sectionObserver.observe(blogSection);
+
+        const revealObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.18,
+          },
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      })();
+    </script>
+
+    <!-- footer -->
+
+    <script>
+      (function () {
+        const revealItems = document.querySelectorAll(
+          ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid",
+        );
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+          },
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+
+    <script src="features.js"></script>
+  </body>
+</html>

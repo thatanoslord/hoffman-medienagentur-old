@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .spacer {
+            height: 100vh;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sora:wght@400&display=swap');
+
+.facts-story {
+  position: relative;
+  background: #f5f5f5;
+  padding: 65px 30px;
+}
+
+.facts-story__container {
+  max-width: 1300px;
+  margin: 0 auto;
+  min-height: 1479px;
+}
+
+.facts-story__sticky {
+  position: sticky;
+  top: 150px;
+  min-height: 537px;
+  display: grid;
+  grid-template-columns: 310px 770px;
+  justify-content: space-between;
+  column-gap: 24px;
+  align-items: start;
+}
+
+.facts-story__left {
+  /* max-width: 310px; */
+}
+
+.facts-story__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: rgb(87, 87, 87);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.facts-story__eyebrow-icon {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  background: rgb(87, 87, 87);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(255deg);
+}
+
+.facts-profile-card {
+  width: 450px;
+  height: 550px;
+  /* margin-top: 147px; */
+  background: rgb(255, 255, 255);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.facts-profile-card__image {
+  /* width: 310px; */
+  /* height: 273px; */
+}
+
+.facts-profile-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.facts-profile-card__meta {
+  height: 93px;
+  padding: 20px;
+}
+
+.facts-profile-card__name {
+  margin: 0;
+  color: rgb(23, 23, 23);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.facts-profile-card__role {
+  margin: 5px 0 0;
+  color: rgb(87, 87, 87);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.facts-story__right {
+  max-width: 770px;
+  margin-left: auto;
+}
+
+.facts-story__title {
+  margin: 0;
+  max-width: 770px;
+  color: rgb(0, 0, 0);
+  font-family: 'Sora', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0;
+  word-break: break-word;
+}
+
+.facts-story__title .char {
+  opacity: 0.2;
+  transition: opacity 0.1s linear;
+}
+
+.facts-story__title .char.is-lit {
+  opacity: 1;
+}
+
+.facts-system {
+  margin-top: 104px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.facts-timeline {
+  position: relative;
+  width: 770px;
+  height: 11px;
+}
+
+.facts-timeline__base {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 770px;
+  height: 1px;
+  transform: translateY(-50%);
+  background-image: linear-gradient(to right, rgba(23,23,23,0.26) 50%, rgba(255,255,255,0) 0%);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}
+
+.facts-timeline__fill {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 770px;
+  height: 1px;
+  transform: translate(-750px, -50%);
+  background: rgb(23, 23, 23);
+  transform-origin: left center;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.facts-timeline__dot {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: 3px solid rgb(23, 23, 23);
+  border-radius: 999px;
+  background: rgb(255, 255, 255);
+  transform: translate(-50%, -50%);
+}
+
+.facts-timeline__dot--one {
+  left: 0;
+  transform: translate(0, -50%);
+}
+
+.facts-timeline__dot--two {
+  left: 267px;
+}
+
+.facts-timeline__dot--three {
+  right: 201px;
+  left: auto;
+  transform: translate(50%, -50%);
+}
+
+.facts-metrics {
+  margin-top: 34px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.facts-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform: translateY(var(--metric-offset, 0));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.facts-metric:nth-child(1) {
+  max-width: 189px;
+  --metric-offset: 80px;
+}
+
+.facts-metric:nth-child(2) {
+  max-width: 218px;
+  --metric-offset: 160px;
+}
+
+.facts-metric:nth-child(3) {
+  max-width: 209px;
+  --metric-offset: 260px;
+}
+
+.facts-metric__value {
+  margin: 0;
+  color: rgb(23, 23, 23);
+  font-family: 'Sora', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.facts-metric__text {
+  margin: 0;
+  color: rgb(87, 87, 87);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.facts-story__button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 166px;
+  height: 48px;
+  margin-top: 40px;
+  border-radius: 999px;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.facts-story__button-label {
+  position: absolute;
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  transition:
+    transform 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.facts-story__button-label--top {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.facts-story__button-label--bottom {
+  transform: translateY(150%);
+  opacity: 1;
+}
+
+.facts-story__button:hover .facts-story__button-label--top {
+  transform: translateY(-150%);
+}
+
+.facts-story__button:hover .facts-story__button-label--bottom {
+  transform: translateY(0);
+}
+
+.facts-story__triggers {
+  margin-top: -537px;
+  padding-top: 537px;
+}
+
+.facts-story__trigger {
+  height: 320px;
+}
+
+/* Tablet */
+@media (max-width: 1359.98px) {
+  .facts-story {
+    padding: 50px 30px;
+  }
+
+  .facts-story__container {
+    max-width: 750px;
+    min-height: auto;
+  }
+
+  .facts-story__sticky {
+    position: static;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .facts-story__left {
+    max-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .facts-profile-card {
+    width: 456px;
+    height: 495px;
+    margin-top: 0;
+    flex: 0 0 auto;
+  }
+
+  .facts-profile-card__image {
+    width: 456px;
+    height: 402px;
+  }
+
+  .facts-profile-card__meta {
+    height: 93px;
+  }
+
+  .facts-story__right {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .facts-story__title {
+    font-size: 42px;
+    max-width: 100%;
+  }
+
+  .facts-system {
+    margin-top: 50px;
+  }
+
+  .facts-timeline,
+  .facts-story__triggers {
+    display: none;
+  }
+
+  .facts-metrics {
+    margin-top: 0;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .facts-metric,
+  .facts-metric:nth-child(1),
+  .facts-metric:nth-child(2),
+  .facts-metric:nth-child(3) {
+    max-width: 100%;
+    --metric-offset: 0px;
+    transform: none;
+  }
+}
+
+/* Phone */
+@media (max-width: 767.98px) {
+  .facts-story {
+    padding: 40px 20px;
+  }
+
+  .facts-story__container {
+    max-width: 350px;
+  }
+
+  .facts-story__sticky {
+    gap: 0;
+  }
+
+  .facts-story__left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .facts-profile-card {
+    order: 1;
+    width: 350px;
+    height: 402px;
+  }
+
+  .facts-profile-card__image {
+    width: 350px;
+    height: 309px;
+  }
+
+  .facts-story__eyebrow {
+    order: 2;
+  }
+
+  .facts-story__right {
+    margin-top: 20px;
+  }
+
+  .facts-story__title {
+    font-size: 36px;
+  }
+
+  .facts-system {
+    margin-top: 40px;
+  }
+
+  .facts-metrics {
+    gap: 24px;
+  }
+
+  .facts-metric__value {
+    font-size: 42px;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="spacer"></div>
+<section class="facts-story" id="factsStory">
+  <div class="facts-story__container">
+    <div class="facts-story__sticky">
+      <div class="facts-story__left">
+        <!-- <div class="facts-story__eyebrow">
+          <span class="facts-story__eyebrow-icon"></span>
+          <span>Growth Signals</span>
+        </div> -->
+
+        <article class="facts-profile-card">
+          <div class="facts-profile-card__image">
+            <img
+              src="https://framerusercontent.com/images/mnm6lnrYHpojU95g8ZDkoSZuiN8.png?width=1240&height=1092"
+              alt="Portrait of Arman Rahman"
+              width="310"
+              height="273"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="facts-profile-card__meta">
+            <p class="facts-profile-card__name">Arman Rahman</p>
+            <p class="facts-profile-card__role">Chief Executive Office</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="facts-story__right">
+        <h2 class="facts-story__title" id="factsTitle">Real performance metrics powered <br> by intelligent systems and scalable automation</h2>
+
+        <div class="facts-system">
+          <div class="facts-timeline" aria-hidden="true">
+            <div class="facts-timeline__base"></div>
+            <div class="facts-timeline__fill" id="factsTimelineFill"></div>
+            <span class="facts-timeline__dot facts-timeline__dot--one"></span>
+            <span class="facts-timeline__dot facts-timeline__dot--two"></span>
+            <span class="facts-timeline__dot facts-timeline__dot--three"></span>
+          </div>
+
+          <div class="facts-metrics">
+            <article class="facts-metric" id="metricOne">
+              <p class="facts-metric__value">98%</p>
+              <p class="facts-metric__text">High-accuracy real-time system outputs.</p>
+            </article>
+
+            <article class="facts-metric" id="metricTwo">
+              <p class="facts-metric__value">240+</p>
+              <p class="facts-metric__text">Autonomous workflows with minimal interruption.</p>
+            </article>
+
+            <article class="facts-metric" id="metricThree">
+              <p class="facts-metric__value">12.6M+</p>
+              <p class="facts-metric__text">Real-time data interpreted into actionable insights.</p>
+            </article>
+          </div>
+
+          <a href="/contact" class="facts-story__button">
+            <span class="facts-story__button-label facts-story__button-label--top">Lets connect</span>
+            <span class="facts-story__button-label facts-story__button-label--bottom">Lets connect</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="facts-story__triggers" aria-hidden="true">
+      <div class="facts-story__trigger" id="factsTriggerOne"></div>
+      <div class="facts-story__trigger" id="factsTriggerTwo"></div>
+      <div class="facts-story__trigger" id="factsTriggerThree"></div>
+    </div>
+  </div>
+</section>
+    <div class="spacer"></div>
+
+
+    <script>
+(function () {
+  const title = document.getElementById('factsTitle');
+  if (!title) return;
+
+  const original = title.textContent;
+  title.textContent = '';
+
+  [...original].forEach((char, index) => {
+    const span = document.createElement('span');
+    span.className = 'char';
+    span.textContent = char === ' ' ? '\u00A0' : char;
+    span.dataset.index = index;
+    title.appendChild(span);
+  });
+
+  const chars = Array.from(title.querySelectorAll('.char'));
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function handleTitleProgress() {
+    if (window.innerWidth <= 1259.98 || reducedMotion) {
+      chars.forEach((char) => char.classList.add('is-lit'));
+      return;
+    }
+
+    const rect = title.getBoundingClientRect();
+    const viewportProgress = clamp(
+      (window.innerHeight - rect.top) / (window.innerHeight + rect.height),
+      0,
+      1
+    );
+    const litCount = Math.round(viewportProgress * chars.length * 1.3);
+
+    chars.forEach((char, index) => {
+      char.classList.toggle('is-lit', index < litCount );
+    });
+  }
+
+  window.addEventListener('scroll', handleTitleProgress, { passive: true });
+  window.addEventListener('resize', handleTitleProgress);
+  handleTitleProgress();
+})();
+</script>
+
+<script>
+(function () {
+  const section = document.getElementById('factsStory');
+  const line = document.getElementById('factsTimelineFill');
+  const metricOne = document.getElementById('metricOne');
+  const metricTwo = document.getElementById('metricTwo');
+  const metricThree = document.getElementById('metricThree');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!section || !line || !metricOne || !metricTwo || !metricThree) return;
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function handleFactsProgress() {
+    if (window.innerWidth <= 1359.98 || reducedMotion) {
+      line.style.transform = 'translate(0px, -50%)';
+      metricOne.style.transform = 'translateY(0px)';
+      metricTwo.style.transform = 'translateY(0px)';
+      metricThree.style.transform = 'translateY(0px)';
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    const totalScrollable = rect.height - window.innerHeight + 120;
+    const scrolled = clamp(-rect.top, 0, totalScrollable);
+    const progress = clamp(scrolled / totalScrollable, 0, 1);
+
+    const stageOne = clamp(progress / 0.33, 0, 1);
+    const stageTwo = clamp((progress - 0.33) / 0.33, 0, 1);
+    const stageThree = clamp((progress - 0.66) / 0.34, 0, 1);
+
+    let lineX = -790;
+    if (progress < 0.33) {
+      lineX = lerp(-790, -500, stageOne);
+    } else if (progress < 0.66) {
+      lineX = lerp(-500, -204, stageTwo);
+    } else {
+      lineX = lerp(-204, 0, stageThree);
+    }
+
+    const metricOneY = lerp(240, 0, stageOne);
+    const metricTwoY = lerp(240, 0, stageTwo);
+    const metricThreeY = lerp(320, 0, stageThree);
+
+    line.style.transform = 'translate(' + lineX + 'px, -50%)';
+    metricOne.style.transform = 'translateY(' + metricOneY + 'px)';
+    metricTwo.style.transform = 'translateY(' + metricTwoY + 'px)';
+    metricThree.style.transform = 'translateY(' + metricThreeY + 'px)';
+  }
+
+  window.addEventListener('scroll', handleFactsProgress, { passive: true });
+  window.addEventListener('resize', handleFactsProgress);
+  handleFactsProgress();
+})();
+</script>
+</body>
+</html>

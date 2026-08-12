@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+#service {
+  position: relative;
+  overflow: hidden;
+}
+
+.gp-services-section,
+.gp-services-section * {
+  box-sizing: border-box;
+}
+.gp-services-container{height:1616px;}
+
+.gp-services-section {
+  width: 100%;
+  padding: 100px 60px;
+}
+
+.gp-services-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.gp-services-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.gp-services-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.gp-services-eyebrow-wrap {
+  gap: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 8px 20px;
+  border: 1px solid rgba(224, 228, 243, 0.6);
+  border-radius: 999px;
+  background: #f5f7ff;
+}
+
+.gp-services-eyebrow-shape {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(180deg, var(--token-a4c4b682-f338-43c8-9c0f-5200c6162db5, rgb(0, 85, 254)) 0%, var(--token-d8404571-fad1-4c38-888c-6fbb7414353a, rgb(0, 0, 0)) 100%);
+  border-radius: 999px;
+  transform: rotate(366.583deg);
+}
+
+.gp-services-eyebrow {
+  margin: 0;
+  color: transparent;
+  font-family: "Inter Display", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  background: linear-gradient(180deg, var(--token-a4c4b682-f338-43c8-9c0f-5200c6162db5, rgb(0, 85, 254)) 0%, var(--token-d8404571-fad1-4c38-888c-6fbb7414353a, rgb(0, 0, 0)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gp-services-title h2 {
+  margin: 0;
+  color: #070707;
+  font-family: "Inter Display", sans-serif;
+  font-size: clamp(40px, 5.6vw, 72px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gp-services-title em {
+  font-family: "Inter Display", sans-serif;
+  font-weight: 600;
+}
+
+.gp-services-stack-wrap {
+  position: relative;
+  height: 100vh;
+  min-height: 760px;
+}
+
+.gp-services-cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gp-service-card {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: stretch;
+  direction: rtl;
+  border-radius: 19px;
+  will-change: transform, opacity;
+}
+
+.gp-service-card .gp-service-body,
+.gp-service-card .gp-service-media {
+  direction: ltr;
+}
+
+.gp-service-media {
+  border-radius: 19px;
+  overflow: hidden;
+  max-height: 640px;
+}
+
+.gp-service-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+.gp-service-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 40px;
+  min-width: 0;
+  max-height: 640px;
+  border-radius: 19px;
+  background: #f5f7ff;
+}
+
+.gp-service-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.gp-service-copy h3 {
+  margin: 0;
+  color: #070707;
+  font-family: "Inter Display", sans-serif;
+  font-size: clamp(28px, 2.5vw, 36px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.gp-service-copy h4 {
+  margin: 0;
+  color: #111827;
+  font-family: "Inter Display", sans-serif;
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.gp-service-copy p {
+  margin: 0;
+  color: #676767;
+  font-family: "Inter Display", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+.gp-service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gp-service-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #fff;
+  color: #070707;
+  font-family: "Inter Display", sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.gp-service-tags span::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #070707;
+  flex: 0 0 8px;
+}
+
+.gp-services-section .gp-learn-more,
+.gp-services-section .gp-learn-more--small {
+  position: relative !important;
+  display: inline-block !important;
+  width: 274px !important;
+  max-width: 100% !important;
+  min-width: 170px !important;
+  height: 62px !important;
+  cursor: pointer !important;
+  outline: none !important;
+  border: 0 !important;
+  vertical-align: middle !important;
+  text-decoration: none !important;
+  background: #fff !important;
+  padding: 4px !important;
+  border-radius: 999px !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  box-shadow: none !important;
+  line-height: normal !important;
+  overflow: hidden !important;
+}
+
+.gp-services-section .gp-circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1) !important;
+  position: relative !important;
+  display: block !important;
+  margin: 0 !important;
+  width: 54px !important;
+  height: 54px !important;
+  background: #2e66ff !important;
+  border-radius: 999px !important;
+  box-shadow: 0 0 5px 1px rgba(46, 102, 255, 0.28) !important;
+}
+
+.gp-services-section .gp-circle .gp-icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1) !important;
+  position: absolute !important;
+  inset: 0 !important;
+  margin: auto !important;
+}
+
+.gp-services-section .gp-circle .gp-icon.gp-arrow {
+  width: 18px !important;
+  height: 2px !important;
+  left: 10px !important;
+  background: #fff !important;
+}
+
+.gp-services-section .gp-circle .gp-icon.gp-arrow::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -4px !important;
+  right: 1px !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-top: 2px solid #fff !important;
+  border-right: 2px solid #fff !important;
+  transform: rotate(45deg) !important;
+}
+
+.gp-services-section .gp-button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1) !important;
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-inline: 1.25rem 1rem !important;
+  color: #2e66ff !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  font-family: "Poppins", sans-serif !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.gp-services-section .gp-learn-more:hover .gp-circle,
+.gp-services-section .gp-learn-more--small:hover .gp-circle {
+  width: calc(100% - 8px) !important;
+  box-shadow: 0 0 10px 2px rgba(46, 102, 255, 0.35) !important;
+}
+
+.gp-services-section .gp-learn-more:hover .gp-button-text,
+.gp-services-section .gp-learn-more--small:hover .gp-button-text {
+  color: #fff !important;
+  transform: translateX(-18px) !important;
+}
+
+.gp-services-section .gp-learn-more:hover .gp-circle .gp-icon.gp-arrow,
+.gp-services-section .gp-learn-more--small:hover .gp-circle .gp-icon.gp-arrow {
+  background: #fff !important;
+  transform: translateX(104px) !important;
+}
+
+@media (max-width: 1024px){
+    .gp-services-container{height:2097px;}
+    .gp-service-card{
+        grid-template-columns: unset;
+        inset: unset;
+    }
+    
+}
+
+@media (max-width: 991.98px) {
+  .gp-services-section {
+    padding: 72px 24px 0px;
+  }
+
+  .gp-services-container {
+    gap: 40px;
+  }
+
+  .gp-services-header {
+    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gp-services-stack-wrap {
+    height: auto;
+    min-height: 0;
+  }
+  .gp-services-container {
+    gap: 32px;
+    height: 2974px;
+  }
+
+  .gp-services-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    height: auto;
+  }
+
+  .gp-service-card {
+    position: relative;
+    inset: auto;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    direction: ltr;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .gp-service-media {
+    min-height: 360px;
+  }
+
+  .gp-service-body {
+    padding: 28px 24px;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .gp-services-section {
+    padding: 60px 16px;
+  }
+
+  .gp-services-container {
+    gap: 32px;
+    height: 2245px;
+  }
+
+  .gp-services-header {
+    align-items: center;
+    text-align: center;
+  }
+
+  .gp-services-header-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .gp-services-title h2 {
+    font-size: clamp(28px, 8vw, 32px);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .gp-service-media {
+    min-height: 260px;
+  }
+
+  .gp-service-body {
+    padding: 22px 18px;
+  }
+
+  .gp-service-copy h3 {
+    font-size: 24px;
+  }
+
+  .gp-service-copy h4 {
+    font-size: 18px;
+  }
+
+  .gp-service-copy p {
+    font-size: 15px;
+  }
+
+  .gp-services-section .gp-learn-more,
+  .gp-services-section .gp-learn-more--small {
+    width: 100% !important;
+    max-width: 220px !important;
+    height: 48px !important;
+  }
+
+  .gp-services-section .gp-circle {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .gp-services-section .gp-button-text {
+    font-size: 13px !important;
+  }
+}
+</style>
+</head>
+<body>
+    <section class="gp-services-section" id="service">
+  <div class="gp-services-container">
+    <div class="gp-services-header">
+      <div class="gp-services-header-content">
+        <div class="gp-services-eyebrow-wrap">
+          <!--<div class="gp-services-eyebrow-shape"></div>-->
+          <p class="gp-services-eyebrow">Leistungen</p>
+        </div>
+        <div class="gp-services-title">
+          <h2>Entdecke unsere <em>Leistungen</em></h2>
+        </div>
+      </div>
+
+      <a class="gp-learn-more gp-learn-more--small" href="./services/brand-identity" aria-label="View Brand Identity service details">
+        <span aria-hidden="true" class="gp-circle">
+          <span class="gp-icon gp-arrow"></span>
+        </span>
+        <span class="gp-button-text">Alle Leistungen</span>
+      </a>
+    </div>
+
+    <div class="gp-services-stack-wrap">
+      <div class="gp-services-cards">
+        <article class="gp-service-card" id="brand-identity-service-card">
+          <div class="gp-service-media">
+            <img src="https://davincis-web.de/wp-content/uploads/2026/07/greenproject-scaled.webp" alt="Bright neon-yellow cube sign mounted on a wall casting a shadow." loading="lazy" width="4096" height="2731">
+          </div>
+          <div class="gp-service-body">
+            <div class="gp-service-copy">
+              <h3>Web design &amp; Website-Erstellung</h3>
+              <h4>Professionelle WordPress-Websites</h4>
+              <p>Wir gestalten individuelle, responsive Websites mit Fokus auf Performance, Nutzerfreundlichkeit und SEO.
+</p>
+            </div>
+            <div class="gp-service-tags">
+              <span>Logo</span>
+              <span>Mockups</span>
+              <span>Digital Design</span>
+              <span>Branding</span>
+            </div>
+            <a class="gp-learn-more gp-learn-more--small" href="./services/brand-identity" aria-label="View Brand Identity service details">
+              <span aria-hidden="true" class="gp-circle">
+                <span class="gp-icon gp-arrow"></span>
+              </span>
+              <span class="gp-button-text">Details ansehen</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="gp-service-card" id="ui-ux-design-service-card">
+          <div class="gp-service-media">
+            <img src="https://davincis-web.de/wp-content/uploads/2026/07/mobile-project-scaled.webp" alt="Two smartphones standing on a metal surface displaying an orange sci-fi planet wallpaper." loading="lazy" width="3000" height="2000">
+          </div>
+          <div class="gp-service-body">
+            <div class="gp-service-copy">
+              <h3>SEO &amp; Analyse</h3>
+              <h4>Mehr Sichtbarkeit bei Google</h4>
+              <p>Wir verbessern dein Ranking durch technisches SEO, Keyword-Strategien und detaillierte Datenanalyse.</p>
+            </div>
+            <div class="gp-service-tags">
+              <span>UI Design</span>
+              <span>Design System</span>
+              <span>Prototype</span>
+              <span>Wireframe</span>
+            </div>
+            <a class="gp-learn-more gp-learn-more--small" href="./services/brand-identity" aria-label="View Brand Identity service details">
+              <span aria-hidden="true" class="gp-circle">
+                <span class="gp-icon gp-arrow"></span>
+              </span>
+              <span class="gp-button-text">Details ansehen</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="gp-service-card" id="web-development-service-card">
+          <div class="gp-service-media">
+            <img src="https://davincis-web.de/wp-content/uploads/2026/07/redproject-scaled.webp" alt="Open silver laptop mockup on black fabric with a red screen." loading="lazy" width="4096" height="2926">
+          </div>
+          <div class="gp-service-body">
+            <div class="gp-service-copy">
+              <h3>Schnelles Hosting &amp; support</h3>
+              <h4>Stabile &amp; sichere Infrastruktur</h4>
+              <p>Mit SSL-Zertifikat, täglichen Backups und technischem Support für deine Website.
+</p>
+            </div>
+            <div class="gp-service-tags">
+              <span>Website</span>
+              <span>CloudHosting </span>
+              <span>Hosting</span>
+              <span>Systemcheck</span>
+            </div>
+            <a class="gp-learn-more gp-learn-more--small" href="./services/brand-identity" aria-label="View Brand Identity service details">
+              <span aria-hidden="true" class="gp-circle">
+                <span class="gp-icon gp-arrow"></span>
+              </span>
+              <span class="gp-button-text">Details ansehen</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth <= 991) return;
+  if (!window.gsap || !window.ScrollTrigger) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector('#service');
+  const stackWrap = section?.querySelector('.gp-services-stack-wrap');
+  const cards = gsap.utils.toArray('#service .gp-service-card');
+
+  if (!section || !stackWrap || !cards.length) return;
+
+  cards.forEach((card, index) => {
+    gsap.set(card, {
+      zIndex: index + 1
+    });
+  });
+
+  gsap.set(cards[0], { yPercent: 0, scale: 1, opacity: 1 });
+  gsap.set(cards[1], { yPercent: 115, scale: 1, opacity: 1 });
+  gsap.set(cards[2], { yPercent: 115, scale: 1, opacity: 1 });
+
+  const stepCount = cards.length - 1;
+  const stepDuration = 1;
+  const scrollPerStep = 420;
+
+  const tl = gsap.timeline({
+    defaults: {
+      ease: 'power2.out'
+    },
+    scrollTrigger: {
+      trigger: stackWrap,
+      start: 'top top+=110',
+      end: `+=${stepCount * scrollPerStep}`,
+      scrub: 1,
+      pin: stackWrap,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  });
+
+  for (let i = 1; i < cards.length; i++) {
+    tl.to(cards[i], {
+      yPercent: 0,
+      duration: stepDuration
+    }, (i - 1) * stepDuration);
+
+    tl.to(cards[i - 1], {
+      scale: 0.96,
+      opacity: 0.9,
+      duration: stepDuration
+    }, (i - 1) * stepDuration);
+  }
+
+  ScrollTrigger.refresh();
+});
+</script>
+</body>
+</html>

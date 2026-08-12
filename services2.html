@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Services Section</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Inter:wght@400;500&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:transparent;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .services-editorial {
+      position: relative;
+      width: 100%;
+      background: radial-gradient(101.4% 61.3% at 12.4% 0%, #0833bfe6 0%, rgb(189, 204, 255) 86.29293355855856%, rgb(235 239 255 / 0%) 100%);
+      padding: 100px 50px;
+      overflow: visible;
+    }
+
+    .services-editorial__texture {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.045) 0,
+          rgba(255,255,255,0.045) 1px,
+          transparent 1px,
+          transparent 64px
+        );
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .services-editorial__inner {
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    .services-editorial__grid {
+      display: grid;
+      grid-template-columns: 363px minmax(0, 1073px);
+      gap: 10px;
+      align-items: start;
+    }
+
+    .services-editorial__intro {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      height: fit-content;
+      z-index: 2;
+    }
+
+    .services-editorial__intro-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+    }
+
+    .services-editorial__title {
+      margin: 0;
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .services-editorial__cta {
+      text-decoration: none;
+      display: inline-flex;
+      opacity: 0;
+      animation: servicesCtaIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+
+    @keyframes servicesCtaIn {
+      to { opacity: 1; }
+    }
+
+    .services-editorial__cta-shell {
+      position: relative;
+      min-width: 214px;
+      height: 60px;
+      padding: 0 22px 0 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      overflow: hidden;
+      color: #fff;
+      border-top: 2px solid rgba(255,255,255,0.5);
+      border-left: 2px solid rgba(255,255,255,0.5);
+      background: linear-gradient(112deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.11) 100%);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transition:
+        transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .services-editorial__cta-shell::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: inherit;
+      background: rgba(0,0,0,0.58);
+    }
+
+    .services-editorial__cta-accent {
+      position: absolute;
+      left: 12px;
+      width: 94px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(127.9% 258% at -40.3% 0%, #ffab42 51.69%, #ff636f 78%, #20c6b7 100%);
+      filter: blur(5px);
+      transition:
+        width 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+        left 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .services-editorial__cta-label,
+    .services-editorial__cta-record {
+      position: relative;
+      z-index: 1;
+    }
+
+    .services-editorial__cta-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .services-editorial__cta-record {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .services-editorial__cta-record-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ff695c;
+    }
+
+    .services-editorial__cta-record-ring {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(255,105,92,0.4);
+      border-radius: 999px;
+      animation: servicesBeep 1.2s ease-out infinite;
+    }
+
+    @keyframes servicesBeep {
+      0% { transform: scale(0.72); opacity: 0.8; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+
+    .services-editorial__cta:hover .services-editorial__cta-shell {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(0,0,0,0.28);
+    }
+
+    .services-editorial__cta:hover .services-editorial__cta-accent {
+      width: 58px;
+      height: 32px;
+      left: 16px;
+      filter: blur(2px);
+    }
+
+    .services-editorial__cta:hover .services-editorial__cta-record {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .services-editorial__cards {
+      display: flex;
+      flex-direction: column;
+      gap: 31px;
+      min-width: 0;
+    }
+
+    .service-accordion-card {
+      position: relative;
+      border-radius: 30px;
+      background:#fff;
+      border-top: 2px solid rgba(255,255,255,0.28);
+      border-left: 2px solid rgba(255,255,255,0.28);
+      border-right: 1px solid rgba(255,255,255,0.16);
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      overflow: hidden;
+      transition:
+        border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .service-accordion-card:hover {
+      border-top-color: rgba(255,255,255,0.42);
+      border-left-color: rgba(255,255,255,0.42);
+      border-right-color: rgba(255,255,255,0.24);
+      border-bottom-color: rgba(255,255,255,0.24);
+    }
+
+    .service-accordion-card__heading {
+      margin: 0;
+    }
+
+    .service-accordion-card__trigger {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 40px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .service-accordion-card__main {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .service-accordion-card__text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 21px;
+      max-width: 420px;
+    }
+
+    .service-accordion-card__title {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(98deg, rgb(255,255,255) 0%, rgba(255,255,255,0.77) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: #000   ;
+    }
+
+    .service-accordion-card__desc {
+      display: block;
+      color: #000;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .service-accordion-card__pill {
+      flex: 0 0 auto;
+      min-height: 54px;
+      padding: 12px 12px 12px 18px;
+      border-radius: 27px;
+      border: 0.5px solid rgba(255,255,255,0.3);
+      background: rgb(13,13,13);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .service-accordion-card__pill-label {
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .service-accordion-card__pill-arrow {
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .service-accordion-card__pill-arrow svg {
+      width: 20px;
+      height: 20px;
+      fill: rgba(255,255,255,0.82);
+      transform: rotate(-90deg);
+    }
+
+    .service-accordion-card__panel[hidden] {
+      display: none;
+    }
+
+    .service-accordion-card__expanded {
+      display: grid;
+      grid-template-columns: 254px 1fr;
+      gap: 32px;
+      align-items: stretch;
+      padding: 0 40px 40px;
+    }
+
+    .service-accordion-card__image-wrap {
+      width: 254px;
+      min-height: 270px;
+      border-radius: 20px;
+      overflow: hidden;
+      transform: translateX(-18px) rotate(3deg);
+      opacity: 0;
+      transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .service-accordion-card__image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.1);
+    }
+
+    .service-accordion-card__features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 28px;
+      align-content: start;
+      padding-top: 4px;
+    }
+
+    .service-accordion-card__features span {
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      line-height: 1.45;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .service-accordion-card__features span::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.58em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.48);
+    }
+
+    .service-accordion-card.is-open .service-accordion-card__image-wrap {
+      transform: translateX(0) rotate(0deg);
+      opacity: 1;
+    }
+
+    .service-accordion-card.is-open .service-accordion-card__pill-arrow {
+      transform: rotate(180deg);
+    }
+
+    .services-editorial__cta-wrap-mobile {
+      display: none;
+    }
+
+    @media (min-width: 1400px) {
+      .services-editorial__title {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 1199.98px) {
+      .services-editorial {
+        padding: 100px 50px;
+      }
+
+      .services-editorial__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .services-editorial__intro {
+        position: static;
+      }
+
+      .services-editorial__intro-content {
+        align-items: flex-start;
+        gap: 0;
+      }
+
+      .services-editorial__title {
+        font-size: 28px;
+        max-width: 560px;
+      }
+
+      .services-editorial__cta--desktop {
+        display: none;
+      }
+
+      .services-editorial__cta-wrap-mobile {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 8px;
+      }
+
+      .service-accordion-card__expanded {
+        grid-template-columns: 220px 1fr;
+      }
+
+      .service-accordion-card__image-wrap {
+        width: 220px;
+      }
+    }
+
+    @media (max-width: 809.98px) {
+      .services-editorial {
+        padding: 50px 20px;
+      }
+
+      .services-editorial__grid {
+        gap: 30px;
+      }
+
+      .services-editorial__intro-content {
+        align-items: center;
+      }
+
+      .services-editorial__title {
+        font-size: 24px;
+        text-align: center;
+        max-width: none;
+      }
+
+      .services-editorial__cards {
+        gap: 20px;
+      }
+
+      .service-accordion-card__trigger {
+        padding: 30px 20px;
+      }
+
+      .service-accordion-card__main {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .service-accordion-card__text-block {
+        max-width: none;
+      }
+
+      .service-accordion-card__title {
+        font-size: 26px;
+      }
+
+      .service-accordion-card__desc {
+        font-size: 15px;
+      }
+
+      .service-accordion-card__expanded {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px 30px;
+      }
+
+      .service-accordion-card__image-wrap {
+        display: none;
+      }
+
+      .service-accordion-card__features {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .services-editorial__cta-wrap-mobile {
+        justify-content: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .services-editorial__cta,
+      .services-editorial__cta-shell,
+      .services-editorial__cta-accent,
+      .services-editorial__cta-record,
+      .service-accordion-card,
+      .service-accordion-card__pill-arrow,
+      .service-accordion-card__image-wrap {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="services-editorial" id="services">
+    <div class="services-editorial__texture" aria-hidden="true"></div>
+
+    <div class="services-editorial__inner">
+      <div class="services-editorial__grid">
+        <aside class="services-editorial__intro">
+          <div class="services-editorial__intro-content">
+            <h2 class="services-editorial__title">
+              From Concept To Completion:<br>
+              We’ve Got You Covered!
+            </h2>
+
+            <a class="services-editorial__cta services-editorial__cta--desktop" href="./services">
+              <span class="services-editorial__cta-shell">
+                <span class="services-editorial__cta-accent" aria-hidden="true"></span>
+                <span class="services-editorial__cta-record" aria-hidden="true">
+                  <span class="services-editorial__cta-record-dot"></span>
+                  <span class="services-editorial__cta-record-ring"></span>
+                </span>
+                <span class="services-editorial__cta-label">Explore Services</span>
+              </span>
+            </a>
+          </div>
+        </aside>
+
+        <div class="services-editorial__cards" data-services-accordion>
+          <article class="service-accordion-card" data-card>
+            <h3 class="service-accordion-card__heading">
+              <button class="service-accordion-card__trigger" type="button" aria-expanded="false" aria-controls="service-panel-1" id="service-trigger-1">
+                <span class="service-accordion-card__main">
+                  <span class="service-accordion-card__text-block">
+                    <span class="service-accordion-card__title">Pre-Production</span>
+                    <span class="service-accordion-card__desc">Pre-production serves as the pivotal phase in any creative endeavor, encompassing planning, idea refinement, budgeting, schedule creation, and the meticulous organization of logistical details.</span>
+                  </span>
+                  <span class="service-accordion-card__pill">
+                    <span class="service-accordion-card__pill-label">Learn More</span>
+                    <span class="service-accordion-card__pill-arrow" aria-hidden="true">
+                      <svg viewBox="0 0 256 256"><path d="M128,28A100,100,0,1,0,228,128,100.11,100.11,0,0,0,128,28Zm0,192a92,92,0,1,1,92-92A92.1,92.1,0,0,1,128,220Zm34.83-86.83a4,4,0,0,1,0,5.66l-32,32a4,4,0,0,1-5.66,0l-32-32a4,4,0,0,1,5.66-5.66L124,158.34V88a4,4,0,0,1,8,0v70.34l25.17-25.17A4,4,0,0,1,162.83,133.17Z"></path></svg>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </h3>
+            <div class="service-accordion-card__panel" id="service-panel-1" role="region" aria-labelledby="service-trigger-1" hidden>
+              <div class="service-accordion-card__expanded">
+                <div class="service-accordion-card__image-wrap">
+                  <img src="https://framerusercontent.com/images/Ie9ARBxpd5u7IQlwit0qH23r5JI.jpg?scale-down-to=512&width=2700&height=4000" alt="Pre-production creative planning" width="254" height="500" loading="lazy">
+                </div>
+                <div class="service-accordion-card__features">
+                  <span>Concept Development</span>
+                  <span>Location Scouting</span>
+                  <span>Casting and Talent Selection</span>
+                  <span>Wardrobe and Styling</span>
+                  <span>Budgeting and Scheduling</span>
+                  <span>Equipment Rental</span>
+                  <span>Storyboarding and Shot List</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-accordion-card" data-card>
+            <h3 class="service-accordion-card__heading">
+              <button class="service-accordion-card__trigger" type="button" aria-expanded="false" aria-controls="service-panel-2" id="service-trigger-2">
+                <span class="service-accordion-card__main">
+                  <span class="service-accordion-card__text-block">
+                    <span class="service-accordion-card__title">Production</span>
+                    <span class="service-accordion-card__desc">Production represents the dynamic phase of a creative project, where the plans from pre-production spring to life, with cameras rolling, actors delivering their performances, and the realization of the creative vision.</span>
+                  </span>
+                  <span class="service-accordion-card__pill">
+                    <span class="service-accordion-card__pill-label">Learn More</span>
+                    <span class="service-accordion-card__pill-arrow" aria-hidden="true">
+                      <svg viewBox="0 0 256 256"><path d="M128,28A100,100,0,1,0,228,128,100.11,100.11,0,0,0,128,28Zm0,192a92,92,0,1,1,92-92A92.1,92.1,0,0,1,128,220Zm34.83-86.83a4,4,0,0,1,0,5.66l-32,32a4,4,0,0,1-5.66,0l-32-32a4,4,0,0,1,5.66-5.66L124,158.34V88a4,4,0,0,1,8,0v70.34l25.17-25.17A4,4,0,0,1,162.83,133.17Z"></path></svg>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </h3>
+            <div class="service-accordion-card__panel" id="service-panel-2" role="region" aria-labelledby="service-trigger-2" hidden>
+              <div class="service-accordion-card__expanded">
+                <div class="service-accordion-card__image-wrap">
+                  <img src="https://framerusercontent.com/images/ayAcEMvjlSidVhk6XZISahgNPT4.jpg?scale-down-to=512&width=3936&height=2624" alt="Film production and camera setup" width="254" height="500" loading="lazy">
+                </div>
+                <div class="service-accordion-card__features">
+                  <span>Cinematography</span>
+                  <span>Drone Videography</span>
+                  <span>Live Streaming</span>
+                  <span>Steadicam and Gimbal Work</span>
+                  <span>Multi-Camera Setup</span>
+                  <span>Time-Lapse and Slow Motion</span>
+                  <span>Green Screen and Chroma Key</span>
+                  <span>Dynamic Webinars</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-accordion-card" data-card>
+            <h3 class="service-accordion-card__heading">
+              <button class="service-accordion-card__trigger" type="button" aria-expanded="false" aria-controls="service-panel-3" id="service-trigger-3">
+                <span class="service-accordion-card__main">
+                  <span class="service-accordion-card__text-block">
+                    <span class="service-accordion-card__title">Post-Production</span>
+                    <span class="service-accordion-card__desc">Post-production emerges as the pivotal phase in creative projects, wherein raw content undergoes a transformation into its refined, polished state where editing, sound design, visual effects, and essential adjustments breathe life into the project.</span>
+                  </span>
+                  <span class="service-accordion-card__pill">
+                    <span class="service-accordion-card__pill-label">Learn More</span>
+                    <span class="service-accordion-card__pill-arrow" aria-hidden="true">
+                      <svg viewBox="0 0 256 256"><path d="M128,28A100,100,0,1,0,228,128,100.11,100.11,0,0,0,128,28Zm0,192a92,92,0,1,1,92-92A92.1,92.1,0,0,1,128,220Zm34.83-86.83a4,4,0,0,1,0,5.66l-32,32a4,4,0,0,1-5.66,0l-32-32a4,4,0,0,1,5.66-5.66L124,158.34V88a4,4,0,0,1,8,0v70.34l25.17-25.17A4,4,0,0,1,162.83,133.17Z"></path></svg>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </h3>
+            <div class="service-accordion-card__panel" id="service-panel-3" role="region" aria-labelledby="service-trigger-3" hidden>
+              <div class="service-accordion-card__expanded">
+                <div class="service-accordion-card__image-wrap">
+                  <img src="https://framerusercontent.com/images/1JkWPm5auoOB4ITCUBN49QpWI.jpg?scale-down-to=512&width=7952&height=5304" alt="Post-production editing and finishing" width="254" height="500" loading="lazy">
+                </div>
+                <div class="service-accordion-card__features">
+                  <span>Color Grading</span>
+                  <span>Audio Enhancement</span>
+                  <span>3D Animation and CGI</span>
+                  <span>Subtitles and Closed Captions</span>
+                  <span>Whiteboard Animation</span>
+                  <span>DVD and Blu-ray Authoring</span>
+                  <span>Distribution Services</span>
+                  <span>Archiving and Backup</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-accordion-card"><div class="service-accordion-card__trigger"><div class="service-accordion-card__text-block"><span class="service-accordion-card__title">Extra Stage</span><span class="service-accordion-card__desc">Add more cards here to make the right column taller and clearly see the sticky sidebar remain pinned until the section ends.</span></div></div></article>
+          <article class="service-accordion-card"><div class="service-accordion-card__trigger"><div class="service-accordion-card__text-block"><span class="service-accordion-card__title">Extra Stage</span><span class="service-accordion-card__desc">Sticky stops exactly when the parent section ends, so more card height makes the behavior easier to observe.</span></div></div></article>
+
+          <div class="services-editorial__cta-wrap-mobile">
+            <a class="services-editorial__cta services-editorial__cta--mobile" href="./services">
+              <span class="services-editorial__cta-shell">
+                <span class="services-editorial__cta-accent" aria-hidden="true"></span>
+                <span class="services-editorial__cta-record" aria-hidden="true">
+                  <span class="services-editorial__cta-record-dot"></span>
+                  <span class="services-editorial__cta-record-ring"></span>
+                </span>
+                <span class="services-editorial__cta-label">Explore Services</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const accordion = document.querySelector('[data-services-accordion]');
+      if (!accordion) return;
+
+      const cards = Array.from(accordion.querySelectorAll('[data-card]'));
+
+      function closeCard(card) {
+        const button = card.querySelector('.service-accordion-card__trigger');
+        const panel = card.querySelector('.service-accordion-card__panel');
+        card.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      }
+
+      function openCard(card) {
+        const button = card.querySelector('.service-accordion-card__trigger');
+        const panel = card.querySelector('.service-accordion-card__panel');
+        card.classList.add('is-open');
+        button.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+
+      cards.forEach((card) => {
+        const button = card.querySelector('.service-accordion-card__trigger');
+        closeCard(card);
+
+        button.addEventListener('click', () => {
+          const isOpen = card.classList.contains('is-open');
+          if (isOpen) {
+            closeCard(card);
+            return;
+          }
+          cards.forEach(closeCard);
+          openCard(card);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

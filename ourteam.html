@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .spacer {
+            height: 100vh;}
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sora:wght@400&display=swap');
+
+.team-showcase {
+  background: rgb(0, 0, 0);
+  padding: 130px 30px 65px;
+}
+
+.team-showcase__container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.team-showcase__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.team-showcase__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.team-showcase__eyebrow-icon {
+  width: 20px;
+  height: 20px;
+  background: rgb(255, 255, 255);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: teamEyebrowSpin 12s linear infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes teamEyebrowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.team-showcase__title {
+  margin: 0;
+  max-width: 590px;
+  color: rgb(255, 255, 255);
+  font-family: 'Sora', sans-serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.team-showcase__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(10px);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.team-showcase__title.is-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.team-showcase__grid {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(4, 310px);
+  gap: 20px;
+  justify-content: center;
+}
+
+.team-member-card {
+  width: 310px;
+  height: 460px;
+  background: rgb(23, 23, 23);
+  border: 1px solid rgb(50, 50, 50);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.team-member-card__image {
+  width: 100%;
+  height: 346px;
+}
+
+.team-member-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-member-card__info {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.team-member-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.team-member-card__name {
+  margin: 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.team-member-card__role {
+  margin: 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 22ch;
+}
+
+.team-member-card__social {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: rgb(255, 255, 255);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-member-card__social svg {
+  width: 17px;
+  height: 17px;
+  fill: rgb(0, 0, 0);
+}
+
+.team-showcase__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.team-showcase__button {
+ position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 166px;
+    height: 48px;
+    margin-top: 40px;
+    border-radius: 999px;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.team-showcase__button-text {
+  position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.team-showcase__button-text--primary {
+  transform: translateY(0);
+}
+
+.team-showcase__button-text--secondary {
+  transform: translateY(150%);
+}
+
+.team-showcase__button:hover .team-showcase__button-text--primary {
+  transform: translateY(-150%);
+}
+
+.team-showcase__button:hover .team-showcase__button-text--secondary {
+  transform: translateY(0);
+}
+
+/* Desktop-only reveal states */
+/* Desktop-only scroll-linked card motion */
+@media (min-width: 1360px) {
+  .team-member-card {
+    will-change: transform;
+  }
+
+  .team-member-card--from-top {
+    transform: translateY(-70px);
+  }
+
+  .team-member-card--from-bottom {
+    transform: translateY(50px);
+  }
+
+  @supports (animation-timeline: view()) {
+    .team-member-card--from-top,
+    .team-member-card--from-bottom {
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 125%;
+    }
+
+    .team-member-card--from-top {
+      animation-name: teamCardFromTop;
+    }
+
+    .team-member-card--from-bottom {
+      animation-name: teamCardFromBottom;
+    }
+
+    @keyframes teamCardFromTop {
+      from {
+        transform: translateY(-70px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes teamCardFromBottom {
+      from {
+        transform: translateY(50px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+/* Tablet */
+@media (max-width: 1359.98px) {
+  .team-showcase {
+    padding: 100px 30px 50px;
+  }
+
+  .team-showcase__title {
+    font-size: 52px;
+  }
+
+  .team-showcase__grid {
+    margin-top: 50px;
+    grid-template-columns: repeat(2, 360px);
+    gap: 30px;
+  }
+
+  .team-member-card {
+    width: 360px;
+    height: 495px;
+    transform: none !important;
+  }
+
+  .team-member-card__image {
+    height: 402px;
+  }
+
+  .team-showcase__cta {
+    margin-top: 40px;
+  }
+}
+
+/* Phone */
+@media (max-width: 767.98px) {
+  .team-showcase {
+    padding: 80px 20px 40px;
+  }
+
+  .team-showcase__container {
+    max-width: 350px;
+  }
+
+  .team-showcase__title {
+    font-size: 42px;
+  }
+
+  .team-showcase__grid {
+    margin-top: 40px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .team-member-card {
+    width: 350px;
+    height: 455px;
+    transform: none !important;
+  }
+
+  .team-member-card__image {
+    height: 320px;
+  }
+
+  .team-member-card__image img {
+    object-position: center top;
+  }
+
+  .team-showcase__cta {
+    margin-top: 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-showcase__eyebrow-icon {
+    animation: none;
+  }
+
+  .team-showcase__title .word,
+  .team-member-card {
+    transition: none;
+  }
+
+  .team-member-card {
+    transform: none !important;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="spacer"></div>
+    <section class="team-showcase" id="teamShowcase">
+  <div class="team-showcase__container">
+    <div class="team-showcase__header">
+      <div class="team-showcase__eyebrow">
+        <span class="team-showcase__eyebrow-icon" aria-hidden="true"></span>
+        <span>Our team members</span>
+      </div>
+
+      <h2 class="team-showcase__title js-team-showcase-title">
+        The brains behind smarter systems
+      </h2>
+    </div>
+
+    <div class="team-showcase__grid">
+      <article class="team-member-card team-member-card--from-top js-team-card">
+        <div class="team-member-card__image">
+          <img
+            src="https://framerusercontent.com/images/aWeLzNvzGQeS48Jcbcq6IVOKPD4.png?width=1240&height=1384"
+            alt="Mia Collins"
+            width="310"
+            height="346"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-member-card__info">
+          <div class="team-member-card__text">
+            <p class="team-member-card__name">Mia Collins</p>
+            <p class="team-member-card__role">Product interface designer</p>
+          </div>
+          <a class="team-member-card__social" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Mia Collins on X">
+            <svg viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M218.12,209.56l-61-95.8,59.72-65.69a12,12,0,0,0-17.76-16.14L143.81,92.77,106.12,33.56A12,12,0,0,0,96,28H48A12,12,0,0,0,37.88,46.44l61,95.8L39.12,207.93a12,12,0,1,0,17.76,16.14l55.31-60.84,37.69,59.21A12,12,0,0,0,160,228h48a12,12,0,0,0,10.12-18.44ZM166.59,204,69.86,52H89.41l96.73,152Z"></path>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="team-member-card team-member-card--from-bottom js-team-card">
+        <div class="team-member-card__image">
+          <img
+            src="https://framerusercontent.com/images/5SYS6LG8QYkdiMR0Lh8nSrwA.jpg?width=1200&height=1340"
+            alt="Lucas Meyer"
+            width="310"
+            height="346"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-member-card__info">
+          <div class="team-member-card__text">
+            <p class="team-member-card__name">Lucas Meyer</p>
+            <p class="team-member-card__role">AI systems engineer</p>
+          </div>
+          <a class="team-member-card__social" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Lucas Meyer on X">
+            <svg viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M218.12,209.56l-61-95.8,59.72-65.69a12,12,0,0,0-17.76-16.14L143.81,92.77,106.12,33.56A12,12,0,0,0,96,28H48A12,12,0,0,0,37.88,46.44l61,95.8L39.12,207.93a12,12,0,1,0,17.76,16.14l55.31-60.84,37.69,59.21A12,12,0,0,0,160,228h48a12,12,0,0,0,10.12-18.44ZM166.59,204,69.86,52H89.41l96.73,152Z"></path>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="team-member-card team-member-card--from-top js-team-card">
+        <div class="team-member-card__image">
+          <img
+            src="https://framerusercontent.com/images/qfQMxofGMNz7ZSttVhxwdKWwOQ.jpg?width=1200&height=1340"
+            alt="Sophia Turner"
+            width="310"
+            height="346"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-member-card__info">
+          <div class="team-member-card__text">
+            <p class="team-member-card__name">Sophia Turner</p>
+            <p class="team-member-card__role">UX experience designer</p>
+          </div>
+          <a class="team-member-card__social" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Sophia Turner on X">
+            <svg viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M218.12,209.56l-61-95.8,59.72-65.69a12,12,0,0,0-17.76-16.14L143.81,92.77,106.12,33.56A12,12,0,0,0,96,28H48A12,12,0,0,0,37.88,46.44l61,95.8L39.12,207.93a12,12,0,1,0,17.76,16.14l55.31-60.84,37.69,59.21A12,12,0,0,0,160,228h48a12,12,0,0,0,10.12-18.44ZM166.59,204,69.86,52H89.41l96.73,152Z"></path>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="team-member-card team-member-card--from-bottom js-team-card">
+        <div class="team-member-card__image">
+          <img
+            src="https://framerusercontent.com/images/slDu6HMgXBE031zo5iJ4cvgnwM.jpg?width=1200&height=1340"
+            alt="Ethan Brooks"
+            width="310"
+            height="346"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-member-card__info">
+          <div class="team-member-card__text">
+            <p class="team-member-card__name">Ethan Brooks</p>
+            <p class="team-member-card__role">Automation workflow lead</p>
+          </div>
+          <a class="team-member-card__social" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Ethan Brooks on X">
+            <svg viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M218.12,209.56l-61-95.8,59.72-65.69a12,12,0,0,0-17.76-16.14L143.81,92.77,106.12,33.56A12,12,0,0,0,96,28H48A12,12,0,0,0,37.88,46.44l61,95.8L39.12,207.93a12,12,0,1,0,17.76,16.14l55.31-60.84,37.69,59.21A12,12,0,0,0,160,228h48a12,12,0,0,0,10.12-18.44ZM166.59,204,69.86,52H89.41l96.73,152Z"></path>
+            </svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="team-showcase__cta">
+      <a href="/contact" class="team-showcase__button">
+        <span class="team-showcase__button-text team-showcase__button-text--primary">Get in Touch</span>
+        <span class="team-showcase__button-text team-showcase__button-text--secondary">Get in Touch</span>
+      </a>
+    </div>
+  </div>
+</section>
+    <div class="spacer"></div>
+<script>
+(function () {
+  const cards = document.querySelectorAll('.js-team-card');
+  if (!cards.length) return;
+
+  const supportsViewTimeline = CSS.supports('animation-timeline: view()');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (supportsViewTimeline || reducedMotion) return;
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function updateCards() {
+    if (window.innerWidth < 1360) {
+      cards.forEach((card) => {
+        card.style.transform = 'translateY(0px)';
+      });
+      return;
+    }
+
+    const vh = window.innerHeight;
+    const start = vh * 0.95;
+    const end = vh * 0.35;
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const progress = clamp((start - rect.top) / (start - end), 0, 1);
+
+      if (card.classList.contains('team-member-card--from-top')) {
+        const y = -70 + (70 * progress);
+        card.style.transform = 'translateY(' + y + 'px)';
+      } else if (card.classList.contains('team-member-card--from-bottom')) {
+        const y = 50 - (50 * progress);
+        card.style.transform = 'translateY(' + y + 'px)';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateCards, { passive: true });
+  window.addEventListener('resize', updateCards);
+  updateCards();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Sora:wght@400&display=swap');
+
+.history-editorial {
+  background: #f5f5f5;
+  padding: 65px 30px 130px;
+}
+
+.history-editorial__container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.history-editorial__content {
+  display: grid;
+  grid-template-columns: 620px 620px;
+  gap: 24px;
+  align-items: start;
+}
+
+.history-editorial__left {
+  width: 620px;
+  min-height: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.history-editorial__title-group {
+  width: 620px;
+  min-height: 135px;
+}
+
+.history-editorial__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: rgb(87, 87, 87);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.history-editorial__eyebrow-icon {
+  width: 10px;
+  height: 10px;
+  background: rgb(87, 87, 87);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(69deg);
+  flex: 0 0 auto;
+}
+
+.history-editorial__title {
+  margin: 15px 0 0;
+  width: 620px;
+  color: rgb(23, 23, 23);
+  font-family: 'Sora', sans-serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.history-editorial__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(10px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.history-editorial__title.is-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.history-editorial__cards {
+  width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-timeline-card {
+
+  padding: 30px;
+  border-radius: 12px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.history-timeline-card__year {
+  margin: 0;
+  color: rgb(23, 23, 23);
+  font-family: 'Sora', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.32;
+}
+
+.history-timeline-card__body {
+  margin: 47px 0 0;
+  color: rgb(87, 87, 87);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 50ch;
+}
+
+/* .history-timeline-card--animated {
+  transform: translateY(-180px);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.history-timeline-card--animated.is-visible {
+  transform: translateY(0);
+} */
+
+.history-timeline-card--animated {
+  transform: translateY(-180px);
+}
+
+@supports (animation-timeline: view()) {
+  .history-timeline-card--animated {
+    animation-name: historyCardScrollReveal;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 245%;
+    will-change: transform;
+  }
+
+  @keyframes historyCardScrollReveal {
+    from {
+      transform: translateY(-180px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+.history-editorial__right {
+  width: 620px;
+}
+
+.history-editorial__image-wrap {
+  width: 620px;
+  height: 750px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.history-editorial__image-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tablet */
+@media (max-width: 1359.98px) {
+  .history-editorial {
+    padding: 50px 30px 100px;
+  }
+
+  .history-editorial__container {
+    max-width: 750px;
+  }
+
+  .history-editorial__content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .history-editorial__left,
+  .history-editorial__title-group,
+  .history-editorial__cards,
+  .history-editorial__right {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .history-editorial__title {
+    width: 100%;
+    max-width: 450px;
+    font-size: 52px;
+  }
+
+  .history-editorial__cards {
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .history-timeline-card {
+    width: 360px;
+    height: 235px;
+    flex: 0 0 auto;
+  }
+
+  .history-timeline-card__year {
+    font-size: 24px;
+  }
+
+  .history-timeline-card__body {
+    max-width: 28ch;
+  }
+
+  .history-timeline-card--animated {
+    transform: none;
+  }
+
+  .history-editorial__image-wrap {
+    width: min(488px, 65%);
+    height: 463px;
+    margin: 0 auto;
+  }
+}
+
+/* Phone */
+@media (max-width: 767.98px) {
+  .history-editorial {
+    padding: 40px 20px 80px;
+  }
+
+  .history-editorial__container {
+    max-width: 350px;
+  }
+
+  .history-editorial__title {
+    max-width: 100%;
+    font-size: 42px;
+  }
+
+  .history-editorial__cards {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .history-timeline-card {
+    width: 350px;
+    height: 209px;
+    padding: 30px 20px;
+  }
+
+  .history-timeline-card__year {
+    font-size: 22px;
+  }
+
+  .history-timeline-card__body {
+    margin-top: 24px;
+    max-width: 100%;
+  }
+
+  .history-editorial__image-wrap {
+    width: 350px;
+    height: 423px;
+    margin: 0;
+  }
+}
+    </style>
+  </head>
+</head>
+<body>
+
+    <div class="spacer"></div>
+
+    <section class="history-editorial" id="historyEditorial">
+  <div class="history-editorial__container">
+    <div class="history-editorial__content">
+
+      <div class="history-editorial__left">
+        <div class="history-editorial__title-group">
+          <div class="history-editorial__eyebrow">
+            <span class="history-editorial__eyebrow-icon"></span>
+            <span>Our story</span>
+          </div>
+
+          <h2 class="history-editorial__title js-history-editorial-title">
+            The story behind smarter systems
+          </h2>
+        </div>
+
+        <div class="history-editorial__cards">
+          <article class="history-timeline-card">
+            <p class="history-timeline-card__year">2018 — 2022</p>
+            <p class="history-timeline-card__body">
+              Premon launched its first automation platform, partnered with 40+ startups, and built scalable systems for smarter digital operations.
+            </p>
+          </article>
+
+          <article class="history-timeline-card history-timeline-card--animated js-history-second-card">
+            <p class="history-timeline-card__year">2023 — 2026</p>
+            <p class="history-timeline-card__body">
+              Premon processed 18M+ workflows, expanded across 12 industries, and improved operational efficiency through advanced AI systems.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="history-editorial__right">
+        <div class="history-editorial__image-wrap">
+          <img
+            src="https://framerusercontent.com/images/rEXtMHvHRqRKhF2uEX3oTjqGpA.png?width=1240&height=1500"
+            alt="Editorial laptop workspace"
+            width="620"
+            height="750"
+            loading="lazy"
+          >
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<script>
+(function () {
+  const title = document.querySelector('.js-history-editorial-title');
+  if (!title) return;
+
+  const text = title.textContent.trim();
+  const words = text.split(' ');
+  title.innerHTML = words
+    .map((word, index) => {
+      return '<span class="word" style="transition-delay:' + (index * 0.08) + 's">' + word + '</span>';
+    })
+    .join(' ');
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      obs.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.35,
+    rootMargin: '0px 0px -20px 0px'
+  });
+
+  observer.observe(title);
+})();
+</script>
+
+<script>
+(function () {
+  const card = document.querySelector('.js-history-second-card');
+  if (!card) return;
+
+  const supportsViewTimeline = CSS.supports('animation-timeline: view()');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (supportsViewTimeline || reducedMotion) return;
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function updateCardProgress() {
+    if (window.innerWidth < 1360) {
+      card.style.transform = 'translateY(0px)';
+      return;
+    }
+
+    const rect = card.getBoundingClientRect();
+    const vh = window.innerHeight;
+
+    const start = vh * 0.95;
+    const end = vh * 0.35;
+
+    const progress = clamp((start - rect.top) / (start - end), 0, 1);
+    const y = -180 + (180 * progress);
+
+    card.style.transform = 'translateY(' + y + 'px)';
+  }
+
+  window.addEventListener('scroll', updateCardProgress, { passive: true });
+  window.addEventListener('resize', updateCardProgress);
+  updateCardProgress();
+})();
+</script>
+
+</body>
+</html>

@@ -1,10 +1,11 @@
-body {
-  margin: 0;
-  padding: 0;
-  /* font-family: 'Inter', sans-serif; */
-  /* background-color: #070707;  */
-}
-.process-sticky {
+
+    body{
+        margin: 0;
+        padding: 0;
+        /* font-family: 'Inter', sans-serif; */
+        /* background-color: #070707;  */
+    }
+    .process-sticky {
   position: relative;
   height: 218vh;
   background: #000;
@@ -40,7 +41,7 @@ body {
 
 .process-sticky-header h2 {
   margin: 0;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 48px;
   line-height: 1.2;
   font-weight: 300;
@@ -51,7 +52,7 @@ body {
 
 .process-sticky-header p {
   margin: 0;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
@@ -79,27 +80,15 @@ body {
   height: 2px;
   overflow: hidden;
   border-radius: 999px;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
 }
 
 .process-line {
   width: 2000px;
   height: 1px;
   margin-top: 0.5px;
-  background: linear-gradient(90deg, #3633c6 0%, #a1a0ea 100%);
+  background:  linear-gradient(90deg, #3633c6 0%, #a1a0ea 100%);
   transform: translateX(-1320px);
   transform-origin: left center;
   transition: transform 0.5s ease-out;
@@ -168,7 +157,7 @@ body {
 }
 
 .process-stage-step {
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 18px;
   line-height: 1.1;
   font-weight: 500;
@@ -176,7 +165,7 @@ body {
   /* color: #bba068; */
   letter-spacing: 0.04em;
   white-space: nowrap;
-  background: linear-gradient(90deg, #a1a0ea 100%, #3633c6 0%, #a1a0ea 100%);
+  background: linear-gradient(90deg,#a1a0ea 100%, #3633c6 0%, #a1a0ea 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -185,7 +174,7 @@ body {
 
 .process-stage-heading h3 {
   margin: 0;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 22px;
   line-height: 1;
   font-weight: 400;
@@ -202,7 +191,7 @@ body {
 
 .process-stage-content p {
   margin: 0;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   line-height: 22px;
   font-weight: 400;
@@ -247,8 +236,8 @@ body {
     align-items: center;
     margin-bottom: 50px;
     position: relative;
-    top: 100px;
-  }
+    top:100px;
+  } 
 
   .process-sticky-header h2 {
     font-size: 3.2rem;
@@ -261,7 +250,7 @@ body {
     text-align: center;
   }
   .process-stage {
-    top: 150px;
+    top:150px;
   }
 
   .process-line-wrap {
@@ -347,3 +336,4 @@ body {
     transform: none !important;
   }
 }
+   

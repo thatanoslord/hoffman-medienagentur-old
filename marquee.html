@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marquee Demo</title>
+    <style>
+      :root {
+        --background: #ffffff;
+        --foreground: #111827;
+        --stroke-light: rgb(156 163 175);
+        --stroke-dark: rgb(64 64 64);
+        --marquee-stroke: var(--stroke-light);
+        --fade-width: 20%;
+        --marquee-duration: 20s;
+      }
+
+      html[data-theme="dark"] {
+        --background: #09090b;
+        --foreground: #f4f4f5;
+        --marquee-stroke: var(--stroke-dark);
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--background);
+        color: var(--foreground);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--background);
+      }
+
+      .marquee-demo {
+        width: 100%;
+      }
+
+      .marquee {
+        position: relative;
+        width: 100vw;
+        overflow: hidden;
+        padding: 4rem 0;
+      }
+
+      .marquee::before,
+      .marquee::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: var(--fade-width);
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .marquee::before {
+        left: 0;
+        background: linear-gradient(to right, var(--background), transparent);
+      }
+
+      .marquee::after {
+        right: 0;
+        background: linear-gradient(to left, var(--background), transparent);
+      }
+
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        white-space: nowrap;
+        animation: marquee-scroll var(--marquee-duration) linear infinite;
+      }
+
+      .marquee-item {
+        display: flex;
+        align-items: center;
+        margin: 0 1rem;
+      }
+
+      .marquee-text {
+        padding: 0 1rem;
+        font-weight: 700;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--marquee-stroke);
+        text-transform: none;
+        user-select: none;
+      }
+
+      .font-sm {
+        font-size: clamp(3rem, 7vw, 4.5rem);
+      }
+
+      .font-md {
+        font-size: clamp(3.75rem, 8vw, 5.5rem);
+      }
+
+      .font-lg {
+        font-size: clamp(4.5rem, 10vw, 7rem);
+      }
+
+      .font-xl {
+        font-size: clamp(5rem, 11vw, 8rem);
+      }
+
+      .font-2xl {
+        font-size: clamp(5.5rem, 12vw, 9rem);
+      }
+
+      .font-3xl {
+        font-size: clamp(6rem, 13vw, 10rem);
+      }
+
+      @keyframes marquee-scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .controls {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 20;
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .button {
+        border: 1px solid rgba(127, 127, 127, 0.3);
+        background: var(--background);
+        color: var(--foreground);
+        padding: 0.65rem 0.9rem;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      <button class="button" id="themeToggle" type="button">Toggle theme</button>
+    </div>
+
+    <main class="page">
+      <div class="marquee-demo">
+        <section
+          class="marquee"
+          data-text="DPP &amp; EGINE DPP &amp; EGINE "
+          data-repeat="8"
+          data-duration="20"
+          data-font-size="lg"
+          data-stroke-width="1px"
+        >
+          <div class="marquee-track" id="marqueeTrack"></div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const html = document.documentElement
+      const themeToggle = document.getElementById("themeToggle")
+
+      function setInitialTheme() {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+        html.setAttribute("data-theme", prefersDark ? "dark" : "light")
+      }
+
+      function toggleTheme() {
+        const current = html.getAttribute("data-theme")
+        html.setAttribute("data-theme", current === "dark" ? "light" : "dark")
+      }
+
+      setInitialTheme()
+      themeToggle.addEventListener("click", toggleTheme)
+
+      function buildMarquee(section) {
+        const track = section.querySelector(".marquee-track")
+        const text = section.dataset.text || "Marquee Text"
+        const repeat = Number(section.dataset.repeat || 8)
+        const duration = Number(section.dataset.duration || 20)
+        const fontSize = section.dataset.fontSize || "lg"
+        const strokeWidth = section.dataset.strokeWidth || "1px"
+
+        section.style.setProperty("--marquee-duration", `${duration}s`)
+
+        track.innerHTML = ""
+
+        for (let i = 0; i < repeat; i++) {
+          const item = document.createElement("div")
+          item.className = "marquee-item"
+
+          const span = document.createElement("span")
+          span.className = `marquee-text font-${fontSize}`
+          span.style.webkitTextStrokeWidth = strokeWidth
+          span.textContent = text
+
+          item.appendChild(span)
+          track.appendChild(item)
+        }
+
+        for (let i = 0; i < repeat; i++) {
+          const item = document.createElement("div")
+          item.className = "marquee-item"
+
+          const span = document.createElement("span")
+          span.className = `marquee-text font-${fontSize}`
+          span.style.webkitTextStrokeWidth = strokeWidth
+          span.textContent = text
+
+          item.appendChild(span)
+          track.appendChild(item)
+        }
+      }
+
+      document.querySelectorAll(".marquee").forEach(buildMarquee)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Sora:wght@400&display=swap');
+
+.faq-section {
+  background: rgb(245, 245, 245);
+  padding: 130px 30px;
+}
+
+.faq-section__container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.faq-section__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.faq-section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  color: rgb(87, 87, 87);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.faq-section__eyebrow-icon {
+  width: 20px;
+  height: 20px;
+  background: rgb(87, 87, 87);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: faqEyebrowSpin 12s linear infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes faqEyebrowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.faq-section__title {
+  margin: 0;
+  max-width: 620px;
+  color: rgb(23, 23, 23);
+  font-family: 'Sora', sans-serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.faq-section__title .word,
+.faq-contact-card__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(10px);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-section__title.is-visible .word,
+.faq-contact-card__title.is-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.faq-section__body {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 840px 440px;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Accordion */
+
+.faq-accordion {
+  max-width: 840px;
+}
+
+.faq-item {
+  max-width: 840px;
+  margin-bottom: 12px;
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  height: 96px;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.faq-item__heading {
+  margin: 0;
+}
+
+.faq-item__trigger {
+  width: 100%;
+  max-width: 840px;
+  padding: 24px 30px;
+  background: rgb(255, 255, 255);
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-item__question {
+  color: rgb(23, 23, 23);
+  font-family: 'Sora', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.32;
+}
+
+[data-no-select] {
+  user-select: none;
+}
+
+.faq-item__control {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgb(200, 200, 200);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: transparent;
+  transition:
+    background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-item__control-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-item__control-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: rgb(0, 0, 0);
+}
+
+.faq-item__control-icon--open {
+  display: none;
+}
+
+.faq-item__control-icon--closed {
+  display: inline-flex;
+}
+
+/* Panel */
+
+.faq-item__panel {
+  max-width: 840px;
+  padding: 0 30px 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.7s cubic-bezier(0.22, 1, 0.36, 1), padding-bottom 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-item__answer {
+  overflow: hidden;
+  /* padding-top: 24px;
+  padding-bottom: 25px; */
+  color: rgb(120, 120, 120);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Open state */
+.faq-item.is-open{
+    height: fit-content;
+}
+.faq-item.is-open .faq-item__panel {
+  grid-template-rows: 1fr;
+  padding-bottom: 24px;
+}
+
+.faq-item.is-open .faq-item__control {
+  background: rgb(0, 0, 0);
+  border-color: rgb(0, 0, 0);
+}
+
+.faq-item.is-open .faq-item__control-icon--open {
+  display: inline-flex;
+}
+
+.faq-item.is-open .faq-item__control-icon--open svg {
+  fill: rgb(255, 255, 255);
+}
+
+.faq-item.is-open .faq-item__control-icon--closed {
+  display: none;
+}
+
+/* Contact card */
+
+.faq-contact-card {
+  width: 440px;
+  min-height: 587px;
+  height: 100%;
+  align-self: stretch;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-contact-card__image {
+  width: 100%;
+  height: 100%;
+  min-height: 587px;
+  object-fit: cover;
+}
+
+.faq-contact-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.10) 0%,
+    rgba(0, 0, 0, 0.40) 40%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+.faq-contact-card__title {
+  margin: 0;
+  max-width: 340px;
+  color: rgb(255, 255, 255);
+  font-family: 'Sora', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.32;
+}
+
+.faq-contact-card__button {
+  position: relative;
+  width: 200px;
+  height: 52px;
+  border-radius: 999px;
+  background: rgb(255, 255, 255);
+  text-decoration: none;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-contact-card__button-text {
+  position: absolute;
+  color: rgb(23, 23, 23);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.faq-contact-card__button-text--primary {
+  transform: translateY(0);
+}
+
+.faq-contact-card__button-text--secondary {
+  transform: translateY(150%);
+}
+
+.faq-contact-card__button:hover .faq-contact-card__button-text--primary {
+  transform: translateY(-150%);
+}
+
+.faq-contact-card__button:hover .faq-contact-card__button-text--secondary {
+  transform: translateY(0);
+}
+
+/* Tablet */
+
+@media (max-width: 1359.98px) {
+  .faq-section {
+    padding: 100px 30px 50px;
+  }
+
+  .faq-section__title {
+    font-size: 52px;
+  }
+
+  .faq-section__body {
+    margin-top: 50px;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    justify-items: center;
+  }
+
+  .faq-accordion {
+    max-width: 750px;
+    width: 100%;
+  }
+
+  .faq-item,
+  .faq-item__trigger,
+  .faq-item__panel {
+    max-width: 750px;
+  }
+
+  .faq-contact-card {
+    width: 750px;
+    min-height: 386px;
+  }
+
+  .faq-contact-card__image {
+    min-height: 386px;
+  }
+
+  .faq-contact-card__overlay {
+    padding: 30px;
+  }
+
+  .faq-contact-card__title {
+    font-size: 24px;
+  }
+}
+
+/* Phone */
+
+@media (max-width: 767.98px) {
+  .faq-section {
+    padding: 80px 20px 40px;
+  }
+
+  .faq-section__title {
+    font-size: 42px;
+  }
+
+  .faq-section__body {
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  .faq-accordion {
+    max-width: 350px;
+  }
+
+  .faq-item,
+  .faq-item__trigger,
+  .faq-item__panel {
+    max-width: 350px;
+  }
+
+  .faq-item__trigger {
+    padding: 20px 20px;
+  }
+
+  .faq-item__question {
+    font-size: 22px;
+  }
+
+  .faq-item__answer {
+    font-size: 15px;
+  }
+
+  .faq-contact-card {
+    width: 350px;
+    min-height: 249px;
+  }
+
+  .faq-contact-card__image {
+    min-height: 249px;
+  }
+
+  .faq-contact-card__overlay {
+    padding: 30px 20px;
+  }
+
+  .faq-contact-card__title {
+    font-size: 22px;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-section__eyebrow-icon {
+    animation: none;
+  }
+
+  .faq-section__title .word,
+  .faq-contact-card__title .word,
+  .faq-item__panel,
+  .faq-contact-card__button-text {
+    transition: none;
+  }
+}
+    </style>
+</head>
+<body>
+    <section class="faq-section" id="faqSection">
+  <div class="faq-section__container">
+    <div class="faq-section__header">
+      <div class="faq-section__eyebrow">
+        <span class="faq-section__eyebrow-icon" aria-hidden="true"></span>
+        <span>FAQ</span>
+      </div>
+
+      <h2 class="faq-section__title js-faq-title">
+        Frequently asked questions answered
+      </h2>
+    </div>
+
+    <div class="faq-section__body">
+      <!-- Accordion column -->
+      <div class="faq-accordion" data-faq-accordion>
+        <!-- Item 1 -->
+        <article class="faq-item is-open">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q1"
+              aria-expanded="true"
+              aria-controls="faq-a1"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>What services do you offer?</span>
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="faq-item__panel"
+            id="faq-a1"
+            role="region"
+            aria-labelledby="faq-q1"
+          >
+            <div class="faq-item__answer" data-no-select>
+              We deliver end-to-end AI and software solutions, from automation and data analysis to machine learning and custom AI products.
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q2"
+              aria-expanded="false"
+              aria-controls="faq-a2"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>What industries do you work with?</span>
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="faq-item__panel"
+            id="faq-a2"
+            role="region"
+            aria-labelledby="faq-q2"
+          >
+            <div class="faq-item__answer" data-no-select>
+              We support early-stage startups and established enterprises across sectors like SaaS, finance, healthcare, and operations, adapting our AI approach to each domain.
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q3"
+              aria-expanded="false"
+              aria-controls="faq-a3"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>Can you integrate with existing tools?</span>
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="faq-item__panel"
+            id="faq-a3"
+            role="region"
+            aria-labelledby="faq-q3"
+          >
+            <div class="faq-item__answer" data-no-select>
+              Absolutely. We embed AI modules into existing apps, dashboards, CRMs, and internal tools, keeping your current workflows intact while adding intelligence.
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 4 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q4"
+              aria-expanded="false"
+              aria-controls="faq-a4"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>How long does a project take to complete?</span>
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="faq-item__panel"
+            id="faq-a4"
+            role="region"
+            aria-labelledby="faq-q4"
+          >
+            <div class="faq-item__answer" data-no-select>
+              Timelines depend on scope, but most AI prototypes are ready in 2–6 weeks, while full production systems typically take 1–3 months from kickoff to deployment.
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 5 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q5"
+              aria-expanded="false"
+              aria-controls="faq-a5"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>Do you support both startups and enterprises?</span>
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="faq-item__panel"
+            id="faq-a5"
+            role="region"
+            aria-labelledby="faq-q5"
+          >
+            <div class="faq-item__answer" data-no-select>
+              Yes. We tailor our engagement model to the team size and stage, from fast-moving startup builds to structured enterprise programs with governance.
+            </div>
+          </div>
+        </article>
+
+
+        <!-- Item 6 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q6"
+              aria-expanded="false"
+              aria-controls="faq-a6"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>Do you support both startups and enterprises?</span>
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="faq-item__panel"
+            id="faq-a6"
+            role="region"
+            aria-labelledby="faq-q6"
+          >
+            <div class="faq-item__answer" data-no-select>
+              Yes. We tailor our engagement model to the team size and stage, from fast-moving startup builds to structured enterprise programs with governance.
+            </div>
+          </div>
+        </article>
+        
+    </div>
+
+      <!-- Contact card -->
+      <aside class="faq-contact-card">
+        <img
+          class="faq-contact-card__image"
+          src="https://framerusercontent.com/images/T8dPxetqCLZ8bYB4N2YF848r1Do.jpg?width=880&height=1174"
+          alt=""
+          width="440"
+          height="587"
+          loading="lazy"
+        >
+
+        <div class="faq-contact-card__overlay">
+          <h3 class="faq-contact-card__title js-faq-contact-title">
+            Send us an email anytime and we’ll respond with support or details
+          </h3>
+
+          <a href="/contact" class="faq-contact-card__button">
+            <span class="faq-contact-card__button-text faq-contact-card__button-text--primary">Get in touch with us</span>
+            <span class="faq-contact-card__button-text faq-contact-card__button-text--secondary">Get in touch with us</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  const titles = document.querySelectorAll('.js-faq-title, .js-faq-contact-title');
+
+  titles.forEach((title) => {
+    const text = title.textContent.trim();
+    const words = text.split(' ');
+
+    title.innerHTML = words
+      .map((word, index) => {
+        return '<span class="word" style="transition-delay:' + (index * 0.08) + 's">' + word + '</span>';
+      })
+      .join(' ');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.35,
+      rootMargin: '0px 0px -20px 0px'
+    });
+
+    observer.observe(title);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  const accordion = document.querySelector('[data-faq-accordion]');
+  if (!accordion) return;
+
+  const items = Array.from(accordion.querySelectorAll('.faq-item'));
+
+  function openItem(item) {
+    const button = item.querySelector('.faq-item__trigger');
+    const panel = item.querySelector('.faq-item__panel');
+
+    item.classList.add('is-open');
+    button.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeItem(item) {
+    const button = item.querySelector('.faq-item__trigger');
+    const panel = item.querySelector('.faq-item__panel');
+
+    item.classList.remove('is-open');
+    button.setAttribute('aria-expanded', 'false');
+  }
+
+  items.forEach((item) => {
+    const button = item.querySelector('.faq-item__trigger');
+
+    button.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      items.forEach(closeItem);
+
+      if (!isOpen) {
+        openItem(item);
+      }
+    });
+  });
+
+  items.forEach((item) => {
+    if (item.classList.contains('is-open')) {
+      openItem(item);
+    } else {
+      closeItem(item);
+    }
+  });
+})();
+</script>
+</body>
+</html>

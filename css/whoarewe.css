@@ -1,0 +1,395 @@
+
+:root {
+      --bg: #ffffff;
+      --surface: #10182b;
+      --text: #000000;
+      --border: rgba(255, 255, 255, 0.14);
+      --text-soft: rgba(0, 0, 0, 0.74);
+      --text-faint: rgba(243, 247, 255, 0.52);
+      --card-bg: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      /* background:
+        radial-gradient(circle at top, rgba(115, 140, 255, 0.16), transparent 35%),
+        linear-gradient(180deg, #0b1020, #060910); */
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 100%;
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .hero-spotlight {
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      width: 120vmin;
+      height: 120vmin;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 55%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    .zoom-parallax {
+      position: relative;
+      height: 300vh;
+    }
+
+    .zoom-parallax__sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .parallax-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+      z-index: 2;
+    }
+
+    .item-1 {
+      z-index: 10;
+    }
+
+    .parallax-item__inner {
+      position: relative;
+      width: 25vw;
+      height: 25vh;
+      min-width: 180px;
+      min-height: 140px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    .item-1 .parallax-item__inner {
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .text-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.9rem;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .text-card__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .text-card__title {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.35vw, 1.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .text-card__text {
+      margin: 0;
+      max-width: 28ch;
+      color: var(--text-soft);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .text-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .text-card__link {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .text-card__index {
+      color: var(--text-faint);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .item-2 .parallax-item__inner {
+      top: -29vh;
+      left: 11.5vw;
+      width: 48.5vw;
+      height: 27vh;
+    }
+
+    .item-3 .parallax-item__inner {
+      top: -15vh;
+      left: -25vw;
+      width: 22vw;
+      height: 55vh;
+    }
+
+    .item-4 .parallax-item__inner {
+      left: 25vw;
+      width: 22vw;
+      height: 25vh;
+    }
+
+    .item-5 .parallax-item__inner {
+      top: 27.5vh;
+      left: 0vw;
+      width: 25vw;
+      height: 25vh;
+    }
+
+    .item-6 .parallax-item__inner {
+      top: 27.5vh;
+      left: -25vw;
+      width: 22vw;
+      height: 25vh;
+    }
+
+    .item-7 .parallax-item__inner {
+      top: 27.5vh;
+      left: 25vw;
+      width: 22vw;
+      height: 25vh;
+    }
+
+    .spacer {
+      height: 50vh;
+    }
+
+    @media (max-width: 900px) {
+      .parallax-item__inner {
+        width: 42vw;
+        height: 24vh;
+        min-width: 140px;
+        min-height: 110px;
+        border-radius: 16px;
+      }
+
+      .text-card {
+        padding: 1rem;
+      }
+
+      .text-card__text {
+        font-size: 0.88rem;
+      }
+
+      .item-2 .parallax-item__inner {
+        top: -22vh;
+        left: 10vw;
+        width: 48vw;
+        height: 24vh;
+      }
+
+      .item-3 .parallax-item__inner {
+        top: -8vh;
+        left: -18vw;
+        width: 28vw;
+        height: 32vh;
+      }
+
+      .item-4 .parallax-item__inner {
+        left: 18vw;
+        width: 32vw;
+        height: 20vh;
+      }
+
+      .item-5 .parallax-item__inner {
+        top: 20vh;
+        left: 8vw;
+        width: 28vw;
+        height: 20vh;
+      }
+
+      .item-6 .parallax-item__inner {
+        top: 22vh;
+        left: -16vw;
+        width: 40vw;
+        height: 20vh;
+      }
+
+      .item-7 .parallax-item__inner {
+        top: 18vh;
+        left: 20vw;
+        width: 22vw;
+        height: 14vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        height: 42vh;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.75rem, 8vw, 2.75rem);
+      }
+
+      .parallax-item__inner {
+        width: 52vw;
+        height: 22vh;
+        min-width: 120px;
+        min-height: 90px;
+        border-radius: 14px;
+      }
+
+      .text-card {
+        padding: 0.9rem;
+        gap: 0.7rem;
+      }
+
+      .text-card__title {
+        font-size: 1rem;
+      }
+
+      .text-card__text {
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .text-card__eyebrow {
+        font-size: 0.64rem;
+      }
+
+      .text-card__link,
+      .text-card__index {
+        font-size: 0.74rem;
+      }
+
+      .item-2 .parallax-item__inner {
+        top: -18vh;
+        left: 8vw;
+        width: 56vw;
+        height: 22vh;
+      }
+
+      .item-3 .parallax-item__inner {
+        top: -6vh;
+        left: -14vw;
+        width: 30vw;
+        height: 26vh;
+      }
+
+      .item-4 .parallax-item__inner {
+        left: 14vw;
+        width: 36vw;
+        height: 18vh;
+      }
+
+      .item-5 .parallax-item__inner {
+        top: 17vh;
+        left: 5vw;
+        width: 30vw;
+        height: 18vh;
+      }
+
+      .item-6 .parallax-item__inner {
+        top: 19vh;
+        left: -12vw;
+        width: 42vw;
+        height: 18vh;
+      }
+
+      .item-7 .parallax-item__inner {
+        top: 15vh;
+        left: 16vw;
+        width: 24vw;
+        height: 12vh;
+      }
+    }
+
+
+    .zoom-parallax {
+  position: relative;
+  height: 500vh; /* tune based on number of cards */
+}
+
+.zoom-parallax__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.parallax-item {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  will-change: transform, opacity;
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Ornament Animation</title>
+    <style>
+      :root {
+        --faq-bg: #f5f5f5;
+        --faq-text: #000000;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: var(--faq-bg);
+        color: var(--faq-text);
+      }
+
+      .faq-section {
+        position: relative;
+        width: 100%;
+        padding: 130px 30px;
+        background: var(--faq-bg);
+        overflow: hidden;
+      }
+
+      .faq-container {
+        position: relative;
+        width: 100%;
+        max-width: 1296px;
+        margin: 0 auto;
+      }
+
+      .faq-ornament {
+        position: absolute;
+        left: -50px;
+        top: 10px;
+        width: 222px;
+        height: 258px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .faq-ornament img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: faqBreath 11s ease-in-out infinite;
+      }
+
+      .faq-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+      }
+
+      .faq-intro {
+        width: 620px;
+        min-height: 200px;
+        margin: 0 auto 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .faq-title h2 {
+        margin: 0;
+        font-size: 48px;
+        line-height: 1.2;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+
+      .faq-description p {
+        margin: 0 auto;
+        width: 80%;
+        max-width: 496px;
+        font-size: 18px;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      @keyframes faqBreath {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(0.7);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .faq-section {
+          padding: 80px 30px;
+        }
+
+        .faq-ornament {
+          left: -8px;
+          top: 78px;
+          width: 120px;
+          height: 120px;
+        }
+
+        .faq-intro {
+          width: 100%;
+          margin-bottom: 50px;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .faq-section {
+          padding: 60px 20px;
+        }
+
+        .faq-ornament {
+          display: none;
+        }
+
+        .faq-intro {
+          width: 100%;
+          min-height: 193px;
+          margin-bottom: 40px;
+          gap: 20px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .faq-ornament img {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="faq-section">
+      <div class="faq-container">
+        <div class="faq-ornament" aria-hidden="true">
+          <img
+            src="https://framerusercontent.com/images/CVjPsD2Aw8U5Sa9WsGPSEds9is.svg?width=222&height=258"
+            alt=""
+            width="222"
+            height="258"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="faq-content">
+          <div class="faq-intro">
+            <div class="faq-title">
+              <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+            <div class="faq-description">
+              <p>
+                This is the reusable ornament animation extracted from your
+                existing FAQ section.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const ornament = document.querySelector('.faq-ornament');
+        if (!ornament) return;
+
+        ornament.setAttribute('data-ready', 'true');
+      })();
+    </script>
+  </body>
+</html>

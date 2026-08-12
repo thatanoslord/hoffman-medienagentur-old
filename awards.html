@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+       
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Sora:wght@400&display=swap');
+
+.awards-editorial {
+  background: rgb(0, 0, 0);
+  padding: 65px 30px 130px;
+  overflow: hidden;
+}
+
+.awards-editorial__container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.awards-editorial__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.awards-editorial__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.awards-editorial__eyebrow-icon {
+  width: 20px;
+  height: 20px;
+  background: rgb(255, 255, 255);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: awardsEditorialSpin 12s linear infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes awardsEditorialSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.awards-editorial__title {
+  margin: 0;
+  max-width: 590px;
+  color: rgb(255, 255, 255);
+  font-family: 'Sora', sans-serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.awards-editorial__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(10px);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.awards-editorial__title.is-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.awards-editorial__list {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+}
+
+.award-editorial-row {
+  width: 100%;
+  min-height: 128px;
+  padding: 36px 0;
+  border-bottom: 1px solid rgb(50, 50, 50);
+}
+
+.award-editorial-row__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.award-editorial-row__left {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  column-gap: 220px;
+  align-items: center;
+}
+
+.award-editorial-row__right {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex: 0 0 440px;
+}
+
+.award-editorial-row__year,
+.award-editorial-row__title {
+  margin: 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Sora', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.28;
+}
+
+.award-editorial-row__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: rgb(23, 23, 23);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.award-editorial-row__icon img {
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+}
+
+.award-editorial-row__text {
+  margin: 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Desktop-only slide-in */
+@media (min-width: 1360px) {
+  .award-editorial-row {
+    transform: translateX(1010px);
+            transition: transform 1.1s ease-out;
+    will-change: transform;
+  }
+
+  .award-editorial-row.is-visible {
+    transform: translateX(0);
+  }
+}
+
+/* Tablet */
+@media (max-width: 1359.98px) {
+  .awards-editorial {
+    padding: 50px 30px 100px;
+  }
+
+  .awards-editorial__title {
+    font-size: 52px;
+  }
+
+  .awards-editorial__list {
+    margin-top: 30px;
+  }
+
+  .award-editorial-row {
+    min-height: 172px;
+    padding: 30px 0;
+    transform: none !important;
+  }
+
+  .award-editorial-row__main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .award-editorial-row__left {
+    width: 100%;
+    grid-template-columns: 110px minmax(0, 1fr);
+    column-gap: 50px;
+    align-items: start;
+  }
+
+  .award-editorial-row__right {
+    max-width: 440px;
+    flex: 0 0 auto;
+    gap: 40px;
+  }
+
+  .award-editorial-row__year,
+  .award-editorial-row__title {
+    font-size: 28px;
+  }
+}
+
+/* Phone */
+@media (max-width: 767.98px) {
+  .awards-editorial {
+    padding: 40px 20px 80px;
+  }
+
+  .awards-editorial__container {
+    max-width: 350px;
+  }
+
+  .awards-editorial__title {
+    font-size: 42px;
+  }
+
+  .awards-editorial__list {
+    margin-top: 20px;
+  }
+
+  .award-editorial-row {
+    min-height: 262px;
+    padding: 30px 0;
+  }
+
+  .award-editorial-row__main {
+    gap: 16px;
+  }
+
+  .award-editorial-row__left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .award-editorial-row__right {
+    max-width: 100%;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .award-editorial-row__year,
+  .award-editorial-row__title {
+    font-size: 24px;
+  }
+
+  .award-editorial-row__text {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .awards-editorial__eyebrow-icon {
+    animation: none;
+  }
+
+  .awards-editorial__title .word,
+  .award-editorial-row {
+    transition: none;
+  }
+
+  .award-editorial-row {
+    transform: none !important;
+  }
+}
+    </style>
+</head>
+<body>
+
+    <div class="spacer"></div>
+    <section class="awards-editorial" id="awardsEditorial">
+  <div class="awards-editorial__container">
+    <div class="awards-editorial__header">
+      <div class="awards-editorial__eyebrow">
+        <span class="awards-editorial__eyebrow-icon" aria-hidden="true"></span>
+        <span>Awards and recognition</span>
+      </div>
+
+      <h2 class="awards-editorial__title js-awards-editorial-title">
+        Recognition of our creative excellence
+      </h2>
+    </div>
+
+    <div class="awards-editorial__list">
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">2026</p>
+            <h3 class="award-editorial-row__title">Global Innovation Award</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/Ss6o2ed9b2D7nrXM272n6KdMhY0.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              Recognized for building next-gen automation systems that scale digital workflows
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">2025</p>
+            <h3 class="award-editorial-row__title">AI Automation Award</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/3VmHvSCzLLSJnRZZw8itEtEsfI.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              Honored for delivering efficient, scalable automation across industries.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">2023</p>
+            <h3 class="award-editorial-row__title">UX Systems Award</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/zLeL61lbgJ9WvBytUoIGuEiPYs.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              Awarded for intelligent UX that blends design and automation seamlessly.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">2021</p>
+            <h3 class="award-editorial-row__title">Product Design Award</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/chjNDDKDrOsPPzT9ZtbUzuqAys.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              Recognized for clean, high-performance interface design focused on usability
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+    <div class="spacer"></div>
+
+
+<script>
+(function () {
+  const title = document.querySelector('.js-awards-editorial-title');
+  if (!title) return;
+
+  const text = title.textContent.trim();
+  const words = text.split(' ');
+
+  title.innerHTML = words
+    .map((word, index) => {
+      return '<span class="word" style="transition-delay:' + (index * 0.08) + 's">' + word + '</span>';
+    })
+    .join(' ');
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      obs.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.35,
+    rootMargin: '0px 0px -20px 0px'
+  });
+
+  observer.observe(title);
+})();
+</script>
+
+<script>
+(function () {
+  const rows = document.querySelectorAll('.js-award-editorial-row');
+  if (!rows.length) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isDesktop = () => window.innerWidth >= 1360;
+
+  function showStaticRows() {
+    rows.forEach((row) => row.classList.add('is-visible'));
+  }
+
+  if (!isDesktop() || reducedMotion) {
+    showStaticRows();
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      } else {
+        entry.target.classList.remove('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -12% 0px'
+  });
+
+  rows.forEach((row) => observer.observe(row));
+
+  window.addEventListener('resize', function () {
+    if (!isDesktop()) {
+      showStaticRows();
+    }
+  });
+})();
+</script>
+</body>
+</html>
