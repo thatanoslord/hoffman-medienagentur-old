@@ -222,7 +222,7 @@ body.mobile-menu-open .mobile-nav-backdrop {
 
 .mobile-menu-link-index {
   font-size: var(--text-xs);
-  color: var(--faint);
+  color: #000;
   letter-spacing: 0.12em;
 }
 
