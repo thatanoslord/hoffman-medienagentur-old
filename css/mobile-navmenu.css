@@ -49,7 +49,7 @@ body.mobile-menu-open .mobile-nav-backdrop {
   position: relative;
   overflow: clip;
   border-radius: 28px;
-  background: var(--surface);
+  background: #ffffff43;
   /* border: 1px solid var(--border); */
   box-shadow: var(--shadow);
   backdrop-filter: blur(30px) saturate(1.25);
