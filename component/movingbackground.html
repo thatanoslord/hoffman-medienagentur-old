@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+  body {
+    margin: 0;
+  }
+
+  .verdant-swirl-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 420px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #000;
+  }
+
+  .verdant-swirl-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .verdant-swirl-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    padding: 32px;
+    pointer-events: none;
+  }
+
+  .verdant-swirl-card {
+    max-width: 620px;
+    color: #fff;
+    font-family: Inter, Arial, sans-serif;
+  }
+
+  .verdant-swirl-eyebrow {
+    margin: 0 0 10px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+
+  .verdant-swirl-title {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 52px);
+    line-height: 1.02;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .titlefooter {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1.5vw;
+    z-index: 3;
+    width: 100%;
+    overflow: hidden !important;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .divfooter {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden !important;
+  }
+
+  .paragarap {
+    font-size: clamp(60px, 19.5vw, 280px);
+    font-family: "Inter Display", Inter, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.88;
+    color: #ffffff;
+    margin: 0;
+    white-space: nowrap;
+    display: block;
+    text-align: center;
+    width: 100%;
+    transform: translateY(0);
+    will-change: transform;
+    text-shadow: 0 0 30px rgba(77, 106, 255, 0.18);
+  }
+
+  .js-davinci-scroll {
+    will-change: transform;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 767px) {
+    .verdant-swirl-wrap {
+      height: 320px;
+      min-height: 320px;
+    }
+
+    .verdant-swirl-content {
+      padding: 20px;
+    }
+
+    .verdant-swirl-title {
+      font-size: clamp(24px, 8vw, 34px);
+    }
+
+    .paragarap {
+      font-size: clamp(44px, 17vw, 104px);
+      line-height: 0.9;
+    }
+
+    .titlefooter {
+      bottom: -1vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js-davinci-scroll {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<!-- inside the hero -->
+ <style>
+    
+.about-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.about-hero__top {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.about-hero__video {
+  width: 600px;
+  height: 390px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  background: #050505;
+}
+
+.about-hero__video video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  background: transparent;
+}
+
+.about-hero__statement-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 48px;
+  width: 100%;
+  max-width: 401px;
+  min-height: 390px;
+  margin-left: auto;
+}
+
+.about-hero__divider {
+  width: 1px;
+  height: 329px;
+  flex: 0 0 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(205, 225, 255, 0) 0%,
+    rgba(217, 230, 255, 0.2) 24%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.about-hero__statement {
+  color: rgb(255, 255, 255);
+  font-family: 'Sora', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.32;
+  letter-spacing: 0;
+  max-width: 352px;
+  margin-bottom: 0;
+}
+
+.about-hero__title {
+  margin: 90px 0 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Sora', sans-serif;
+  font-size: 186px;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.about-hero__title .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(130px);
+  transition:
+    transform 0.4s linear,
+    opacity 0.4s linear;
+  transition-delay: calc(0.1s + (var(--char-index) * 0.05s));
+  will-change: transform, opacity;
+}
+
+.about-hero__title.is-visible .char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes aboutHeroWaveMove {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1.02) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(1.5%, 1%, 0) scale(1.05) rotate(0.25deg);
+  }
+  100% {
+    transform: translate3d(-1%, 2%, 0) scale(1.03) rotate(-0.25deg);
+  }
+}
+
+/* Tablet */
+@media (max-width: 1359.98px) {
+  .about-hero {
+    min-height: 873px;
+    padding: 160px 30px 80px;
+  }
+
+  .about-hero__inner {
+    max-width: 750px;
+  }
+
+  .about-hero__top {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+  }
+
+  .about-hero__video {
+    width: 600px;
+    height: 390px;
+    max-width: 100%;
+  }
+
+  .about-hero__statement-wrap {
+    max-width: 401px;
+    min-height: auto;
+    margin-left: 0;
+  }
+
+  .about-hero__statement {
+    font-size: 24px;
+  }
+
+  .about-hero__title {
+    margin-top: 60px;
+    font-size: 100px;
+    text-align: left;
+    white-space: normal;
+  }
+}
+
+/* Phone */
+@media (max-width: 767.98px) {
+  .about-hero {
+    min-height: 651px;
+    padding: 150px 20px 60px;
+  }
+
+  .about-hero__inner {
+    max-width: 350px;
+  }
+
+  .about-hero__top {
+    gap: 20px;
+  }
+
+  .about-hero__video {
+    width: 100%;
+    height: 228px;
+  }
+
+  .about-hero__statement-wrap {
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .about-hero__divider {
+    height: 180px;
+  }
+
+  .about-hero__statement {
+    font-size: 22px;
+    max-width: 100%;
+  }
+
+  .about-hero__title {
+    margin-top: 40px;
+    font-size: 42px;
+    text-align: left;
+    line-height: 0.95;
+  }
+
+  .about-hero__wave {
+    inset: -20%;
+    filter: blur(32px) saturate(110%);
+  }
+}
+ </style>
+
+
+</head>
+<body>
+    <div class="verdant-swirl-wrap js-davinci-section" id="verdant-swirl-1">
+  <canvas class="verdant-swirl-canvas"></canvas>
+
+  <div class="about-hero__inner">
+    <div class="about-hero__top">
+      <div class="about-hero__video">
+        <video
+          src="https://framerusercontent.com/assets/zlSVjIuSGNmpzwiJQeXOSq7RY8.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
+      </div>
+
+      <div class="about-hero__statement-wrap">
+        <div class="about-hero__divider" aria-hidden="true"></div>
+        <div class="about-hero__statement">
+          We build AI-driven systems and automation that help businesses work smarter and scale faster.
+        </div>
+      </div>
+    </div>
+
+    <h1 class="about-hero__title js-rise-title">WHO WE ARE</h1>
+  </div>
+
+  <div class="titlefooter">
+    <div class="divfooter">
+      <p class="paragarap js-davinci-scroll">Contact us</p>
+    </div>
+  </div>
+  
+</div>
+
+<div style="height: 100vh"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+(function () {
+  const root = document.getElementById("verdant-swirl-1");
+  if (!root) return;
+
+  const canvas = root.querySelector(".verdant-swirl-canvas");
+  if (!canvas) return;
+
+  const VERT = `
+attribute vec2 a_position;
+void main() {
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+
+  const FRAG = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+
+uniform vec3 u_colors[8];
+uniform vec4 u_scene;
+uniform vec4 u_shape;
+uniform vec4 u_surface;
+uniform vec4 u_finish;
+uniform vec4 u_transform;
+uniform vec4 u_space;
+uniform vec4 u_cursor;
+
+#define u_resolution u_scene.xy
+#define u_time u_scene.z
+#define u_colorCount u_scene.w
+#define u_scale u_shape.x
+#define u_intensity u_shape.y
+#define u_paramA u_shape.z
+#define u_warp u_shape.w
+#define u_detail u_surface.x
+#define u_contrast u_surface.y
+#define u_brightness u_surface.z
+#define u_saturation u_surface.w
+#define u_hue u_finish.x
+#define u_vignette u_finish.y
+#define u_blur u_finish.z
+#define u_grain u_finish.w
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+#define u_seed u_transform.x
+#else
+#define u_seed mod(u_transform.x, 31.0)
+#endif
+#define u_rotate u_transform.y
+#define u_drift u_transform.z
+#define u_oklab u_transform.w
+#define u_offset u_space.xy
+#define u_mouse u_space.zw
+#define u_cursorPresence u_cursor.x
+#define u_cursorEffect u_cursor.y
+#define u_cursorStrength u_cursor.z
+#define u_cursorRadius u_cursor.w
+
+float hash21(vec2 p) {
+#ifndef GL_FRAGMENT_PRECISION_HIGH
+  p = mod(p, 31.0);
+#endif
+  p = fract(p * vec2(234.34, 435.345));
+  p += dot(p, p + 34.23);
+  return fract(p.x * p.y);
+}
+
+float grainHash(vec2 p) {
+  vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+  p3 += dot(p3, p3.yzx + 33.33);
+  return fract((p3.x + p3.y) * p3.z);
+}
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash21(i), hash21(i + vec2(1.0, 0.0)), u.x),
+    mix(hash21(i + vec2(0.0, 1.0)), hash21(i + vec2(1.0, 1.0)), u.x),
+    u.y);
+}
+
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 5; i++) {
+    v += a * noise(p);
+    p = p * 2.03 + vec2(17.0, 9.2);
+    a *= 0.5;
+  }
+  return v;
+}
+
+vec3 srgbToLinear(vec3 c) {
+  return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)),
+    step(0.04045, c));
+}
+vec3 linearToSrgb(vec3 c) {
+  return mix(c * 12.92, 1.055 * pow(max(c, vec3(0.0)), vec3(1.0 / 2.4)) - 0.055,
+    step(0.0031308, c));
+}
+vec3 linToOklab(vec3 c) {
+  float l = 0.4122214708 * c.r + 0.5363325363 * c.g + 0.0514459929 * c.b;
+  float m = 0.2119034982 * c.r + 0.6806995451 * c.g + 0.1073969566 * c.b;
+  float s = 0.0883024619 * c.r + 0.2817188376 * c.g + 0.6299787005 * c.b;
+  l = pow(max(l, 0.0), 1.0 / 3.0);
+  m = pow(max(m, 0.0), 1.0 / 3.0);
+  s = pow(max(s, 0.0), 1.0 / 3.0);
+  return vec3(
+    0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
+    1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
+    0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s);
+}
+vec3 oklabToLin(vec3 c) {
+  float l = c.x + 0.3963377774 * c.y + 0.2158037573 * c.z;
+  float m = c.x - 0.1055613458 * c.y - 0.0638541728 * c.z;
+  float s = c.x - 0.0894841775 * c.y - 1.2914855480 * c.z;
+  l = l * l * l; m = m * m * m; s = s * s * s;
+  return vec3(
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s);
+}
+vec3 mixColour(vec3 a, vec3 b, float t) {
+  if (u_oklab > 0.5) {
+    vec3 la = linToOklab(srgbToLinear(a));
+    vec3 lb = linToOklab(srgbToLinear(b));
+    return clamp(linearToSrgb(oklabToLin(mix(la, lb, t))), 0.0, 1.0);
+  }
+  return mix(a, b, t);
+}
+
+vec3 palette(float x) {
+  float n = max(u_colorCount - 1.0, 1.0);
+  float f = clamp(x, 0.0, 1.0) * n;
+  vec3 col = u_colors[0];
+  for (int i = 0; i < 7; i++) {
+    if (float(i) < n)
+      col = mixColour(col, u_colors[i + 1],
+        smoothstep(0.0, 1.0, clamp(f - float(i), 0.0, 1.0)));
+  }
+  return col;
+}
+
+vec3 hueRotate(vec3 col, float a) {
+  const mat3 toYIQ = mat3(0.299, 0.596, 0.211,
+                          0.587, -0.274, -0.523,
+                          0.114, -0.322, 0.312);
+  const mat3 toRGB = mat3(1.0, 1.0, 1.0,
+                          0.956, -0.272, -1.106,
+                          0.621, -0.647, 1.703);
+  vec3 yiq = toYIQ * col;
+  float ca = cos(a), sa = sin(a);
+  yiq = vec3(yiq.x, yiq.y * ca - yiq.z * sa, yiq.y * sa + yiq.z * ca);
+  return toRGB * yiq;
+}
+
+vec3 shade(vec2 uv, vec2 p, float t) {
+  vec2 q = p * 1.6;
+  float amp = 0.25 + u_intensity * 0.85;
+  for (float i = 1.0; i < 5.0; i += 1.0) {
+    q.x += amp / i * cos(i * 2.4 * q.y + t * 0.8 + u_seed);
+    q.y += amp / i * cos(i * 1.7 * q.x + t * 0.6);
+  }
+  return palette(0.5 + 0.5 * sin(q.x + q.y));
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+  vec2 screenUv = uv;
+  vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy)
+    / min(u_resolution.x, u_resolution.y);
+  float cursorMask = 0.0;
+
+  if (u_cursorPresence > 0.001) {
+    vec2 cursor = (0.5 * u_mouse * u_resolution.xy)
+      / min(u_resolution.x, u_resolution.y);
+    vec2 cursorDelta = p - cursor;
+    if (u_cursorEffect < 0.5) {
+      p += cursor * u_cursorPresence * u_cursorStrength * 0.55;
+    } else {
+      float cursorDistance = length(cursorDelta);
+      vec2 cursorDirection = cursorDelta / max(cursorDistance, 0.0001);
+      cursorMask = u_cursorPresence
+        * (1.0 - smoothstep(0.0, u_cursorRadius, cursorDistance));
+      if (u_cursorEffect < 1.5) {
+        p -= cursorDirection * cursorMask * u_cursorStrength * 0.24;
+      } else if (u_cursorEffect < 2.5) {
+        float cursorAngle = cursorMask * u_cursorStrength * 2.2;
+        float cc = cos(cursorAngle), cs = sin(cursorAngle);
+        p = cursor + mat2(cc, -cs, cs, cc) * cursorDelta;
+      } else if (u_cursorEffect < 3.5) {
+        float ripple = sin(
+          cursorDistance / max(u_cursorRadius, 0.001) * 18.0 - u_time * 5.0);
+        p -= cursorDirection * ripple * cursorMask * u_cursorStrength * 0.07;
+      }
+    }
+  }
+
+  uv = p * min(u_resolution.x, u_resolution.y) / u_resolution.xy + 0.5;
+  p *= u_scale;
+
+  if (abs(u_rotate) > 0.0001) {
+    float cr = cos(u_rotate), sr = sin(u_rotate);
+    p = mat2(cr, -sr, sr, cr) * p;
+  }
+
+  p += u_offset;
+
+  if (u_drift > 0.0001)
+    p += u_drift * vec2(sin(u_time * 0.31), cos(u_time * 0.23));
+
+  if (u_warp > 0.0) {
+    p += u_warp * (vec2(
+      fbm(p * u_detail + u_seed),
+      fbm(p * u_detail + vec2(5.2, 1.3))) - 0.5);
+  }
+
+  vec3 col;
+  if (u_blur > 0.0) {
+    float e = u_blur;
+    float pe = e * u_scale;
+    vec2 uvE = vec2(e) * min(u_resolution.x, u_resolution.y) / u_resolution.xy;
+    col  = shade(uv, p, u_time) * 0.36;
+    col += shade(uv + vec2(uvE.x, 0.0), p + vec2(pe, 0.0), u_time) * 0.16;
+    col += shade(uv - vec2(uvE.x, 0.0), p - vec2(pe, 0.0), u_time) * 0.16;
+    col += shade(uv + vec2(0.0, uvE.y), p + vec2(0.0, pe), u_time) * 0.16;
+    col += shade(uv - vec2(0.0, uvE.y), p - vec2(0.0, pe), u_time) * 0.16;
+  } else {
+    col = shade(uv, p, u_time);
+  }
+
+  if (abs(u_contrast - 1.0) > 0.0001)
+    col = (col - 0.5) * u_contrast + 0.5;
+
+  if (abs(u_saturation - 1.0) > 0.0001) {
+    float luma = dot(col, vec3(0.299, 0.587, 0.114));
+    col = mix(vec3(luma), col, u_saturation);
+  }
+
+  if (abs(u_hue) > 0.0001)
+    col = hueRotate(col, u_hue);
+
+  if (abs(u_brightness) > 0.0001)
+    col += u_brightness;
+
+  if (u_vignette > 0.0001) {
+    float vd = length(screenUv - 0.5) * 1.41421356;
+    col *= 1.0 - u_vignette * smoothstep(0.35, 1.0, vd);
+  }
+
+  if (u_cursorPresence > 0.001 && u_cursorEffect > 3.5)
+    col += (vec3(0.18) + col * 0.12) * cursorMask * u_cursorStrength;
+
+  if (u_grain > 0.0001)
+    col += (grainHash(
+      gl_FragCoord.xy + vec2(u_seed * 17.0, u_seed * 31.0)) - 0.5) * u_grain;
+
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}`;
+
+  const UNIFORMS = {
+    colors: [
+      [0.0000, 0.1686, 1.0000],
+      [0.3020, 0.4157, 1.0000],
+      [0.4392, 0.5333, 1.0000],
+      [0.7804, 0.8157, 1.0000],
+      [1.0000, 1.0000, 1.0000],
+      [1.0000, 1.0000, 1.0000],
+      [1.0000, 1.0000, 1.0000],
+      [1.0000, 1.0000, 1.0000]
+    ],
+    colorCount: 5,
+    scale: 1.280,
+    intensity: 0.470,
+    paramA: 0.500,
+    warp: 0.000,
+    detail: 2.400,
+    contrast: 0.920,
+    brightness: 0.000,
+    saturation: 1.000,
+    hue: 0.0000,
+    vignette: 0.000,
+    blur: 0.0000,
+    grain: 0.010,
+    seed: 707.0,
+    rotate: 0.0000,
+    offsetX: 0.000,
+    offsetY: 0.000,
+    drift: 0.000,
+    cursorEnabled: false,
+    cursorEffect: 2.0,
+    cursorStrength: 0.650,
+    cursorRadius: 0.460,
+    oklab: 0.0,
+    timeScale: 0.841
+  };
+
+  const gl = canvas.getContext("webgl", { antialias: false });
+  if (!gl) return;
+
+  function compile(type, src) {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, src);
+    gl.compileShader(shader);
+    return shader;
+  }
+
+  const program = gl.createProgram();
+  const vertexShader = compile(gl.VERTEX_SHADER, VERT);
+  const fragmentShader = compile(gl.FRAGMENT_SHADER, FRAG);
+
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  gl.deleteShader(vertexShader);
+  gl.deleteShader(fragmentShader);
+  gl.useProgram(program);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array([-1, -1, 3, -1, -1, 3]),
+    gl.STATIC_DRAW
+  );
+
+  const loc = gl.getAttribLocation(program, "a_position");
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uni = {
+    colors: gl.getUniformLocation(program, "u_colors"),
+    scene: gl.getUniformLocation(program, "u_scene"),
+    shape: gl.getUniformLocation(program, "u_shape"),
+    surface: gl.getUniformLocation(program, "u_surface"),
+    finish: gl.getUniformLocation(program, "u_finish"),
+    transform: gl.getUniformLocation(program, "u_transform"),
+    space: gl.getUniformLocation(program, "u_space"),
+    cursor: gl.getUniformLocation(program, "u_cursor")
+  };
+
+  gl.uniform3fv(uni.colors, new Float32Array(UNIFORMS.colors.flat()));
+  gl.uniform4f(uni.shape, UNIFORMS.scale, UNIFORMS.intensity, UNIFORMS.paramA, UNIFORMS.warp);
+  gl.uniform4f(uni.surface, UNIFORMS.detail, UNIFORMS.contrast, UNIFORMS.brightness, UNIFORMS.saturation);
+  gl.uniform4f(uni.finish, UNIFORMS.hue, UNIFORMS.vignette, UNIFORMS.blur, UNIFORMS.grain);
+  gl.uniform4f(uni.transform, UNIFORMS.seed, UNIFORMS.rotate, UNIFORMS.drift, UNIFORMS.oklab);
+  gl.uniform4f(uni.cursor, 0, UNIFORMS.cursorEffect, UNIFORMS.cursorStrength, UNIFORMS.cursorRadius);
+
+  let bounds = root.getBoundingClientRect();
+  let raf = 0;
+  let lastNow = null;
+  let visible = document.visibilityState === "visible";
+  let inView = true;
+  const start = performance.now();
+  const timeAnimated = Math.abs(UNIFORMS.timeScale) > 0.0001;
+
+  let targetX = 0;
+  let targetY = 0;
+  let targetPresence = 0;
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorPresence = 0;
+  let pointerKnown = false;
+  let pointerClientX = 0;
+  let pointerClientY = 0;
+
+  function resizeCanvas() {
+    bounds = root.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rawWidth = Math.max(1, Math.round(bounds.width * dpr));
+    const rawHeight = Math.max(1, Math.round(bounds.height * dpr));
+    const pixelScale = Math.min(1, Math.sqrt(2000000 / Math.max(1, rawWidth * rawHeight)));
+    const width = Math.max(1, Math.round(rawWidth * pixelScale));
+    const height = Math.max(1, Math.round(rawHeight * pixelScale));
+
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+      gl.viewport(0, 0, width, height);
+    }
+  }
+
+  function requestRender() {
+    if (!raf && visible && inView) {
+      raf = requestAnimationFrame(render);
+    }
+  }
+
+  function updatePointerTarget() {
+    if (!UNIFORMS.cursorEnabled || !pointerKnown) return;
+    if (!bounds.width || !bounds.height) return;
+
+    const inside =
+      pointerClientX >= bounds.left &&
+      pointerClientX <= bounds.right &&
+      pointerClientY >= bounds.top &&
+      pointerClientY <= bounds.bottom;
+
+    if (!inside) {
+      targetPresence = 0;
+      requestRender();
+      return;
+    }
+
+    const nextX = ((pointerClientX - bounds.left) / bounds.width) * 2 - 1;
+    const nextY = -(((pointerClientY - bounds.top) / bounds.height) * 2 - 1);
+
+    if (targetPresence === 0 && cursorPresence < 0.01) {
+      mouseX = nextX;
+      mouseY = nextY;
+    }
+
+    targetX = nextX;
+    targetY = nextY;
+    targetPresence = 1;
+    requestRender();
+  }
+
+  function onPointerMove(event) {
+    pointerKnown = true;
+    pointerClientX = event.clientX;
+    pointerClientY = event.clientY;
+    updatePointerTarget();
+  }
+
+  function onPointerLeave() {
+    pointerKnown = false;
+    targetPresence = 0;
+    requestRender();
+  }
+
+  function render(now) {
+    raf = 0;
+    if (!visible || !inView) return;
+
+    const dt = lastNow === null ? 0 : Math.min((now - lastNow) / 1000, 0.1);
+    lastNow = now;
+
+    const follow = 1 - Math.exp(-12 * dt);
+    mouseX += (targetX - mouseX) * follow;
+    mouseY += (targetY - mouseY) * follow;
+    cursorPresence += (targetPresence - cursorPresence) * follow;
+
+    resizeCanvas();
+
+    gl.uniform4f(
+      uni.scene,
+      canvas.width,
+      canvas.height,
+      ((now - start) / 1000) * UNIFORMS.timeScale,
+      UNIFORMS.colorCount
+    );
+
+    gl.uniform4f(
+      uni.space,
+      UNIFORMS.offsetX,
+      UNIFORMS.offsetY,
+      mouseX,
+      mouseY
+    );
+
+    gl.uniform4f(
+      uni.cursor,
+      UNIFORMS.cursorEnabled ? cursorPresence : 0,
+      UNIFORMS.cursorEffect,
+      UNIFORMS.cursorStrength,
+      UNIFORMS.cursorRadius
+    );
+
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+    const pointerSettling =
+      Math.abs(targetX - mouseX) > 0.001 ||
+      Math.abs(targetY - mouseY) > 0.001 ||
+      Math.abs(targetPresence - cursorPresence) > 0.001;
+
+    if (timeAnimated || pointerSettling) {
+      requestRender();
+    } else {
+      lastNow = null;
+    }
+  }
+
+  const resizeObserver = new ResizeObserver(() => {
+    resizeCanvas();
+    updatePointerTarget();
+    requestRender();
+  });
+  resizeObserver.observe(root);
+
+  const intersectionObserver = new IntersectionObserver((entries) => {
+    const entry = entries[0];
+    inView = entry ? entry.isIntersecting : true;
+    if (inView) {
+      requestRender();
+    } else if (raf) {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      lastNow = null;
+    }
+  });
+  intersectionObserver.observe(root);
+
+  document.addEventListener("visibilitychange", function () {
+    visible = document.visibilityState === "visible";
+    if (visible) {
+      requestRender();
+    } else if (raf) {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      lastNow = null;
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    resizeCanvas();
+    updatePointerTarget();
+    requestRender();
+  });
+
+  if (UNIFORMS.cursorEnabled) {
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointercancel", onPointerLeave);
+    window.addEventListener("blur", onPointerLeave);
+    document.documentElement.addEventListener("pointerleave", onPointerLeave);
+  }
+
+  resizeCanvas();
+  requestRender();
+
+  if (
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+    window.gsap &&
+    window.ScrollTrigger
+  ) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const movingText = root.querySelector(".js-davinci-scroll");
+
+    if (movingText && !movingText.dataset.davinciInit) {
+      movingText.dataset.davinciInit = "true";
+
+      gsap.set(movingText, { yPercent: -10 });
+
+      gsap.to(movingText, {
+        yPercent: 70,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    }
+  }
+})();
+</script>
+ <script>
+(function () {
+  const title = document.querySelector('.js-rise-title');
+  if (!title) return;
+
+  const text = title.textContent.trim();
+  title.textContent = '';
+
+  [...text].forEach((char, index) => {
+    const span = document.createElement('span');
+    span.className = 'char';
+    span.style.setProperty('--char-index', index);
+    span.textContent = char === ' ' ? '\u00A0' : char;
+    title.appendChild(span);
+  });
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      obs.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.35,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  observer.observe(title);
+})();
+</script>
+<script>
+  (function () {
+    var content = document.getElementById("brandContent");
+    var wrapper = document.getElementById("tickerWrapper");
+
+    if (!content || !wrapper) return;
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            if (entry.target === content) content.classList.add("in-view");
+            if (entry.target === wrapper) wrapper.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(content);
+    observer.observe(wrapper);
+  })();
+</script>
+
+<script>
+(function () {
+  function initTicker(trackId, baseSpeed) {
+    var track = document.getElementById(trackId);
+    if (!track) return;
+
+    var direction = track.dataset.direction === "left" ? -1 : 1;
+    var pos = 0;
+    var halfWidth = 0;
+    var rafId = null;
+
+    function measure() {
+      halfWidth = track.scrollWidth / 2;
+      if (direction === 1) {
+        pos = -halfWidth;
+      } else {
+        pos = 0;
+      }
+      track.style.transform = "translateX(" + pos + "px)";
+    }
+
+    function animate() {
+      pos += direction * baseSpeed;
+
+      if (direction === -1 && pos <= -halfWidth) {
+        pos = 0;
+      }
+
+      if (direction === 1 && pos >= 0) {
+        pos = -halfWidth;
+      }
+
+      track.style.transform = "translateX(" + pos + "px)";
+      rafId = requestAnimationFrame(animate);
+    }
+
+    measure();
+    window.addEventListener("resize", measure);
+    rafId = requestAnimationFrame(animate);
+  }
+
+  initTicker("trackTop", 0.6);
+})();
+</script>
+</body>
+</html>

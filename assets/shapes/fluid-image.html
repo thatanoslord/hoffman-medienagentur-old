@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fluid Image — WebGL Effect</title>
+<style>
+  :root{
+    --bg-0:#0b0b0d;
+    --bg-1:#141417;
+    --panel:#18181c;
+    --line:rgba(255,255,255,0.08);
+    --text:#e9e8e6;
+    --text-dim:#8a8a92;
+    --accent:#a78bfa;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #1c1a2a 0%, transparent 60%),
+      radial-gradient(1000px 500px at 100% 10%, #221520 0%, transparent 55%),
+      var(--bg-0);
+    color:var(--text);
+    font-family: 'Söhne', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height:100vh;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:56px 24px 80px;
+  }
+
+  header.page-head{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:40px;
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+  }
+  h1{
+    margin:0;
+    font-size:clamp(28px, 4vw, 42px);
+    font-weight:600;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+  }
+  p.sub{
+    margin:0;
+    max-width:640px;
+    color:var(--text-dim);
+    font-size:15px;
+    line-height:1.6;
+  }
+
+  .layout{
+    display:grid;
+    grid-template-columns:1fr 300px;
+    gap:24px;
+    align-items:start;
+  }
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; }
+  }
+
+  /* ── stage ── */
+  .stage-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+  }
+  .fluid-host{
+    position:relative;
+    width:100%;
+    aspect-ratio: 3 / 2;
+    border-radius:10px;
+    overflow:visible;
+    background:#000;
+    cursor:none;
+  }
+  .fluid-host img.fluid-source{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:10px;
+  }
+  .fluid-host .fluid-error{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.45);
+    color:rgba(255,255,255,0.85);
+    font:12px/1.4 ui-monospace, monospace;
+    text-align:center;
+    padding:16px;
+    border-radius:10px;
+  }
+  .cursor-dot{
+    position:fixed;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--accent);
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:50;
+    opacity:0;
+    transition:opacity .15s ease;
+    box-shadow:0 0 12px 2px rgba(167,139,250,0.6);
+  }
+  .stage-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-top:12px;
+    padding:0 4px;
+  }
+  .stage-foot .hint{
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  .file-btn{
+    font-size:12px;
+    color:var(--text);
+    background:transparent;
+    border:1px solid var(--line);
+    padding:7px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .file-btn:hover{ border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.04); }
+  input[type=file]{ display:none; }
+
+  /* ── controls ── */
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .panel h2{
+    margin:0;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    font-weight:600;
+  }
+  .group{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .row{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .row .row-head{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  .row .row-head span.val{
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+  }
+  input[type=range]{
+    -webkit-appearance:none;
+    width:100%;
+    height:3px;
+    border-radius:2px;
+    background:rgba(255,255,255,0.12);
+    outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:13px; height:13px;
+    border-radius:50%;
+    background:var(--accent);
+    cursor:pointer;
+    box-shadow:0 0 0 3px rgba(167,139,250,0.18);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:13px; height:13px;
+    border:none;
+    border-radius:50%;
+    background:var(--accent);
+    cursor:pointer;
+  }
+
+  .swatches{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .swatch{
+    width:30px; height:30px;
+    border-radius:8px;
+    border:2px solid transparent;
+    cursor:pointer;
+    padding:0;
+    position:relative;
+  }
+  .swatch.active{ border-color:#fff; }
+  .swatch .preview{
+    position:absolute; inset:2px;
+    border-radius:6px;
+  }
+
+  .toggle-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .toggle{
+    position:relative;
+    width:36px; height:20px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.14);
+    cursor:pointer;
+    border:none;
+    transition:background .15s ease;
+  }
+  .toggle.on{ background:var(--accent); }
+  .toggle .knob{
+    position:absolute;
+    top:2px; left:2px;
+    width:16px; height:16px;
+    border-radius:50%;
+    background:#fff;
+    transition:transform .15s ease;
+  }
+  .toggle.on .knob{ transform:translateX(16px); }
+
+  .divider{ height:1px; background:var(--line); }
+
+  footer.credit{
+    margin-top:28px;
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  footer.credit a{ color:var(--text-dim); }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+
+<div class="wrap">
+
+  <header class="page-head">
+    <span class="eyebrow">WebGL · Vanilla JS</span>
+    <h1>Fluid Image</h1>
+    <p class="sub">A cursor-driven fluid distortion effect rendered on a single WebGL triangle: curl-noise flow field, a decaying vortex trail, and a domain-warped 4-stop gradient overlay. Move over the image, click for a burst.</p>
+  </header>
+
+  <div class="layout">
+
+    <div class="stage-card">
+      <div class="fluid-host" id="fluidHost">
+        <img class="fluid-source" id="fluidSource" src="" alt="" />
+      </div>
+      <div class="stage-foot">
+        <span class="hint">Hover to distort · click to burst · drop your own image below</span>
+        <div>
+          <label class="file-btn" for="imgInput">Upload image</label>
+          <input type="file" id="imgInput" accept="image/png,image/jpeg,image/webp,image/gif" />
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="group">
+        <h2>Palette</h2>
+        <div class="swatches" id="swatches"></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="group">
+        <h2>Effect</h2>
+
+        <div class="toggle-row">
+          <span class="row-head" style="width:auto">Gradient overlay</span>
+          <button class="toggle on" id="toggleGradient"><span class="knob"></span></button>
+        </div>
+
+        <div class="row">
+          <div class="row-head"><span>Size</span><span class="val" id="v-radius">0.40</span></div>
+          <input type="range" id="radius" min="0.05" max="0.8" step="0.01" value="0.4" />
+        </div>
+        <div class="row">
+          <div class="row-head"><span>Strength</span><span class="val" id="v-strength">0.90</span></div>
+          <input type="range" id="strength" min="0" max="1" step="0.01" value="0.9" />
+        </div>
+        <div class="row">
+          <div class="row-head"><span>Distortion</span><span class="val" id="v-distortion">0.40</span></div>
+          <input type="range" id="distortion" min="0" max="1" step="0.01" value="0.4" />
+        </div>
+        <div class="row">
+          <div class="row-head"><span>Hue shift</span><span class="val" id="v-hueShift">0.50</span></div>
+          <input type="range" id="hueShift" min="0" max="1" step="0.01" value="0.5" />
+        </div>
+        <div class="row">
+          <div class="row-head"><span>Color cycle</span><span class="val" id="v-colorCycle">0.05</span></div>
+          <input type="range" id="colorCycle" min="0" max="0.5" step="0.01" value="0.05" />
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="group">
+        <h2>Animation</h2>
+        <div class="row">
+          <div class="row-head"><span>Speed</span><span class="val" id="v-speed">0.40×</span></div>
+          <input type="range" id="speed" min="0" max="2" step="0.01" value="0.4" />
+        </div>
+        <div class="row">
+          <div class="row-head"><span>Trail persistence</span><span class="val" id="v-persistence">0.970</span></div>
+          <input type="range" id="persistence" min="0.8" max="0.995" step="0.005" value="0.97" />
+        </div>
+        <div class="row">
+          <div class="row-head"><span>Pointer smoothing</span><span class="val" id="v-pointerSmooth">0.08</span></div>
+          <input type="range" id="pointerSmooth" min="0.01" max="1" step="0.01" value="0.08" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="credit">Object-fit: cover · high quality shader (curl noise + 4-octave fbm) · pointer-events driven RAF loop that idles when nothing is animating.</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   Fluid Image — vanilla JS / WebGL port
+   (no React, no Framer — plain DOM + canvas)
+   ============================================================ */
+
+const TRAIL_LENGTH = 12;
+const NOISE_SIZE = 256;
+
+// ── deterministic noise texture (Park-Miller LCG, same as source) ──
+function generateNoiseTexture() {
+  const size = NOISE_SIZE;
+  const data = new Uint8Array(size * size * 4);
+  let seed = 48271;
+  const rand = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const idx = (y * size + x) * 4;
+      const angle = rand() * Math.PI * 2;
+      data[idx]     = ((Math.cos(angle) * 0.5 + 0.5) * 255) | 0;
+      data[idx + 1] = ((Math.sin(angle) * 0.5 + 0.5) * 255) | 0;
+      data[idx + 2] = (rand() * 255) | 0;
+      data[idx + 3] = 255;
+    }
+  }
+  return data;
+}
+const NOISE_DATA = generateNoiseTexture();
+
+// ── default placeholder image (matches original's warm gradient stand-in) ──
+const DEFAULT_IMAGE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNjAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMkQxQjY5Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMzAlIiBzdG9wLWNvbG9yPSIjNkIzRkEwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNjAlIiBzdG9wLWNvbG9yPSIjRTg0NzVGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGQzg1NyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjYSkiLz4KICA8Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgwIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjEyIi8+CiAgPGNpcmNsZSBjeD0iNDIwIiBjeT0iMjgwIiByPSIxMTAiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDgiLz4KICA8Y2lyY2xlIGN4PSIzNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjEiLz4KPC9zdmc+";
+
+// ── shaders ──
+const VERTEX_SHADER = `
+attribute vec2 aPosition;
+varying vec2 vUv;
+void main() {
+    vUv = aPosition * 0.5 + 0.5;
+    gl_Position = vec4(aPosition, 0.0, 1.0);
+}
+`;
+
+function buildFragmentShader(lowQuality) {
+  const trailCount = lowQuality ? 6 : TRAIL_LENGTH;
+  const fbmOctaves = lowQuality ? 2 : 4;
+  return `
+precision highp float;
+
+varying vec2 vUv;
+uniform vec2 uResolution;
+uniform vec2 uPointer;
+uniform float uPointerActive;
+uniform float uTime;
+uniform sampler2D uTexture;
+uniform sampler2D uNoiseTex;
+uniform vec2 uImageSize;
+uniform vec3 uEffectColor1;
+uniform vec3 uEffectColor2;
+uniform vec3 uEffectColor3;
+uniform vec3 uEffectColor4;
+uniform float uRadius;
+uniform float uStrength;
+uniform float uSpeed;
+uniform float uDistortion;
+uniform float uHueShift;
+uniform float uColorCycle;
+uniform float uShowGradient;
+uniform vec2 uPadding;
+uniform vec2 uTrail[${TRAIL_LENGTH}];
+uniform vec2 uTrailVelocities[${TRAIL_LENGTH}];
+uniform float uTrailStrengths[${TRAIL_LENGTH}];
+uniform float uBurst;
+uniform vec2 uBurstPos;
+uniform float uObjectFit;
+
+vec4 sampleImageTexture(vec2 uv) {
+    vec2 clampedUv = clamp(uv, 0.0, 1.0);
+    vec4 sampleColor = texture2D(uTexture, clampedUv);
+    float inBounds =
+        step(0.0, uv.x) *
+        step(uv.x, 1.0) *
+        step(0.0, uv.y) *
+        step(uv.y, 1.0);
+    float alpha = sampleColor.a * inBounds;
+    vec3 rgb = alpha > 0.0001
+        ? sampleColor.rgb / max(sampleColor.a, 0.0001)
+        : vec3(0.0);
+    return vec4(rgb, alpha);
+}
+
+vec2 noiseTexCoord(vec2 i) {
+    return (floor(mod(i, 256.0)) + 0.5) / 256.0;
+}
+
+float gnoise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+    vec2 g00 = texture2D(uNoiseTex, noiseTexCoord(i)).rg * 2.0 - 1.0;
+    vec2 g10 = texture2D(uNoiseTex, noiseTexCoord(i + vec2(1.0, 0.0))).rg * 2.0 - 1.0;
+    vec2 g01 = texture2D(uNoiseTex, noiseTexCoord(i + vec2(0.0, 1.0))).rg * 2.0 - 1.0;
+    vec2 g11 = texture2D(uNoiseTex, noiseTexCoord(i + vec2(1.0, 1.0))).rg * 2.0 - 1.0;
+    return mix(mix(dot(g00, f - vec2(0.0, 0.0)),
+                   dot(g10, f - vec2(1.0, 0.0)), u.x),
+               mix(dot(g01, f - vec2(0.0, 1.0)),
+                   dot(g11, f - vec2(1.0, 1.0)), u.x), u.y);
+}
+
+mat2 rot(float a) {
+    float c = cos(a); float s = sin(a);
+    return mat2(c, -s, s, c);
+}
+
+float fbm(vec2 p) {
+    float v = 0.0, a = 0.5;
+    mat2 r = rot(0.37);
+    for (int i = 0; i < ${fbmOctaves}; i++) {
+        v += a * gnoise(p);
+        p = r * p * 2.0 + vec2(13.7, 31.5);
+        a *= 0.5;
+    }
+    return v;
+}
+
+${!lowQuality ? `
+vec2 curlNoise(vec2 p) {
+    float eps = 0.1;
+    float n1 = gnoise(p + vec2(0.0, eps));
+    float n2 = gnoise(p - vec2(0.0, eps));
+    float n3 = gnoise(p + vec2(eps, 0.0));
+    float n4 = gnoise(p - vec2(eps, 0.0));
+    float dFdy = (n1 - n2) / (2.0 * eps);
+    float dFdx = (n3 - n4) / (2.0 * eps);
+    return vec2(dFdy, -dFdx);
+}
+` : ""}
+
+vec3 rgb2hsl(vec3 c) {
+    float mx = max(max(c.r, c.g), c.b);
+    float mn = min(min(c.r, c.g), c.b);
+    float l = (mx + mn) * 0.5;
+    if (mx == mn) return vec3(0.0, 0.0, l);
+    float d = mx - mn;
+    float s = l > 0.5 ? d / (2.0 - mx - mn) : d / (mx + mn);
+    float h;
+    if (mx == c.r) h = (c.g - c.b) / d + (c.g < c.b ? 6.0 : 0.0);
+    else if (mx == c.g) h = (c.b - c.r) / d + 2.0;
+    else h = (c.r - c.g) / d + 4.0;
+    h /= 6.0;
+    return vec3(h, s, l);
+}
+
+float hue2rgb(float p, float q, float t) {
+    if (t < 0.0) t += 1.0;
+    if (t > 1.0) t -= 1.0;
+    if (t < 1.0 / 6.0) return p + (q - p) * 6.0 * t;
+    if (t < 1.0 / 2.0) return q;
+    if (t < 2.0 / 3.0) return p + (q - p) * (2.0 / 3.0 - t) * 6.0;
+    return p;
+}
+
+vec3 hsl2rgb(vec3 hsl) {
+    if (hsl.y == 0.0) return vec3(hsl.z);
+    float q = hsl.z < 0.5 ? hsl.z * (1.0 + hsl.y) : hsl.z + hsl.y - hsl.z * hsl.y;
+    float p = 2.0 * hsl.z - q;
+    return vec3(
+        hue2rgb(p, q, hsl.x + 1.0 / 3.0),
+        hue2rgb(p, q, hsl.x),
+        hue2rgb(p, q, hsl.x - 1.0 / 3.0)
+    );
+}
+
+void main() {
+    vec2 uv = vUv;
+    float canvasAspect = uResolution.x / max(uResolution.y, 1.0);
+    vec2 imageAreaSize = uResolution * (1.0 - 2.0 * uPadding);
+    float imageAreaAspect = imageAreaSize.x / max(imageAreaSize.y, 1.0);
+    float imageAspect = uImageSize.x / max(uImageSize.y, 1.0);
+
+    vec2 imageUv = (uv - uPadding) / (1.0 - 2.0 * uPadding);
+
+    vec2 texUv = imageUv;
+    if (uObjectFit < 0.5) {
+        if (imageAreaAspect > imageAspect) {
+            float scale = imageAreaAspect / imageAspect;
+            texUv.y = (imageUv.y - 0.5) / scale + 0.5;
+        } else {
+            float scale = imageAspect / imageAreaAspect;
+            texUv.x = (imageUv.x - 0.5) / scale + 0.5;
+        }
+    } else if (uObjectFit < 1.5) {
+        if (imageAreaAspect > imageAspect) {
+            float scale = imageAspect / imageAreaAspect;
+            texUv.x = (imageUv.x - 0.5) / scale + 0.5;
+        } else {
+            float scale = imageAreaAspect / imageAspect;
+            texUv.y = (imageUv.y - 0.5) / scale + 0.5;
+        }
+    }
+    texUv.y = 1.0 - texUv.y;
+
+    float time = uTime * uSpeed;
+
+    vec2 aspect = vec2(canvasAspect, 1.0);
+    vec2 p = uv * aspect;
+    float radiusScaled = uRadius * max(canvasAspect, 1.0);
+
+    ${!lowQuality ? `vec2 flowField = curlNoise(p * 2.0 + time * 0.3);` : `vec2 flowField = vec2(
+               gnoise(p * 2.0 + time * 0.3 + vec2(0.0, 73.1)),
+               gnoise(p * 2.0 + time * 0.3 + vec2(131.7, 0.0))
+           ) * 0.5;`}
+
+    float hoverDist = distance(p, uPointer * aspect);
+    float hoverT = 1.0 - smoothstep(0.0, radiusScaled, hoverDist);
+    float hoverInfluence = hoverT * hoverT * hoverT * uPointerActive * uStrength;
+    float orbCore = pow(hoverT, 1.8) * uPointerActive;
+    float orbHalo = pow(hoverT, 0.8) * uPointerActive;
+    float orbRing = smoothstep(0.12, 0.58, hoverT) * (1.0 - smoothstep(0.58, 0.92, hoverT)) * uPointerActive;
+    float orbPulse = (0.5 + 0.5 * sin(uTime * 1.2)) * (0.12 + 0.2 * orbCore);
+
+    float trailInfluence = 0.0;
+    vec2 totalSwirl = vec2(0.0);
+
+    for (int i = 0; i < ${trailCount}; i++) {
+        float trailStr = uTrailStrengths[i];
+        if (trailStr < 0.001) continue;
+        vec2 trailPos = uTrail[i] * aspect;
+        vec2 toTrail = p - trailPos;
+        float dist = length(toTrail);
+        float t = 1.0 - smoothstep(0.0, radiusScaled, dist);
+        float influence = t * t * t * trailStr;
+
+        float noiseOff = gnoise(uv * 5.0 + time * 0.4 + float(i) * 1.7) * uDistortion;
+        influence *= (1.0 + noiseOff * 0.6);
+        trailInfluence += influence;
+
+        vec2 vel = uTrailVelocities[i];
+        float velMag = length(vel);
+
+        vec2 tangent = vec2(-toTrail.y, toTrail.x);
+        float vortexStr = influence * velMag * 2.0;
+        totalSwirl += tangent / max(dist, 0.02) * vortexStr * uDistortion * 0.4;
+
+        if (velMag > 0.001) {
+            totalSwirl += vel * influence * uDistortion * 0.3;
+        }
+
+        totalSwirl += flowField * influence * uDistortion * 0.25;
+    }
+    trailInfluence = clamp(trailInfluence, 0.0, 1.0) * uStrength * uPointerActive;
+
+    vec2 burstSwirl = vec2(0.0);
+    float burstInfluence = 0.0;
+    if (uBurst > 0.001) {
+        float burstDist = distance(p, uBurstPos * aspect);
+        float burstExpand = 1.0 + (1.0 - uBurst) * 2.0;
+        float burstRadius = radiusScaled * burstExpand;
+        float burstT = 1.0 - smoothstep(0.0, burstRadius, burstDist);
+        burstInfluence = burstT * burstT * uBurst * uBurst * uStrength;
+        vec2 burstDir = p - uBurstPos * aspect;
+        float bdLen = length(burstDir);
+        if (bdLen > 0.001) burstDir /= bdLen;
+        burstSwirl = burstDir * burstInfluence * uDistortion * 0.8
+                   + flowField * burstInfluence * uDistortion * 0.3;
+    }
+
+    float combined = clamp(hoverInfluence + trailInfluence + burstInfluence, 0.0, 1.0);
+
+    vec2 swirlUv = totalSwirl * 0.5 * uPointerActive + burstSwirl * 0.5;
+    swirlUv += flowField * hoverInfluence * 0.03;
+    vec2 smudgedTexUv = texUv + swirlUv;
+    vec4 smudgedColor = sampleImageTexture(smudgedTexUv);
+
+    vec2 warpedImageUv = imageUv - swirlUv;
+    float inImage = smoothstep(-0.005, 0.0, warpedImageUv.x) * smoothstep(-0.005, 0.0, 1.0 - warpedImageUv.x)
+                  * smoothstep(-0.005, 0.0, warpedImageUv.y) * smoothstep(-0.005, 0.0, 1.0 - warpedImageUv.y);
+
+    vec3 hueShifted = smudgedColor.rgb;
+    if (uShowGradient > 0.5) {
+        vec3 hsl = rgb2hsl(smudgedColor.rgb);
+        float noiseHue = fbm(uv * 3.0 + time * 0.3);
+        hsl.x = fract(hsl.x + uHueShift * combined * (0.5 + noiseHue * 0.5));
+        hsl.y = min(1.0, hsl.y + combined * 0.6);
+        hsl.z = clamp(hsl.z + combined * 0.1, 0.0, 1.0);
+        hueShifted = hsl2rgb(hsl);
+    }
+
+    vec3 c1hsl = rgb2hsl(uEffectColor1);
+    c1hsl.x = fract(c1hsl.x + uTime * uColorCycle);
+    vec3 cycledColor1 = hsl2rgb(c1hsl);
+
+    vec3 c2hsl = rgb2hsl(uEffectColor2);
+    c2hsl.x = fract(c2hsl.x + uTime * uColorCycle * 0.73);
+    vec3 cycledColor2 = hsl2rgb(c2hsl);
+
+    vec3 c3hsl = rgb2hsl(uEffectColor3);
+    c3hsl.x = fract(c3hsl.x + uTime * uColorCycle * 1.17);
+    vec3 cycledColor3 = hsl2rgb(c3hsl);
+
+    vec3 c4hsl = rgb2hsl(uEffectColor4);
+    c4hsl.x = fract(c4hsl.x + uTime * uColorCycle * 0.53);
+    vec3 cycledColor4 = hsl2rgb(c4hsl);
+
+    vec2 warpCoord = uv * 2.5 + (totalSwirl * uPointerActive + burstSwirl) * 4.0;
+    ${!lowQuality ? `float warpLayer = fbm(warpCoord + time * 0.15);
+    float gradientT = fbm(warpCoord + warpLayer * 0.5 + time * 0.1);` : `float gradientT = fbm(warpCoord + time * 0.1);`}
+
+    float gt = clamp(gradientT * 0.5 + 0.5, 0.0, 1.0);
+    gt = gt * gt * (3.0 - 2.0 * gt);
+    float premiumShift = (fbm(uv * 1.6 + flowField * 0.9 + time * 0.08) * 0.5 + 0.5) - 0.5;
+    gt = clamp(gt + premiumShift * (0.08 * orbHalo + 0.05 * orbRing), 0.0, 1.0);
+
+    float seg = gt * 3.0;
+    vec3 gradientColor;
+    if (seg < 1.0) {
+        gradientColor = mix(cycledColor1, cycledColor2, seg);
+    } else if (seg < 2.0) {
+        gradientColor = mix(cycledColor2, cycledColor3, seg - 1.0);
+    } else {
+        gradientColor = mix(cycledColor3, cycledColor4, seg - 2.0);
+    }
+
+    float swirlMag = length(totalSwirl * uPointerActive + burstSwirl);
+    float distortionBand = clamp(orbRing * 1.15 + burstInfluence * 0.5 + trailInfluence * 0.35, 0.0, 1.0);
+    float gradientMix = smoothstep(0.02, 0.72, combined * 0.28 + orbHalo * 0.3 + swirlMag * 1.4) * uShowGradient;
+    vec3 premiumGradientColor = mix(gradientColor, vec3(1.0), 0.18 * orbCore + 0.06 * orbPulse);
+    vec3 premiumHueShifted = mix(hueShifted, smudgedColor.rgb, 0.18 * (1.0 - orbHalo));
+    vec3 effectColor = mix(premiumHueShifted, premiumGradientColor, gradientMix * (0.78 + 0.22 * orbHalo));
+
+    float imageMix = clamp(combined * 0.55 + orbCore * 0.2 + orbHalo * 0.15, 0.0, 1.0);
+    vec3 imageBlend = mix(smudgedColor.rgb, effectColor, imageMix);
+    vec3 finalColor = mix(effectColor, imageBlend, inImage);
+    float glow = clamp(orbHalo * 0.55 + orbCore * orbCore * 0.45 + distortionBand * 0.18, 0.0, 1.0);
+    vec3 outerGlowColor = mix(gradientColor, premiumGradientColor, 0.5);
+    finalColor += outerGlowColor * glow * (0.16 + 0.08 * orbPulse) * uShowGradient;
+    finalColor += vec3(1.0) * orbCore * 0.045 * uShowGradient;
+    finalColor = clamp(finalColor, 0.0, 1.0);
+
+    float alpha = inImage * smudgedColor.a;
+    gl_FragColor = vec4(finalColor, clamp(alpha, 0.0, 1.0));
+}
+`;
+}
+
+// ── color utilities ──
+function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+
+function parseColorToRgb01(input) {
+  const value = input.trim();
+  const hex = value.startsWith("#") ? value.slice(1) : null;
+  if (hex) {
+    const normalized = hex.length === 3
+      ? `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
+      : hex.length === 6 ? hex : hex.slice(0, 6).padEnd(6, "0");
+    const int = Number.parseInt(normalized, 16);
+    if (!Number.isNaN(int)) {
+      return [((int >> 16) & 255) / 255, ((int >> 8) & 255) / 255, (int & 255) / 255];
+    }
+  }
+  return [0, 0, 0];
+}
+
+// ── color presets (identical to source) ──
+const COLOR_PRESETS = {
+  tropical: ["#0D9488", "#A78BFA", "#F472B6", "#FBBF24"],
+  ocean:    ["#0EA5E9", "#6366F1", "#14B8A6", "#818CF8"],
+  sunset:   ["#F97316", "#EF4444", "#A855F7", "#FBBF24"],
+  neon:     ["#22D3EE", "#A3E635", "#F472B6", "#FACC15"],
+  forest:   ["#16A34A", "#065F46", "#A3E635", "#D9F99D"],
+  monochrome: ["#E5E5E5", "#A3A3A3", "#525252", "#171717"],
+};
+const DEFAULT_PRESET = "tropical";
+
+function resolveColors(preset) {
+  const palette = COLOR_PRESETS[preset] || COLOR_PRESETS[DEFAULT_PRESET];
+  return [palette[0], palette[1], palette[2], palette[3]];
+}
+
+function compileShader(gl, type, source) {
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    const info = gl.getShaderInfoLog(shader) || "Unknown shader compile error";
+    gl.deleteShader(shader);
+    throw new Error(info);
+  }
+  return shader;
+}
+
+function createProgram(gl, fragmentSource) {
+  const vertex = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
+  const fragment = compileShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
+  const program = gl.createProgram();
+  gl.attachShader(program, vertex);
+  gl.attachShader(program, fragment);
+  gl.linkProgram(program);
+  gl.deleteShader(vertex);
+  gl.deleteShader(fragment);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    const info = gl.getProgramInfoLog(program) || "Unknown program link error";
+    gl.deleteProgram(program);
+    throw new Error(info);
+  }
+  return program;
+}
+
+/* ============================================================
+   FluidImage class — mounts onto a host <div> containing an <img>
+   ============================================================ */
+class FluidImage {
+  constructor(host, options = {}) {
+    this.host = host;
+    this.settings = Object.assign({
+      objectFit: "cover",       // cover | contain | fill
+      preset: DEFAULT_PRESET,
+      showGradient: true,
+      radius: 0.4,
+      strength: 0.9,
+      distortion: 0.4,
+      hueShift: 0.5,
+      colorCycle: 0.05,
+      speed: 0.4,
+      persistence: 0.97,
+      pointerSmooth: 0.08,
+      maxDpr: 1.75,
+      overflowPadding: 60,
+      quality: "high",
+      fadeIn: true,
+      fadeInDuration: 0.6,
+    }, options);
+
+    this.reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", (e) => {
+      this.reducedMotion = e.matches;
+    });
+
+    this._buildCanvas();
+    this._initGL();
+    this._bindEvents();
+    this._start();
+  }
+
+  _buildCanvas() {
+    const pad = this.settings.overflowPadding;
+    const canvas = document.createElement("canvas");
+    canvas.style.position = "absolute";
+    canvas.style.top = `-${pad}px`;
+    canvas.style.left = `-${pad}px`;
+    canvas.style.width = `calc(100% + ${pad * 2}px)`;
+    canvas.style.height = `calc(100% + ${pad * 2}px)`;
+    canvas.style.display = "block";
+    canvas.style.pointerEvents = "none";
+    if (this.settings.fadeIn) {
+      canvas.style.opacity = "0";
+      canvas.style.transition = `opacity ${this.settings.fadeInDuration}s ease`;
+    }
+    this.host.appendChild(canvas);
+    this.canvas = canvas;
+
+    this.gl = canvas.getContext("webgl", {
+      alpha: true, premultipliedAlpha: false, antialias: false, preserveDrawingBuffer: false
+    });
+    if (!this.gl) { this._showError("WebGL is not available"); return; }
+  }
+
+  _showError(msg) {
+    let el = this.host.querySelector(".fluid-error");
+    if (!el) {
+      el = document.createElement("div");
+      el.className = "fluid-error";
+      this.host.appendChild(el);
+    }
+    el.textContent = `Fluid Image: ${msg}`;
+  }
+
+  _clearError() {
+    const el = this.host.querySelector(".fluid-error");
+    if (el) el.remove();
+  }
+
+  _initGL() {
+    const gl = this.gl;
+    if (!gl) return;
+    const fragSource = buildFragmentShader(this.settings.quality === "low");
+    try {
+      this.program = createProgram(gl, fragSource);
+    } catch (err) {
+      this._showError(err.message || "Shader compile error");
+      return;
+    }
+    gl.useProgram(this.program);
+
+    const vertices = new Float32Array([-1, -1, 3, -1, -1, 3]);
+    this.buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+    const posLoc = gl.getAttribLocation(this.program, "aPosition");
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    this.loc = {
+      uResolution: gl.getUniformLocation(this.program, "uResolution"),
+      uPointer: gl.getUniformLocation(this.program, "uPointer"),
+      uPointerActive: gl.getUniformLocation(this.program, "uPointerActive"),
+      uTime: gl.getUniformLocation(this.program, "uTime"),
+      uTexture: gl.getUniformLocation(this.program, "uTexture"),
+      uNoiseTex: gl.getUniformLocation(this.program, "uNoiseTex"),
+      uImageSize: gl.getUniformLocation(this.program, "uImageSize"),
+      uEffectColor1: gl.getUniformLocation(this.program, "uEffectColor1"),
+      uEffectColor2: gl.getUniformLocation(this.program, "uEffectColor2"),
+      uEffectColor3: gl.getUniformLocation(this.program, "uEffectColor3"),
+      uEffectColor4: gl.getUniformLocation(this.program, "uEffectColor4"),
+      uRadius: gl.getUniformLocation(this.program, "uRadius"),
+      uStrength: gl.getUniformLocation(this.program, "uStrength"),
+      uSpeed: gl.getUniformLocation(this.program, "uSpeed"),
+      uDistortion: gl.getUniformLocation(this.program, "uDistortion"),
+      uHueShift: gl.getUniformLocation(this.program, "uHueShift"),
+      uColorCycle: gl.getUniformLocation(this.program, "uColorCycle"),
+      uShowGradient: gl.getUniformLocation(this.program, "uShowGradient"),
+      uTrail: gl.getUniformLocation(this.program, "uTrail"),
+      uTrailVelocities: gl.getUniformLocation(this.program, "uTrailVelocities"),
+      uTrailStrengths: gl.getUniformLocation(this.program, "uTrailStrengths"),
+      uPadding: gl.getUniformLocation(this.program, "uPadding"),
+      uBurst: gl.getUniformLocation(this.program, "uBurst"),
+      uBurstPos: gl.getUniformLocation(this.program, "uBurstPos"),
+      uObjectFit: gl.getUniformLocation(this.program, "uObjectFit"),
+    };
+
+    // image texture (unit 0)
+    this.texture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([128, 128, 128, 255]));
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+    // noise texture (unit 1)
+    this.noiseTex = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE1);
+    gl.bindTexture(gl.TEXTURE_2D, this.noiseTex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, NOISE_SIZE, NOISE_SIZE, 0, gl.RGBA, gl.UNSIGNED_BYTE, NOISE_DATA);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.activeTexture(gl.TEXTURE0);
+
+    this.imageSize = { w: 1, h: 1 };
+  }
+
+  loadImage(url) {
+    const gl = this.gl;
+    if (!gl) return;
+    const gen = (this._loadGen = (this._loadGen || 0) + 1);
+    const img = new Image();
+    try {
+      const imgUrl = new URL(url, window.location.href);
+      if (imgUrl.origin !== window.location.origin) img.crossOrigin = "anonymous";
+    } catch { img.crossOrigin = "anonymous"; }
+
+    img.onload = () => {
+      if (gen !== this._loadGen) return;
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      this._clearError();
+      this.imageSize = { w: img.naturalWidth, h: img.naturalHeight };
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, this.texture);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
+      requestAnimationFrame(() => { this.canvas.style.opacity = "1"; });
+      this._ensureRAF();
+    };
+    img.onerror = () => {
+      if (gen !== this._loadGen) return;
+      if (img.crossOrigin) {
+        const retry = new Image();
+        retry.onload = img.onload;
+        retry.onerror = () => this._showError("Failed to load image");
+        retry.src = url;
+        return;
+      }
+      this._showError("Failed to load image");
+    };
+    img.src = url;
+  }
+
+  _bindEvents() {
+    const host = this.host;
+    this.cw = Math.max(1, host.clientWidth || 1);
+    this.ch = Math.max(1, host.clientHeight || 1);
+
+    this.ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const cr = entry.contentRect;
+        this.cw = Math.max(1, Math.floor(cr.width));
+        this.ch = Math.max(1, Math.floor(cr.height));
+      }
+      this._ensureRAF();
+    });
+    this.ro.observe(host);
+
+    this.targetPointer = { x: 0.5, y: 0.5 };
+    this.smoothPointer = { x: 0.5, y: 0.5 };
+    this.prevSmooth = { x: 0.5, y: 0.5 };
+    this.pointerVelocity = { x: 0, y: 0 };
+    this.pointerInside = false;
+    this.pointerActiveFade = 0;
+    this.burstValue = 0;
+    this.burstPos = { x: 0.5, y: 0.5 };
+    this.trail = Array.from({ length: TRAIL_LENGTH }, () => ({ x: -1, y: -1, vx: 0, vy: 0, strength: 0 }));
+    this.trailFlat = new Float32Array(TRAIL_LENGTH * 2);
+    this.trailVelFlat = new Float32Array(TRAIL_LENGTH * 2);
+    this.trailStrengths = new Float32Array(TRAIL_LENGTH);
+
+    this._onPointerMove = (e) => {
+      if (this.reducedMotion) return;
+      const rect = host.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return;
+      this.targetPointer = {
+        x: clamp((e.clientX - rect.left) / rect.width, 0, 1),
+        y: clamp(1 - (e.clientY - rect.top) / rect.height, 0, 1),
+      };
+      this.pointerInside = true;
+      this._ensureRAF();
+    };
+    this._onPointerLeave = () => { this.pointerInside = false; this._ensureRAF(); };
+    this._onPointerDown = (e) => {
+      if (this.reducedMotion) return;
+      const rect = host.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return;
+      this.burstPos = {
+        x: clamp((e.clientX - rect.left) / rect.width, 0, 1),
+        y: clamp(1 - (e.clientY - rect.top) / rect.height, 0, 1),
+      };
+      this.burstValue = 1;
+      this._ensureRAF();
+    };
+    host.addEventListener("pointermove", this._onPointerMove);
+    host.addEventListener("pointerleave", this._onPointerLeave);
+    host.addEventListener("pointerdown", this._onPointerDown);
+
+    if (this.canvas) {
+      this.canvas.addEventListener("webglcontextlost", (e) => {
+        e.preventDefault();
+        window.cancelAnimationFrame(this.raf);
+        this.rafRunning = false;
+      }, false);
+      this.canvas.addEventListener("webglcontextrestored", () => {
+        this._initGL();
+        this.loadImage(this._currentUrl);
+        this._ensureRAF();
+      }, false);
+    }
+  }
+
+  _start() {
+    this.start = performance.now();
+    this.lastFrameTime = 0;
+    this.lastPad = this.settings.overflowPadding;
+    this.lastPw = 0;
+    this.lastPh = 0;
+    this._render = this._render.bind(this);
+    this._ensureRAF();
+  }
+
+  _ensureRAF() {
+    if (!this.rafRunning && !this._destroyed) {
+      this.rafRunning = true;
+      this.lastFrameTime = performance.now();
+      this.raf = window.requestAnimationFrame(this._render);
+    }
+  }
+
+  setColors(c1, c2, c3, c4) {
+    this.effectColor1Rgb = parseColorToRgb01(c1);
+    this.effectColor2Rgb = parseColorToRgb01(c2);
+    this.effectColor3Rgb = parseColorToRgb01(c3);
+    this.effectColor4Rgb = parseColorToRgb01(c4);
+    this._ensureRAF();
+  }
+
+  update(partial) {
+    Object.assign(this.settings, partial);
+    this._ensureRAF();
+  }
+
+  _render(now) {
+    if (this._destroyed) { this.rafRunning = false; return; }
+    const gl = this.gl, loc = this.loc;
+    if (!loc) { this.rafRunning = false; return; }
+
+    const dt = Math.min((now - this.lastFrameTime) / 1000, 0.1);
+    this.lastFrameTime = now;
+    const dtScale = dt * 60;
+    const s = this.settings;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, Math.max(0.5, s.maxDpr));
+    const padPx = s.overflowPadding;
+    const canvasW = this.cw + 2 * padPx;
+    const canvasH = this.ch + 2 * padPx;
+    const pw = Math.floor(canvasW * dpr);
+    const ph = Math.floor(canvasH * dpr);
+    if (pw !== this.lastPw || ph !== this.lastPh) {
+      this.canvas.width = pw; this.canvas.height = ph;
+      gl.viewport(0, 0, pw, ph);
+      this.lastPw = pw; this.lastPh = ph;
+    }
+    if (padPx !== this.lastPad) {
+      this.canvas.style.top = `-${padPx}px`;
+      this.canvas.style.left = `-${padPx}px`;
+      this.canvas.style.width = `calc(100% + ${padPx * 2}px)`;
+      this.canvas.style.height = `calc(100% + ${padPx * 2}px)`;
+      this.lastPad = padPx;
+    }
+
+    const smoothK = 1 - Math.pow(1 - clamp(s.pointerSmooth, 0.01, 1), dtScale);
+    this.prevSmooth.x = this.smoothPointer.x; this.prevSmooth.y = this.smoothPointer.y;
+    this.smoothPointer.x += (this.targetPointer.x - this.smoothPointer.x) * smoothK;
+    this.smoothPointer.y += (this.targetPointer.y - this.smoothPointer.y) * smoothK;
+
+    const rawVx = dt > 0 ? (this.smoothPointer.x - this.prevSmooth.x) / dt : 0;
+    const rawVy = dt > 0 ? (this.smoothPointer.y - this.prevSmooth.y) / dt : 0;
+    const velDecay = Math.pow(0.5, dtScale);
+    this.pointerVelocity.x = this.pointerVelocity.x * velDecay + rawVx * (1 - velDecay);
+    this.pointerVelocity.y = this.pointerVelocity.y * velDecay + rawVy * (1 - velDecay);
+
+    const fadeTarget = this.pointerInside ? 1 : 0;
+    const fadeK = 1 - Math.pow(1 - 0.1, dtScale);
+    this.pointerActiveFade += (fadeTarget - this.pointerActiveFade) * fadeK;
+
+    if (this.burstValue > 0.001) {
+      this.burstValue *= Math.pow(0.94, dtScale);
+      if (this.burstValue < 0.001) this.burstValue = 0;
+    }
+
+    const trailDecay = Math.pow(s.persistence, dtScale);
+    for (let i = 0; i < TRAIL_LENGTH; i++) this.trail[i].strength *= trailDecay;
+
+    const dx = this.smoothPointer.x - this.trail[0].x;
+    const dy = this.smoothPointer.y - this.trail[0].y;
+    if (this.pointerInside && dx * dx + dy * dy > 5e-5) {
+      for (let i = TRAIL_LENGTH - 1; i > 0; i--) {
+        this.trail[i].x = this.trail[i - 1].x; this.trail[i].y = this.trail[i - 1].y;
+        this.trail[i].vx = this.trail[i - 1].vx; this.trail[i].vy = this.trail[i - 1].vy;
+        this.trail[i].strength = this.trail[i - 1].strength;
+      }
+      this.trail[0].x = this.smoothPointer.x; this.trail[0].y = this.smoothPointer.y;
+      this.trail[0].vx = this.pointerVelocity.x * dt; this.trail[0].vy = this.pointerVelocity.y * dt;
+      this.trail[0].strength = 1;
+    } else if (this.pointerInside) {
+      this.trail[0].x = this.smoothPointer.x; this.trail[0].y = this.smoothPointer.y;
+      this.trail[0].vx = this.pointerVelocity.x * dt; this.trail[0].vy = this.pointerVelocity.y * dt;
+      this.trail[0].strength = 1;
+    }
+
+    const padNormX = canvasW > 0 ? padPx / canvasW : 0;
+    const padNormY = canvasH > 0 ? padPx / canvasH : 0;
+    const scaleX = 1 - 2 * padNormX;
+    const scaleY = 1 - 2 * padNormY;
+
+    for (let i = 0; i < TRAIL_LENGTH; i++) {
+      this.trailFlat[i * 2] = this.trail[i].x * scaleX + padNormX;
+      this.trailFlat[i * 2 + 1] = this.trail[i].y * scaleY + padNormY;
+      this.trailVelFlat[i * 2] = this.trail[i].vx * scaleX;
+      this.trailVelFlat[i * 2 + 1] = this.trail[i].vy * scaleY;
+      this.trailStrengths[i] = this.trail[i].strength;
+    }
+
+    gl.uniform2f(loc.uResolution, pw, ph);
+    gl.uniform2f(loc.uPadding, padNormX, padNormY);
+    gl.uniform2f(loc.uPointer, this.smoothPointer.x * scaleX + padNormX, this.smoothPointer.y * scaleY + padNormY);
+    gl.uniform1f(loc.uPointerActive, this.pointerActiveFade);
+    gl.uniform1f(loc.uTime, (now - this.start) * 0.001);
+    gl.uniform1i(loc.uTexture, 0);
+    gl.uniform1i(loc.uNoiseTex, 1);
+    gl.uniform2f(loc.uImageSize, this.imageSize.w, this.imageSize.h);
+
+    const c1 = this.effectColor1Rgb || [0, 0, 0];
+    const c2 = this.effectColor2Rgb || [0, 0, 0];
+    const c3 = this.effectColor3Rgb || [0, 0, 0];
+    const c4 = this.effectColor4Rgb || [0, 0, 0];
+    gl.uniform3f(loc.uEffectColor1, c1[0], c1[1], c1[2]);
+    gl.uniform3f(loc.uEffectColor2, c2[0], c2[1], c2[2]);
+    gl.uniform3f(loc.uEffectColor3, c3[0], c3[1], c3[2]);
+    gl.uniform3f(loc.uEffectColor4, c4[0], c4[1], c4[2]);
+
+    gl.uniform1f(loc.uRadius, s.radius);
+    gl.uniform1f(loc.uStrength, s.strength);
+    gl.uniform1f(loc.uSpeed, s.speed);
+    gl.uniform1f(loc.uDistortion, s.distortion);
+    gl.uniform1f(loc.uHueShift, s.hueShift);
+    gl.uniform1f(loc.uColorCycle, s.colorCycle);
+    gl.uniform1f(loc.uShowGradient, s.showGradient ? 1 : 0);
+    gl.uniform1f(loc.uObjectFit, s.objectFit === "contain" ? 1 : s.objectFit === "fill" ? 2 : 0);
+    gl.uniform2fv(loc.uTrail, this.trailFlat);
+    gl.uniform2fv(loc.uTrailVelocities, this.trailVelFlat);
+    gl.uniform1fv(loc.uTrailStrengths, this.trailStrengths);
+
+    gl.uniform1f(loc.uBurst, this.burstValue);
+    gl.uniform2f(loc.uBurstPos, this.burstPos.x * scaleX + padNormX, this.burstPos.y * scaleY + padNormY);
+
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+    let allDecayed = this.pointerActiveFade < 0.001 && this.burstValue < 0.001;
+    if (allDecayed) {
+      for (let i = 0; i < TRAIL_LENGTH; i++) {
+        if (this.trailStrengths[i] > 0.001) { allDecayed = false; break; }
+      }
+    }
+    if (!this.pointerInside && allDecayed) { this.rafRunning = false; return; }
+    this.raf = window.requestAnimationFrame(this._render);
+  }
+
+  destroy() {
+    this._destroyed = true;
+    window.cancelAnimationFrame(this.raf);
+    this.ro && this.ro.disconnect();
+    const host = this.host;
+    host.removeEventListener("pointermove", this._onPointerMove);
+    host.removeEventListener("pointerleave", this._onPointerLeave);
+    host.removeEventListener("pointerdown", this._onPointerDown);
+    const gl = this.gl;
+    if (gl) {
+      if (this.texture) gl.deleteTexture(this.texture);
+      if (this.noiseTex) gl.deleteTexture(this.noiseTex);
+      if (this.buffer) gl.deleteBuffer(this.buffer);
+      if (this.program) gl.deleteProgram(this.program);
+      const loseCtx = gl.getExtension("WEBGL_lose_context");
+      if (loseCtx) loseCtx.loseContext();
+    }
+    if (this.canvas && this.canvas.parentElement === host) host.removeChild(this.canvas);
+  }
+}
+
+/* ============================================================
+   Demo wiring
+   ============================================================ */
+const host = document.getElementById("fluidHost");
+const sourceImg = document.getElementById("fluidSource");
+sourceImg.src = DEFAULT_IMAGE;
+
+const fluid = new FluidImage(host, {
+  objectFit: "cover",
+  quality: "high",
+  overflowPadding: 60,
+});
+fluid._currentUrl = DEFAULT_IMAGE;
+fluid.loadImage(DEFAULT_IMAGE);
+const [c1, c2, c3, c4] = resolveColors(DEFAULT_PRESET);
+fluid.setColors(c1, c2, c3, c4);
+
+// file upload
+document.getElementById("imgInput").addEventListener("change", (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  sourceImg.src = url;
+  fluid._currentUrl = url;
+  fluid.loadImage(url);
+});
+
+// palette swatches
+const swatchWrap = document.getElementById("swatches");
+Object.keys(COLOR_PRESETS).forEach((name) => {
+  const btn = document.createElement("button");
+  btn.className = "swatch" + (name === DEFAULT_PRESET ? " active" : "");
+  btn.title = name;
+  const colors = COLOR_PRESETS[name];
+  btn.style.background = `linear-gradient(135deg, ${colors[0]}, ${colors[1]} 34%, ${colors[2]} 67%, ${colors[3]})`;
+  btn.addEventListener("click", () => {
+    swatchWrap.querySelectorAll(".swatch").forEach(s => s.classList.remove("active"));
+    btn.classList.add("active");
+    const [a, b, c, d] = resolveColors(name);
+    fluid.setColors(a, b, c, d);
+  });
+  swatchWrap.appendChild(btn);
+});
+
+// gradient toggle
+const toggleBtn = document.getElementById("toggleGradient");
+toggleBtn.addEventListener("click", () => {
+  const on = !toggleBtn.classList.contains("on");
+  toggleBtn.classList.toggle("on", on);
+  fluid.update({ showGradient: on });
+});
+
+// sliders
+function bindSlider(id, key, fmt) {
+  const input = document.getElementById(id);
+  const label = document.getElementById("v-" + id);
+  input.addEventListener("input", () => {
+    const val = parseFloat(input.value);
+    fluid.update({ [key]: val });
+    label.textContent = fmt ? fmt(val) : val.toFixed(2);
+  });
+}
+bindSlider("radius", "radius");
+bindSlider("strength", "strength");
+bindSlider("distortion", "distortion");
+bindSlider("hueShift", "hueShift");
+bindSlider("colorCycle", "colorCycle");
+bindSlider("speed", "speed", (v) => v.toFixed(2) + "×");
+bindSlider("persistence", "persistence", (v) => v.toFixed(3));
+bindSlider("pointerSmooth", "pointerSmooth");
+
+// custom cursor dot (purely cosmetic, mirrors pointer over the stage)
+const cursorDot = document.getElementById("cursorDot");
+host.addEventListener("pointermove", (e) => {
+  cursorDot.style.left = e.clientX + "px";
+  cursorDot.style.top = e.clientY + "px";
+  cursorDot.style.opacity = "1";
+});
+host.addEventListener("pointerleave", () => { cursorDot.style.opacity = "0"; });
+
+})();
+</script>
+</body>
+</html>

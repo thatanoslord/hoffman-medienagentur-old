@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fluid Colors, Fluid Swirl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --paper:#ffffff;
+    --hint:#9a9a9a;
+  }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .hero{
+    min-height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:6vw 4vw;
+    position:relative;
+  }
+
+  .sr-only{
+    position:absolute;
+    width:1px; height:1px;
+    padding:0; margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+  }
+
+  .type-stage{
+    position:relative;
+    width:100%;
+    max-width:1600px;
+    aspect-ratio: 1920 / 760;
+    cursor:default;
+  }
+
+  /* static fallback text — shown until the effect is ready, and permanently
+     if WebGL / canvas fails, so the page never ships without the headline */
+  .type-fallback{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    font-family:'Archivo Black', 'Inter', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    color:var(--ink);
+    line-height:0.94;
+    letter-spacing:-0.01em;
+    text-align:center;
+    font-size:clamp(38px, 9.6vw, 168px);
+    user-select:none;
+  }
+  .type-stage[data-ready="true"] .type-fallback{
+    opacity:0;
+  }
+
+  .fluid-canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+    opacity:0;
+    transition:opacity .5s ease;
+    pointer-events:auto;
+  }
+  .type-stage[data-ready="true"] .fluid-canvas{
+    opacity:1;
+  }
+
+  .hint{
+    margin-top:28px;
+    font-size:13px;
+    color:var(--hint);
+    letter-spacing:0.02em;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1 class="sr-only">Fluid Colors, Fluid Swirl</h1>
+
+  <div class="type-stage" id="typeStage">
+    <div class="type-fallback" id="typeFallback" aria-hidden="true">
+      <span>Fluid Colors</span>
+      <span>Fluid Swirl</span>
+    </div>
+    <canvas class="fluid-canvas" id="fluidCanvas" aria-hidden="true"></canvas>
+  </div>
+
+  <p class="hint">Move your cursor across the words — click for a burst.</p>
+</section>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   Fluid Text — the same WebGL fluid-swirl engine as before,
+   but painted with a solid color instead of a photo, and
+   clipped with a CSS mask generated from the headline's own
+   letterforms so the swirl only ever shows inside the type.
+   ============================================================ */
+
+const TRAIL_LENGTH = 12;
+const NOISE_SIZE = 256;
+
+function generateNoiseTexture() {
+  const size = NOISE_SIZE;
+  const data = new Uint8Array(size * size * 4);
+  let seed = 48271;
+  const rand = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const idx = (y * size + x) * 4;
+      const angle = rand() * Math.PI * 2;
+      data[idx]     = ((Math.cos(angle) * 0.5 + 0.5) * 255) | 0;
+      data[idx + 1] = ((Math.sin(angle) * 0.5 + 0.5) * 255) | 0;
+      data[idx + 2] = (rand() * 255) | 0;
+      data[idx + 3] = 255;
+    }
+  }
+  return data;
+}
+const NOISE_DATA = generateNoiseTexture();
+
+const VERTEX_SHADER = `
+attribute vec2 aPosition;
+varying vec2 vUv;
+void main() {
+    vUv = aPosition * 0.5 + 0.5;
+    gl_Position = vec4(aPosition, 0.0, 1.0);
+}
+`;
+
+function buildFragmentShader() {
+  const trailCount = TRAIL_LENGTH;
+  const fbmOctaves = 4;
+  return `
+precision highp float;
+
+varying vec2 vUv;
+uniform vec2 uResolution;
+uniform vec2 uPointer;
+uniform float uPointerActive;
+uniform float uTime;
+uniform sampler2D uNoiseTex;
+uniform vec3 uBaseColor;
+uniform vec3 uEffectColor1;
+uniform vec3 uEffectColor2;
+uniform vec3 uEffectColor3;
+uniform vec3 uEffectColor4;
+uniform float uRadius;
+uniform float uStrength;
+uniform float uSpeed;
+uniform float uDistortion;
+uniform float uColorCycle;
+uniform vec2 uTrail[${TRAIL_LENGTH}];
+uniform vec2 uTrailVelocities[${TRAIL_LENGTH}];
+uniform float uTrailStrengths[${TRAIL_LENGTH}];
+uniform float uBurst;
+uniform vec2 uBurstPos;
+
+vec2 noiseTexCoord(vec2 i) {
+    return (floor(mod(i, 256.0)) + 0.5) / 256.0;
+}
+
+float gnoise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+    vec2 g00 = texture2D(uNoiseTex, noiseTexCoord(i)).rg * 2.0 - 1.0;
+    vec2 g10 = texture2D(uNoiseTex, noiseTexCoord(i + vec2(1.0, 0.0))).rg * 2.0 - 1.0;
+    vec2 g01 = texture2D(uNoiseTex, noiseTexCoord(i + vec2(0.0, 1.0))).rg * 2.0 - 1.0;
+    vec2 g11 = texture2D(uNoiseTex, noiseTexCoord(i + vec2(1.0, 1.0))).rg * 2.0 - 1.0;
+    return mix(mix(dot(g00, f - vec2(0.0, 0.0)),
+                   dot(g10, f - vec2(1.0, 0.0)), u.x),
+               mix(dot(g01, f - vec2(0.0, 1.0)),
+                   dot(g11, f - vec2(1.0, 1.0)), u.x), u.y);
+}
+
+mat2 rot(float a) {
+    float c = cos(a); float s = sin(a);
+    return mat2(c, -s, s, c);
+}
+
+float fbm(vec2 p) {
+    float v = 0.0, a = 0.5;
+    mat2 r = rot(0.37);
+    for (int i = 0; i < ${fbmOctaves}; i++) {
+        v += a * gnoise(p);
+        p = r * p * 2.0 + vec2(13.7, 31.5);
+        a *= 0.5;
+    }
+    return v;
+}
+
+vec2 curlNoise(vec2 p) {
+    float eps = 0.1;
+    float n1 = gnoise(p + vec2(0.0, eps));
+    float n2 = gnoise(p - vec2(0.0, eps));
+    float n3 = gnoise(p + vec2(eps, 0.0));
+    float n4 = gnoise(p - vec2(eps, 0.0));
+    float dFdy = (n1 - n2) / (2.0 * eps);
+    float dFdx = (n3 - n4) / (2.0 * eps);
+    return vec2(dFdy, -dFdx);
+}
+
+vec3 rgb2hsl(vec3 c) {
+    float mx = max(max(c.r, c.g), c.b);
+    float mn = min(min(c.r, c.g), c.b);
+    float l = (mx + mn) * 0.5;
+    if (mx == mn) return vec3(0.0, 0.0, l);
+    float d = mx - mn;
+    float s = l > 0.5 ? d / (2.0 - mx - mn) : d / (mx + mn);
+    float h;
+    if (mx == c.r) h = (c.g - c.b) / d + (c.g < c.b ? 6.0 : 0.0);
+    else if (mx == c.g) h = (c.b - c.r) / d + 2.0;
+    else h = (c.r - c.g) / d + 4.0;
+    h /= 6.0;
+    return vec3(h, s, l);
+}
+
+float hue2rgb(float p, float q, float t) {
+    if (t < 0.0) t += 1.0;
+    if (t > 1.0) t -= 1.0;
+    if (t < 1.0 / 6.0) return p + (q - p) * 6.0 * t;
+    if (t < 1.0 / 2.0) return q;
+    if (t < 2.0 / 3.0) return p + (q - p) * (2.0 / 3.0 - t) * 6.0;
+    return p;
+}
+
+vec3 hsl2rgb(vec3 hsl) {
+    if (hsl.y == 0.0) return vec3(hsl.z);
+    float q = hsl.z < 0.5 ? hsl.z * (1.0 + hsl.y) : hsl.z + hsl.y - hsl.z * hsl.y;
+    float p = 2.0 * hsl.z - q;
+    return vec3(
+        hue2rgb(p, q, hsl.x + 1.0 / 3.0),
+        hue2rgb(p, q, hsl.x),
+        hue2rgb(p, q, hsl.x - 1.0 / 3.0)
+    );
+}
+
+void main() {
+    vec2 uv = vUv;
+    float canvasAspect = uResolution.x / max(uResolution.y, 1.0);
+    float time = uTime * uSpeed;
+
+    vec2 aspect = vec2(canvasAspect, 1.0);
+    vec2 p = uv * aspect;
+    float radiusScaled = uRadius * max(canvasAspect, 1.0);
+
+    vec2 flowField = curlNoise(p * 2.0 + time * 0.3);
+
+    float hoverDist = distance(p, uPointer * aspect);
+    float hoverT = 1.0 - smoothstep(0.0, radiusScaled, hoverDist);
+    float hoverInfluence = hoverT * hoverT * hoverT * uPointerActive * uStrength;
+    float orbCore = pow(hoverT, 1.8) * uPointerActive;
+    float orbHalo = pow(hoverT, 0.8) * uPointerActive;
+    float orbRing = smoothstep(0.12, 0.58, hoverT) * (1.0 - smoothstep(0.58, 0.92, hoverT)) * uPointerActive;
+    float orbPulse = (0.5 + 0.5 * sin(uTime * 1.2)) * (0.12 + 0.2 * orbCore);
+
+    float trailInfluence = 0.0;
+    vec2 totalSwirl = vec2(0.0);
+
+    for (int i = 0; i < ${trailCount}; i++) {
+        float trailStr = uTrailStrengths[i];
+        if (trailStr < 0.001) continue;
+        vec2 trailPos = uTrail[i] * aspect;
+        vec2 toTrail = p - trailPos;
+        float dist = length(toTrail);
+        float t = 1.0 - smoothstep(0.0, radiusScaled, dist);
+        float influence = t * t * t * trailStr;
+
+        float noiseOff = gnoise(uv * 5.0 + time * 0.4 + float(i) * 1.7) * uDistortion;
+        influence *= (1.0 + noiseOff * 0.6);
+        trailInfluence += influence;
+
+        vec2 vel = uTrailVelocities[i];
+        float velMag = length(vel);
+
+        vec2 tangent = vec2(-toTrail.y, toTrail.x);
+        float vortexStr = influence * velMag * 2.0;
+        totalSwirl += tangent / max(dist, 0.02) * vortexStr * uDistortion * 0.4;
+
+        if (velMag > 0.001) {
+            totalSwirl += vel * influence * uDistortion * 0.3;
+        }
+
+        totalSwirl += flowField * influence * uDistortion * 0.25;
+    }
+    trailInfluence = clamp(trailInfluence, 0.0, 1.0) * uStrength * uPointerActive;
+
+    vec2 burstSwirl = vec2(0.0);
+    float burstInfluence = 0.0;
+    if (uBurst > 0.001) {
+        float burstDist = distance(p, uBurstPos * aspect);
+        float burstExpand = 1.0 + (1.0 - uBurst) * 2.0;
+        float burstRadius = radiusScaled * burstExpand;
+        float burstT = 1.0 - smoothstep(0.0, burstRadius, burstDist);
+        burstInfluence = burstT * burstT * uBurst * uBurst * uStrength;
+        vec2 burstDir = p - uBurstPos * aspect;
+        float bdLen = length(burstDir);
+        if (bdLen > 0.001) burstDir /= bdLen;
+        burstSwirl = burstDir * burstInfluence * uDistortion * 0.8
+                   + flowField * burstInfluence * uDistortion * 0.3;
+    }
+
+    float combined = clamp(hoverInfluence + trailInfluence + burstInfluence, 0.0, 1.0);
+    vec2 swirlUv = totalSwirl * 0.5 * uPointerActive + burstSwirl * 0.5;
+    swirlUv += flowField * hoverInfluence * 0.03;
+
+    vec3 c1hsl = rgb2hsl(uEffectColor1);
+    c1hsl.x = fract(c1hsl.x + uTime * uColorCycle);
+    vec3 cycledColor1 = hsl2rgb(c1hsl);
+
+    vec3 c2hsl = rgb2hsl(uEffectColor2);
+    c2hsl.x = fract(c2hsl.x + uTime * uColorCycle * 0.73);
+    vec3 cycledColor2 = hsl2rgb(c2hsl);
+
+    vec3 c3hsl = rgb2hsl(uEffectColor3);
+    c3hsl.x = fract(c3hsl.x + uTime * uColorCycle * 1.17);
+    vec3 cycledColor3 = hsl2rgb(c3hsl);
+
+    vec3 c4hsl = rgb2hsl(uEffectColor4);
+    c4hsl.x = fract(c4hsl.x + uTime * uColorCycle * 0.53);
+    vec3 cycledColor4 = hsl2rgb(c4hsl);
+
+    vec2 warpCoord = uv * 2.5 + (totalSwirl * uPointerActive + burstSwirl) * 4.0;
+    float warpLayer = fbm(warpCoord + time * 0.15);
+    float gradientT = fbm(warpCoord + warpLayer * 0.5 + time * 0.1);
+
+    float gt = clamp(gradientT * 0.5 + 0.5, 0.0, 1.0);
+    gt = gt * gt * (3.0 - 2.0 * gt);
+    float premiumShift = (fbm(uv * 1.6 + flowField * 0.9 + time * 0.08) * 0.5 + 0.5) - 0.5;
+    gt = clamp(gt + premiumShift * (0.08 * orbHalo + 0.05 * orbRing), 0.0, 1.0);
+
+    float seg = gt * 3.0;
+    vec3 gradientColor;
+    if (seg < 1.0) {
+        gradientColor = mix(cycledColor1, cycledColor2, seg);
+    } else if (seg < 2.0) {
+        gradientColor = mix(cycledColor2, cycledColor3, seg - 1.0);
+    } else {
+        gradientColor = mix(cycledColor3, cycledColor4, seg - 2.0);
+    }
+
+    float swirlMag = length(totalSwirl * uPointerActive + burstSwirl);
+    float distortionBand = clamp(orbRing * 1.15 + burstInfluence * 0.5 + trailInfluence * 0.35, 0.0, 1.0);
+    float gradientMix = smoothstep(0.02, 0.72, combined * 0.28 + orbHalo * 0.3 + swirlMag * 1.4);
+    vec3 premiumGradientColor = mix(gradientColor, vec3(1.0), 0.18 * orbCore + 0.06 * orbPulse);
+    vec3 effectColor = mix(uBaseColor, premiumGradientColor, gradientMix * (0.78 + 0.22 * orbHalo));
+
+    float imageMix = clamp(combined * 0.55 + orbCore * 0.2 + orbHalo * 0.15, 0.0, 1.0);
+    vec3 finalColor = mix(uBaseColor, effectColor, imageMix);
+
+    float glow = clamp(orbHalo * 0.55 + orbCore * orbCore * 0.45 + distortionBand * 0.18, 0.0, 1.0);
+    vec3 outerGlowColor = mix(gradientColor, premiumGradientColor, 0.5);
+    finalColor += outerGlowColor * glow * (0.22 + 0.1 * orbPulse);
+    finalColor += vec3(1.0) * orbCore * 0.06;
+    finalColor = clamp(finalColor, 0.0, 1.0);
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}
+`;
+}
+
+function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+
+function parseColorToRgb01(input) {
+  const hex = input.trim().replace('#', '');
+  const normalized = hex.length === 3
+    ? `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
+    : hex.length === 6 ? hex : hex.slice(0, 6).padEnd(6, "0");
+  const int = Number.parseInt(normalized, 16);
+  return [((int >> 16) & 255) / 255, ((int >> 8) & 255) / 255, (int & 255) / 255];
+}
+
+function compileShader(gl, type, source) {
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    const info = gl.getShaderInfoLog(shader) || "Unknown shader compile error";
+    gl.deleteShader(shader);
+    throw new Error(info);
+  }
+  return shader;
+}
+
+function createProgram(gl, fragmentSource) {
+  const vertex = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
+  const fragment = compileShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
+  const program = gl.createProgram();
+  gl.attachShader(program, vertex);
+  gl.attachShader(program, fragment);
+  gl.linkProgram(program);
+  gl.deleteShader(vertex);
+  gl.deleteShader(fragment);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    const info = gl.getProgramInfoLog(program) || "Unknown program link error";
+    gl.deleteProgram(program);
+    throw new Error(info);
+  }
+  return program;
+}
+
+/* ============================================================
+   FluidText — renders the swirl engine into a canvas that is
+   CSS-masked to the exact silhouette of the headline text.
+   ============================================================ */
+class FluidText {
+  constructor(canvas, host, opts) {
+    this.canvas = canvas;
+    this.host = host;
+    this.settings = Object.assign({
+      baseColor: "#0a0a0a",
+      colors: ["#0d9488", "#22d3ee", "#a7f3f0", "#ffffff"],
+      radius: 0.34,
+      strength: 0.95,
+      distortion: 0.55,
+      colorCycle: 0.045,
+      speed: 0.35,
+      persistence: 0.965,
+      pointerSmooth: 0.09,
+      maxDpr: 2,
+    }, opts);
+
+    this.reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    this.gl = canvas.getContext("webgl", {
+      alpha: true, premultipliedAlpha: false, antialias: true, preserveDrawingBuffer: false
+    });
+    if (!this.gl) throw new Error("WebGL is not available");
+
+    this._initGL();
+    this._bindEvents();
+    this._start();
+  }
+
+  _initGL() {
+    const gl = this.gl;
+    const fragSource = buildFragmentShader();
+    this.program = createProgram(gl, fragSource);
+    gl.useProgram(this.program);
+
+    const vertices = new Float32Array([-1, -1, 3, -1, -1, 3]);
+    this.buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+    const posLoc = gl.getAttribLocation(this.program, "aPosition");
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    this.loc = {
+      uResolution: gl.getUniformLocation(this.program, "uResolution"),
+      uPointer: gl.getUniformLocation(this.program, "uPointer"),
+      uPointerActive: gl.getUniformLocation(this.program, "uPointerActive"),
+      uTime: gl.getUniformLocation(this.program, "uTime"),
+      uNoiseTex: gl.getUniformLocation(this.program, "uNoiseTex"),
+      uBaseColor: gl.getUniformLocation(this.program, "uBaseColor"),
+      uEffectColor1: gl.getUniformLocation(this.program, "uEffectColor1"),
+      uEffectColor2: gl.getUniformLocation(this.program, "uEffectColor2"),
+      uEffectColor3: gl.getUniformLocation(this.program, "uEffectColor3"),
+      uEffectColor4: gl.getUniformLocation(this.program, "uEffectColor4"),
+      uRadius: gl.getUniformLocation(this.program, "uRadius"),
+      uStrength: gl.getUniformLocation(this.program, "uStrength"),
+      uSpeed: gl.getUniformLocation(this.program, "uSpeed"),
+      uDistortion: gl.getUniformLocation(this.program, "uDistortion"),
+      uColorCycle: gl.getUniformLocation(this.program, "uColorCycle"),
+      uTrail: gl.getUniformLocation(this.program, "uTrail"),
+      uTrailVelocities: gl.getUniformLocation(this.program, "uTrailVelocities"),
+      uTrailStrengths: gl.getUniformLocation(this.program, "uTrailStrengths"),
+      uBurst: gl.getUniformLocation(this.program, "uBurst"),
+      uBurstPos: gl.getUniformLocation(this.program, "uBurstPos"),
+    };
+
+    this.noiseTex = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, this.noiseTex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, NOISE_SIZE, NOISE_SIZE, 0, gl.RGBA, gl.UNSIGNED_BYTE, NOISE_DATA);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+
+    this.baseColorRgb = parseColorToRgb01(this.settings.baseColor);
+    const [c1, c2, c3, c4] = this.settings.colors;
+    this.effectColor1Rgb = parseColorToRgb01(c1);
+    this.effectColor2Rgb = parseColorToRgb01(c2);
+    this.effectColor3Rgb = parseColorToRgb01(c3);
+    this.effectColor4Rgb = parseColorToRgb01(c4);
+  }
+
+  _bindEvents() {
+    const host = this.host;
+    this.cw = Math.max(1, host.clientWidth || 1);
+    this.ch = Math.max(1, host.clientHeight || 1);
+
+    this.ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const cr = entry.contentRect;
+        this.cw = Math.max(1, Math.floor(cr.width));
+        this.ch = Math.max(1, Math.floor(cr.height));
+      }
+      this._resizeCanvas();
+      this._ensureRAF();
+    });
+    this.ro.observe(host);
+
+    this.targetPointer = { x: 0.5, y: 0.5 };
+    this.smoothPointer = { x: 0.5, y: 0.5 };
+    this.prevSmooth = { x: 0.5, y: 0.5 };
+    this.pointerVelocity = { x: 0, y: 0 };
+    this.pointerInside = false;
+    this.pointerActiveFade = 0;
+    this.burstValue = 0;
+    this.burstPos = { x: 0.5, y: 0.5 };
+    this.trail = Array.from({ length: TRAIL_LENGTH }, () => ({ x: -1, y: -1, vx: 0, vy: 0, strength: 0 }));
+    this.trailFlat = new Float32Array(TRAIL_LENGTH * 2);
+    this.trailVelFlat = new Float32Array(TRAIL_LENGTH * 2);
+    this.trailStrengths = new Float32Array(TRAIL_LENGTH);
+
+    const toLocal = (clientX, clientY) => {
+      const rect = host.getBoundingClientRect();
+      return {
+        x: clamp((clientX - rect.left) / rect.width, 0, 1),
+        y: clamp(1 - (clientY - rect.top) / rect.height, 0, 1),
+        valid: rect.width > 0 && rect.height > 0,
+      };
+    };
+
+    this._onPointerMove = (e) => {
+      if (this.reducedMotion) return;
+      const pt = toLocal(e.clientX, e.clientY);
+      if (!pt.valid) return;
+      this.targetPointer = { x: pt.x, y: pt.y };
+      this.pointerInside = true;
+      this._ensureRAF();
+    };
+    this._onPointerLeave = () => { this.pointerInside = false; this._ensureRAF(); };
+    this._onPointerDown = (e) => {
+      if (this.reducedMotion) return;
+      const pt = toLocal(e.clientX, e.clientY);
+      if (!pt.valid) return;
+      this.burstPos = { x: pt.x, y: pt.y };
+      this.burstValue = 1;
+      this._ensureRAF();
+    };
+    host.addEventListener("pointermove", this._onPointerMove);
+    host.addEventListener("pointerleave", this._onPointerLeave);
+    host.addEventListener("pointerdown", this._onPointerDown);
+
+    this.canvas.addEventListener("webglcontextlost", (e) => {
+      e.preventDefault();
+      window.cancelAnimationFrame(this.raf);
+      this.rafRunning = false;
+    }, false);
+    this.canvas.addEventListener("webglcontextrestored", () => {
+      this._initGL();
+      this._resizeCanvas();
+      this._ensureRAF();
+    }, false);
+  }
+
+  _resizeCanvas() {
+    const gl = this.gl;
+    const dpr = Math.min(window.devicePixelRatio || 1, this.settings.maxDpr);
+    const pw = Math.max(1, Math.floor(this.cw * dpr));
+    const ph = Math.max(1, Math.floor(this.ch * dpr));
+    if (pw !== this.lastPw || ph !== this.lastPh) {
+      this.canvas.width = pw;
+      this.canvas.height = ph;
+      gl.viewport(0, 0, pw, ph);
+      this.lastPw = pw; this.lastPh = ph;
+    }
+  }
+
+  _start() {
+    this._resizeCanvas();
+    this.start = performance.now();
+    this.lastFrameTime = 0;
+    this._render = this._render.bind(this);
+    this._ensureRAF();
+  }
+
+  _ensureRAF() {
+    if (!this.rafRunning && !this._destroyed) {
+      this.rafRunning = true;
+      this.lastFrameTime = performance.now();
+      this.raf = window.requestAnimationFrame(this._render);
+    }
+  }
+
+  _render(now) {
+    if (this._destroyed) { this.rafRunning = false; return; }
+    const gl = this.gl, loc = this.loc;
+    const dt = Math.min((now - this.lastFrameTime) / 1000, 0.1);
+    this.lastFrameTime = now;
+    const dtScale = dt * 60;
+    const s = this.settings;
+
+    const smoothK = 1 - Math.pow(1 - clamp(s.pointerSmooth, 0.01, 1), dtScale);
+    this.prevSmooth.x = this.smoothPointer.x; this.prevSmooth.y = this.smoothPointer.y;
+    this.smoothPointer.x += (this.targetPointer.x - this.smoothPointer.x) * smoothK;
+    this.smoothPointer.y += (this.targetPointer.y - this.smoothPointer.y) * smoothK;
+
+    const rawVx = dt > 0 ? (this.smoothPointer.x - this.prevSmooth.x) / dt : 0;
+    const rawVy = dt > 0 ? (this.smoothPointer.y - this.prevSmooth.y) / dt : 0;
+    const velDecay = Math.pow(0.5, dtScale);
+    this.pointerVelocity.x = this.pointerVelocity.x * velDecay + rawVx * (1 - velDecay);
+    this.pointerVelocity.y = this.pointerVelocity.y * velDecay + rawVy * (1 - velDecay);
+
+    const fadeTarget = this.pointerInside ? 1 : 0;
+    const fadeK = 1 - Math.pow(1 - 0.1, dtScale);
+    this.pointerActiveFade += (fadeTarget - this.pointerActiveFade) * fadeK;
+
+    if (this.burstValue > 0.001) {
+      this.burstValue *= Math.pow(0.94, dtScale);
+      if (this.burstValue < 0.001) this.burstValue = 0;
+    }
+
+    const trailDecay = Math.pow(s.persistence, dtScale);
+    for (let i = 0; i < TRAIL_LENGTH; i++) this.trail[i].strength *= trailDecay;
+
+    const dx = this.smoothPointer.x - this.trail[0].x;
+    const dy = this.smoothPointer.y - this.trail[0].y;
+    if (this.pointerInside && dx * dx + dy * dy > 5e-5) {
+      for (let i = TRAIL_LENGTH - 1; i > 0; i--) {
+        this.trail[i].x = this.trail[i - 1].x; this.trail[i].y = this.trail[i - 1].y;
+        this.trail[i].vx = this.trail[i - 1].vx; this.trail[i].vy = this.trail[i - 1].vy;
+        this.trail[i].strength = this.trail[i - 1].strength;
+      }
+      this.trail[0].x = this.smoothPointer.x; this.trail[0].y = this.smoothPointer.y;
+      this.trail[0].vx = this.pointerVelocity.x * dt; this.trail[0].vy = this.pointerVelocity.y * dt;
+      this.trail[0].strength = 1;
+    } else if (this.pointerInside) {
+      this.trail[0].x = this.smoothPointer.x; this.trail[0].y = this.smoothPointer.y;
+      this.trail[0].vx = this.pointerVelocity.x * dt; this.trail[0].vy = this.pointerVelocity.y * dt;
+      this.trail[0].strength = 1;
+    }
+
+    for (let i = 0; i < TRAIL_LENGTH; i++) {
+      this.trailFlat[i * 2] = this.trail[i].x;
+      this.trailFlat[i * 2 + 1] = this.trail[i].y;
+      this.trailVelFlat[i * 2] = this.trail[i].vx;
+      this.trailVelFlat[i * 2 + 1] = this.trail[i].vy;
+      this.trailStrengths[i] = this.trail[i].strength;
+    }
+
+    gl.uniform2f(loc.uResolution, this.lastPw || 1, this.lastPh || 1);
+    gl.uniform2f(loc.uPointer, this.smoothPointer.x, this.smoothPointer.y);
+    gl.uniform1f(loc.uPointerActive, this.pointerActiveFade);
+    gl.uniform1f(loc.uTime, (now - this.start) * 0.001);
+    gl.uniform1i(loc.uNoiseTex, 0);
+
+    const bc = this.baseColorRgb;
+    gl.uniform3f(loc.uBaseColor, bc[0], bc[1], bc[2]);
+    const c1 = this.effectColor1Rgb, c2 = this.effectColor2Rgb, c3 = this.effectColor3Rgb, c4 = this.effectColor4Rgb;
+    gl.uniform3f(loc.uEffectColor1, c1[0], c1[1], c1[2]);
+    gl.uniform3f(loc.uEffectColor2, c2[0], c2[1], c2[2]);
+    gl.uniform3f(loc.uEffectColor3, c3[0], c3[1], c3[2]);
+    gl.uniform3f(loc.uEffectColor4, c4[0], c4[1], c4[2]);
+
+    gl.uniform1f(loc.uRadius, s.radius);
+    gl.uniform1f(loc.uStrength, s.strength);
+    gl.uniform1f(loc.uSpeed, s.speed);
+    gl.uniform1f(loc.uDistortion, s.distortion);
+    gl.uniform1f(loc.uColorCycle, s.colorCycle);
+    gl.uniform2fv(loc.uTrail, this.trailFlat);
+    gl.uniform2fv(loc.uTrailVelocities, this.trailVelFlat);
+    gl.uniform1fv(loc.uTrailStrengths, this.trailStrengths);
+    gl.uniform1f(loc.uBurst, this.burstValue);
+    gl.uniform2f(loc.uBurstPos, this.burstPos.x, this.burstPos.y);
+
+    gl.disable(gl.BLEND);
+    gl.clearColor(0, 0, 0, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+    let allDecayed = this.pointerActiveFade < 0.001 && this.burstValue < 0.001;
+    if (allDecayed) {
+      for (let i = 0; i < TRAIL_LENGTH; i++) {
+        if (this.trailStrengths[i] > 0.001) { allDecayed = false; break; }
+      }
+    }
+    if (!this.pointerInside && allDecayed) { this.rafRunning = false; return; }
+    this.raf = window.requestAnimationFrame(this._render);
+  }
+
+  destroy() {
+    this._destroyed = true;
+    window.cancelAnimationFrame(this.raf);
+    this.ro && this.ro.disconnect();
+    this.host.removeEventListener("pointermove", this._onPointerMove);
+    this.host.removeEventListener("pointerleave", this._onPointerLeave);
+    this.host.removeEventListener("pointerdown", this._onPointerDown);
+  }
+}
+
+/* ============================================================
+   Text mask — rasterize the exact headline glyphs into a PNG
+   and use it as the CSS mask for the WebGL canvas, so the
+   swirl only ever paints inside the letterforms.
+   ============================================================ */
+const LINES = ["FLUID COLORS", "FLUID SWIRL"];
+const FONT_FAMILY = "'Archivo Black', 'Inter', sans-serif";
+
+function fitFontSize(ctx, lines, maxWidth) {
+  const ref = 200;
+  ctx.font = `400 ${ref}px ${FONT_FAMILY}`;
+  let maxRatio = 0;
+  lines.forEach((line) => {
+    const w = ctx.measureText(line).width;
+    maxRatio = Math.max(maxRatio, w / ref);
+  });
+  return maxWidth / maxRatio;
+}
+
+function buildTextMask(containerW, containerH) {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const c = document.createElement("canvas");
+  c.width = Math.max(1, Math.round(containerW * dpr));
+  c.height = Math.max(1, Math.round(containerH * dpr));
+  const ctx = c.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, containerW, containerH);
+
+  const paddingX = containerW * 0.015;
+  const fontSize = fitFontSize(ctx, LINES, containerW - paddingX * 2);
+  ctx.font = `400 ${fontSize}px ${FONT_FAMILY}`;
+  ctx.fillStyle = "#fff";
+  ctx.textBaseline = "alphabetic";
+
+  const lineHeight = fontSize * 0.94;
+  const capHeightRatio = 0.72; // approximate cap-height offset for baseline placement
+  const totalHeight = lineHeight * LINES.length;
+  let y = (containerH - totalHeight) / 2 + fontSize * capHeightRatio;
+
+  LINES.forEach((line) => {
+    const w = ctx.measureText(line).width;
+    const x = (containerW - w) / 2;
+    ctx.fillText(line, x, y);
+    y += lineHeight;
+  });
+
+  return c.toDataURL("image/png");
+}
+
+/* ============================================================
+   Wire it up
+   ============================================================ */
+const stage = document.getElementById("typeStage");
+const canvas = document.getElementById("fluidCanvas");
+const fallback = document.getElementById("typeFallback");
+
+function applyMask(dataUrl) {
+  const val = `url(${dataUrl})`;
+  canvas.style.maskImage = val;
+  canvas.style.webkitMaskImage = val;
+  canvas.style.maskRepeat = "no-repeat";
+  canvas.style.webkitMaskRepeat = "no-repeat";
+  canvas.style.maskSize = "100% 100%";
+  canvas.style.webkitMaskSize = "100% 100%";
+  canvas.style.maskPosition = "center";
+  canvas.style.webkitMaskPosition = "center";
+}
+
+let fluid = null;
+let maskRaf = null;
+
+function regenerateMask() {
+  const w = stage.clientWidth;
+  const h = stage.clientHeight;
+  if (w < 2 || h < 2) return;
+  const dataUrl = buildTextMask(w, h);
+  applyMask(dataUrl);
+}
+
+function scheduleMaskUpdate() {
+  if (maskRaf) cancelAnimationFrame(maskRaf);
+  maskRaf = requestAnimationFrame(regenerateMask);
+}
+
+function init() {
+  try {
+    fluid = new FluidText(canvas, stage, {
+      baseColor: "#0a0a0a",
+      colors: ["#0d9488", "#22d3ee", "#a7f3f0", "#ffffff"],
+      radius: 0.34,
+      strength: 0.95,
+      distortion: 0.55,
+      colorCycle: 0.045,
+      speed: 0.35,
+    });
+    regenerateMask();
+    stage.setAttribute("data-ready", "true");
+
+    const ro = new ResizeObserver(scheduleMaskUpdate);
+    ro.observe(stage);
+  } catch (err) {
+    // WebGL unavailable — keep the static fallback headline visible.
+    console.warn("Fluid text effect unavailable:", err);
+    canvas.style.display = "none";
+  }
+}
+
+const fontsReady = (document.fonts && document.fonts.ready)
+  ? document.fonts.load(`400 200px ${FONT_FAMILY}`).then(() => document.fonts.ready)
+  : Promise.resolve();
+
+fontsReady.then(init).catch(init);
+
+})();
+</script>
+</body>
+</html>

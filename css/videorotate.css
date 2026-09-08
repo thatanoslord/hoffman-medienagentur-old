@@ -381,7 +381,7 @@ body {
 }
 
 /* Mobile */
-@media (max-width: 768px) {
+@media (max-width: 740px) {
   .hero-media-section {
     padding: 40px 0 60px;
   }
@@ -473,7 +473,7 @@ body {
 
   .cpoc-create-description {
     max-width: 100%;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.6;
     margin-top: 0.9rem;
   }
@@ -613,9 +613,16 @@ body {
   will-change: transform;
   box-sizing: border-box;
 }
+@media (max-width: 1024.98px) {
+     .cs-wrap {
+      min-height: unset; 
+     }
+
+    }
 @media (max-width: 768px) {
   .hero-media-section {
-    padding: 20px 0 0px; /* was 40px 0 60px */
+    padding: 20px 0 ; /* was 40px 0 60px */
+    overflow: visible;
   }
 
   .hero-media-inner {
@@ -624,11 +631,15 @@ body {
 
   .cs-wrap {
     height: auto; /* remove 90rem */
-    padding: 8px 0 0;
+    padding: 0;
+    align-items: flex-start;
   }
 
   .cs-card {
     height: 249px;
     padding: 0.5rem;
+  }
+  .cs-media{
+    top: unset;
   }
 }

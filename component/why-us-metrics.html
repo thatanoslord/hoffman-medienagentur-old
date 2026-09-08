@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facts Section</title>
+
+    <style>
+      
+
+      .facts-v2 {
+        background: #fff;
+        padding: 72px 20px 92px;
+        overflow: hidden;
+      }
+
+      .facts-v2__container {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .facts-v2__top {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 80px;
+      }
+
+      .facts-v2__heading {
+        max-width: 470px;
+      }
+
+      .facts-v2__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        font-size: 14px;
+        line-height: 1;
+        color: #666666;
+        font-weight: 500;
+        font-family: Inter, sans-serif;
+      }
+
+      .facts-v2__eyebrow-icon {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        position: relative;
+        transform: rotate(18deg);
+      }
+
+      .facts-v2__eyebrow-icon::before,
+      .facts-v2__eyebrow-icon::after {
+        content: "";
+        position: absolute;
+        background: #666666;
+        border-radius: 999px;
+      }
+
+      .facts-v2__eyebrow-icon::before {
+        width: 2px;
+        height: 12px;
+        left: 5px;
+        top: 0;
+      }
+
+      .facts-v2__eyebrow-icon::after {
+        width: 12px;
+        height: 2px;
+        top: 5px;
+        left: 0;
+      }
+
+      .facts-v2 h2 {
+        margin: 0;
+        font-family: Sora, "Sora Placeholder", sans-serif;
+        font-size: clamp(42px, 5vw, 60px);
+        line-height: 1.12;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: normal;
+      }
+
+      .facts-v2__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 130px;
+        height: 42px;
+        padding: 0 20px;
+        margin-top: 86px;
+        border-radius: 999px;
+        background: #111111;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: Inter, sans-serif;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      .facts-v2__button:hover {
+        transform: translateY(-1px);
+        opacity: 0.92;
+      }
+
+      .facts-v2__cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+        position: relative;
+      }
+
+      .fact-card {
+        position: relative;
+        min-width: 420px;
+        min-height: 530px;
+        border-radius: 10px;
+        overflow: hidden;
+        will-change: transform, opacity, filter;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .fact-card__content {
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        bottom: 20px;
+        z-index: 3;
+      }
+
+      .fact-card__content--light {
+        color: #ffffff;
+      }
+
+      .fact-card__content--dark {
+        color: #111111;
+      }
+
+      .fact-card__stat {
+        margin: 0 0 8px;
+        font-weight: 400;
+        line-height: 112%;
+        font-style: normal;
+        font-size: 60px;
+        font-feature-settings: "zero", "tnum";
+        font-family: Sora, "Sora Placeholder", sans-serif;
+        text-align: left;
+        letter-spacing: 0;
+        text-wrap: balance;
+      }
+
+      .fact-card__title {
+        margin: 0 0 18px;
+        font-size: 19px;
+        line-height: 1.1;
+        font-weight: 500;
+        font-family: Sora, "Sora Placeholder", sans-serif;
+      }
+
+      .fact-card__text {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.45;
+        font-weight: 400;
+        font-family: Inter, "Inter Placeholder", sans-serif;
+        width: 100%;
+        height: auto;
+        word-break: break-word;
+      }
+
+      .fact-card--purple {
+        background: #20113f;
+      }
+
+      .fact-card--dark {
+        background: #000000;
+      }
+
+      .fact-card--light {
+        background: #fafafa;
+        border: 1px solid rgba(17, 17, 17, 0.04);
+      }
+
+      .fact-card--light .fact-card__text {
+        color: #7a7a7a;
+      }
+
+      .fact-card--dark .fact-card__text,
+      .fact-card--purple .fact-card__text {
+        color: rgba(255, 255, 255, 0.94);
+      }
+
+      .fact-card__media,
+      .fact-card__overlay {
+        position: absolute;
+        inset: 0;
+      }
+
+      .fact-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .fact-card__overlay {
+        background: linear-gradient(
+          to top,
+          rgba(14, 8, 30, 0.72) 10%,
+          rgba(14, 8, 30, 0.18) 48%,
+          rgba(14, 8, 30, 0.04) 100%
+        );
+      }
+
+      .fact-card__shape {
+        position: absolute;
+        top: -244px;
+        left: calc(45% - 178px);
+        width: 400px;
+        display: flex;
+        justify-content: center;
+        z-index: 1;
+        transform-origin: center center;
+        animation: aboutSpinLeft 18s linear infinite;
+      }
+
+      .fact-card__shape img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        aspect-ratio: auto 400 / 442;
+      }
+
+      .fact-card__ring {
+        position: absolute;
+        top: -268px;
+        right: -247px;
+        width: 585px;
+        z-index: 1;
+        transform-origin: center center;
+        animation: aboutSpinRight 18s linear infinite;
+      }
+
+      .fact-card__ring img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        aspect-ratio: auto 400 / 442;
+      }
+
+      @keyframes aboutSpinLeft {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes aboutSpinRight {
+        0% {
+          transform: scale(0.7) rotate(0deg);
+        }
+        100% {
+          transform: scale(0.7) rotate(360deg);
+        }
+      }
+
+      @media (max-width: 991px) {
+        .facts-v2__top {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 36px;
+        }
+
+        .facts-v2__button {
+          margin-top: 0;
+        }
+
+        .fact-card {
+          flex: 1 1 100%;
+          min-width: 100%;
+          min-height: 360px;
+        }
+
+        .fact-card--left,
+        .fact-card--middle,
+        .fact-card--right {
+          transform: none !important;
+          opacity: 1 !important;
+          filter: none !important;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .fact-card--left,
+        .fact-card--middle,
+        .fact-card--right,
+        .fact-card__shape,
+        .fact-card__ring {
+          animation: none !important;
+          transform: none !important;
+          opacity: 1 !important;
+          filter: none !important;
+        }
+      }
+
+      .fact-card--left,
+.fact-card--right {
+  z-index: 1;
+}
+
+.fact-card--middle {
+  z-index: 2;
+}
+    </style>
+  </head>
+  <body>
+    <div class="spacer"></div>
+
+    <section class="facts-v2" aria-labelledby="facts-title">
+      <div class="facts-v2__container">
+        <div class="facts-v2__top">
+          <div class="facts-v2__heading">
+            <div class="facts-v2__eyebrow">
+              <span class="facts-v2__eyebrow-icon" aria-hidden="true"></span>
+              <span>Why choose us</span>
+            </div>
+
+            <h2 id="facts-title">Built for smarter<br />digital growth</h2>
+          </div>
+
+          <a href="/about" class="facts-v2__button">Learn More</a>
+        </div>
+
+        <div class="facts-v2__cards">
+          <article class="fact-card fact-card--purple fact-card--left">
+            <div class="fact-card__media">
+              <img
+                src="./background.png"
+                alt=""
+                loading="lazy"
+                width="560"
+                height="707"
+              />
+              <div class="fact-card__overlay"></div>
+            </div>
+
+            <div class="fact-card__content fact-card__content--light">
+              <div class="fact-card__stat">94%</div>
+              <h3 class="fact-card__title">Efficiency boost</h3>
+              <p class="fact-card__text">
+                AI-powered automation systems designed to reduce repetitive work
+                and improve operational speed across daily processes.
+              </p>
+            </div>
+          </article>
+
+          <article class="fact-card fact-card--dark fact-card--middle">
+            <div class="fact-card__shape">
+              <img
+                src="https://framerusercontent.com/images/Ro5KnkmWDPEnld3hnFJ9vzXU3xY.png?width=400&height=442"
+                alt=""
+                loading="lazy"
+                width="220"
+                height="243"
+              />
+            </div>
+
+            <div class="fact-card__content fact-card__content--light">
+              <div class="fact-card__stat">18M+</div>
+              <h3 class="fact-card__title">Task automated</h3>
+              <p class="fact-card__text">
+                Scalable AI workflows successfully managing millions of actions
+                with consistent accuracy and real-time execution.
+              </p>
+            </div>
+          </article>
+
+          <article class="fact-card fact-card--light fact-card--right">
+            <div class="fact-card__ring">
+              <img
+                src="https://framerusercontent.com/images/pLuUcaj4KkrCFvFJLTXFnuPlFOo.png?width=691&height=696"
+                alt=""
+                loading="lazy"
+                width="220"
+                height="221"
+              />
+            </div>
+
+            <div class="fact-card__content fact-card__content--dark">
+              <div class="fact-card__stat">3.2x</div>
+              <h3 class="fact-card__title">Faster scaling</h3>
+              <p class="fact-card__text">
+                Flexible intelligent systems helping businesses expand faster
+                without increasing manual workload or complexity.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (() => {
+        const section = document.querySelector(".facts-v2");
+        const leftCard = document.querySelector(".fact-card--left");
+        const middleCard = document.querySelector(".fact-card--middle");
+        const rightCard = document.querySelector(".fact-card--right");
+
+        if (!section || !leftCard || !middleCard || !rightCard) return;
+
+        const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+        function updateCards() {
+  if (window.innerWidth <= 991) {
+    leftCard.style.transform = "";
+    middleCard.style.transform = "";
+    rightCard.style.transform = "";
+
+    leftCard.style.opacity = "";
+    middleCard.style.opacity = "";
+    rightCard.style.opacity = "";
+
+    leftCard.style.filter = "";
+    middleCard.style.filter = "";
+    rightCard.style.filter = "";
+    return;
+  }
+
+  const rect = section.getBoundingClientRect();
+  const viewportH = window.innerHeight;
+
+  const start = viewportH * 0.9;
+  const end = viewportH * 0.05;
+
+  const progress = clamp((start - rect.top) / (start - end), 0, 1);
+  const ease = 1 - Math.pow(1 - progress, 3);
+
+  const leftX = 640 * (1 - ease);
+  const rightX = -640 * (1 - ease);
+  const middleY = 106 * (1 - ease);
+
+  const revealOpacity = 0.15 + 0.85 * ease;
+  const revealBlur = 200 * (1 - ease);
+
+  leftCard.style.transform = `translate3d(${leftX}px, 0, 0)`;
+  middleCard.style.transform = `translate3d(0, ${middleY}px, 0)`;
+  rightCard.style.transform = `translate3d(${rightX}px, 0, 0)`;
+
+  leftCard.style.opacity = revealOpacity;
+  middleCard.style.opacity = revealOpacity;
+  rightCard.style.opacity = revealOpacity;
+
+  leftCard.style.filter = `blur(${revealBlur}px)`;
+  middleCard.style.filter = `blur(${revealBlur}px)`;
+  rightCard.style.filter = `blur(${revealBlur}px)`;
+}
+
+        let ticking = false;
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+
+          requestAnimationFrame(() => {
+            updateCards();
+            ticking = false;
+          });
+        }
+
+        updateCards();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", updateCards);
+      })();
+    </script>
+  </body>
+</html>

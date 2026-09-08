@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing Section Scroll Animation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: #efefef;
+      color: #111111;
+    }
+
+    :root {
+      --bg: #efefef;
+      --panel: #f8f8f8;
+      --white: #ffffff;
+      --text: #111111;
+      --muted: #6f6f73;
+      --line: rgba(17, 17, 17, 0.10);
+      --line-soft: rgba(255, 255, 255, 0.16);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+      --shadow: 0 10px 30px rgba(10, 10, 10, 0.05);
+    }
+
+    .pricing-reference {
+      padding: 90px 20px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .pricing-reference__container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-reference__header {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+
+    .pricing-reference__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 16px;
+      font-size: 14px;
+      line-height: 1;
+      color: #6b6b6b;
+      font-weight: 500;
+    }
+
+    .pricing-reference__eyebrow-icon {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .pricing-reference__header h2 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      font-weight: 500;
+    }
+
+    .pricing-board {
+      display: grid;
+      grid-template-columns: 0.95fr 1.35fr;
+      gap: 50px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(4px);
+    }
+
+    .pricing-card {
+      min-width: 0;
+    }
+
+    .pricing-card--dark {
+      position: relative;
+      z-index: 1;
+      transform: translate3d(var(--starter-shift, 180px), 0, 0);
+      will-change: transform;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(11, 11, 24, 0.2), rgba(8, 8, 18, 0.55)),
+        radial-gradient(circle at 20% 85%, rgba(114, 132, 255, 0.35), transparent 30%),
+        radial-gradient(circle at 80% 12%, rgba(47, 63, 193, 0.45), transparent 36%),
+        radial-gradient(circle at 78% 78%, rgba(11, 13, 35, 0.92), transparent 28%),
+        linear-gradient(145deg, #0c0821 0%, #121d5e 44%, #05030f 100%);
+    }
+
+    .pricing-card--dark::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(140deg, transparent 58%, rgba(255, 255, 255, 0.22) 59%, transparent 60%),
+        linear-gradient(140deg, transparent 73%, rgba(255, 255, 255, 0.12) 74%, transparent 75%);
+      pointer-events: none;
+    }
+
+    .pricing-card--dark::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -18% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(88, 109, 255, 0.22), transparent 62%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .pricing-card--light {
+      position: relative;
+      z-index: 3;
+      margin-left: -42px;
+      background: #fff;
+    }
+
+    .pricing-card__inner {
+      display: flex;
+      flex-direction: column;
+      min-height: 485px;
+      height: 100%;
+      padding: 22px 22px 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pricing-card--light .pricing-card__inner {
+      padding: 20px 18px 18px 28px;
+    }
+
+    .pricing-card__top {
+      flex: 1;
+    }
+
+    .pricing-card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+
+    .pricing-card--dark h3,
+    .pricing-card--dark p,
+    .pricing-card--dark li,
+    .pricing-card--dark .pricing-period,
+    .pricing-card--dark .pricing-value {
+      color: #ffffff;
+    }
+
+    .pricing-card--light h3,
+    .pricing-card--light .pricing-value {
+      color: #151515;
+    }
+
+    .pricing-card p {
+      margin: 0;
+      max-width: 34ch;
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .pricing-card--dark p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .pricing-card--light p {
+      color: var(--muted);
+    }
+
+    .pricing-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      margin-top: 28px;
+      padding: 0 22px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .pricing-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .pricing-btn--light {
+      background: #ffffff;
+      color: #181818;
+    }
+
+    .pricing-btn--dark {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .pricing-list,
+    .pricing-list--soft {
+      list-style: none;
+      margin: 34px 0 0;
+      padding: 0;
+    }
+
+    .pricing-list li,
+    .pricing-list--soft li {
+      position: relative;
+      padding-left: 32px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .pricing-list li + li,
+    .pricing-list--soft li + li {
+      margin-top: 16px;
+    }
+
+    .pricing-list li::before,
+    .pricing-list--soft li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 15px;
+      line-height: 1;
+      font-weight: 400;
+    }
+
+    .pricing-card--dark .pricing-list li::before {
+      background: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .pricing-list--soft li {
+      color: #707070;
+    }
+
+    .pricing-list--soft li::before {
+      background: #f0f0f0;
+      color: #717171;
+      border: 1px solid rgba(17, 17, 17, 0.06);
+    }
+
+    .pricing-list-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 34px;
+    }
+
+    .pricing-card__price {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      padding-top: 20px;
+      margin-top: 26px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .pricing-card__price--light {
+      border-top: 1px solid var(--line);
+    }
+
+    .pricing-value {
+      font-size: clamp(2rem, 3vw, 2.15rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 500;
+    }
+
+    .pricing-period {
+      font-size: 14px;
+      line-height: 1.2;
+      padding-bottom: 3px;
+    }
+
+    .pricing-card--light .pricing-period {
+      color: #2d2d2d;
+    }
+
+    @media (max-width: 980px) {
+      .pricing-board {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .pricing-card__inner,
+      .pricing-card--light .pricing-card__inner {
+        min-height: auto;
+        padding: 22px;
+      }
+
+      .pricing-list-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .pricing-card--dark,
+      .pricing-card--light {
+        transform: none !important;
+        margin-left: 0;
+      }
+
+      .pricing-card--light {
+        z-index: 1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .pricing-reference {
+        padding: 64px 16px;
+      }
+
+      .pricing-reference__header {
+        margin-bottom: 34px;
+      }
+
+      .pricing-reference__header h2 {
+        font-size: clamp(2.1rem, 9vw, 3rem);
+        line-height: 1.02;
+      }
+
+      .pricing-board {
+        padding: 10px;
+      }
+
+      .pricing-card__inner,
+      .pricing-card--light .pricing-card__inner {
+        padding: 20px 18px;
+      }
+
+      .pricing-btn {
+        min-height: 46px;
+        margin-top: 22px;
+      }
+
+      .pricing-value {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div style="height: 100vh;"></div>
+  <section class="pricing-reference" aria-labelledby="pricing-title">
+    <div class="pricing-reference__container">
+      <div class="pricing-reference__header">
+        <p class="pricing-reference__eyebrow">
+          <span class="pricing-reference__eyebrow-icon" aria-hidden="true">✣</span>
+          Price plan
+        </p>
+        <h2 id="pricing-title">Flexible plans for<br>modern teams</h2>
+      </div>
+
+      <div class="pricing-board">
+        <article class="pricing-card pricing-card--dark">
+          <div class="pricing-card__inner">
+            <div class="pricing-card__top">
+              <h3>AI starter plan</h3>
+              <p>
+                Perfect for startups and small teams looking to automate
+                daily workflows with practical AI solutions.
+              </p>
+
+              <a href="/contact" class="pricing-btn pricing-btn--light">
+                Start a project today
+              </a>
+
+              <ul class="pricing-list" role="list">
+                <li>AI workflow automation</li>
+                <li>Smart chatbot setup</li>
+                <li>Real-time data insights</li>
+                <li>AI content generation</li>
+                <li>Basic system integration</li>
+              </ul>
+            </div>
+
+            <div class="pricing-card__price">
+              <span class="pricing-value">$299.00 USD</span>
+              <span class="pricing-period">/month</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pricing-card pricing-card--light">
+          <div class="pricing-card__inner">
+            <div class="pricing-card__top">
+              <h3>AI scaling plan</h3>
+              <p>
+                Built for modern businesses needing advanced automation,
+                intelligent insights, and scalable AI operations.
+              </p>
+
+              <a href="/contact" class="pricing-btn pricing-btn--dark">
+                Start a project today
+              </a>
+
+              <div class="pricing-list-grid">
+                <ul class="pricing-list pricing-list--soft" role="list">
+                  <li>Everything in starter plan</li>
+                  <li>Advanced workflow systems</li>
+                  <li>Predictive business analytics</li>
+                  <li>Custom AI model training</li>
+                  <li>CRM and API integration</li>
+                </ul>
+
+                <ul class="pricing-list pricing-list--soft" role="list">
+                  <li>Priority support access</li>
+                  <li>Performance optimization</li>
+                  <li>Dedicated AI strategist</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pricing-card__price pricing-card__price--light">
+              <span class="pricing-value">$799.00 USD</span>
+              <span class="pricing-period">/month</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+   <div style="height: 100vh;"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const section = document.querySelector(".pricing-reference");
+      const starterCard = document.querySelector(".pricing-card--dark");
+
+      if (!section || !starterCard) return;
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      function updateStarterCard() {
+        if (window.innerWidth <= 980) {
+          starterCard.style.setProperty("--starter-shift", "0px");
+          return;
+        }
+
+        const rect = section.getBoundingClientRect();
+        const viewportH = window.innerHeight;
+
+        const start = viewportH * 0.92;
+        const end = viewportH * 0.18;
+
+        const progress = clamp((start - rect.top) / (start - end), 0, 1);
+
+        const maxShift = 180;
+        const shiftX = maxShift - (maxShift * progress);
+
+        starterCard.style.setProperty("--starter-shift", `${shiftX}px`);
+      }
+
+      updateStarterCard();
+
+      window.addEventListener("scroll", updateStarterCard, { passive: true });
+      window.addEventListener("resize", updateStarterCard);
+    });
+  </script>
+
+</body>
+</html>

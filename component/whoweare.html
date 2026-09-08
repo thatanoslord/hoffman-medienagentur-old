@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Section Rebuild</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f3f3f3;
+      --text: #111111;
+      --muted: #6f6f6f;
+      --soft: #bdbdbd;
+      --line: rgba(17, 17, 17, 0.45);
+      --ring: #d4d4d4;
+      --card: #fbfbfb;
+      --btn: #111111;
+      --btn-text: #ffffff;
+      --container: 1280px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #ffffff;
+      color: #000;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .about-section {
+      padding: 88px 0 110px;
+      overflow: hidden;
+    }
+
+    .about-wrap {
+      width: min(var(--container), calc(100% - 96px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(480px, 0.95fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .about-copy {
+      padding-top: 8px;
+    }
+
+    .about-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+
+    .about-kicker svg {
+      width: 40px;
+      height: 40px;
+      stroke: currentColor;
+      opacity: 0.9;
+      flex: 0 0 auto;
+    animation: spinRing 16s linear infinite;
+    }
+
+    .about-title {
+          max-width: 600px;
+    font-size: clamp(36px, 5vw, 48px);
+    line-height: 56.64px;
+    letter-spacing: normal;
+    font-weight: 400;
+    color: #000;
+    font-family: "Sora", "Sora Placeholder", sans-serif;
+    }
+
+    .about-title .fade {
+      color: var(--soft);
+    }
+
+    .about-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 136px;
+      height: 42px;
+      padding: 0 20px;
+      margin-top: 38px;
+      border-radius: 999px;
+      background: var(--btn);
+      color: var(--btn-text);
+      font-size: 14px;
+      font-weight: 600;
+      transition:
+        transform 180ms var(--ease),
+        opacity 180ms var(--ease),
+        background-color 180ms var(--ease);
+    }
+
+    .about-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .about-art {
+      position: relative;
+      min-height: 470px;
+    }
+
+    .about-topline {
+      position: absolute;
+    top: 18px;
+    left: 92px;
+    width: 150px;
+    height: 213px;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    }
+
+    .about-topline-dot {
+      position: absolute;
+      top: -9px;
+      left: 144px;
+      width: 18px;
+      height: 18px;
+      border: 4px solid #111111;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    .about-topline-text {
+      position: absolute;
+      top: -16px;
+      left: 168px;
+      background: transparent;
+      padding-left: 14px;
+      color: #000;
+      font-size: 16px;
+      line-height: 1.9;
+      white-space: nowrap;
+    }
+
+    .about-circle {
+      position: absolute;
+      left: -18px;
+      bottom: 8px;
+      width: 230px;
+      aspect-ratio: 1;
+    }
+
+    .about-circle-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .about-circle-ring::before {
+     content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, #cccccc 0deg 4deg, #ffffff 4deg 8deg);
+    -webkit-mask: radial-gradient(circle, transparent 0 72px, #000 73px);
+    mask: radial-gradient(circle, transparent 0 89px, #0d0038 73px);
+    animation: spinRing 16s linear infinite;
+    transform-origin: center;
+    }
+
+    .about-circle-core {
+     position: absolute;
+    inset: 36px;
+    border: 1px solid rgba(17, 17, 17, 0.7);
+    border-radius: 50%;
+    display: flex;
+    /* place-items: center; */
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    }
+
+    .about-circle-core span {
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 400;
+    }
+
+    .about-card {
+      position: absolute;
+      right: 10px;
+      bottom: 0;
+      width: 270px;
+      min-height: 286px;
+      background: #f5f5f5;
+      padding: 26px 26px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 24px;
+    }
+
+    .about-card-number {
+      font-size: 62px;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .about-card p {
+      max-width: 16ch;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    @keyframes spinRing {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-circle-ring::before {
+        animation: none;
+      }
+
+      .about-btn {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .about-wrap {
+        grid-template-columns: 1fr;
+        gap: 64px;
+      }
+
+      .about-art {
+        min-height: 500px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .about-section {
+        padding: 64px 0 84px;
+      }
+
+      .about-wrap {
+        width: min(100% - 32px, 680px);
+      }
+
+      .about-title {
+        max-width: none;
+        font-size: clamp(34px, 10vw, 52px);
+      }
+
+      .about-title br {
+        display: none;
+      }
+
+      .about-art {
+        min-height: auto;
+        display: grid;
+        gap: 26px;
+      }
+
+      .about-topline,
+      .about-circle,
+      .about-card {
+        position: relative;
+        inset: auto;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+      }
+
+      .about-topline {
+        width: 100%;
+        height: 90px;
+      }
+
+      .about-topline-dot {
+        left: 88px;
+      }
+
+      .about-topline-text {
+        left: 108px;
+        max-width: calc(100% - 116px);
+        white-space: normal;
+        font-size: 14px;
+      }
+
+      .about-circle {
+        width: 220px;
+      }
+
+      .about-circle-core {
+        inset: 36px;
+      }
+
+      .about-circle-core span {
+        font-size: 40px;
+      }
+
+      .about-card {
+        width: 100%;
+        min-height: 240px;
+      }
+
+      .about-card-number {
+        font-size: 56px;
+      }
+
+      .about-card p {
+        max-width: 20ch;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <section class="about-section">
+    <div class="about-wrap">
+      <div class="about-copy">
+        <div class="about-kicker">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 4.5l1.7 3.5 3.8.5-2.8 2.7.7 3.8-3.4-1.8-3.4 1.8.7-3.8-2.8-2.7 3.8-.5L12 4.5z" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+          <span>Who we are</span>
+        </div>
+
+        <h2 class="about-title">
+          We design AI systems that turn complexity into clear, scalable business intelligence
+        </h2>
+
+        <a href="/about" class="about-btn">More about us</a>
+      </div>
+
+      <div class="about-art">
+        <div class="about-topline">
+          <span class="about-topline-dot" aria-hidden="true"></span>
+          <p class="about-topline-text">Years of digital innovation experience</p>
+        </div>
+
+        <div class="about-circle" aria-label="12 plus years of digital innovation experience">
+          <div class="about-circle-ring"></div>
+          <div class="about-circle-core">
+            <span data-count="12">12</span>
+            <span>+</span>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-number"><span data-count="250">250</span>+</div>
+          <p>Projects delivered across AI, automation, and digital systems</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const counters = document.querySelectorAll('[data-count]');
+
+    const animateCounter = (el) => {
+      const target = parseInt(el.dataset.count, 10);
+      const duration = 1200;
+      const startTime = performance.now();
+
+      const update = (time) => {
+        const progress = Math.min((time - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(target * eased);
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target;
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    counters.forEach((counter) => observer.observe(counter));
+  </script>
+  
+</body>
+</html>

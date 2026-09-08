@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feature Flipper / Card Reveal</title>
+    <style>
+      :root {
+        --transition-duration: 0.8s;
+        --transition-ease: cubic-bezier(0.44, 0, 0.56, 1);
+        --card-bg: #111111;
+        --card-bg-active: #000000;
+        --text-color: #ffffff;
+        --text-muted: rgba(255, 255, 255, 0.65);
+        --accent: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #ffffff;
+      }
+
+      .page {
+        background: radial-gradient(
+          101.4% 61.3% at 12.4% 00%,
+          #8b00e863 0%,
+          #d7bdff 36.292934%,
+          rgb(168 24 255 / 6%) 86.29293355855856%,
+          rgb(235 239 255 / 0%) 100%
+        );;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+      }
+
+      /* ---------------- Feature Flipper Component ---------------- */
+      .flipper-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 1400px;
+      }
+
+      .flipper {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        height: 320px;
+        position: relative;
+      }
+
+      .flip-card {
+        position: relative;
+        height: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        background: var(--card-bg);
+        flex: 1 1 50%;
+        min-width: 0;
+        transition:
+          flex-basis var(--transition-duration) var(--transition-ease),
+          flex-grow var(--transition-duration) var(--transition-ease);
+      }
+
+      /* Default neutral: ~49.6% / 50.4% split (matches original ratios) */
+      .flip-card[data-card="1"] {
+        flex-basis: 49.59%;
+      }
+      .flip-card[data-card="2"] {
+        flex-basis: 50.41%;
+      }
+
+      /* When card 1 is active: 75% / 25% */
+      .flipper.active-1 .flip-card[data-card="1"] {
+        flex-basis: 75%;
+      }
+      .flipper.active-1 .flip-card[data-card="2"] {
+        flex-basis: 25%;
+      }
+
+      /* When card 2 is active: 25% / 75% */
+      .flipper.active-2 .flip-card[data-card="1"] {
+        flex-basis: 25%;
+      }
+      .flipper.active-2 .flip-card[data-card="2"] {
+        flex-basis: 75%;
+      }
+
+      .flip-card-inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 28px;
+        color: var(--text-color);
+      }
+
+      .flip-card-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        /* opacity: 0.35; */
+        transition: opacity var(--transition-duration) var(--transition-ease);
+      }
+
+      .flip-card.expanded .flip-card-bg {
+        opacity: 0.55;
+      }
+
+      /* .flip-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.75) 100%
+        );
+        pointer-events: none;
+      } */
+
+      .flip-card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(6px);
+      }
+
+      .flip-card-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .flip-card-tag {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 2;
+        white-space: nowrap;
+      }
+
+      .flip-card-title {
+        font-size: clamp(18px, 2.2vw, 26px);
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0 0 8px 0;
+        position: relative;
+        z-index: 2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .flip-card-desc {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--text-muted);
+        margin: 0;
+        position: relative;
+        z-index: 2;
+        max-width: 420px;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          opacity 0.5s ease,
+          max-height 0.6s ease;
+        transition-delay: 0s;
+      }
+
+      .flip-card.expanded .flip-card-desc {
+        opacity: 1;
+        max-height: 100px;
+        transition-delay: 0.25s;
+      }
+
+      /* Shrink title/tag text a bit gracefully when card is small */
+      .flip-card:not(.expanded) .flip-card-title {
+        font-size: clamp(14px, 1.4vw, 18px);
+      }
+
+      /* ---------------- Mobile: stack vertically ---------------- */
+      @media (max-width: 809px) {
+        .flipper {
+          flex-direction: column;
+          height: 634px;
+          max-width: 360px;
+          width: 100%;
+        }
+
+        .flip-card[data-card="1"] {
+          flex-basis: 50%;
+        }
+        .flip-card[data-card="2"] {
+          flex-basis: calc(50% - 10px);
+        }
+
+        .flipper.active-1 .flip-card[data-card="1"] {
+          flex-basis: 69.87%;
+        }
+        .flipper.active-1 .flip-card[data-card="2"] {
+          flex-basis: calc(30.13% - 10px);
+        }
+
+        .flipper.active-2 .flip-card[data-card="1"] {
+          flex-basis: calc(30% - 10px);
+        }
+        .flipper.active-2 .flip-card[data-card="2"] {
+          flex-basis: 70%;
+        }
+
+        .flip-card:not(.expanded) .flip-card-desc {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="services-v2-header">
+          <div class="h2-eyebrow">
+            <div class="services-hero__label" data-hero-rotator>
+              <span class="services-hero__label-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  id="3357759637"
+                  role="presentation"
+                  viewBox="0 0 20 20"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  style="display: block; color: #000"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.958 0C2.485 0 1.291 1.194 1.291 2.667C1.291 3.415 1.602 4.09 2.1 4.575L0 8.249L1.159 8.908L3.261 5.23C3.484 5.29 3.715 5.333 3.958 5.333C5.43 5.333 6.624 4.139 6.624 2.667C6.624 1.194 5.43 0 3.958 0ZM3.958 4C3.221 4 2.624 3.403 2.624 2.667C2.624 1.93 3.221 1.333 3.958 1.333C4.694 1.333 5.291 1.93 5.291 2.667C5.291 3.403 4.694 4 3.958 4Z"
+                    transform="translate(6.042 2.667)"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M5.239 2C4.941 0.852 3.908 0 2.667 0C1.194 0 0 1.194 0 2.667C0 4.139 1.194 5.333 2.667 5.333C3.908 5.333 4.941 4.481 5.239 3.333H9.393V2H5.239ZM2.667 4C1.93 4 1.333 3.403 1.333 2.667C1.333 1.93 1.93 1.333 2.667 1.333C3.403 1.333 4 1.93 4 2.667C4 3.403 3.403 4 2.667 4Z"
+                    transform="translate(2 12)"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M3.958 3.575C3.715 3.575 3.484 3.618 3.261 3.679L1.159 0L0 0.66L2.1 4.333C1.602 4.818 1.291 5.492 1.291 6.242C1.291 7.714 2.485 8.908 3.958 8.908C5.43 8.908 6.624 7.714 6.624 6.242C6.624 4.769 5.43 3.575 3.958 3.575ZM3.958 7.575C3.221 7.575 2.624 6.978 2.624 6.242C2.624 5.505 3.221 4.908 3.958 4.908C4.694 4.908 5.291 5.505 5.291 6.242C5.291 6.978 4.694 7.575 3.958 7.575Z"
+                    transform="translate(11.376 8.425)"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <p class="services-hero__label-text">Our services</p>
+            </div>
+            <h2>AI systems built for smarter growth</h2>
+          </div>
+
+          <p>
+            From intelligent workflows and support agents to predictive analysis
+            and content automation, we design practical AI solutions that help
+            your business move faster, work better, and scale with confidence.
+          </p>
+        </div>
+      <div class="flipper-stack">
+        <div class="flipper active-1" id="flipperA">
+          <div class="flip-card expanded" data-card="1" id="card1">
+            <div
+              class="flip-card-bg"
+              style="
+                background-image: url(&quot;https://framerusercontent.com/images/6wWRCcU3VjlzD2dkWLPzdbfz9BQ.png?width=942&height=600&quot;);
+              "
+            ></div>
+            <div class="flip-card-inner">
+              <div class="flip-card-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                    stroke="white"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M8 12h8M12 8v8"
+                    stroke="white"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <div class="flip-card-tag">AI Agent</div>
+              <h3 class="flip-card-title">Ship Products Faster Than Ever</h3>
+              <p class="flip-card-desc">
+                Build, test, and launch in weeks, not months.
+              </p>
+            </div>
+          </div>
+
+          <div class="flip-card" data-card="2" id="card2">
+            <div
+              class="flip-card-bg"
+              style="
+                background-image: url(&quot;https://framerusercontent.com/images/xApG7qRyYC8eZgn0W3EoYlj5rO8.jpg?width=1884&height=1200&quot;);
+              "
+            ></div>
+            <div class="flip-card-inner">
+              <div class="flip-card-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 4v5h5M20 20v-5h-5"
+                    stroke="white"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M4.5 15a8 8 0 0014.9 2.5M19.5 9A8 8 0 004.6 6.5"
+                    stroke="white"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <div class="flip-card-tag">Automation</div>
+              <h3 class="flip-card-title">Scale Without Breaking Things</h3>
+              <p class="flip-card-desc">
+                Grow confidently with infrastructure that adapts automatically.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flipper active-2" id="flipperB">
+          <div class="flip-card" data-card="1" id="card3">
+            <div
+              class="flip-card-bg"
+              style="
+                background-image: url(&quot;	https://framerusercontent.com/images/BpAF2774xoJbRQ4ujlnLzGL8k4.jpg?width=1884&height=1200&quot;);
+              "
+            ></div>
+            <div class="flip-card-inner">
+              <div class="flip-card-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+                    stroke="white"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <div class="flip-card-tag">Insights</div>
+              <h3 class="flip-card-title">Understand Every Metric</h3>
+              <p class="flip-card-desc">
+                Real-time analytics that surface what actually matters.
+              </p>
+            </div>
+          </div>
+
+          <div class="flip-card expanded" data-card="2" id="card4">
+            <div
+              class="flip-card-bg"
+              style="
+                background-image: url(&quot;https://framerusercontent.com/images/gr37sBknmPPBpi9KaCKBKzUsY.jpg?width=1884&height=1200&quot;);
+              "
+            ></div>
+            <div class="flip-card-inner">
+              <div class="flip-card-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="3"
+                    stroke="white"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M8 12h8M12 8v8"
+                    stroke="white"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <div class="flip-card-tag">Security</div>
+              <h3 class="flip-card-title">Enterprise-Grade Protection</h3>
+              <p class="flip-card-desc">
+                Bank-level encryption and compliance, built in from day one.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        function setupFlipper(flipperEl, cardA, cardB, defaultActive) {
+          function activate(cardNumber) {
+            flipperEl.classList.remove("active-1", "active-2");
+            flipperEl.classList.add("active-" + cardNumber);
+
+            cardA.classList.toggle("expanded", cardNumber === 1);
+            cardB.classList.toggle("expanded", cardNumber === 2);
+          }
+
+          cardA.addEventListener("click", function () {
+            activate(1);
+          });
+          cardB.addEventListener("click", function () {
+            activate(2);
+          });
+
+          activate(defaultActive);
+        }
+
+        // Row 1: card 1 expanded by default
+        setupFlipper(
+          document.getElementById("flipperA"),
+          document.getElementById("card1"),
+          document.getElementById("card2"),
+          1,
+        );
+
+        // Row 2: card 4 (position 2 within its row) expanded by default
+        setupFlipper(
+          document.getElementById("flipperB"),
+          document.getElementById("card3"),
+          document.getElementById("card4"),
+          2,
+        );
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blur Navigation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
+      --text-base: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.4rem);
+      --text-xl: clamp(1.45rem, 1.1rem + 1.4vw, 2.2rem);
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+      --radius-full: 999px;
+      --bg: #ece9e2;
+      --surface: rgba(255,255,255,0.28);
+      --surface-strong: rgba(255,255,255,0.44);
+      --border: rgba(255,255,255,0.5);
+      --text: rgba(17,17,17,0.94);
+      --muted: rgba(17,17,17,0.5);
+      --faint: rgba(17,17,17,0.28);
+      --shadow: 0 28px 64px -22px rgba(17,17,17,0.28), inset 0 -1px 0 rgba(17,17,17,0.06);
+      --panel-width: min(460px, calc(100vw - 24px));
+      --bar-height: 76px;
+      --row-height: 68px;
+      --ease: cubic-bezier(.33,0,.13,1);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 34%),
+        radial-gradient(circle at 80% 20%, rgba(173,196,214,0.35), transparent 25%),
+        linear-gradient(135deg, #ded9d1 0%, #e9e5de 35%, #d7d2cb 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .scene {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 132px 24px 96px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: end;
+      transition: filter 0.45s var(--ease), transform 0.45s var(--ease), opacity 0.45s var(--ease);
+      will-change: filter;
+    }
+
+    body.menu-open .scene {
+      filter: blur(18px) saturate(0.88);
+      transform: scale(0.985);
+      opacity: 0.92;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero {
+      padding: 0 0 24px;
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.48);
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: var(--muted);
+      font-size: var(--text-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      max-width: 9ch;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .cards {
+      display: grid;
+      gap: 16px;
+      align-self: stretch;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.42);
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 18px 38px -24px rgba(17,17,17,0.28);
+    }
+
+    .card small {
+      display: block;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--faint);
+      font-size: var(--text-xs);
+    }
+
+    .card strong {
+      display: block;
+      font-size: var(--text-lg);
+      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+    }
+
+    .card span {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: var(--text-sm);
+    }
+
+    .nav-wrap {
+      position: fixed;
+      inset: 16px 0 auto;
+      z-index: 50;
+      display: grid;
+      justify-content: center;
+      pointer-events: none;
+      padding-inline: 12px;
+    }
+
+    .nav-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(239,238,234,0.16);
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 40;
+    }
+
+    body.menu-open .nav-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .blur-nav {
+      width: var(--panel-width);
+      pointer-events: auto;
+      border-radius: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(30px) saturate(1.25);
+      -webkit-backdrop-filter: blur(30px) saturate(1.25);
+      overflow: clip;
+      position: relative;
+      transition: height 0.55s cubic-bezier(.22,1,.36,1), transform 0.45s var(--ease), background-color 0.35s ease;
+      height: var(--bar-height);
+    }
+
+    .blur-nav::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.95), rgba(255,255,255,0));
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .blur-nav.open {
+      height: 425px;
+    }
+
+    .nav-bar {
+      min-height: var(--bar-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 18px 18px 26px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .wordmark {
+      font-size: 15px;
+      line-height: 1.1;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .menu-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(17,17,17,0.12);
+      background: rgba(255,255,255,0.3);
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1), background-color 0.25s ease, scale 0.25s ease;
+    }
+
+    .menu-toggle:hover { background: rgba(17,17,17,0.05); transform: scale(1.06); }
+    .blur-nav.open .menu-toggle { transform: rotate(90deg); }
+    .blur-nav.open .menu-toggle:hover { transform: rotate(90deg) scale(1.06); }
+
+    .menu-toggle span {
+      position: absolute;
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: #111;
+      transition: transform 0.45s cubic-bezier(.22,1,.36,1), top 0.45s cubic-bezier(.22,1,.36,1), width 0.45s cubic-bezier(.22,1,.36,1);
+    }
+
+    .menu-toggle span:first-child { top: 17px; left: 11px; width: 18px; }
+    .menu-toggle span:last-child { top: 23px; left: 11px; width: 11px; }
+    .blur-nav.open .menu-toggle span:first-child { top: 19px; left: 12px; width: 16px; transform: rotate(45deg); }
+    .blur-nav.open .menu-toggle span:last-child { top: 19px; left: 12px; width: 16px; transform: rotate(-45deg); }
+
+    .nav-drawer {
+      padding: 14px 26px 18px;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.38s var(--ease);
+    }
+
+    .blur-nav.open .nav-drawer {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .menu-rows {
+      display: grid;
+    }
+
+    .menu-link {
+      --row-blur: 1.7px;
+      --row-opacity: 0.52;
+      --row-scale: 0.992;
+      --row-y: 10px;
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      align-items: center;
+      min-height: var(--row-height);
+      border: 0;
+      border-radius: 18px;
+      padding: 0 18px 0 0;
+      text-decoration: none;
+      color: var(--text);
+      background: transparent;
+      filter: blur(var(--row-blur));
+      opacity: var(--row-opacity);
+      transform: translateY(var(--row-y)) scale(var(--row-scale));
+      transition:
+        opacity 0.34s var(--ease),
+        filter 0.34s var(--ease),
+        transform 0.34s var(--ease),
+        background-color 0.25s ease;
+    }
+
+    .blur-nav.open .menu-link {
+      --row-blur: 0px;
+      --row-opacity: 1;
+      --row-scale: 1;
+      --row-y: 0px;
+    }
+
+    .blur-nav.open .menu-link:nth-child(1) { transition-delay: .04s; }
+    .blur-nav.open .menu-link:nth-child(2) { transition-delay: .07s; }
+    .blur-nav.open .menu-link:nth-child(3) { transition-delay: .10s; }
+    .blur-nav.open .menu-link:nth-child(4) { transition-delay: .13s; }
+
+    .menu-link:hover,
+    .menu-link:focus-visible,
+    .menu-rows.is-spotlight .menu-link.active {
+      background: rgba(255,255,255,0.22);
+      filter: blur(0);
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .menu-rows.is-spotlight .menu-link:not(.active) {
+      filter: blur(2.2px);
+      opacity: 0.34;
+      transform: scale(0.988);
+    }
+
+    .menu-link-index {
+      justify-self: start;
+      font-size: var(--text-xs);
+      color: var(--faint);
+      letter-spacing: 0.12em;
+    }
+
+    .menu-link-label {
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      font-weight: 600;
+    }
+
+    .menu-link-arrow {
+      color: var(--faint);
+      font-size: 1.15rem;
+      transform: translateX(-6px);
+      opacity: 0;
+      transition: transform 0.28s var(--ease), opacity 0.28s ease;
+    }
+
+    .menu-link:hover .menu-link-arrow,
+    .menu-link:focus-visible .menu-link-arrow,
+    .menu-link.active .menu-link-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .nav-foot {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(17,17,17,0.12);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.34s ease .16s, transform 0.34s var(--ease) .16s;
+    }
+
+    .blur-nav.open .nav-foot {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 84px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(17,17,17,0.55);
+      animation: pulse 1.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: .25; transform: rotate(0deg) scale(1); }
+      to { opacity: 1; transform: rotate(360deg) scale(1.05); }
+    }
+
+    .clock {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .socials {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .socials a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: var(--text-xs);
+      padding: 6px 8px;
+      border-radius: 999px;
+    }
+
+    .socials a:hover,
+    .socials a:focus-visible {
+      color: var(--text);
+      background: rgba(255,255,255,0.25);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+      top: 16px;
+      z-index: 100;
+      background: #fff;
+      color: #111;
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+
+    @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+      .nav-backdrop,
+      .blur-nav,
+      .eyebrow,
+      .card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(255,255,255,0.88);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .scene {
+        grid-template-columns: 1fr;
+        padding-top: 124px;
+      }
+
+      h1 { max-width: 11ch; }
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-wrap { inset: 12px 0 auto; }
+      .blur-nav.open { height: 418px; }
+      .nav-bar { padding-inline: 18px; }
+      .nav-drawer { padding-inline: 18px; }
+      .menu-link { grid-template-columns: 38px 1fr auto; }
+      .menu-link-label { font-size: clamp(1.35rem, 7vw, 1.9rem); }
+      .nav-foot { align-items: flex-start; flex-direction: column; }
+      .socials { justify-content: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="nav-backdrop" data-backdrop></div>
+
+  <div class="nav-wrap">
+    <nav class="blur-nav" aria-label="Primary" data-nav>
+      <div class="nav-bar">
+        <div class="wordmark" data-logo>ARKTER</div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="blur-nav-drawer" aria-label="Open menu" data-toggle>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="nav-drawer" id="blur-nav-drawer">
+        <div class="menu-rows" data-rows>
+          <a class="menu-link" href="#marketplace" data-link>
+            <span class="menu-link-index">01</span>
+            <span class="menu-link-label">Marketplace</span>
+            <span class="menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="menu-link" href="#sellers" data-link>
+            <span class="menu-link-index">02</span>
+            <span class="menu-link-label">Sellers</span>
+            <span class="menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="menu-link" href="#editorial" data-link>
+            <span class="menu-link-index">03</span>
+            <span class="menu-link-label">Editorial</span>
+            <span class="menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="menu-link" href="#pricing" data-link>
+            <span class="menu-link-index">04</span>
+            <span class="menu-link-label">Pricing</span>
+            <span class="menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="nav-foot">
+          <div class="status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="clock" data-clock>10:37</span>
+          </div>
+          <div class="socials" aria-label="Social links">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="page-shell">
+    <main id="main" class="scene">
+      <section class="hero">
+        <div class="eyebrow">Immersive navigation · Frosted UI</div>
+        <h1>Blurred focus with a sharp menu spotlight.</h1>
+        <p>
+          This standalone rebuild recreates the floating glass bar, the expanding drawer, the full-page blur treatment,
+          the hovered-link spotlight, and the live clock in plain HTML, CSS, and JavaScript.
+        </p>
+      </section>
+
+      <aside class="cards" aria-label="Highlights">
+        <article class="card">
+          <small>Interaction</small>
+          <strong>Focused row spotlight</strong>
+          <span>Hover a link and the active row stays sharp while the other rows softly blur and dim.</span>
+        </article>
+        <article class="card">
+          <small>Motion</small>
+          <strong>Drawer with staggered reveal</strong>
+          <span>The panel opens from a compact top bar, then the rows and footer step in with slight delays.</span>
+        </article>
+        <article class="card">
+          <small>Fallback</small>
+          <strong>Safe without blur support</strong>
+          <span>The glass effect gracefully falls back to a solid translucent panel where backdrop blur is unsupported.</span>
+        </article>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const nav = document.querySelector('[data-nav]');
+    const toggle = document.querySelector('[data-toggle]');
+    const backdrop = document.querySelector('[data-backdrop]');
+    const rows = document.querySelector('[data-rows]');
+    const links = [...document.querySelectorAll('[data-link]')];
+    const clock = document.querySelector('[data-clock]');
+    let open = false;
+    let hoverTimer = null;
+
+    function setOpen(next) {
+      open = next;
+      nav.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+
+    toggle.addEventListener('click', () => setOpen(!open));
+    backdrop.addEventListener('click', () => setOpen(false));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && open) setOpen(false);
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(() => {
+          rows.classList.add('is-spotlight');
+          links.forEach((item) => item.classList.remove('active'));
+          link.classList.add('active');
+        }, 60);
+      });
+
+      link.addEventListener('focus', () => {
+        rows.classList.add('is-spotlight');
+        links.forEach((item) => item.classList.remove('active'));
+        link.classList.add('active');
+      });
+
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    rows.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer);
+      rows.classList.remove('is-spotlight');
+      links.forEach((item) => item.classList.remove('active'));
+    });
+
+    rows.addEventListener('focusout', (event) => {
+      if (!rows.contains(event.relatedTarget)) {
+        rows.classList.remove('is-spotlight');
+        links.forEach((item) => item.classList.remove('active'));
+      }
+    });
+
+    function updateClock() {
+      const now = new Date();
+      clock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
