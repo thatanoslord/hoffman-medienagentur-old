@@ -2204,10 +2204,10 @@ grid-column: span 2 / span 2;
       item.appendChild(lamp);
     });
   });
-    </script>
+  </script>
 
   <!-- footer -->
-  <script src="./js/components/hmafooter.js"></script>
+  <!-- <script src="./js/components/hmafooter.js"></script> -->
      
   
   <!-- FAQ -->
@@ -2306,6 +2306,31 @@ grid-column: span 2 / span 2;
   })();
 </script>
 
+<!-- footer -->
+
+<script>
+    (function () {
+      const revealItems = document.querySelectorAll(
+        ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid",
+      );
+
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.5,
+        },
+      );
+
+      revealItems.forEach((item) => observer.observe(item));
+    })();
+  </script>
 
 </body>
 </html>
