@@ -100,6 +100,14 @@
     .nav-btn-dark:hover .btn-icon {
       transform: translateX(133px);
     } 
+
+    .nav-btn:hover .service-icon{
+      transform: translateX(113px);
+    }
+    .nav-btn:hover .services-label{
+      transform: translateX(-48px);
+    }
+
      
     
   </style>
@@ -635,6 +643,11 @@
       gap: 24px;
     }
 
+    .gp-services-header .nav-btn.light{
+      width: 180px;
+      gap: 12px;
+    }
+
     .gp-services-header-content {
       display: flex;
       flex-direction: column;
@@ -669,7 +682,7 @@
     color: #fff;
     font-family: "Inter Display", sans-serif;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     }
 
     .gp-services-title h2 {
@@ -760,9 +773,11 @@
       min-width: 0;
       max-height: 640px;
       border-radius: 19px;
-      background: #f5f7ff;
+      background: #fff;
       position: relative;
       overflow: hidden;
+      box-shadow: 0px 0px 20px 6px rgb(0 0 0 / 7%);
+    -webkit-box-shadow: 0px 0px 20px 6px rgb(0 0 0 / 7%);
     }
 
     .gp-service-icon {
@@ -3601,9 +3616,9 @@
         </div>
 
         <div class="about-cta-wrap" id="aboutCta">
-          <a href="/contact" class="nav-btn light" style=" gap: 10px;" >
+          <a href="/about.html" class="nav-btn light" style=" gap: 10px;" >
             <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
-            <span class="btn-label">Get in Touch</span>
+            <span class="btn-label">More Details </span>
           </a>
         </div>
       </div>
@@ -3625,7 +3640,7 @@
       <div class="gp-services-header">
         <div class="gp-services-header-content">
           <div class="gp-services-eyebrow-wrap">
-          <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon" />
+          <img src="./assets/icons/white-triangle.svg" alt="" class="gp-services-eyebrow-icon" />
           <p class="gp-services-eyebrow">Our Services</p>
         </div>
           <div class="gp-services-title">
@@ -3635,9 +3650,9 @@
           </div>
         </div>
 
-        <a href="/contact" class="nav-btn light">
-          <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
-          <span class="btn-label">Book A Call</span>
+        <a href="hmaservices.html" class="nav-btn light" >
+          <img class="btn-icon service-icon" src="./assets/icons/dark-icon.svg" alt="" />
+          <span class="btn-label services-label">More Services</span>
         </a>
       </div>
 
@@ -3666,9 +3681,9 @@
                 <span>GEO / AEO</span>
                 <span>Brand &amp; Logo</span>
               </div>
-              <a href="/contact" class="nav-btn">
+              <a href="./ignition.html" class="nav-btn">
                 <img class="btn-icon" src="./assets/icons/icon.svg" alt="">
-                <span class="btn-label">Book A Call</span>
+                <span class="btn-label">More details</span>
               </a>
             </div>
           </article>
@@ -3695,9 +3710,9 @@
                 <span>Social Media</span>
                 <span>Content Systems</span>
               </div>
-              <a href="/contact" class="nav-btn light">
-                <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="">
-                <span class="btn-label">Book A Call</span>
+              <a href="./ignition.html" class="nav-btn">
+                <img class="btn-icon" src="./assets/icons/icon.svg" alt="">
+                <span class="btn-label">More details</span>
               </a>
             </div>
           </article>
@@ -3724,9 +3739,9 @@
                 <span>AI Phone</span>
                 <span>Integrations</span>
               </div>
-              <a href="/contact" class="nav-btn light">
-                <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="">
-                <span class="btn-label">Book A Call</span>
+              <a href="./ignition.html" class="nav-btn">
+                <img class="btn-icon" src="./assets/icons/icon.svg" alt="">
+                <span class="btn-label">More details</span>
               </a>
             </div>
           </article>
@@ -3753,9 +3768,9 @@
                 <span>Readiness</span>
                 <span>EU Strategy</span>
               </div>
-              <a href="/contact" class="nav-btn light">
-                <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="">
-                <span class="btn-label">Book A Call</span>
+              <a href="./ignition.html" class="nav-btn">
+                <img class="btn-icon" src="./assets/icons/icon.svg" alt="">
+                <span class="btn-label">More details</span>
               </a>
             </div>
           </article>
@@ -3781,9 +3796,9 @@
                 <span>Hosting</span>
                 <span>IT Support</span>
               </div>
-              <a href="/contact" class="nav-btn light">
-                <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="">
-                <span class="btn-label">Book A Call</span>
+             <a href="./ignition.html" class="nav-btn">
+                <img class="btn-icon" src="./assets/icons/icon.svg" alt="">
+                <span class="btn-label">More details</span>
               </a>
             </div>
           </article>
@@ -3923,8 +3938,8 @@
     <div class="cpoc-services-inner">
       <div class="cpoc-services-top">
         <div class="gp-services-eyebrow-wrap">
-          <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon" >
-          <p class="gp-services-eyebrow">OUr Projects</p>
+          <img src="./assets/icons/white-triangle.svg" alt="" class="gp-services-eyebrow-icon" >
+          <p class="gp-services-eyebrow">Our Projects</p>
         </div>
         <h2 class="cpoc-services-heading">Recent Works
         </h2>
@@ -4019,7 +4034,10 @@
 
   <!-- blog section -->
   <section class="bento-section">
-
+     <div class="gp-services-eyebrow-wrap">
+          <img src="./assets/icons/black-triangle.svg" alt="" class="gp-services-eyebrow-icon">
+          <p class="gp-services-eyebrow" style="color: #000;">Our Blogs</p>
+        </div>
     <div class="bento-container">
       <div class="blogs-header">
         <div class="faq-ornament-right blog-ornament " aria-hidden="true">
@@ -4116,7 +4134,7 @@
 
 
     </div>
-    <a href="/contact" class="nav-btn blog-cta">
+    <a href="./hmablogs.html" class="nav-btn blog-cta">
       <img class="btn-icon" src="./assets/icons/icon.svg" alt="" />
       <span class="btn-label">More Insights
 
@@ -4348,7 +4366,7 @@
               Send us an email anytime and we’ll respond with support or details
             </h3>
 
-            <a href="/contact" class="faq-contact-card__button">
+            <a href="./contact.html" class="faq-contact-card__button">
               <span class="faq-contact-card__button-text faq-contact-card__button-text--primary">Get in touch with
                 us</span>
               <span class="faq-contact-card__button-text faq-contact-card__button-text--secondary">Get in touch with
