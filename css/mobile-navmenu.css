@@ -2,7 +2,7 @@
   --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
   --radius-full: 999px;
-  --panel-width: min(460px, calc(100vw - 24px));
+  --panel-width: calc(100vw - 24px);
   --bar-height: 76px;
   --row-height: 68px;
   --ease: cubic-bezier(.33,0,.13,1);
@@ -379,4 +379,9 @@ body.mobile-menu-open .mobile-nav-backdrop {
   body.mobile-menu-open {
     overflow: auto;
   }
+}
+
+.mobile-blur-nav {
+  width: min(460px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
 }
