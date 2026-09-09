@@ -41,19 +41,20 @@
       border-radius: 45px;
       overflow: hidden;
       padding: 10px 24px 10px 10px;
-      gap: 14px;
+      gap: 16px;
       font-family: "DM Sans", sans-serif;
       font-weight: 500;
       font-size: 18px;
       text-align: left;
       box-sizing: border-box;
       cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.7);
+      /* border: 1px solid rgba(255, 255, 255, 0.7); */
       background: #000;
       color: #ffffff;
       transition: padding 0.5s ease-in-out;
       text-decoration: none;
     }
+    
 
     .nav-btn.light {
       background: #ffffff;
@@ -91,6 +92,16 @@
     .nav-btn:hover .about-cta-text {
       transform: translateX(-48px);
     }
+
+     .nav-btn-dark:hover .btn-label {
+      transform: translateX(-48px);
+    }
+
+    .nav-btn-dark:hover .btn-icon {
+      transform: translateX(133px);
+    } 
+     
+    
   </style>
   <style>
     /* Container */
@@ -383,6 +394,22 @@
     }
 
     /* ornaments */
+@keyframes eyebrowSpin {
+      from {
+        transform:  rotate(0deg);
+      }
+
+      to {
+        transform:  rotate(360deg);
+      }
+    }
+
+    .gp-services-eyebrow-icon {
+      width: 25px;
+    fill: #fff;
+    animation: eyebrowSpin 7.8s linear infinite;
+    }
+
     @keyframes aboutSpinLeft {
       from {
         transform: rotate(0deg);
@@ -639,14 +666,10 @@
 
     .gp-services-eyebrow {
       margin: 0;
-      color: transparent;
-      font-family: "Inter Display", sans-serif;
-      font-size: 18px;
-      line-height: 28px;
-      background: linear-gradient(180deg, var(--token-a4c4b682-f338-43c8-9c0f-5200c6162db5, rgb(0, 85, 254)) 0%, var(--token-d8404571-fad1-4c38-888c-6fbb7414353a, rgb(0, 0, 0)) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    color: #fff;
+    font-family: "Inter Display", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
     }
 
     .gp-services-title h2 {
@@ -3392,12 +3415,10 @@
             digital partner your business grows with.
           </p>
           <a href="/contact" class="nav-btn nav-btn-dark" style=" height: 54px;
-    width: 210px;
+    width: 200px;
     font-size: 22px;">
             <img class="btn-icon" src="./assets/icons/icon.svg" alt="" />
-            <span class="btn-label">Get in Touch
-
-            </span>
+            <span class="btn-label">Get in Touch</span>
           </a>
         </div>
       </div>
@@ -3580,11 +3601,9 @@
         </div>
 
         <div class="about-cta-wrap" id="aboutCta">
-          <a href="/contact" class="nav-btn light">
-            <img class="btn-icon" src="./assets/icons/icon.svg" alt="" />
-            <span class="btn-label">Get in Touch
-
-            </span>
+          <a href="/contact" class="nav-btn light" style=" gap: 10px;" >
+            <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
+            <span class="btn-label">Get in Touch</span>
           </a>
         </div>
       </div>
@@ -3607,7 +3626,7 @@
         <div class="gp-services-header-content">
           <div class="gp-services-eyebrow-wrap">
           <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon" />
-          <p class="gp-services-eyebrow">Leistungen</p>
+          <p class="gp-services-eyebrow">Our Services</p>
         </div>
           <div class="gp-services-title">
             <h2>Explore our <em>core pillars</em></h2>
@@ -3632,7 +3651,7 @@
                 width="4096" height="2731">
             </div>
             <div class="gp-service-body">
-              <img src="./circleflee.png" class="gp-service-icon" alt="">
+              <img src="./assets/shapes/circleflee.png" class="gp-service-icon" alt="">
               <div class="gp-service-copy">
                 <h3>01. IGNITION</h3>
                 <h4>Digital Foundation</h4>
@@ -3661,7 +3680,7 @@
                 width="3000" height="2000">
             </div>
             <div class="gp-service-body">
-              <img src="./circleflee.png" class="gp-service-icon" alt="">
+              <img src="./assets/shapes/circleflee.png" class="gp-service-icon" alt="">
               <div class="gp-service-copy">
                 <h3>02. ENGINE</h3>
                 <h4>Content &amp; Media Machine</h4>
@@ -3690,7 +3709,7 @@
                 height="2926">
             </div>
             <div class="gp-service-body">
-              <img src="./circleflee.png" class="gp-service-icon" alt="">
+              <img src="./assets/shapes/circleflee.png" class="gp-service-icon" alt="">
               <div class="gp-service-copy">
                 <h3>03. AI OPS</h3>
                 <h4>Automation &amp; Agents</h4>
@@ -3719,7 +3738,7 @@
                 width="4096" height="2731">
             </div>
             <div class="gp-service-body">
-              <img src="./circleflee.png" class="gp-service-icon" alt="">
+              <img src="./assets/shapes/circleflee.png" class="gp-service-icon" alt="">
               <div class="gp-service-copy">
                 <h3>04. DPP</h3>
                 <h4>Digital Product Passport Readiness</h4>
@@ -3748,7 +3767,7 @@
                 width="3000" height="2000">
             </div>
             <div class="gp-service-body">
-              <img src="./circleflee.png" class="gp-service-icon" alt="">
+              <img src="./assets/shapes/circleflee.png" class="gp-service-icon" alt="">
               <div class="gp-service-copy">
                 <h3>05. IT &amp; Infrastructure</h3>
                 <h4>Managed Systems Without Complexity</h4>
@@ -3904,12 +3923,8 @@
     <div class="cpoc-services-inner">
       <div class="cpoc-services-top">
         <div class="gp-services-eyebrow-wrap">
-          <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon" style="
-    width: 25px;
-    fill: #fff;
-    animation: aboutSpinLeft 14.8s linear infinite;
-">
-          <p class="gp-services-eyebrow">Leistungen</p>
+          <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon" >
+          <p class="gp-services-eyebrow">OUr Projects</p>
         </div>
         <h2 class="cpoc-services-heading">Recent Works
         </h2>
@@ -4024,7 +4039,7 @@
       <div class="bento-grid">
         <article class="bento-card bento-card-lg reveal reveal-left">
           <div class="bento-graphic"
-            style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80');">
+            style="background-image: url('./assets/images/gallery/driven-data.webp');">
           </div>
           <div class="bento-overlay"></div>
           <div class="bento-content">
@@ -4040,7 +4055,7 @@
 
         <article class="bento-card bento-card-lg reveal reveal-right">
           <div class="bento-graphic"
-            style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80');">
+            style="background-image: url('./assets/images/gallery/datalaptop.webp');">
           </div>
           <div class="bento-overlay"></div>
           <div class="bento-content">
@@ -4055,7 +4070,7 @@
 
         <article class="bento-card reveal reveal-up reveal-delay-1">
           <div class="bento-graphic"
-            style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80');">
+            style="background-image: url('./assets/images/gallery/TEAM-hand.webp');">
           </div>
           <div class="bento-overlay"></div>
           <div class="bento-content">
@@ -4070,7 +4085,7 @@
 
         <article class="bento-card reveal reveal-up reveal-delay-2">
           <div class="bento-graphic"
-            style="background-image: url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80');">
+            style="background-image: url('./assets/images/gallery/OFFICE.webp');">
           </div>
           <div class="bento-overlay"></div>
           <div class="bento-content">
@@ -4085,8 +4100,8 @@
 
         <article class="bento-card  reveal reveal-up reveal-delay-3 zbi">
           <div class="bento-graphic"
-            style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80');">
-          </div>
+                style="background-image: url('./assets/images/gallery/mocuplaptop.webp');">
+              </div>
           <div class="bento-overlay"></div>
           <div class="bento-content">
             <span class="bento-eyebrow">Limitless</span>
