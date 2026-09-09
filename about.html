@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Hoffmann MedienAgentur</title>
+  <link rel="stylesheet" href="./css/mobile-navmenu.css">
   <style>
     html {
       box-sizing: border-box;
@@ -944,6 +945,11 @@
         display: none;
       }
     }
+    @media (max-width: 1000px) {
+    .nav-wrap {
+        display: none;
+    }
+}
   </style>
 
 
@@ -3618,6 +3624,74 @@
     </div>
   </nav>
 
+    <!-- Mobile Blur Navigation -->
+  <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+
+  <div class="mobile-nav-wrap">
+    <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+      <div class="mobile-nav-bar">
+        <img class="mobile-wordmark" data-mobile-logo src="./assets/images/logo/HMA - Logo soft.png" alt="ARKTER">
+
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-blur-nav-drawer"
+          aria-label="Open menu" data-mobile-toggle>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+        <div class="mobile-menu-rows" data-mobile-rows>
+          <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+            <span class="mobile-menu-link-index">01</span>
+            <span class="mobile-menu-link-label">About</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmaservices.html" data-mobile-link>
+            <span class="mobile-menu-link-index">02</span>
+            <span class="mobile-menu-link-label">Services</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+            <span class="mobile-menu-link-index">03</span>
+            <span class="mobile-menu-link-label">Blogs</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+            <span class="mobile-menu-link-index">04</span>
+            <span class="mobile-menu-link-label">Contact</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="mobile-menu-link" href="./privacy-policy.html" data-mobile-link>
+            <span class="mobile-menu-link-index">05</span>
+            <span class="mobile-menu-link-label">Privacy and Policy</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="mobile-menu-link" href="./legal-notice.html" data-mobile-link>
+            <span class="mobile-menu-link-index">06</span>
+            <span class="mobile-menu-link-label">Legal Notice</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-foot">
+          <div class="mobile-status">
+            <span class="mobile-status-dot" aria-hidden="true"></span>
+            <span class="mobile-clock" data-mobile-clock>10:37</span>
+          </div>
+
+          <div class="mobile-socials" aria-label="Social links">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
   <!-- hero section -->
   <section class="about-hero" id="about-hero">
     <div class="about-hero__bg"></div>
@@ -4387,6 +4461,9 @@
       </div>
     </div>
   </footer>
+
+    <!-- mobile navigation -->
+  <script src="./js/components/mobile-navmenu.js"></script>
 
 
 
