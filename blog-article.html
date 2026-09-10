@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/hma-header.css">
+  <link rel="stylesheet" href="./css/hmafooter.css">
+  <link rel="stylesheet" href="./css/mobile-navmenu.css">
+
+  
+    <style>
+        /* =========================================
+   BLOG DETAILS SECTION
+   ========================================= */
+
+:root {
+  --blog-bg: #f7f7f5;
+  --blog-card: #ffffff;
+  --blog-text: #0e0e0f;
+  --blog-muted: #5d5d61;
+  --blog-border: #dedee1;
+  --blog-dark: #151515;
+  --blog-radius-lg: 14px;
+  --blog-radius-md: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--blog-bg);
+  color: var(--blog-text);
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+.blog-details-section {
+  width: 100%;
+  padding: 105px 24px 120px;
+  background: #fff;
+  color: var(--blog-text);
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+.blog-container {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.blog-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 42px;
+}
+
+.blog-title-area {
+  max-width: 710px;
+}
+
+.blog-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+  color: var(--blog-muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.eyebrow-mark {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  transform: rotate(245deg);
+}
+
+.eyebrow-mark::before,
+.eyebrow-mark::after {
+  position: absolute;
+  display: block;
+  background: #747477;
+  content: "";
+}
+
+.eyebrow-mark::before {
+  width: 3px;
+  height: 9px;
+  top: 1px;
+  left: 3px;
+  border-radius: 10px;
+}
+
+.eyebrow-mark::after {
+  width: 8px;
+  height: 3px;
+  top: 5px;
+  left: 2px;
+  border-radius: 10px;
+}
+
+.blog-header h1 {
+  max-width: 670px;
+  margin: 0;
+  letter-spacing: -0.065em;
+  font-size: clamp(42px, 5vw, 73px);
+  font-weight: 500;
+  line-height: 0.98;
+}
+
+.blog-author {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 4px;
+}
+
+.author-avatar {
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.author-name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.author-meta time {
+  color: var(--blog-muted);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+/* =========================================
+   FEATURED IMAGE
+   ========================================= */
+
+.featured-image-wrap {
+  width: 100%;
+  margin: 0 0 48px;
+  overflow: hidden;
+  border-radius: var(--blog-radius-lg);
+  background: #e6e6e6;
+  aspect-ratio: 1.85 / 1;
+}
+
+.featured-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s ease;
+}
+
+.featured-image-wrap:hover .featured-image {
+  transform: scale(1.025);
+}
+
+/* =========================================
+   ARTICLE LAYOUT
+   ========================================= */
+
+.blog-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+  gap: clamp(42px, 7vw, 100px);
+}
+
+.blog-article {
+  max-width: 620px;
+}
+
+.blog-article h2 {
+  margin: 0 0 15px;
+  letter-spacing: -0.045em;
+  font-size: clamp(25px, 2.4vw, 34px);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.blog-article h2:not(:first-child) {
+  margin-top: 42px;
+}
+
+.blog-article p {
+  margin: 0 0 15px;
+  color: #4f4f53;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.blog-article strong {
+  color: var(--blog-text);
+  font-weight: 650;
+}
+
+/* =========================================
+   NEWSLETTER CARD
+   ========================================= */
+
+.newsletter-card {
+  position: sticky;
+  top: 28px;
+  padding: 30px 28px 27px;
+  border-radius: var(--blog-radius-md);
+  background: #f5f5f5;
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.025);
+}
+
+.newsletter-card h2 {
+  max-width: 235px;
+  margin: 0 0 24px;
+  letter-spacing: -0.045em;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.04;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.newsletter-form label {
+  margin-bottom: 8px;
+  color: #2b2b2e;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.newsletter-form input {
+  width: 100%;
+  height: 44px;
+  margin-bottom: 14px;
+  padding: 0 13px;
+  border: 1px solid var(--blog-border);
+  border-radius: 2px;
+  outline: none;
+  background: #fff;
+  color: var(--blog-text);
+  font: inherit;
+  font-size: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.newsletter-form input::placeholder {
+  color: #9a9a9d;
+}
+
+.newsletter-form input:focus {
+  border-color: #202024;
+  box-shadow: 0 0 0 3px rgba(20, 20, 20, 0.08);
+}
+
+.newsletter-form button {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--blog-dark);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.newsletter-form button:hover {
+  transform: translateY(-2px);
+  background: #333;
+}
+
+.newsletter-form button:active {
+  transform: translateY(0);
+}
+
+.button-arrow {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.newsletter-form button:hover .button-arrow {
+  transform: translate(2px, -2px);
+}
+
+.newsletter-note {
+  margin: 25px 0 0;
+  color: var(--blog-muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.form-message {
+  min-height: 17px;
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.form-message.is-success {
+  color: #237147;
+}
+
+.form-message.is-error {
+  color: #b42318;
+}
+
+/* =========================================
+   SCROLL REVEAL
+   ========================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 850px) {
+  .blog-details-section {
+    padding-top: 75px;
+    padding-bottom: 80px;
+  }
+
+  .blog-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .blog-author {
+    padding-bottom: 0;
+  }
+
+  .blog-content-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .blog-article {
+    max-width: none;
+  }
+
+  .newsletter-card {
+    position: static;
+    width: 100%;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 560px) {
+  .blog-details-section {
+    padding: 110px 18px 70px;
+  }
+
+  .blog-header {
+    margin-bottom: 28px;
+  }
+
+  .blog-header h1 {
+    font-size: clamp(38px, 11vw, 54px);
+    line-height: 0.98;
+  }
+
+  .featured-image-wrap {
+    margin-bottom: 36px;
+    border-radius: 10px;
+    aspect-ratio: 1.28 / 1;
+  }
+
+  .blog-article h2 {
+    font-size: 27px;
+  }
+
+  .blog-article h2:not(:first-child) {
+    margin-top: 34px;
+  }
+
+  .blog-article p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .newsletter-card {
+    padding: 26px 20px 23px;
+  }
+
+  .newsletter-card h2 {
+    font-size: 26px;
+  }
+
+  .newsletter-form button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .featured-image,
+  .newsletter-form button,
+  .button-arrow {
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+    </style>
+
+</head>
+<body>
+
+        <!-- Mobile Blur Navigation -->
+  <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+
+  <div class="mobile-nav-wrap">
+    <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+      <div class="mobile-nav-bar">
+        <a href="./index.html"><img class="mobile-wordmark" data-mobile-logo src="./assets/images/logo/HMA - Logo soft.png" alt="HMA Logo" /></a>
+
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-blur-nav-drawer"
+          aria-label="Open menu" data-mobile-toggle>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+        <div class="mobile-menu-rows" data-mobile-rows>
+          <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+            <span class="mobile-menu-link-index">01</span>
+            <span class="mobile-menu-link-label">About</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmaservices.html" data-mobile-link>
+            <span class="mobile-menu-link-index">02</span>
+            <span class="mobile-menu-link-label">Services</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+            <span class="mobile-menu-link-index">03</span>
+            <span class="mobile-menu-link-label">Blogs</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+            <span class="mobile-menu-link-index">04</span>
+            <span class="mobile-menu-link-label">Contact</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="mobile-menu-link" href="./privacy-policy.html" data-mobile-link>
+            <span class="mobile-menu-link-index">05</span>
+            <span class="mobile-menu-link-label">Privacy and Policy</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="mobile-menu-link" href="./legal-notice.html" data-mobile-link>
+            <span class="mobile-menu-link-index">06</span>
+            <span class="mobile-menu-link-label">Legal Notice</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-foot">
+          <div class="mobile-status">
+            <span class="mobile-status-dot" aria-hidden="true"></span>
+            <span class="mobile-clock" data-mobile-clock>10:37</span>
+          </div>
+
+          <div class="mobile-socials" aria-label="Social links">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+ <nav class="nav-wrap">
+    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/HMA-white.png" alt="" class="Logo"></a>
+    <div class="nav-bar" id="navBar">
+      <a href="./index.html" class="nav-item " data-name="Home">
+        <span class="nav-label">Home</span>
+        <span class="nav-icon">⌂</span>
+        <span class="lamp">
+          <span class="lamp-top">
+            <span class="glow glow-1"></span>
+            <span class="glow glow-2"></span>
+            <span class="glow glow-3"></span>
+          </span>
+        </span>
+      </a>
+
+      <a href="./about.html" class="nav-item" data-name="About">
+        <span class="nav-label">About</span>
+        <span class="nav-icon">◎</span>
+      </a>
+
+      <a href="./hmaservices.html" class="nav-item" data-name="Services">
+        <span class="nav-label">Services</span>
+        <span class="nav-icon">◫</span>
+      </a>
+
+      <a href="./hmablogs.html" class="nav-item active" data-name="Blogs">
+        <span class="nav-label ">Blogs</span>
+        <span class="nav-icon">◫</span>
+      </a>
+
+      <a href="./contact.html" class="nav-item" data-name="Contact">
+        <span class="nav-label">Contact</span>
+        <span class="nav-icon">✉</span>
+      </a>
+    </div>
+    <div class="nav-cta-wrap">
+      <a href="./contact.html" class="nav-btn light">
+        <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
+        <span class="btn-label">Book A Call</span>
+      </a>
+    </div>
+  </nav>
+
+
+    <section class="blog-details-section" id="blog-details">
+  <div class="blog-container">
+
+    <!-- Header -->
+    <header class="blog-header reveal">
+      <div class="blog-title-area">
+        <div class="blog-eyebrow">
+          <span class="eyebrow-mark" aria-hidden="true"></span>
+          <span>Blog details</span>
+        </div>
+
+        <h1>Scaling operations through smart systems</h1>
+      </div>
+
+      <div class="blog-author">
+        <img
+          src="https://framerusercontent.com/images/P7wrLPPwN67R3VDMKsLfEh6UX6g.jpg?width=240&height=240"
+          alt="Moussa Sabbar"
+          class="author-avatar"
+        />
+
+        <div class="author-meta">
+          <span class="author-name">Moussa Sabbar</span>
+          <time datetime="2026-07-23">Jul 23, 2026</time>
+        </div>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <figure class="featured-image-wrap reveal">
+      <img
+        src="https://framerusercontent.com/images/CzQwUh8Wq8cCFsx7ErxLOUzoEo.png?width=1600&height=980"
+        alt="Laptop displaying a design and smart systems interface"
+        class="featured-image"
+      />
+    </figure>
+
+    <!-- Article + Newsletter -->
+    <div class="blog-content-grid">
+      <article class="blog-article reveal">
+        <h2>AI-Powered Data Analysis: Uncovering Insights</h2>
+
+        <p>
+          AI technologies, particularly machine learning algorithms, have
+          revolutionized data analysis. Traditional BI tools often rely on
+          predefined queries and reports, which can be limiting. AI, however,
+          enables dynamic and deep analysis by identifying patterns and trends
+          that might not be immediately apparent.
+        </p>
+
+        <p>
+          For example, AI can analyze customer data to uncover buying patterns
+          and preferences. This enables businesses to make data-driven
+          decisions about product offerings, marketing strategies, and customer
+          engagement. By leveraging AI’s analytical power, companies can gain a
+          more nuanced understanding of their data and make more informed
+          decisions.
+        </p>
+
+        <h2>Predictive Analytics: Anticipating Future Trends</h2>
+
+        <p>
+          One of the key benefits of AI in business intelligence is its
+          predictive capability. Predictive analytics uses AI to forecast future
+          trends based on historical data. This can be highly valuable for
+          strategic planning and risk management.
+        </p>
+
+        <p>
+          For instance, a retailer can predict future sales trends by analyzing
+          past purchase data, seasonality, and market conditions. This allows
+          the company to optimize inventory levels, plan promotions, and make
+          proactive decisions to meet anticipated demand.
+        </p>
+
+        <p>
+          By anticipating future trends, businesses can stay ahead of
+          competitors and align their operational strategies with changing
+          market conditions.
+        </p>
+
+        <h2>Enhanced Data Visualization</h2>
+
+        <p>
+          AI enhances data visualization by providing more sophisticated and
+          interactive ways to present information. Traditional dashboards can
+          sometimes be static and limited in their ability to convey complex
+          insights.
+        </p>
+
+        <p>
+          AI-driven visualization tools can offer dynamic, real-time updates,
+          making it easier for teams to interpret data and identify key trends.
+          AI-powered dashboards may automatically adjust visualizations based
+          on user interactions and data changes, creating a more intuitive and
+          engaging decision-making experience.
+        </p>
+
+        <p>
+          <strong>Summary:</strong> AI is transforming business intelligence by
+          improving data analysis, predictive reporting, visualization, and
+          real-time decision support. These capabilities help businesses turn
+          operational data into practical strategies for sustainable growth.
+        </p>
+      </article>
+
+      <aside class="newsletter-card reveal">
+        <h2>Subscribe to Our Newsletter</h2>
+
+        <form class="newsletter-form" id="newsletterForm" novalidate>
+          <label for="newsletterEmail">Enter your email address</label>
+
+          <input
+            type="email"
+            id="newsletterEmail"
+            name="email"
+            placeholder="jane@framer.com"
+            autocomplete="email"
+            required
+          />
+
+         <a href="contact.html" class="footer-cta-btn">
+            <span class="footer-cta-btn-icon">
+              <img src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg" alt="" width="28"
+                height="28" loading="lazy" />
+            </span>
+            <span class="footer-cta-btn-label">Join Us Today</span>
+          </a>
+
+          <p class="form-message" id="formMessage" aria-live="polite"></p>
+        </form>
+
+        <p class="newsletter-note">
+          Stay updated with the latest automation insights, industry trends,
+          and intelligent workflow solutions.
+        </p>
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+  <!-- footer -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-shell">
+      <div class="footer-cta">
+        <div class="footer-cta-copy">
+          <div class="footer-cta-title reveal-footer-up">
+            <h2>LET’S BUILD THE FUTURE OF WEB3 TOGETHER</h2>
+          </div>
+
+          <div class="footer-cta-description reveal-footer-up">
+            <p>
+              Ready to launch? From start to scale, we turn your Web3 vision
+              into reality.
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-cta-action reveal-footer-up">
+          <a href="contact.html" class="footer-cta-btn">
+            <span class="footer-cta-btn-icon">
+              <img src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg" alt="" width="28"
+                height="28" loading="lazy" />
+            </span>
+            <span class="footer-cta-btn-label">Get In Touch</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider" aria-hidden="true"></div>
+
+    <div class="footer-lower">
+      <div class="footer-grid-bg reveal-grid" aria-hidden="true">
+        <img src="https://framerusercontent.com/images/YFlEZtZRPYYJiuJbhArFwEvXMaw.png?width=6400&height=1369" alt=""
+          width="1600" height="341" loading="lazy" />
+      </div>
+
+      <div class="footer-lower-inner">
+        <nav class="footer-socials" aria-label="Social links">
+          <a class="footer-link reveal-footer-link" href="https://instagram.com" target="_blank"
+            rel="noopener noreferrer">Instagram</a>
+          <a class="footer-link reveal-footer-link" href="https://x.com" target="_blank"
+            rel="noopener noreferrer">Twitter (x)</a>
+          <a class="footer-link reveal-footer-link" href="https://behance.com" target="_blank"
+            rel="noopener noreferrer">Behance</a>
+          <a class="footer-link reveal-footer-link" href="https://linkedin.com" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+
+        <a href="/" class="footer-wordmark reveal-footer-brand">
+          <span>HOFFMANN MEDIENAGENTUR</span>
+        </a>
+
+        <p class="footer-copyright reveal-footer-copy">
+          © Copyright
+          <a href="#" target="_blank" rel="noopener noreferrer"></a>, 2026 All
+          Right Reserved by
+          <a href="/">Hoffmann Medienagentur</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+<!-- nav menu  mobile-->
+
+  <script src="./js/components/mobile-navmenu.js" ></script>
+
+  <!-- --------------------- -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+  /* Scroll reveal */
+  const revealElements = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    revealElements.forEach(function (element) {
+      revealObserver.observe(element);
+    });
+  } else {
+    revealElements.forEach(function (element) {
+      element.classList.add("is-visible");
+    });
+  }
+
+  /* Newsletter form */
+  const newsletterForm = document.getElementById("newsletterForm");
+  const newsletterEmail = document.getElementById("newsletterEmail");
+  const formMessage = document.getElementById("formMessage");
+
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const email = newsletterEmail.value.trim();
+      const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      formMessage.className = "form-message";
+
+      if (!validEmail) {
+        formMessage.textContent = "Please enter a valid email address.";
+        formMessage.classList.add("is-error");
+        newsletterEmail.focus();
+        return;
+      }
+
+      formMessage.textContent = "Thank you — you have been subscribed.";
+      formMessage.classList.add("is-success");
+
+      newsletterForm.reset();
+
+      /*
+        Connect your own email platform here, such as:
+        - Mailchimp
+        - Brevo
+        - Fluent Forms
+        - Elementor Form
+        - WordPress REST API
+      */
+    });
+  }
+});
+</script>
+
+<script>
+      (function () {
+        const revealItems = document.querySelectorAll(
+          ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid",
+        );
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+          },
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+</body>
+</html>
