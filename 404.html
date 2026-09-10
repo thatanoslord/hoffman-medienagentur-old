@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/hma-header.css">
+  <link rel="stylesheet" href="./css/hmafooter.css">
+  <link rel="stylesheet" href="./css/mobile-navmenu.css">
+
+  
+    <style>
+        /* =========================================
+   UTOMIC 404 SECTION
+   ========================================= */
+
+   * {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--blog-bg);
+  color: var(--blog-text);
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+.utomic-404 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  color: #161616;
+  font-family: "DM Sans", "Inter", Arial, sans-serif;
+}
+
+.utomic-404 *,
+.utomic-404 *::before,
+.utomic-404 *::after {
+  box-sizing: border-box;
+}
+
+.utomic-404__container {
+  width: min(100%, 1440px);
+  min-height: 570px;
+  margin: 0 auto;
+  padding: 124px 24px 72px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.utomic-404__content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* =========================================
+   404 NUMBER
+   ========================================= */
+
+.utomic-404__code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: #151515;
+  font-family: "DM Sans", "Inter", Arial, sans-serif;
+  font-size: clamp(150px, 20.1vw, 290px);
+  font-weight: 500;
+  letter-spacing: -0.105em;
+  line-height: 0.76;
+  white-space: nowrap;
+}
+
+.utomic-404__digit {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  animation: utomic404DigitIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.utomic-404__digit:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.utomic-404__digit:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.utomic-404__digit:nth-child(3) {
+  animation-delay: 0.23s;
+}
+
+@keyframes utomic404DigitIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================
+   TEXT
+   ========================================= */
+
+.utomic-404__message {
+  max-width: 420px;
+  margin: 45px 0 27px;
+  color: #1b1b1b;
+  font-size: clamp(20px, 1.72vw, 27px);
+  font-weight: 500;
+  letter-spacing: -0.043em;
+  line-height: 1.03;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: utomic404FadeUp 0.7s 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes utomic404FadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   RETURN HOME BUTTON
+   ========================================= */
+
+.utomic-404__button {
+  display: inline-flex;
+  height: 36px;
+  min-width: 104px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 18px;
+  border: 1px solid #171717;
+  border-radius: 999px;
+  background: #171717;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: utomic404FadeUp 0.7s 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition:
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+
+.utomic-404__button:hover {
+  border-color: #343434;
+  background: #343434;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.utomic-404__button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.utomic-404__button:focus-visible {
+  outline: 3px solid rgba(34, 91, 255, 0.45);
+  outline-offset: 4px;
+}
+
+.utomic-404__button-track {
+  position: relative;
+  display: block;
+  height: 15px;
+  overflow: hidden;
+}
+
+.utomic-404__button-label {
+  display: block;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: center;
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.utomic-404__button-label--top {
+  transform: translateY(0);
+}
+
+.utomic-404__button-label--bottom {
+  transform: translateY(4px);
+}
+
+.utomic-404__button:hover .utomic-404__button-label--top {
+  transform: translateY(-18px);
+}
+
+.utomic-404__button:hover .utomic-404__button-label--bottom {
+  transform: translateY(-15px);
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1024px) {
+  .utomic-404__container {
+    min-height: 520px;
+    padding-top: 110px;
+    padding-bottom: 64px;
+  }
+
+  .utomic-404__message {
+    margin-top: 38px;
+  }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 767px) {
+    .utomic-404{
+    
+    padding-top: 105px ;
+  }
+  .utomic-404__container {
+    min-height: 480px;
+    padding: 105px 20px 58px;
+  }
+
+  .utomic-404__code {
+    font-size: clamp(122px, 34vw, 210px);
+    letter-spacing: -0.1em;
+    line-height: 0.8;
+  }
+
+  .utomic-404__message {
+    max-width: 310px;
+    margin: 34px 0 25px;
+    font-size: 21px;
+    line-height: 1.08;
+  }
+
+  .utomic-404__desktop-break {
+    display: none;
+  }
+
+  .utomic-404__button {
+    height: 39px;
+    min-width: 116px;
+    padding: 0 20px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 390px) {
+  .utomic-404__container {
+    min-height: 435px;
+    padding-top: 92px;
+  }
+
+  .utomic-404__code {
+    font-size: 120px;
+  }
+
+  .utomic-404__message {
+    margin-top: 29px;
+    font-size: 19px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .utomic-404__digit,
+  .utomic-404__message,
+  .utomic-404__button {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .utomic-404__button,
+  .utomic-404__button-label {
+    transition: none;
+  }
+}
+    </style>
+
+</head>
+<body>
+
+        <!-- Mobile Blur Navigation -->
+  <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+
+  <div class="mobile-nav-wrap">
+    <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+      <div class="mobile-nav-bar">
+        <a href="./index.html"><img class="mobile-wordmark" data-mobile-logo src="./assets/images/logo/HMA - Logo soft.png" alt="HMA Logo" /></a>
+
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-blur-nav-drawer"
+          aria-label="Open menu" data-mobile-toggle>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+        <div class="mobile-menu-rows" data-mobile-rows>
+          <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+            <span class="mobile-menu-link-index">01</span>
+            <span class="mobile-menu-link-label">About</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmaservices.html" data-mobile-link>
+            <span class="mobile-menu-link-index">02</span>
+            <span class="mobile-menu-link-label">Services</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+            <span class="mobile-menu-link-index">03</span>
+            <span class="mobile-menu-link-label">Blogs</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+            <span class="mobile-menu-link-index">04</span>
+            <span class="mobile-menu-link-label">Contact</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="mobile-menu-link" href="./privacy-policy.html" data-mobile-link>
+            <span class="mobile-menu-link-index">05</span>
+            <span class="mobile-menu-link-label">Privacy and Policy</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="mobile-menu-link" href="./legal-notice.html" data-mobile-link>
+            <span class="mobile-menu-link-index">06</span>
+            <span class="mobile-menu-link-label">Legal Notice</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-foot">
+          <div class="mobile-status">
+            <span class="mobile-status-dot" aria-hidden="true"></span>
+            <span class="mobile-clock" data-mobile-clock>10:37</span>
+          </div>
+
+          <div class="mobile-socials" aria-label="Social links">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+ <nav class="nav-wrap">
+    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/HMA-white.png" alt="" class="Logo"></a>
+    <div class="nav-bar" id="navBar">
+      <a href="./index.html" class="nav-item " data-name="Home">
+        <span class="nav-label">Home</span>
+        <span class="nav-icon">⌂</span>
+        <span class="lamp">
+          <span class="lamp-top">
+            <span class="glow glow-1"></span>
+            <span class="glow glow-2"></span>
+            <span class="glow glow-3"></span>
+          </span>
+        </span>
+      </a>
+
+      <a href="./about.html" class="nav-item" data-name="About">
+        <span class="nav-label">About</span>
+        <span class="nav-icon">◎</span>
+      </a>
+
+      <a href="./hmaservices.html" class="nav-item" data-name="Services">
+        <span class="nav-label">Services</span>
+        <span class="nav-icon">◫</span>
+      </a>
+
+      <a href="./hmablogs.html" class="nav-item active" data-name="Blogs">
+        <span class="nav-label ">Blogs</span>
+        <span class="nav-icon">◫</span>
+      </a>
+
+      <a href="./contact.html" class="nav-item" data-name="Contact">
+        <span class="nav-label">Contact</span>
+        <span class="nav-icon">✉</span>
+      </a>
+    </div>
+    <div class="nav-cta-wrap">
+      <a href="./contact.html" class="nav-btn light">
+        <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
+        <span class="btn-label">Book A Call</span>
+      </a>
+    </div>
+  </nav>
+
+  <section class="utomic-404" aria-labelledby="error-title">
+  <div class="utomic-404__container">
+    <div class="utomic-404__content">
+
+      <h1 class="utomic-404__code" id="error-title" aria-label="Error 404">
+        <span class="utomic-404__digit">4</span>
+        <span class="utomic-404__digit">0</span>
+        <span class="utomic-404__digit">4</span>
+      </h1>
+
+      <p class="utomic-404__message">
+        Sorry, the page you’re looking for<br class="utomic-404__desktop-break">
+        couldn’t be found.
+      </p>
+
+      <a class="utomic-404__button" href="/" aria-label="Return to the homepage">
+        <span class="utomic-404__button-track">
+          <span class="utomic-404__button-label utomic-404__button-label--top">
+            Return Home
+          </span>
+
+          <span class="utomic-404__button-label utomic-404__button-label--bottom">
+            Return Home
+          </span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+ 
+
+  <!-- footer -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-shell">
+      <div class="footer-cta">
+        <div class="footer-cta-copy">
+          <div class="footer-cta-title reveal-footer-up">
+            <h2>LET’S BUILD THE FUTURE OF WEB3 TOGETHER</h2>
+          </div>
+
+          <div class="footer-cta-description reveal-footer-up">
+            <p>
+              Ready to launch? From start to scale, we turn your Web3 vision
+              into reality.
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-cta-action reveal-footer-up">
+          <a href="contact.html" class="footer-cta-btn">
+            <span class="footer-cta-btn-icon">
+              <img src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg" alt="" width="28"
+                height="28" loading="lazy" />
+            </span>
+            <span class="footer-cta-btn-label">Get In Touch</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider" aria-hidden="true"></div>
+
+    <div class="footer-lower">
+      <div class="footer-grid-bg reveal-grid" aria-hidden="true">
+        <img src="https://framerusercontent.com/images/YFlEZtZRPYYJiuJbhArFwEvXMaw.png?width=6400&height=1369" alt=""
+          width="1600" height="341" loading="lazy" />
+      </div>
+
+      <div class="footer-lower-inner">
+        <nav class="footer-socials" aria-label="Social links">
+          <a class="footer-link reveal-footer-link" href="https://instagram.com" target="_blank"
+            rel="noopener noreferrer">Instagram</a>
+          <a class="footer-link reveal-footer-link" href="https://x.com" target="_blank"
+            rel="noopener noreferrer">Twitter (x)</a>
+          <a class="footer-link reveal-footer-link" href="https://behance.com" target="_blank"
+            rel="noopener noreferrer">Behance</a>
+          <a class="footer-link reveal-footer-link" href="https://linkedin.com" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+
+        <a href="/" class="footer-wordmark reveal-footer-brand">
+          <span>HOFFMANN MEDIENAGENTUR</span>
+        </a>
+
+        <p class="footer-copyright reveal-footer-copy">
+          © Copyright
+          <a href="#" target="_blank" rel="noopener noreferrer"></a>, 2026 All
+          Right Reserved by
+          <a href="/">Hoffmann Medienagentur</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+<!-- nav menu  mobile-->
+
+  <script src="./js/components/mobile-navmenu.js" ></script>
+
+  <!-- --------------------- -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const errorSection = document.querySelector(".utomic-404");
+  const returnHomeButton = document.querySelector(".utomic-404__button");
+
+  if (errorSection) {
+    errorSection.classList.add("utomic-404--loaded");
+  }
+
+  if (returnHomeButton) {
+    returnHomeButton.addEventListener("click", function (event) {
+      const homepageUrl = window.location.origin + "/";
+
+      if (returnHomeButton.getAttribute("href") === "#") {
+        event.preventDefault();
+        window.location.href = homepageUrl;
+      }
+    });
+  }
+});
+</script>
+
+<script>
+      (function () {
+        const revealItems = document.querySelectorAll(
+          ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid",
+        );
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+          },
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+</body>
+</html>
