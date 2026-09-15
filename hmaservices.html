@@ -40,7 +40,7 @@
         border-radius: 999px;
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-            background: rgb(176 176 176 / 43%);
+            background: rgba(0, 0, 0, 0.3);
         box-shadow: var(--shadow);
       }
       .LogoWrapper {
@@ -87,7 +87,7 @@
       }
 
       .nav-item:hover {
-        color: #de0bcc;
+        color: #ffffff67;
       }
 
       .nav-item.active {
@@ -251,6 +251,17 @@
       .nav-btn:hover .btn-label {
         transform: translateX(-52px);
       }
+      
+      .nav-btn-dark:hover .btn-icon {
+        transform: translateX(160px);
+      }
+      
+
+      .nav-btn-dark:hover .btn-label {
+        transform: translateX(-48px);
+      }
+
+
       .nav-btn:hover .about-cta-icon {
         transform: translateX(120px);
       }
@@ -549,18 +560,18 @@
         justify-content: center;
         border-radius: 999px;
         font-weight: 700;
-        font-size: 1rem;
+        font-size: 1.5rem;
         flex: 0 0 auto;
       }
 
       .comparison-card--before .comparison-mark {
-        background: #2a2721;
+        background: #bda7f6;
         color: #f7f6f2;
       }
 
       .comparison-card--after .comparison-mark {
         background: rgba(255, 255, 255, 0.92);
-        color: var(--color-after-deep);
+        color: #bda7f6;
       }
 
       .comparison-card__title {
@@ -568,7 +579,7 @@
         font-size: clamp(1.5rem, 1.1rem + 1vw, 2.1rem);
         line-height: 1.08;
         letter-spacing: -0.03em;
-        max-width: 14ch;
+        max-width: 15ch;
       }
 
       .comparison-list {
@@ -581,13 +592,16 @@
 
       .comparison-list li {
         position: relative;
-        padding-left: 2.9rem;
+        /* padding-left: 2.9rem; */
         font-size: var(--text-base);
         line-height: 1.55;
-        max-width: 34ch;
+        max-width: 36ch;
+        display: flex;
+        gap: 10px;
+        align-items: center;
       }
 
-      .comparison-list li::before {
+      /* .comparison-list li::before {
         content: "";
         position: absolute;
         left: 0;
@@ -595,9 +609,9 @@
         width: 1.9rem;
         height: 1.9rem;
         border-radius: 999px;
-      }
+      } */
 
-      .comparison-card--before .comparison-list li::before {
+      /* .comparison-card--before .comparison-list li::before {
         background:
           radial-gradient(circle at center, #f4f2ec 0 32%, transparent 33%),
           #2a2721;
@@ -607,11 +621,11 @@
         background:
           radial-gradient(circle at center, #2a5b4a 0 28%, transparent 29%),
           rgba(255, 255, 255, 0.92);
-      }
+      } */
 
       .comparison-card--after .comparison-label,
       .comparison-card--after .comparison-list li {
-        color: var(--color-white-soft);
+        color: #fff;
       }
 
       .comparison-card--after .comparison-card__title {
@@ -800,7 +814,7 @@
           rgb(168 24 255 / 6%) 86.29293355855856%,
           rgb(235 239 255 / 0%) 100%
         );
-        padding: var(--sv-pad-y-desktop) var(--sv-pad-x-desktop);
+        padding: var(--sv-pad-y-desktop) var(--sv-pad-x-desktop) 0px;
         position: relative;
         z-index: 1;
         overflow-x: hidden;
@@ -1928,7 +1942,7 @@
       }
 
       .pricing-reference__container {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
       }
 
@@ -2090,8 +2104,8 @@
 
       .pricing-card p {
         margin: 0;
-        max-width: 34ch;
-        font-size: 15px;
+        max-width: 100%;
+        font-size: 14px;
         line-height: 1.45;
         font-weight: 400;
       }
@@ -2315,7 +2329,7 @@
       }
 
       .facts-v2__heading {
-        max-width: 470px;
+        max-width: 700px;
       }
 
       .facts-v2__eyebrow {
@@ -2693,7 +2707,7 @@
       .faq-description p {
         margin: 0 auto;
         width: 80%;
-        max-width: 496px;
+        max-width: 530px;
         color: #2c2c2c;
         font-family: "DM Sans", sans-serif;
         font-size: 18px;
@@ -2776,7 +2790,7 @@
         display: block;
         color: #000000;
         font-family: "DM Sans", sans-serif;
-        font-size: 24px;
+        font-size: 19px;
         line-height: 1.25;
         font-weight: 500;
         text-transform: uppercase;
@@ -3062,7 +3076,7 @@
         position: relative;
         display: inline-flex;
         align-items: center;
-        width: 198px;
+        width: 188px;
         height: 51px;
         border-radius: 45px;
         overflow: hidden;
@@ -3106,11 +3120,11 @@
       }
 
       .footer-cta-btn:hover .footer-cta-btn-icon {
-        transform: translateX(128px);
+        transform: translateX(118px);
       }
 
       .footer-cta-btn:hover .footer-cta-btn-label {
-        transform: translateX(-28px);
+        transform: translateX(-48px);
       }
 
       .footer-divider {
@@ -3372,6 +3386,51 @@
         }
       }
     </style>
+
+
+    <!-- eybrow style -->
+     <style>
+      @keyframes eyebrowSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+       .gp-services-eyebrow-wrap {
+      gap: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 8px 20px;
+      /* border: 1px solid rgba(224, 228, 243, 0.6); */
+      border-radius: 999px;
+      /* background: #f5f7ff; */
+    }
+
+    .gp-services-eyebrow-shape {
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(180deg, var(--token-a4c4b682-f338-43c8-9c0f-5200c6162db5, rgb(0, 85, 254)) 0%, var(--token-d8404571-fad1-4c38-888c-6fbb7414353a, rgb(0, 0, 0)) 100%);
+      border-radius: 999px;
+      transform: rotate(366.583deg);
+    }
+
+    .gp-services-eyebrow {
+      margin: 0;
+      color: #575757;
+      font-family: "Inter Display", sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .gp-services-eyebrow-icon {
+      width: 25px;
+      fill: #fff;
+      animation: eyebrowSpin 7.8s linear infinite;}
+     </style>
   </head>
 
   <!-- ------------------------------------------------------------------ -->
@@ -3446,7 +3505,7 @@
   </div>
     <!-- navbar -->
        <nav class="nav-wrap">
-    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/HMA-white.png" alt="" class="Logo"></a>
+    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="" class="Logo"></a>
     <div class="nav-bar" id="navBar">
       <a href="./index.html" class="nav-item " data-name="Home">
         <span class="nav-label">Home</span>
@@ -3491,18 +3550,7 @@
 
     <!-- banner -->
     <section class="services-hero" aria-labelledby="services-hero-title">
-      <!-- <div class="services-hero__bg" aria-hidden="true">
-        <img
-          class="services-hero__bg-image"
-          src="https://framerusercontent.com/images/qoQNQZGoUwOgNxCrmhiJDPoRmLo.png?width=3000&height=1200"
-          alt=""
-          width="3000"
-          height="1200"
-          decoding="async"
-          loading="eager"
-        />
-        <div class="services-hero__bg-overlay"></div>
-      </div> -->
+     
 
       <div class="services-hero__container">
         <div class="services-hero__content">
@@ -3536,22 +3584,12 @@
                 />
               </svg>
             </span>
-            <p class="services-hero__label-text">Our services</p>
+            <p class="services-hero__label-text">The HMA systems</p>
           </div>
 
-          <!-- <h1 id="services-hero-title" class="services-hero__title">
-            <span class="services-hero__word">AI</span>
-            <span class="services-hero__word">services</span><br />
-            <span class="services-hero__word">built</span>
-            <span class="services-hero__word">for</span>
-            <span class="services-hero__word">tomorrow</span>
-          </h1> -->
+         
 
-          <!-- <h1 id="services-hero-title" class="sr-only">
-            AI services built for tomorrow
-          </h1> -->
-
-          <div class="services-fluid-title" aria-hidden="true">
+          <h1 class="services-fluid-title" aria-hidden="true">
             <div
               class="type-stage"
               id="typeStage"
@@ -3559,12 +3597,12 @@
               data-active="false"
             >
               <div class="type-fallback">
-                <span>AI SERVICES</span>
-                <span>BUILT FOR TOMORROW</span>
+                <span>DIGITAL SYSTEMS</span>
+                <span>BUILT TO MOVE BUSINESS</span>
               </div>
               <canvas class="fluid-canvas" id="fluidCanvas"></canvas>
             </div>
-          </div>
+          </h1>
         </div>
       </div>
       <div class="about-ornament-right" aria-hidden="true">
@@ -3581,8 +3619,8 @@
         <div class="comparison-scene">
           <header class="comparison-header">
             <h2 id="comparison-title" class="comparison-title">
-              <span class="leftheader">What changes </span
-              ><span class="rightheader">when you work with us.</span>
+              <span class="leftheader">From digital friction</span
+              ><span class="rightheader">to one clear system.</span>
             </h2>
           </header>
 
@@ -3592,18 +3630,18 @@
           >
             <div class="comparison-card__top">
               <div class="comparison-label-row">
-                <span class="comparison-label">Before</span>
+                <span class="comparison-label">THE OLD WAY</span>
                 <span class="comparison-mark" aria-hidden="true">×</span>
               </div>
               <h3 id="before-stage-title" class="comparison-card__title">
-                Guessing what grows revenue.
+               Disconnected digital work.
               </h3>
             </div>
             <ul class="comparison-list" role="list">
-              <li>Hiring more reps to fix a conversion problem.</li>
-              <li>Pipeline that looks full but never closes.</li>
-              <li>Pricing based on what competitors charge.</li>
-              <li>Every quarter starts from zero.</li>
+              <li><span class="comparison-mark" aria-hidden="true">×</span><span>Different suppliers working without one shared direction.</span></li>
+              <li><span class="comparison-mark" aria-hidden="true">×</span><span>A website, content and technology that do not support each other.</span></li>
+              <li><span class="comparison-mark" aria-hidden="true">×</span><span>Important decisions delayed by unclear ownership and scattered communication.</span></li>
+              <li><span class="comparison-mark" aria-hidden="true">×</span><span>New tools added without solving the real operational problem.</span></li>
             </ul>
           </article>
 
@@ -3613,69 +3651,41 @@
           >
             <div class="comparison-card__top">
               <div class="comparison-label-row">
-                <span class="comparison-label">After</span>
+                <span class="comparison-label">THE HOFFMANN WAY</span>
                 <span class="comparison-mark" aria-hidden="true">✓</span>
               </div>
               <h3 id="after-stage-title" class="comparison-card__title">
-                Knowing exactly what moves the number.
+                One partner. One connected direction.
               </h3>
             </div>
             <ul class="comparison-list" role="list">
-              <li>Every dollar of spend tied to revenue.</li>
-              <li>Pipeline that converts predictably.</li>
-              <li>Pricing built on what customers will pay.</li>
-              <li>Compounding growth, quarter over quarter.</li>
+              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>A clear digital strategy shaped around your business priorities.</span></li>
+              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>Web, content, visibility, AI and infrastructure designed to work together.</span></li>
+              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>One senior point of contact from first conversation to next move.</span></li>
+              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>Digital systems built to evolve as your company moves forward.</span></li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- services -->
+
     <section class="services-v2" id="services">
       <div class="services-v2__container">
         <div class="services-v2-header">
           <div class="h2-eyebrow">
-            <div class="services-hero__label" data-hero-rotator>
-              <span class="services-hero__label-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  id="3357759637"
-                  role="presentation"
-                  viewBox="0 0 20 20"
-                  width="20"
-                  height="20"
-                  fill="none"
-                  style="display: block; color: #000"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M3.958 0C2.485 0 1.291 1.194 1.291 2.667C1.291 3.415 1.602 4.09 2.1 4.575L0 8.249L1.159 8.908L3.261 5.23C3.484 5.29 3.715 5.333 3.958 5.333C5.43 5.333 6.624 4.139 6.624 2.667C6.624 1.194 5.43 0 3.958 0ZM3.958 4C3.221 4 2.624 3.403 2.624 2.667C2.624 1.93 3.221 1.333 3.958 1.333C4.694 1.333 5.291 1.93 5.291 2.667C5.291 3.403 4.694 4 3.958 4Z"
-                    transform="translate(6.042 2.667)"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M5.239 2C4.941 0.852 3.908 0 2.667 0C1.194 0 0 1.194 0 2.667C0 4.139 1.194 5.333 2.667 5.333C3.908 5.333 4.941 4.481 5.239 3.333H9.393V2H5.239ZM2.667 4C1.93 4 1.333 3.403 1.333 2.667C1.333 1.93 1.93 1.333 2.667 1.333C3.403 1.333 4 1.93 4 2.667C4 3.403 3.403 4 2.667 4Z"
-                    transform="translate(2 12)"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M3.958 3.575C3.715 3.575 3.484 3.618 3.261 3.679L1.159 0L0 0.66L2.1 4.333C1.602 4.818 1.291 5.492 1.291 6.242C1.291 7.714 2.485 8.908 3.958 8.908C5.43 8.908 6.624 7.714 6.624 6.242C6.624 4.769 5.43 3.575 3.958 3.575ZM3.958 7.575C3.221 7.575 2.624 6.978 2.624 6.242C2.624 5.505 3.221 4.908 3.958 4.908C4.694 4.908 5.291 5.505 5.291 6.242C5.291 6.978 4.694 7.575 3.958 7.575Z"
-                    transform="translate(11.376 8.425)"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              <p class="services-hero__label-text services-hero-title">
-                Our services
-              </p>
-            </div>
-            <h2>AI systems built for smarter growth</h2>
+            <div class="gp-services-eyebrow-wrap">
+            <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon">
+            <span class="gp-services-eyebrow">What We Build</span>
+          </div>
+            <h2>One partner.<br>Eight ways forward.</h2>
           </div>
 
           <p>
-            From intelligent workflows and support agents to predictive analysis
-            and content automation, we design practical AI solutions that help
-            your business move faster, work better, and scale with confidence.
+            From your first digital foundation to the systems behind daily operations,
+  Hoffmann Medienagentur brings strategy, technology, content and intelligent
+  infrastructure together built around the way your business needs to move.
           </p>
         </div>
         <div class="services-v2__list" id="servicesList">
@@ -3683,7 +3693,7 @@
             <a class="service-item__link" href="./ignition.html">
               <div class="service-item__title-panel">
                 <h3 class="service-item__title">
-                  Intelligent workflow systems
+                  01. IGNITION 
                 </h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
@@ -3699,12 +3709,13 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  We craft digital experiences that are intuitive, elegant, and
-                  built to convert.
+                  Build a digital presence that earns attention and trust. IGNITION combines premium multilingual websites, brand systems, technical SEO and AI-ready visibility into a foundation built for long-term growth.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">Visual</span>
-                  <span class="service-item__tag">AI</span>
+                  <span class="service-item__tag">Premium Websites</span>
+                  <span class="service-item__tag">SEO</span>
+                  <span class="service-item__tag">AI Visibility</span>
+                  <span class="service-item__tag">Brand Systems</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
@@ -3722,11 +3733,11 @@
           <article class="service-item js-service-row">
             <a
               class="service-item__link"
-              href="./ignition.html"
+              href="./egine.html"
             >
               <div class="service-item__title-panel">
                 <h3 class="service-item__title">
-                  Conversational support agents
+                  02. ENGINE
                 </h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
@@ -3742,18 +3753,19 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Intelligent content at scale, without sacrificing quality or
-                  brand voice.
+                  Turn expertise into a consistent market presence. ENGINE creates podcasts, video, social content and multilingual publishing systems that keep your company visible, credible and relevant over time.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">Scalable</span>
-                  <span class="service-item__tag">AI</span>
+                  <span class="service-item__tag">Podcast</span>
+                  <span class="service-item__tag">Video</span>
+                  <span class="service-item__tag">Social Content</span>
+                  <span class="service-item__tag">Content Strategy</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
                 <img
                   src="https://framerusercontent.com/images/l51U3EbbK6HMdM7pW8qOuQqKo.jpg?width=1884&height=1200"
-                  alt="Conversational support agents visual"
+                  alt="Podcast, video and content production system for a business."
                   loading="lazy"
                   width="1884"
                   height="1200"
@@ -3765,10 +3777,10 @@
           <article class="service-item js-service-row">
             <a
               class="service-item__link"
-              href="./ignition.html"
+              href="./ai-ops.html"
             >
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">Predictive data analysis</h3>
+                <h3 class="service-item__title">03. AI OPS</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3783,18 +3795,19 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Fast, scalable, and precisely engineered systems built for
-                  real-world performance.
+                  Make your operations faster without making them more complicated. AI OPS brings together AI agents, automation workflows, intelligent chat and phone systems, cloud setup and integrations that reduce repetitive work and improve responsiveness.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">Robust</span>
-                  <span class="service-item__tag">Precise</span>
+                  <span class="service-item__tag">AI Agents</span>
+                  <span class="service-item__tag">Automation</span>
+                  <span class="service-item__tag">AI Phone</span>
+                  <span class="service-item__tag">Integrations</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
                 <img
                   src="https://framerusercontent.com/images/BpAF2774xoJbRQ4ujlnLzGL8k4.jpg?width=1884&height=1200"
-                  alt="Predictive data analysis visual"
+                  alt="AI-powered automation and connected operations system."
                   loading="lazy"
                   width="1884"
                   height="1200"
@@ -3806,10 +3819,10 @@
           <article class="service-item js-service-row">
             <a
               class="service-item__link"
-              href="./ignition.html"
+              href="./dpp-ready.html"
             >
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">Custom model integration</h3>
+                <h3 class="service-item__title">04. DPP READY</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3824,18 +3837,19 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  We build brands and product systems that are impossible to
-                  ignore and easy to trust.
+                  Prepare before product-data requirements become urgent. DPP READY helps your company understand the implications of Digital Product Passports and create a practical roadmap for the data, processes and digital foundations required next.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">Strategic</span>
-                  <span class="service-item__tag">AI</span>
+                  <span class="service-item__tag">DPP Readiness</span>
+                  <span class="service-item__tag">Product Data</span>
+                  <span class="service-item__tag">Compliance Strategy</span>
+                  <span class="service-item__tag">Digital Roadmaps</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
                 <img
                   src="https://framerusercontent.com/images/VvXYLjuXjahLhon17evFYZRJs.jpg?width=1884&height=1200"
-                  alt="Custom model integration visual"
+                  alt="Digital Product Passport readiness and product-data planning."
                   loading="lazy"
                   width="1884"
                   height="1200"
@@ -3847,10 +3861,10 @@
           <article class="service-item js-service-row">
             <a
               class="service-item__link"
-              href="./ignition.html"
+              href="./domains-email.html"
             >
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">AI content generation</h3>
+                <h3 class="service-item__title">05. DOMAINS & EMAIL</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3865,18 +3879,19 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Data-driven content systems that build visibility, drive
-                  traffic, and grow revenue.
+                  Secure the essentials of your digital presence in one place. Search for your domain, set up professional email and create a reliable foundation for the brand, website and communications your business depends on.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">AI</span>
-                  <span class="service-item__tag">Growth</span>
+                  <span class="service-item__tag">Domain Search</span>
+                  <span class="service-item__tag">Business Email</span>
+                  <span class="service-item__tag">Email Packages</span>
+                  <span class="service-item__tag">DNS Management</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
                 <img
                   src="https://framerusercontent.com/images/xApG7qRyYC8eZgn0W3EoYlj5rO8.jpg?width=1884&height=1200"
-                  alt="AI content generation visual"
+                  alt="Domain registration and professional business email services."
                   loading="lazy"
                   width="1884"
                   height="1200"
@@ -3888,10 +3903,10 @@
           <article class="service-item js-service-row">
             <a
               class="service-item__link"
-              href="./ignition.html"
+              href="./infrastructure.html"
             >
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">Smart process optimization</h3>
+                <h3 class="service-item__title">06. INFRASTRUCTURE</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3906,18 +3921,19 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Where bold ideas meet business thinking to create campaigns
-                  that actually work.
+                 The systems behind your business should be secure, reliable and easy to manage. We bring hosting, cloud environments, servers and essential technical support together through one clear point of contact.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">Innovative</span>
-                  <span class="service-item__tag">AI</span>
+                  <span class="service-item__tag">Managed Hosting</span>
+                  <span class="service-item__tag">Cloud Systems</span>
+                  <span class="service-item__tag">Servers</span>
+                  <span class="service-item__tag">IT Support</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
                 <img
                   src="https://framerusercontent.com/images/gr37sBknmPPBpi9KaCKBKzUsY.jpg?width=1884&height=1200"
-                  alt="Smart process optimization visual"
+                  alt="Secure digital infrastructure including hosting, cloud systems and server environments."
                   loading="lazy"
                   width="1884"
                   height="1200"
@@ -3929,10 +3945,10 @@
           <article class="service-item js-service-row service-item--hidden">
             <a
               class="service-item__link"
-              href="./ignition.html"
+              href="./ai-search.html"
             >
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">Automation consulting</h3>
+                <h3 class="service-item__title">07. AI SEARCH</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3947,18 +3963,20 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Strategic automation planning that aligns tools, teams, and
-                  measurable outcomes.
+                  Help visitors find the right answer without searching through endless pages. AI SEARCH adds an intelligent search and guidance layer to your website, making complex information easier to discover, understand and act on.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">Systems</span>
-                  <span class="service-item__tag">Strategy</span>
+                  <span class="service-item__tag">Website Search</span>
+                  <span class="service-item__tag">AI Assistant</span>
+                  <span class="service-item__tag">Knowledge Discovery</span>
+                  <span class="service-item__tag">Customer Guidance
+</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
                 <img
                   src="https://picsum.photos/seed/service-7/1200/760"
-                  alt="Automation consulting visual"
+                  alt="AI-powered website search and intelligent customer guidance interface."
                   loading="lazy"
                   width="1200"
                   height="760"
@@ -3968,9 +3986,9 @@
           </article>
 
           <article class="service-item js-service-row service-item--hidden">
-            <a class="service-item__link" href="./ignition.html">
+            <a class="service-item__link" href="./costum-software.html">
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">AI ops design</h3>
+                <h3 class="service-item__title">08. CUSTOM SOFTWARE</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3985,12 +4003,13 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Operational design frameworks for deploying AI in repeatable,
-                  scalable ways.
+                  When standard tools no longer fit, we help shape and deliver custom digital products around the way your business works. From internal platforms and customer portals to connected applications, we turn complex requirements into practical systems.
                 </p>
                 <div class="service-item__tags">
-                  <span class="service-item__tag">Ops</span>
-                  <span class="service-item__tag">Scale</span>
+                  <span class="service-item__tag">Web Applications</span>
+                  <span class="service-item__tag">Customer Portals</span>
+                  <span class="service-item__tag">Internal Tools</span>
+                  <span class="service-item__tag">System Integration</span>
                 </div>
               </div>
               <div class="service-item__media-panel">
@@ -4022,45 +4041,17 @@
     <div class="page">
       <div class="page-v2-header">
         <div class="page-h2-eyebrow">
-          <div class="page-hero__label" data-hero-rotator>
-            <span class="services-hero__label-icon" aria-hidden="true">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                id="3357759637"
-                role="presentation"
-                viewBox="0 0 20 20"
-                width="20"
-                height="20"
-                fill="none"
-                style="display: block; color: #fff"
-                aria-hidden="true"
-              >
-                <path
-                  d="M3.958 0C2.485 0 1.291 1.194 1.291 2.667C1.291 3.415 1.602 4.09 2.1 4.575L0 8.249L1.159 8.908L3.261 5.23C3.484 5.29 3.715 5.333 3.958 5.333C5.43 5.333 6.624 4.139 6.624 2.667C6.624 1.194 5.43 0 3.958 0ZM3.958 4C3.221 4 2.624 3.403 2.624 2.667C2.624 1.93 3.221 1.333 3.958 1.333C4.694 1.333 5.291 1.93 5.291 2.667C5.291 3.403 4.694 4 3.958 4Z"
-                  transform="translate(6.042 2.667)"
-                  fill="currentColor"
-                />
-                <path
-                  d="M5.239 2C4.941 0.852 3.908 0 2.667 0C1.194 0 0 1.194 0 2.667C0 4.139 1.194 5.333 2.667 5.333C3.908 5.333 4.941 4.481 5.239 3.333H9.393V2H5.239ZM2.667 4C1.93 4 1.333 3.403 1.333 2.667C1.333 1.93 1.93 1.333 2.667 1.333C3.403 1.333 4 1.93 4 2.667C4 3.403 3.403 4 2.667 4Z"
-                  transform="translate(2 12)"
-                  fill="currentColor"
-                />
-                <path
-                  d="M3.958 3.575C3.715 3.575 3.484 3.618 3.261 3.679L1.159 0L0 0.66L2.1 4.333C1.602 4.818 1.291 5.492 1.291 6.242C1.291 7.714 2.485 8.908 3.958 8.908C5.43 8.908 6.624 7.714 6.624 6.242C6.624 4.769 5.43 3.575 3.958 3.575ZM3.958 7.575C3.221 7.575 2.624 6.978 2.624 6.242C2.624 5.505 3.221 4.908 3.958 4.908C4.694 4.908 5.291 5.505 5.291 6.242C5.291 6.978 4.694 7.575 3.958 7.575Z"
-                  transform="translate(11.376 8.425)"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <p class="services-hero__label-text">Our Process</p>
+         <div class="gp-services-eyebrow-wrap">
+            <img src="./assets/icons/white-triangle.svg" alt="" class="gp-services-eyebrow-icon">
+            <span class="gp-services-eyebrow" style="color:#fff;     text-shadow: 0 0 20px #000000;">What We Build</span>
           </div>
-          <h2>AI systems built for smarter growth</h2>
+          <h2>Clear thinking, Connected execution.</h2>
         </div>
 
         <p>
-          From intelligent workflows and support agents to predictive analysis
-          and content automation, we design practical AI solutions that help
-          your business move faster, work better, and scale with confidence.
+           Serious digital work begins with understanding, not assumptions. We start
+  with your business, define the right priorities and build the connected
+  systems that move your organisation forward with clarity at every stage.
         </p>
       </div>
       <div class="flipper-stack">
@@ -4094,10 +4085,11 @@
                   />
                 </svg>
               </div>
-              <div class="flip-card-tag">AI Agent</div>
-              <h3 class="flip-card-title">Ship Products Faster Than Ever</h3>
+              <div class="flip-card-tag">STEP 01</div>
+              <h3 class="flip-card-title">Start with clarity</h3>
               <p class="flip-card-desc">
-                Build, test, and launch in weeks, not months.
+                We begin with a focused conversation about your business, your current
+  digital position and the opportunity worth acting on next.
               </p>
             </div>
           </div>
@@ -4131,10 +4123,11 @@
                   />
                 </svg>
               </div>
-              <div class="flip-card-tag">Automation</div>
-              <h3 class="flip-card-title">Scale Without Breaking Things</h3>
+              <div class="flip-card-tag">STEP 02</div>
+              <h3 class="flip-card-title">Design the system</h3>
               <p class="flip-card-desc">
-                Grow confidently with infrastructure that adapts automatically.
+                We turn the right priorities into a clear plan, connecting strategy,
+  technology, content and visibility around the way your business works.
               </p>
             </div>
           </div>
@@ -4163,10 +4156,11 @@
                   />
                 </svg>
               </div>
-              <div class="flip-card-tag">Insights</div>
-              <h3 class="flip-card-title">Understand Every Metric</h3>
+              <div class="flip-card-tag">STEP 03</div>
+              <h3 class="flip-card-title">Build with intent</h3>
               <p class="flip-card-desc">
-                Real-time analytics that surface what actually matters.
+                Once the direction is agreed, we turn the plan into working digital
+  systems designed for performance, usability and long-term value.
               </p>
             </div>
           </div>
@@ -4202,10 +4196,11 @@
                   />
                 </svg>
               </div>
-              <div class="flip-card-tag">Security</div>
-              <h3 class="flip-card-title">Enterprise-Grade Protection</h3>
+              <div class="flip-card-tag">STEP 04</div>
+              <h3 class="flip-card-title">Keep moving forward</h3>
               <p class="flip-card-desc">
-                Bank-level encryption and compliance, built in from day one.
+                 Launch is not the finish line. We remain a clear point of contact for
+  optimisation, new content, evolving systems and the next move that matters.
               </p>
             </div>
           </div>
@@ -4214,109 +4209,133 @@
     </div>
 
     <!-- pricing -->
-    <section class="pricing-reference" aria-labelledby="pricing-title">
-      <div class="pricing-reference__container">
-        <div class="pricing-reference__header">
-          <p class="pricing-reference__eyebrow">
-            <span class="pricing-reference__eyebrow-icon" aria-hidden="true"
-              >✣</span
-            >
-            Price plan
-          </p>
-          <h2 id="pricing-title">Flexible plans for<br />modern teams</h2>
+    <!-- Engagement model -->
+<section class="pricing-reference" aria-labelledby="pricing-title">
+  <div class="pricing-reference__container">
+
+    <div class="pricing-reference__header">
+      <div class="gp-services-eyebrow-wrap">
+            <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon">
+            <span class="gp-services-eyebrow">How we engage</span>
+          </div>
+
+      <h2 id="pricing-title">
+        The right system<br>
+        starts with the right conversation.
+      </h2>
+    </div>
+
+    <div class="pricing-board">
+
+      <!-- CARD 01 -->
+      <article class="pricing-card pricing-card--dark">
+        <div class="pricing-card__inner">
+
+          <div class="pricing-card__top">
+            <h3>Focused projects</h3>
+
+            <p>
+              For companies ready to build, relaunch or improve a critical part
+              of their digital operation from a premium website and visibility
+              foundation to content production, automation or a tailored digital solution.
+            </p>
+
+            <a href="./contact.html" class="pricing-btn pricing-btn--light">
+              Book a call
+            </a>
+
+            <ul class="pricing-list" role="list">
+              <li>Clear project scope and priorities</li>
+              <li>Tailored strategy and solution design</li>
+              <li>Premium delivery built around your business</li>
+              <li>Direct communication and clear next steps</li>
+              <li>Investment discussed on request</li>
+            </ul>
+          </div>
+
+          <div class="pricing-card__price">
+            <span class="pricing-value">On request</span>
+            <span class="pricing-period">tailored to your scope</span>
+          </div>
+
         </div>
+      </article>
 
-        <div class="pricing-board">
-          <article class="pricing-card pricing-card--dark">
-            <div class="pricing-card__inner">
-              <div class="pricing-card__top">
-                <h3>AI starter plan</h3>
-                <p>
-                  Perfect for startups and small teams looking to automate daily
-                  workflows with practical AI solutions.
-                </p>
+      <!-- CARD 02 -->
+      <article class="pricing-card pricing-card--light">
+        <div class="pricing-card__inner">
 
-                <a href="contact.html" class="pricing-btn pricing-btn--light">
-                  Start a project today
-                </a>
+          <div class="pricing-card__top">
+            <h3>Long-term digital partnership</h3>
 
-                <ul class="pricing-list" role="list">
-                  <li>AI workflow automation</li>
-                  <li>Smart chatbot setup</li>
-                  <li>Real-time data insights</li>
-                  <li>AI content generation</li>
-                  <li>Basic system integration</li>
-                </ul>
-              </div>
+            <p>
+              For businesses that need an ongoing partner to keep their digital
+              systems connected, visible and moving forward across content,
+              optimisation, AI operations, infrastructure and new opportunities.
+            </p>
 
-              <div class="pricing-card__price">
-                <span class="pricing-value">$299.00 USD</span>
-                <span class="pricing-period">/month</span>
-              </div>
+            <a href="./contact.html" class="pricing-btn pricing-btn--dark">
+              Book a call
+            </a>
+
+            <div class="pricing-list-grid">
+
+              <ul class="pricing-list pricing-list--soft" role="list">
+                <li>Ongoing strategic direction</li>
+                <li>Content and media systems</li>
+                <li>Website optimisation and visibility</li>
+                <li>AI operations and automation support</li>
+                <li>Connected digital infrastructure</li>
+              </ul>
+
+              <ul class="pricing-list pricing-list--soft" role="list">
+                <li>One clear point of contact</li>
+                <li>Flexible priorities as your business evolves</li>
+                <li>Long-term system development</li>
+              </ul>
+
             </div>
-          </article>
+          </div>
 
-          <article class="pricing-card pricing-card--light">
-            <div class="pricing-card__inner">
-              <div class="pricing-card__top">
-                <h3>AI scaling plan</h3>
-                <p>
-                  Built for modern businesses needing advanced automation,
-                  intelligent insights, and scalable AI operations.
-                </p>
+          <div class="pricing-card__price pricing-card__price--light">
+            <span class="pricing-value">On request</span>
+            <span class="pricing-period">built around your ambition</span>
+          </div>
 
-                <a href="./contact.html" class="pricing-btn pricing-btn--dark">
-                  Start a project today
-                </a>
-
-                <div class="pricing-list-grid">
-                  <ul class="pricing-list pricing-list--soft" role="list">
-                    <li>Everything in starter plan</li>
-                    <li>Advanced workflow systems</li>
-                    <li>Predictive business analytics</li>
-                    <li>Custom AI model training</li>
-                    <li>CRM and API integration</li>
-                  </ul>
-
-                  <ul class="pricing-list pricing-list--soft" role="list">
-                    <li>Priority support access</li>
-                    <li>Performance optimization</li>
-                    <li>Dedicated AI strategist</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="pricing-card__price pricing-card__price--light">
-                <span class="pricing-value">$799.00 USD</span>
-                <span class="pricing-period">/month</span>
-              </div>
-            </div>
-          </article>
         </div>
-      </div>
-    </section>
+      </article>
+
+    </div>
+  </div>
+</section>
 
     <!-- why us and trus cards -->
     <section class="facts-v2" aria-labelledby="facts-title">
       <div class="facts-v2__container">
         <div class="facts-v2__top">
           <div class="facts-v2__heading">
-            <div class="facts-v2__eyebrow">
-              <span class="facts-v2__eyebrow-icon" aria-hidden="true"></span>
-              <span>Why choose us</span>
-            </div>
+            <div class="gp-services-eyebrow-wrap">
+            <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon">
+            <span class="gp-services-eyebrow">Built differently</span>
+          </div>
+            
 
-            <h2 id="facts-title">Built for smarter<br />digital growth</h2>
+            <h2 id="facts-title">Substance first.<br />Everything connected.</h2>
           </div>
 
-          <a href="./hmablogs.html" class="facts-v2__button">Learn More</a>
+           <a href="./contact.html" class="nav-btn nav-btn-dark" style=" height: 54px;
+    width: 230px;
+    font-size: 20px;">
+            <img class="btn-icon" src="./assets/icons/icon.svg" alt="" />
+            <span class="btn-label">Enter the system</span>
+          </a>
         </div>
 
         <div class="facts-v2__cards">
           <article class="fact-card fact-card--purple fact-card--left">
             <div class="fact-card__media">
               <img
-                src="./background.png"
+                src="./assets/images/gallery/background.png"
                 alt=""
                 loading="lazy"
                 width="560"
@@ -4326,11 +4345,10 @@
             </div>
 
             <div class="fact-card__content fact-card__content--light">
-              <div class="fact-card__stat">94%</div>
-              <h3 class="fact-card__title">Efficiency boost</h3>
+              <div class="fact-card__stat">2021</div>
+              <h3 class="fact-card__title">Built on experience</h3>
               <p class="fact-card__text">
-                AI-powered automation systems designed to reduce repetitive work
-                and improve operational speed across daily processes.
+                Our company history began in 2021. Today, Hoffmann Medienagentur is built for the technologies, expectations and opportunities shaping what comes next.
               </p>
             </div>
           </article>
@@ -4338,7 +4356,7 @@
           <article class="fact-card fact-card--dark fact-card--middle">
             <div class="fact-card__shape">
               <img
-                src="https://framerusercontent.com/images/Ro5KnkmWDPEnld3hnFJ9vzXU3xY.png?width=400&height=442"
+                src="./assets/shapes/suncircle.png"
                 alt=""
                 loading="lazy"
                 width="220"
@@ -4347,11 +4365,10 @@
             </div>
 
             <div class="fact-card__content fact-card__content--light">
-              <div class="fact-card__stat">18M+</div>
-              <h3 class="fact-card__title">Task automated</h3>
+              <div class="fact-card__stat">4</div>
+              <h3 class="fact-card__title">Languages</h3>
               <p class="fact-card__text">
-                Scalable AI workflows successfully managing millions of actions
-                with consistent accuracy and real-time execution.
+                We create digital experiences across English, German, French and Arabic with multilingual structure designed from the beginning, not added later.
               </p>
             </div>
           </article>
@@ -4359,7 +4376,7 @@
           <article class="fact-card fact-card--light fact-card--right">
             <div class="fact-card__ring">
               <img
-                src="https://framerusercontent.com/images/pLuUcaj4KkrCFvFJLTXFnuPlFOo.png?width=691&height=696"
+                src="./assets/shapes/gray-ring.png"
                 alt=""
                 loading="lazy"
                 width="220"
@@ -4368,11 +4385,10 @@
             </div>
 
             <div class="fact-card__content fact-card__content--dark">
-              <div class="fact-card__stat">3.2x</div>
-              <h3 class="fact-card__title">Faster scaling</h3>
+              <div class="fact-card__stat">1</div>
+              <h3 class="fact-card__title">Clear point of contact</h3>
               <p class="fact-card__text">
-                Flexible intelligent systems helping businesses expand faster
-                without increasing manual workload or complexity.
+                One partner to connect strategy, design, content, technology and AI around the goals that matter to your business.
               </p>
             </div>
           </article>
@@ -4396,123 +4412,145 @@
         <div class="faq-content">
           <div class="faq-intro">
             <div class="faq-title reveal-up">
-              <h2>FREQUENTLY ASKED QUESTIONS</h2>
+              <h2>QUESTIONS, ANSWERED CLEARLY.</h2>
             </div>
 
             <div class="faq-description reveal-up">
               <p>
-                Got questions? We’ve answered the most common ones to help you
-                get started with confidence.
-              </p>
+  Got questions? We’ve answered the most common ones to help you
+  get started with confidence.
+</p>
             </div>
           </div>
           <div class="faq-accordion">
             <div class="faq-table">
-              <article class="faq-row reveal-row">
-                <button class="faq-trigger" type="button" aria-expanded="true">
-                  <span class="faq-control" aria-hidden="true">
-                    <span class="faq-control-plus"></span>
-                    <span class="faq-control-minus"></span>
-                  </span>
 
-                  <span class="faq-text">
-                    <span class="faq-question"
-                      >WHAT SERVICES DO YOU OFFER?</span
-                    >
-                    <span class="faq-answer">
-                      We offer Web3 strategy, tokenomics, smart contracts,
-                      DApps, and NFT launch support everything you need to build
-                      and grow in the decentralized space.
-                    </span>
-                  </span>
-                </button>
-                <span class="faq-divider" aria-hidden="true"></span>
-              </article>
+  <!-- FAQ 01 -->
+  <article class="faq-row reveal-row">
+    <button class="faq-trigger" type="button" aria-expanded="true">
+      <span class="faq-control" aria-hidden="true">
+        <span class="faq-control-plus"></span>
+        <span class="faq-control-minus"></span>
+      </span>
 
-              <article class="faq-row reveal-row">
-                <button class="faq-trigger" type="button" aria-expanded="false">
-                  <span class="faq-control" aria-hidden="true">
-                    <span class="faq-control-plus"></span>
-                    <span class="faq-control-minus"></span>
-                  </span>
+      <span class="faq-text">
+        <span class="faq-question">
+          WHAT SERVICES DOES HMA OFFER?
+        </span>
 
-                  <span class="faq-text">
-                    <span class="faq-question"
-                      >WHICH BLOCKCHAINS DO YOU SUPPORT?</span
-                    >
-                    <span class="faq-answer">
-                      We support major blockchains such as Ethereum, Binance
-                      Smart Chain, Polygon, and Solana, ensuring versatile
-                      solutions for diverse project requirements.
-                    </span>
-                  </span>
-                </button>
-                <span class="faq-divider" aria-hidden="true"></span>
-              </article>
+        <span class="faq-answer">
+          Hoffmann Medienagentur brings together premium websites, brand systems,
+          search visibility, content and media production, AI operations, Digital
+          Product Passport readiness, domains, email, infrastructure, AI-powered
+          website search and custom software solutions.
+        </span>
+      </span>
+    </button>
 
-              <article class="faq-row reveal-row">
-                <button class="faq-trigger" type="button" aria-expanded="false">
-                  <span class="faq-control" aria-hidden="true">
-                    <span class="faq-control-plus"></span>
-                    <span class="faq-control-minus"></span>
-                  </span>
+    <span class="faq-divider" aria-hidden="true"></span>
+  </article>
 
-                  <span class="faq-text">
-                    <span class="faq-question"
-                      >DO YOU OFFER SMART CONTRACT AUDITS?</span
-                    >
-                    <span class="faq-answer">
-                      We provide thorough smart contract audits that ensure your
-                      blockchain code is secure, fully functional, and
-                      compliant, minimizing risks before deployment.
-                    </span>
-                  </span>
-                </button>
-                <span class="faq-divider" aria-hidden="true"></span>
-              </article>
+  <!-- FAQ 02 -->
+  <article class="faq-row reveal-row">
+    <button class="faq-trigger" type="button" aria-expanded="false">
+      <span class="faq-control" aria-hidden="true">
+        <span class="faq-control-plus"></span>
+        <span class="faq-control-minus"></span>
+      </span>
 
-              <article class="faq-row reveal-row">
-                <button class="faq-trigger" type="button" aria-expanded="false">
-                  <span class="faq-control" aria-hidden="true">
-                    <span class="faq-control-plus"></span>
-                    <span class="faq-control-minus"></span>
-                  </span>
+      <span class="faq-text">
+        <span class="faq-question">
+          DO I NEED EVERY HMA SERVICE?
+        </span>
 
-                  <span class="faq-text">
-                    <span class="faq-question"
-                      >CAN YOU HELP LAUNCH AN NFT PROJECT?</span
-                    >
-                    <span class="faq-answer">
-                      We provide complete NFT launch support, including smart
-                      contract development, design, platform integration, and
-                      community strategy for success.
-                    </span>
-                  </span>
-                </button>
-                <span class="faq-divider" aria-hidden="true"></span>
-              </article>
+        <span class="faq-answer">
+          No. Some clients start with a premium website, a content system or an
+          automation project. Others need several connected services. We begin by
+          identifying the highest-value next move, then build the right scope
+          around your business priorities.
+        </span>
+      </span>
+    </button>
 
-              <article class="faq-row reveal-row">
-                <button class="faq-trigger" type="button" aria-expanded="false">
-                  <span class="faq-control" aria-hidden="true">
-                    <span class="faq-control-plus"></span>
-                    <span class="faq-control-minus"></span>
-                  </span>
+    <span class="faq-divider" aria-hidden="true"></span>
+  </article>
 
-                  <span class="faq-text">
-                    <span class="faq-question"
-                      >WHAT’S YOUR TYPICAL PROJECT TIMELINE?</span
-                    >
-                    <span class="faq-answer">
-                      Our project timeline ranges from 2 to 12 weeks, depending
-                      on the project’s complexity, with detailed planning after
-                      initial consultation and assessment.
-                    </span>
-                  </span>
-                </button>
-                <span class="faq-divider" aria-hidden="true"></span>
-              </article>
-            </div>
+  <!-- FAQ 03 -->
+  <article class="faq-row reveal-row">
+    <button class="faq-trigger" type="button" aria-expanded="false">
+      <span class="faq-control" aria-hidden="true">
+        <span class="faq-control-plus"></span>
+        <span class="faq-control-minus"></span>
+      </span>
+
+      <span class="faq-text">
+        <span class="faq-question">
+          CAN YOU WORK WITH OUR EXISTING WEBSITE AND TOOLS?
+        </span>
+
+        <span class="faq-answer">
+          Yes. We assess what is already in place, what creates friction and what
+          should be improved, connected or replaced. Depending on the project, we
+          can work with existing websites, CRM platforms, cloud tools, content
+          systems and operational workflows.
+        </span>
+      </span>
+    </button>
+
+    <span class="faq-divider" aria-hidden="true"></span>
+  </article>
+
+  <!-- FAQ 04 -->
+  <article class="faq-row reveal-row">
+    <button class="faq-trigger" type="button" aria-expanded="false">
+      <span class="faq-control" aria-hidden="true">
+        <span class="faq-control-plus"></span>
+        <span class="faq-control-minus"></span>
+      </span>
+
+      <span class="faq-text">
+        <span class="faq-question">
+          HOW DOES A PROJECT BEGIN?
+        </span>
+
+        <span class="faq-answer">
+          We begin with a focused conversation about your business, objectives,
+          existing systems and the opportunity you want to pursue. From there, we
+          define priorities, clarify the scope and recommend the most effective
+          way forward.
+        </span>
+      </span>
+    </button>
+
+    <span class="faq-divider" aria-hidden="true"></span>
+  </article>
+
+  <!-- FAQ 05 -->
+  <article class="faq-row reveal-row">
+    <button class="faq-trigger" type="button" aria-expanded="false">
+      <span class="faq-control" aria-hidden="true">
+        <span class="faq-control-plus"></span>
+        <span class="faq-control-minus"></span>
+      </span>
+
+      <span class="faq-text">
+        <span class="faq-question">
+          HOW LONG DOES A DIGITAL PROJECT TAKE?
+        </span>
+
+        <span class="faq-answer">
+          Timelines depend on the scope, the number of markets or languages, the
+          required integrations and how quickly decisions and source materials are
+          available. Before work begins, we define clear phases, responsibilities
+          and a realistic delivery plan.
+        </span>
+      </span>
+    </button>
+
+    <span class="faq-divider" aria-hidden="true"></span>
+  </article>
+
+</div>
             <div class="faq-table">
               <article class="faq-row reveal-row">
                 <button class="faq-trigger" type="button" aria-expanded="true">
@@ -4632,14 +4670,14 @@
         <div class="footer-cta">
           <div class="footer-cta-copy">
             <div class="footer-cta-title reveal-footer-up">
-              <h2>LET’S BUILD THE FUTURE OF WEB3 TOGETHER</h2>
+              <h2><h2>READY TO BUILD WHAT’S NEXT?</h2></h2>
             </div>
 
             <div class="footer-cta-description reveal-footer-up">
               <p>
-                Ready to launch? From start to scale, we turn your Web3 vision
-                into reality.
-              </p>
+  From digital foundations and content systems to AI operations and
+  connected infrastructure, let’s define the next move for your business.
+</p>
             </div>
           </div>
 
@@ -4654,7 +4692,7 @@
                   loading="lazy"
                 />
               </span>
-              <span class="footer-cta-btn-label">Get In Touch</span>
+              <span class="footer-cta-btn-label">BOOK A CALL</span>
             </a>
           </div>
         </div>
@@ -4730,7 +4768,7 @@
 
         const TRAIL_LENGTH = 14;
         const NOISE_SIZE = 256;
-        const LINES = ["AI SERVICES", "BUILT FOR TOMORROW"];
+        const LINES = ["DIGITAL SYSTEMS", "BUILT TO MOVE BUSINESS"];
         const FONT_FAMILY = "Inter, sans-serif";
 
         const CONFIG = {
@@ -6004,8 +6042,8 @@
           const rect = section.getBoundingClientRect();
           const viewportH = window.innerHeight;
 
-          const start = viewportH * 0.92;
-          const end = viewportH * 0.18;
+          const start = viewportH * 0.9;
+          const end = viewportH * 0;
 
           const progress = clamp((start - rect.top) / (start - end), 0, 1);
 

@@ -18,7 +18,7 @@
     border-radius: 999px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-        background: rgb(176 176 176 / 43%);
+    background:  rgb(0 0 0 / 30%);
     box-shadow: var(--shadow);
 }
 .LogoWrapper{
@@ -63,7 +63,7 @@
 }
 
 .nav-item:hover {
-  color: #de0bcc;
+  color: #ffffff67;
 }
 
 .nav-item.active {

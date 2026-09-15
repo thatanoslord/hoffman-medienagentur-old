@@ -111,7 +111,7 @@
     }
 
     .nav-btn:hover .service-icon {
-      transform: translateX(113px);
+      transform: translateX(158px);
     }
 
     .nav-btn:hover .services-label {
@@ -652,7 +652,7 @@
     }
 
     .gp-services-header .nav-btn.light {
-      width: 180px;
+      width: 226px;
       gap: 12px;
     }
 
@@ -752,6 +752,7 @@
       will-change: transform, opacity;
     }
 
+
     .gp-service-card .gp-service-body,
     .gp-service-card .gp-service-media {
       direction: ltr;
@@ -761,6 +762,29 @@
       border-radius: 19px;
       overflow: hidden;
       max-height: 640px;
+    }
+
+    .smaller-services-card .nav-btn{
+      width:  220px !important;
+    }
+
+    .gp-services-cards:last-child .nav-btn{
+width:  240px ;
+    }
+    .smaller-services-card .nav-btn:hover .btn-icon {
+      transform: translateX(152px) !important;
+    }
+
+    .smaller-services-card .nav-btn:hover .btn-label {
+      transform: translateX(-45px) !important;
+    }
+
+    .gp-services-cards:last-child  .nav-btn:hover .btn-icon {
+      transform: translateX(172px);
+    }
+
+    .gp-services-cards:last-child  .nav-btn:hover .btn-label {
+      transform: translateX(-50px);
     }
 
     .gp-service-media img {
@@ -2661,16 +2685,16 @@
     .blog-cta {
       margin-top: 30px;
       height: 60px;
-      width: 210px;
+      width: 262px;
       font-size: 22px;
     }
 
     .blog-cta:hover .btn-icon {
-      transform: translateX(140px);
+      transform: translateX(196px);
     }
 
     .blog-cta:hover .btn-label {
-      transform: translateX(-40px);
+      transform: translateX(-42px);
     }
 
     @media (min-width: 1024px) {
@@ -2986,7 +3010,7 @@
       position: relative;
       display: inline-flex;
       align-items: center;
-      width: 198px;
+      width: 188px;
       height: 51px;
       border-radius: 45px;
       overflow: hidden;
@@ -3030,11 +3054,11 @@
     }
 
     .footer-cta-btn:hover .footer-cta-btn-icon {
-      transform: translateX(128px);
+      transform: translateX(122px);
     }
 
     .footer-cta-btn:hover .footer-cta-btn-label {
-      transform: translateX(-28px);
+      transform: translateX(-48px);
     }
 
     .footer-divider {
@@ -3428,7 +3452,7 @@
 
 
   <nav class="nav-wrap">
-    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/HMA-white.png" alt="" class="Logo"></a>
+    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="" class="Logo"></a>
     <div class="nav-bar" id="navBar">
       <a href="./index.html" class="nav-item active" data-name="Home">
         <span class="nav-label">Home</span>
@@ -3562,7 +3586,7 @@
             production, AI automation and connected digital systems.
           </p>
           <a href="./contact.html" class="nav-btn nav-btn-dark" style=" height: 54px;
-    width: 250px;
+    width: 246px;
     font-size: 22px;">
             <img class="btn-icon" src="./assets/icons/icon.svg" alt="" />
             <span class="btn-label">Enter the system</span>
@@ -3793,7 +3817,7 @@
       <div class="gp-services-stack-wrap">
         <div class="gp-services-cards">
 
-          <article class="gp-service-card" id="ignition-service-card">
+          <article class="gp-service-card smaller-services-card" id="ignition-service-card">
             <div class="gp-service-media">
               <img src="./assets/images/gallery/cube.png"
                 alt="Premium digital interface and website presentation for a modern business brand." loading="lazy"
@@ -3820,8 +3844,8 @@
               </a>
             </div>
           </article>
-
-          <article class="gp-service-card" id="engine-service-card">
+ 
+          <article class="gp-service-card smaller-services-card" id="engine-service-card">
             <div class="gp-service-media">
               <img src="./assets/images/gallery/two-mobile.png"
                 alt="Content production and media workflow shown across modern digital devices." loading="lazy"
@@ -3849,7 +3873,7 @@
             </div>
           </article>
 
-          <article class="gp-service-card" id="ai-ops-service-card">
+          <article class="gp-service-card smaller-services-card" id="ai-ops-service-card">
             <div class="gp-service-media">
               <img src="./assets/images/gallery/laptop.png"
                 alt="AI automation dashboard and operational workflow interface." loading="lazy" width="4096"
@@ -3878,7 +3902,7 @@
             </div>
           </article>
 
-          <article class="gp-service-card" id="dpp-service-card">
+          <article class="gp-service-card smaller-services-card" id="dpp-service-card">
             <div class="gp-service-media">
               <img src="./assets/images/gallery/dpp hand.png"
                 alt="European compliance and digital product documentation concept interface." loading="lazy"

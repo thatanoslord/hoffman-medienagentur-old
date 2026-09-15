@@ -1583,6 +1583,363 @@ grid-column: span 2 / span 2;
 }
       </style>
 
+      <style>
+      /* ===== Category filters ===== */
+      .category-filters{
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+      }
+
+      .filter-pill{
+        font-family:"Inter",sans-serif;
+        border:1px solid rgba(255,255,255,.16);
+        background:transparent;
+        color:rgba(255,255,255,.75);
+        font-size:13px;
+        font-weight:500;
+        padding:10px 20px;
+        border-radius:999px;
+        cursor:pointer;
+        transition:.25s ease;
+        white-space:nowrap;
+      }
+
+      .filter-pill:hover{
+        border-color:rgba(255,255,255,.4);
+        color:#fff;
+      }
+
+      .filter-pill.is-active{
+        background:linear-gradient(135deg, var(--purple-1), var(--purple-2));
+        border-color:transparent;
+        color:#fff;
+      }
+
+      /* ===== Pagination / load more ===== */
+      .blog-pagination{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:24px;
+        margin-top:48px;
+      }
+
+      .load-more-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        font-family:"Inter",sans-serif;
+        background:#fff;
+        color:#050505;
+        border:none;
+        border-radius:999px;
+        font-size:14px;
+        font-weight:600;
+        padding:14px 26px;
+        cursor:pointer;
+        transition:.25s ease;
+      }
+
+      .load-more-btn svg{
+        width:16px;
+        height:16px;
+      }
+
+      .load-more-btn:hover{
+        transform:translateY(-2px);
+        opacity:.92;
+      }
+
+      .page-numbers{
+        display:flex;
+        align-items:center;
+        gap:8px;
+      }
+
+      .page-number{
+        display:grid;
+        place-items:center;
+        width:34px;
+        height:34px;
+        border-radius:999px;
+        color:rgba(255,255,255,.6);
+        font-size:13px;
+        font-weight:500;
+        transition:.25s ease;
+      }
+
+      .page-number:hover{
+        color:#fff;
+        background:rgba(255,255,255,.08);
+      }
+
+      .page-number.is-active{
+        background:linear-gradient(135deg, var(--purple-1), var(--purple-2));
+        color:#fff;
+      }
+
+      .page-number--next svg{
+        width:14px;
+        height:14px;
+      }
+
+      /* ===== Newsletter ===== */
+      .newsletter-section{
+        position:relative;
+        padding:100px 0;
+        color:#fff;
+        overflow:hidden;
+        background:
+          radial-gradient(circle at 18% 20%, rgba(109,92,255,.35), rgba(0,0,0,0) 45%),
+          linear-gradient(120deg, #050505 0%, #0b0a1f 55%, #151046 100%);
+      }
+
+      .newsletter-inner{
+        display:grid;
+        grid-template-columns:1.1fr .9fr;
+        gap:56px;
+        align-items:center;
+      }
+
+      .newsletter-copy h2{
+        font-size:clamp(1.8rem, 3vw, 2.6rem);
+        line-height:1.1;
+        letter-spacing:-.03em;
+        font-weight:500;
+        margin:14px 0 16px;
+      }
+
+      .newsletter-copy p{
+        color:rgba(255,255,255,.65);
+        font-size:15px;
+        max-width:440px;
+        line-height:1.6;
+      }
+
+      .newsletter-panel{
+        background:rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.1);
+        border-radius:var(--radius-xl);
+        padding:32px;
+      }
+
+      .newsletter-form{
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+      }
+
+      .newsletter-form input{
+        flex:1 1 200px;
+        font-family:"Inter",sans-serif;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.14);
+        border-radius:999px;
+        padding:14px 20px;
+        color:#fff;
+        font-size:14px;
+        outline:none;
+        transition:.25s ease;
+      }
+
+      .newsletter-form input::placeholder{
+        color:rgba(255,255,255,.45);
+      }
+
+      .newsletter-form input:focus{
+        border-color:var(--purple-1);
+        background:rgba(255,255,255,.09);
+      }
+
+      .newsletter-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        font-family:"Inter",sans-serif;
+        background:linear-gradient(135deg, var(--purple-1), var(--purple-2));
+        color:#fff;
+        border:none;
+        border-radius:999px;
+        font-size:14px;
+        font-weight:600;
+        padding:14px 22px;
+        cursor:pointer;
+        transition:.25s ease;
+        white-space:nowrap;
+      }
+
+      .newsletter-btn svg{
+        width:16px;
+        height:16px;
+      }
+
+      .newsletter-btn:hover{
+        transform:translateY(-2px);
+        opacity:.92;
+      }
+
+      .newsletter-lead-magnet{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-top:18px;
+        padding-top:18px;
+        border-top:1px solid rgba(255,255,255,.1);
+        color:rgba(255,255,255,.85);
+        font-size:13px;
+        font-weight:500;
+      }
+
+      .newsletter-lead-magnet svg{
+        width:16px;
+        height:16px;
+        flex-shrink:0;
+        color:var(--purple-1);
+      }
+
+      .newsletter-lead-magnet:hover{
+        color:#fff;
+      }
+
+      .newsletter-fineprint{
+        margin-top:12px;
+        font-size:11px;
+        color:rgba(255,255,255,.4);
+      }
+
+      .visually-hidden{
+        position:absolute;
+        width:1px;
+        height:1px;
+        padding:0;
+        margin:-1px;
+        overflow:hidden;
+        clip:rect(0,0,0,0);
+        white-space:nowrap;
+        border:0;
+      }
+
+      /* ===== Agency CTA ===== */
+      .agency-cta-section{
+        position:relative;
+        padding:70px 0;
+        background:#050505;
+        color:#fff;
+        overflow:hidden;
+      }
+
+      .agency-cta-inner{
+        position:relative;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:32px;
+        flex-wrap:wrap;
+        padding:44px 48px;
+        border-radius:var(--radius-xl);
+        border:1px solid rgba(255,255,255,.1);
+        background:linear-gradient(120deg, rgba(109,92,255,.14), rgba(0,0,0,0) 60%);
+      }
+
+      .agency-cta-copy{
+        max-width:600px;
+      }
+
+      .agency-cta-copy h2{
+        font-size:clamp(1.6rem, 2.6vw, 2.2rem);
+        line-height:1.15;
+        letter-spacing:-.03em;
+        font-weight:500;
+        margin:12px 0 12px;
+      }
+
+      .agency-cta-copy p{
+        color:rgba(255,255,255,.65);
+        font-size:15px;
+        line-height:1.6;
+      }
+
+      .agency-cta-actions{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
+      }
+
+      .agency-cta-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        background:#fff;
+        color:#050505;
+        border-radius:999px;
+        font-size:14px;
+        font-weight:600;
+        padding:16px 26px;
+        transition:.25s ease;
+        white-space:nowrap;
+      }
+
+      .agency-cta-btn svg{
+        width:16px;
+        height:16px;
+      }
+
+      .agency-cta-btn:hover{
+        transform:translateY(-2px);
+        opacity:.92;
+      }
+
+      .agency-cta-link{
+        font-size:13px;
+        font-weight:600;
+        color:rgba(255,255,255,.7);
+        border-bottom:1px solid rgba(255,255,255,.3);
+        padding-bottom:2px;
+        transition:.25s ease;
+      }
+
+      .agency-cta-link:hover{
+        color:#fff;
+        border-color:#fff;
+      }
+
+      @media (max-width: 900px){
+        .newsletter-inner{
+          grid-template-columns:1fr;
+        }
+        .agency-cta-inner{
+          flex-direction:column;
+          align-items:flex-start;
+          padding:32px 24px;
+        }
+        .agency-cta-actions{
+          align-items:flex-start;
+          width:100%;
+        }
+      }
+
+      @media (max-width: 560px){
+        .newsletter-form{
+          flex-direction:column;
+        }
+        .newsletter-form input,
+        .newsletter-btn{
+          width:100%;
+          justify-content:center;
+        }
+        .category-filters{
+          justify-content:flex-start;
+          overflow-x:auto;
+          flex-wrap:nowrap;
+          padding-bottom:4px;
+        }
+      }
+      </style>
+
 </head>
 <body>
 
@@ -1808,11 +2165,18 @@ grid-column: span 2 / span 2;
         <h2 id="all-blogs-title">Recent thinking, built for what comes next</h2>
       </div>
 
-      
+      <div class="category-filters" role="group" aria-label="Filter articles by category">
+        <button type="button" class="filter-pill is-active" data-filter="all">All</button>
+        <button type="button" class="filter-pill" data-filter="seo">SEO</button>
+        <button type="button" class="filter-pill" data-filter="web-design">Web Design</button>
+        <button type="button" class="filter-pill" data-filter="ai-visibility">AI Visibility</button>
+        <button type="button" class="filter-pill" data-filter="branding">Branding</button>
+        <button type="button" class="filter-pill" data-filter="digital-marketing">Digital Marketing</button>
+      </div>
     </div>
         <div class="blog-grid">
 
-          <article class="card">
+          <article class="card" data-category="ai-visibility">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/6QCDzPRDYBli8N8AZ4OVFlkOk.png?width=1200&height=980" alt="Building smarter workflows with AI automation" loading="lazy" width="1200" height="980">
@@ -1828,7 +2192,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="digital-marketing">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/uWFHVnjUxXKK0XK3Rc93uITdeI.png?width=1200&height=980" alt="How automation improves scaling system" loading="lazy" width="1200" height="980">
@@ -1844,7 +2208,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="seo">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/ehEebUs6jiu23RcHeOuctgKml1M.png?width=1200&height=980" alt="How automation improves daily operations" loading="lazy" width="1200" height="980">
@@ -1860,7 +2224,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="ai-visibility">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/xOCZzsPG5B5PJINFIvRokrJLzAg.png?width=1200&height=980" alt="Designing adaptive AI experiences" loading="lazy" width="1200" height="980">
@@ -1876,7 +2240,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="digital-marketing">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/CzQwUh8Wq8cCFsx7ErxLOUzoEo.png?width=1200&height=980" alt="Scaling operations through smart systems" loading="lazy" width="1200" height="980">
@@ -1908,7 +2272,7 @@ grid-column: span 2 / span 2;
             </a>
           </article> -->
 
-          <article class="card">
+          <article class="card" data-category="web-design">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/dmqISwkotUlhWWyvkcFf1EOLV0.png?width=1280&height=1100" alt="Building smarter workflows with AI automation second article" loading="lazy" width="1280" height="1100">
@@ -1925,9 +2289,81 @@ grid-column: span 2 / span 2;
           </article>
 
         </div>
+
+        <div class="blog-pagination">
+          <button type="button" class="load-more-btn" id="loadMoreBtn">
+            <span>Load more articles</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <nav class="page-numbers" aria-label="Blog pagination">
+            <a href="#all-blogs" class="page-number is-active" aria-current="page">1</a>
+            <a href="#all-blogs" class="page-number">2</a>
+            <a href="#all-blogs" class="page-number">3</a>
+            <a href="#all-blogs" class="page-number page-number--next" aria-label="Next page">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </nav>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- newsletter -->
+  <section class="newsletter-section" aria-labelledby="newsletter-title">
+    <div class="container newsletter-inner">
+      <div class="newsletter-copy">
+        <div class="section-label section-label--light">Stay Ahead</div>
+        <h2 id="newsletter-title">Get our SEO &amp; AI visibility insights, straight to your inbox</h2>
+        <p>One email a month. No fluff — practical takeaways on SEO, AI visibility, web design, branding and digital marketing, plus a free download to get you started.</p>
+      </div>
+
+      <div class="newsletter-panel">
+        <form class="newsletter-form" id="newsletterForm">
+          <label class="visually-hidden" for="newsletter-email">Email address</label>
+          <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" required />
+          <button type="submit" class="newsletter-btn">
+            <span>Subscribe</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H8M17 7V16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+        <a href="#" class="newsletter-lead-magnet">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Download the free AI Visibility Checklist (PDF)</span>
+        </a>
+        <p class="newsletter-fineprint">No spam, unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- agency cta -->
+  <section class="agency-cta-section" aria-labelledby="agency-cta-title">
+    <div class="container agency-cta-inner">
+      <div class="agency-cta-ornament" aria-hidden="true"></div>
+      <div class="agency-cta-copy">
+        <div class="section-label">Need Help Implementing This?</div>
+        <h2 id="agency-cta-title">Reading is step one. Let's build it together.</h2>
+        <p>Our team turns SEO, AI visibility, web design, branding and digital marketing strategy into results — from a single audit to a full growth system.</p>
+      </div>
+      <div class="agency-cta-actions">
+        <a href="./contact.html" class="agency-cta-btn">
+          <span>Book a free strategy call</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17L17 7M17 7H8M17 7V16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="./hmaservices.html" class="agency-cta-link">See our services</a>
+      </div>
+    </div>
+  </section>
 
   <!-- faq -->
     <section class="faq-section" style="padding: 60px 0px" id="faq">
@@ -2399,6 +2835,57 @@ grid-column: span 2 / span 2;
       );
 
       revealItems.forEach((item) => observer.observe(item));
+    })();
+  </script>
+
+  <!-- category filters + pagination + newsletter -->
+  <script>
+    (function () {
+      // Category filters
+      const pills = document.querySelectorAll(".filter-pill");
+      const cards = document.querySelectorAll(".blog-grid .card");
+
+      pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          pills.forEach((p) => p.classList.remove("is-active"));
+          pill.classList.add("is-active");
+
+          const filter = pill.dataset.filter;
+          cards.forEach((card) => {
+            const match = filter === "all" || card.dataset.category === filter;
+            card.style.display = match ? "" : "none";
+          });
+        });
+      });
+
+      // Load more (demo state, wire up to real pagination/API as needed)
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", () => {
+          loadMoreBtn.querySelector("span").textContent = "Loading...";
+          setTimeout(() => {
+            loadMoreBtn.querySelector("span").textContent = "No more articles";
+            loadMoreBtn.disabled = true;
+            loadMoreBtn.style.opacity = ".6";
+            loadMoreBtn.style.cursor = "default";
+          }, 700);
+        });
+      }
+
+      // Newsletter form (demo state, wire up to real endpoint as needed)
+      const newsletterForm = document.getElementById("newsletterForm");
+      if (newsletterForm) {
+        newsletterForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const btn = newsletterForm.querySelector(".newsletter-btn span");
+          const original = btn.textContent;
+          btn.textContent = "Subscribed!";
+          newsletterForm.reset();
+          setTimeout(() => {
+            btn.textContent = original;
+          }, 2500);
+        });
+      }
     })();
   </script>
 

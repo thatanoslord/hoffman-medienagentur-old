@@ -1583,6 +1583,123 @@ grid-column: span 2 / span 2;
 }
       </style>
 
+      <style>
+      /* ===== Category filters ===== */
+      .category-filters{
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+      }
+
+      .filter-pill{
+        font-family:"Inter",sans-serif;
+        border:1px solid rgba(255,255,255,.16);
+        background:transparent;
+        color:rgba(255,255,255,.75);
+        font-size:13px;
+        font-weight:500;
+        padding:10px 20px;
+        border-radius:999px;
+        cursor:pointer;
+        transition:.25s ease;
+        white-space:nowrap;
+      }
+
+      .filter-pill:hover{
+        border-color:rgba(255,255,255,.4);
+        color:#fff;
+      }
+
+      .filter-pill.is-active{
+        background:linear-gradient(135deg, var(--purple-1), var(--purple-2));
+        border-color:transparent;
+        color:#fff;
+      }
+
+      /* Uniform grid when a specific category (not "All") is selected */
+      .blog-grid.is-filtered{
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: minmax(0, 250px);
+      }
+
+      .blog-grid.is-filtered .card{
+        grid-column: span 2 / span 2 !important;
+        grid-row: span 2 / span 2 !important;
+      }
+
+      /* ===== Pagination / load more ===== */
+      .blog-pagination{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:24px;
+        margin-top:48px;
+      }
+
+      .load-more-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        font-family:"Inter",sans-serif;
+        background:#fff;
+        color:#050505;
+        border:none;
+        border-radius:999px;
+        font-size:14px;
+        font-weight:600;
+        padding:14px 26px;
+        cursor:pointer;
+        transition:.25s ease;
+      }
+
+      .load-more-btn svg{
+        width:16px;
+        height:16px;
+      }
+
+      .load-more-btn:hover{
+        transform:translateY(-2px);
+        opacity:.92;
+      }
+
+      .page-numbers{
+        display:flex;
+        align-items:center;
+        gap:8px;
+      }
+
+      .page-number{
+        display:grid;
+        place-items:center;
+        width:34px;
+        height:34px;
+        border-radius:999px;
+        color:rgba(255,255,255,.6);
+        font-size:13px;
+        font-weight:500;
+        transition:.25s ease;
+      }
+
+      .page-number:hover{
+        color:#fff;
+        background:rgba(255,255,255,.08);
+      }
+
+      .page-number.is-active{
+        background:linear-gradient(135deg, var(--purple-1), var(--purple-2));
+        color:#fff;
+      }
+
+      .page-number--next svg{
+        width:14px;
+        height:14px;
+      }
+
+
+      </style>
+
 </head>
 <body>
 
@@ -1808,11 +1925,18 @@ grid-column: span 2 / span 2;
         <h2 id="all-blogs-title">Recent thinking, built for what comes next</h2>
       </div>
 
-      
+      <div class="category-filters" role="group" aria-label="Filter articles by category">
+        <button type="button" class="filter-pill is-active" data-filter="all">All</button>
+        <button type="button" class="filter-pill" data-filter="seo">SEO</button>
+        <button type="button" class="filter-pill" data-filter="web-design">Web Design</button>
+        <button type="button" class="filter-pill" data-filter="ai-visibility">AI Visibility</button>
+        <button type="button" class="filter-pill" data-filter="branding">Branding</button>
+        <button type="button" class="filter-pill" data-filter="digital-marketing">Digital Marketing</button>
+      </div>
     </div>
         <div class="blog-grid">
 
-          <article class="card">
+          <article class="card" data-category="ai-visibility">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/6QCDzPRDYBli8N8AZ4OVFlkOk.png?width=1200&height=980" alt="Building smarter workflows with AI automation" loading="lazy" width="1200" height="980">
@@ -1828,7 +1952,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="digital-marketing">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/uWFHVnjUxXKK0XK3Rc93uITdeI.png?width=1200&height=980" alt="How automation improves scaling system" loading="lazy" width="1200" height="980">
@@ -1844,7 +1968,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="seo">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/ehEebUs6jiu23RcHeOuctgKml1M.png?width=1200&height=980" alt="How automation improves daily operations" loading="lazy" width="1200" height="980">
@@ -1860,7 +1984,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="ai-visibility">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/xOCZzsPG5B5PJINFIvRokrJLzAg.png?width=1200&height=980" alt="Designing adaptive AI experiences" loading="lazy" width="1200" height="980">
@@ -1876,7 +2000,7 @@ grid-column: span 2 / span 2;
             </a>
           </article>
 
-          <article class="card">
+          <article class="card" data-category="digital-marketing">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/CzQwUh8Wq8cCFsx7ErxLOUzoEo.png?width=1200&height=980" alt="Scaling operations through smart systems" loading="lazy" width="1200" height="980">
@@ -1908,7 +2032,7 @@ grid-column: span 2 / span 2;
             </a>
           </article> -->
 
-          <article class="card">
+          <article class="card" data-category="web-design">
             <a href="#">
               <div class="card-image">
                 <img src="https://framerusercontent.com/images/dmqISwkotUlhWWyvkcFf1EOLV0.png?width=1280&height=1100" alt="Building smarter workflows with AI automation second article" loading="lazy" width="1280" height="1100">
@@ -1925,9 +2049,33 @@ grid-column: span 2 / span 2;
           </article>
 
         </div>
+
+        <div class="blog-pagination">
+          <button type="button" class="load-more-btn" id="loadMoreBtn">
+            <span>Load more articles</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <nav class="page-numbers" aria-label="Blog pagination">
+            <a href="#all-blogs" class="page-number is-active" aria-current="page">1</a>
+            <a href="#all-blogs" class="page-number">2</a>
+            <a href="#all-blogs" class="page-number">3</a>
+            <a href="#all-blogs" class="page-number page-number--next" aria-label="Next page">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </nav>
+        </div>
       </div>
     </section>
   </main>
+
+ 
+
+
 
   <!-- faq -->
     <section class="faq-section" style="padding: 60px 0px" id="faq">
@@ -2399,6 +2547,64 @@ grid-column: span 2 / span 2;
       );
 
       revealItems.forEach((item) => observer.observe(item));
+    })();
+  </script>
+
+  <!-- category filters + pagination + newsletter -->
+  <script>
+    (function () {
+      // Category filters
+      const pills = document.querySelectorAll(".filter-pill");
+      const cards = document.querySelectorAll(".blog-grid .card");
+      const blogGrid = document.querySelector(".blog-grid");
+
+      pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          pills.forEach((p) => p.classList.remove("is-active"));
+          pill.classList.add("is-active");
+
+          const filter = pill.dataset.filter;
+
+          // "All" keeps the bento layout; any other tab switches to a uniform grid
+          if (blogGrid) {
+            blogGrid.classList.toggle("is-filtered", filter !== "all");
+          }
+
+          cards.forEach((card) => {
+            const match = filter === "all" || card.dataset.category === filter;
+            card.style.display = match ? "" : "none";
+          });
+        });
+      });
+
+      // Load more (demo state, wire up to real pagination/API as needed)
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", () => {
+          loadMoreBtn.querySelector("span").textContent = "Loading...";
+          setTimeout(() => {
+            loadMoreBtn.querySelector("span").textContent = "No more articles";
+            loadMoreBtn.disabled = true;
+            loadMoreBtn.style.opacity = ".6";
+            loadMoreBtn.style.cursor = "default";
+          }, 700);
+        });
+      }
+
+      // Newsletter form (demo state, wire up to real endpoint as needed)
+      const newsletterForm = document.getElementById("newsletterForm");
+      if (newsletterForm) {
+        newsletterForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const btn = newsletterForm.querySelector(".newsletter-btn span");
+          const original = btn.textContent;
+          btn.textContent = "Subscribed!";
+          newsletterForm.reset();
+          setTimeout(() => {
+            btn.textContent = original;
+          }, 2500);
+        });
+      }
     })();
   </script>
 

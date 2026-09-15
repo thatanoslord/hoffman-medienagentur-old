@@ -88,29 +88,29 @@
 
     /* Reuse button system for nav */
     .nav-btn {
-      
-    
-    
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    width: 160px;
-    height: 42px;
-    border-radius: 45px;
-    overflow: hidden;
-    padding: 10px 24px 10px 10px;
-    gap: 14px;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    text-align: left;
-    box-sizing: border-box;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    background: #000;
-    color: #ffffff;
-    transition: padding 0.5s ease-in-out;
-    text-decoration: none;
+
+
+
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: 160px;
+      height: 42px;
+      border-radius: 45px;
+      overflow: hidden;
+      padding: 10px 24px 10px 10px;
+      gap: 14px;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      text-align: left;
+      box-sizing: border-box;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: #000;
+      color: #ffffff;
+      transition: padding 0.5s ease-in-out;
+      text-decoration: none;
     }
 
     .nav-btn.light {
@@ -136,16 +136,16 @@
     }
 
     .nav-btn:hover .btn-icon {
-      transform: translateX(120px);
+      transform: translateX(96px);
     }
-   
+
 
     .nav-btn:hover .btn-label {
-      transform: translateX(-28px);
+      transform: translateX(-48px);
     }
 
     .nav-btn:hover .about-cta-icon {
-      transform: translateX(120px);
+      transform: translateX(96px);
     }
 
     .nav-btn:hover .about-cta-text {
@@ -800,7 +800,7 @@
       border-radius: 999px;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgb(176 176 176 / 43%);
+      background: rgba(0, 0, 0, 0.3);
       box-shadow: var(--shadow);
     }
 
@@ -847,14 +847,14 @@
     }
 
     .nav-item:hover {
-      color: #de0bcc;
+     color: #ffffff67;
     }
 
     .nav-item.active {
-  background: #fff;
-  color: #000;
-  font-size: 16px;
-}
+      background: #fff;
+      color: #000;
+      font-size: 16px;
+    }
 
 
     .nav-label {
@@ -946,11 +946,12 @@
         display: none;
       }
     }
+
     @media (max-width: 1000px) {
-    .nav-wrap {
+      .nav-wrap {
         display: none;
+      }
     }
-}
   </style>
 
 
@@ -1237,30 +1238,34 @@
         gap: 64px;
       }
 
-    .about-title {
+      .about-title {
         max-width: none;
         font-size: clamp(28px, 3vw, 42px);
         line-height: 1.4;
       }
-      .about-topline{
+
+      .about-topline {
         top: 18px;
-    left: 92px;
-    width: 100%;
-    height: 113px;
+        left: 92px;
+        width: 100%;
+        height: 113px;
       }
+
       .about-topline-dot {
         left: unset;
-               right: 400px;
+        right: 400px;
       }
 
       .about-topline-text {
-          left: unset;
-            right: 110px;
+        left: unset;
+        right: 110px;
       }
-      .about-card{
-            width: 60%;
+
+      .about-card {
+        width: 60%;
       }
-      .about-card p{
+
+      .about-card p {
         max-width: unset;
       }
 
@@ -1377,7 +1382,7 @@
       align-items: start;
     }
 
-    
+
 
     .facts-story__eyebrow {
       display: inline-flex;
@@ -1408,7 +1413,7 @@
       overflow: hidden;
     }
 
-    
+
 
     .facts-profile-card__image img {
       display: block;
@@ -1686,18 +1691,18 @@
       }
 
       .facts-profile-card {
-       
-       
+
+
         flex: 0 0 auto;
-            width: 100%;
-    height: 800px;
-   
-    margin: 0 auto;
+        width: 100%;
+        height: 800px;
+
+        margin: 0 auto;
       }
 
       .facts-profile-card__image {
-       width: 100%;
-    height: 650px;
+        width: 100%;
+        height: 650px;
       }
 
       .facts-profile-card__meta {
@@ -1711,9 +1716,9 @@
 
       .facts-story__title {
         font-size: 20px;
-    text-align: center;
-    line-height: 1.4;
-    max-width: 100%;
+        text-align: center;
+        line-height: 1.4;
+        max-width: 100%;
       }
 
       .facts-system {
@@ -1731,10 +1736,11 @@
         gap: 28px;
         /* border-right: 1px solid #bababa; */
       }
+
       .facts-metric:nth-child(1),
       .facts-metric:nth-child(2) {
-       border-right: 1px solid #bababa;
-       padding-right: 10px;
+        border-right: 1px solid #bababa;
+        padding-right: 10px;
       }
 
 
@@ -1779,11 +1785,12 @@
         width: 100%;
         height: 309px;
       }
-      .facts-profile-card__image img{
-            display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+      .facts-profile-card__image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .facts-story__eyebrow {
@@ -1799,8 +1806,9 @@
         font-weight: 400;
         font-family: 'Inter', sans-serif;
       }
-      .fullName{
-        color:#000;
+
+      .fullName {
+        color: #000;
       }
 
       .history-editorial__title-group {
@@ -2002,7 +2010,7 @@
     /* Tablet */
     @media (max-width: 1024.98px) {
       .history-editorial {
-               padding: 50px 40px 0px;
+        padding: 50px 40px 0px;
       }
 
       .history-editorial__container {
@@ -2065,7 +2073,7 @@
         padding: 40px 20px 20px;
       }
 
-      
+
 
       .history-editorial__title {
         max-width: 100%;
@@ -2163,7 +2171,7 @@
 
     .team-showcase__title {
       margin: 0;
-      max-width: 590px;
+      max-width: 990px;
       color: #000;
       font-family: 'Sora', sans-serif;
       font-size: 60px;
@@ -2516,7 +2524,7 @@
 
     .awards-editorial__title {
       margin: 0;
-      max-width: 590px;
+      max-width: 790px;
       color: rgb(0, 0, 0);
       font-family: 'Sora', sans-serif;
       font-size: 60px;
@@ -2636,7 +2644,8 @@
       .awards-editorial {
         padding: 50px 30px 100px;
       }
-      .awards-editorial__container{
+
+      .awards-editorial__container {
         max-width: 88%;
       }
 
@@ -2663,10 +2672,10 @@
       }
 
       .award-editorial-row__left {
-           width: 100%;
-    grid-template-columns: 110px minmax(0, 1fr);
-    column-gap: 0px;
-    align-items: start;
+        width: 100%;
+        grid-template-columns: 110px minmax(0, 1fr);
+        column-gap: 0px;
+        align-items: start;
       }
 
       .award-editorial-row__right {
@@ -2679,8 +2688,9 @@
       .award-editorial-row__title {
         font-size: 28px;
       }
-      .award-editorial-row__text{
-            width: 100%;
+
+      .award-editorial-row__text {
+        width: 100%;
       }
     }
 
@@ -2806,7 +2816,7 @@
 
     .faq-section__title {
       margin: 0;
-      max-width: 620px;
+      max-width: 780px;
       color: rgb(23, 23, 23);
       font-family: 'Sora', sans-serif;
       font-size: 60px;
@@ -3095,7 +3105,7 @@
 
       .faq-accordion {
         max-width: unset;
-    width: 88%;
+        width: 88%;
       }
 
       .faq-item,
@@ -3105,8 +3115,8 @@
       }
 
       .faq-contact-card {
-       width: 88%;
-    height: 30vh;
+        width: 88%;
+        height: 30vh;
         min-height: 386px;
       }
 
@@ -3312,7 +3322,7 @@
     }
 
     .footer-cta-btn:hover .footer-cta-btn-label {
-      transform: translateX(-28px);
+      transform: translateX(-45px);
     }
 
     .footer-divider {
@@ -3581,9 +3591,9 @@
 
 <body>
   <!-- header navbar -->
-   
+
   <nav class="nav-wrap">
-    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/HMA-white.png" alt="" class="Logo"></a>
+    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="" class="Logo"></a>
     <div class="nav-bar" id="navBar">
       <a href="./index.html" class="nav-item" data-name="Home">
         <span class="nav-label">Home</span>
@@ -3625,13 +3635,14 @@
     </div>
   </nav>
 
-    <!-- Mobile Blur Navigation -->
+  <!-- Mobile Blur Navigation -->
   <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
 
   <div class="mobile-nav-wrap">
     <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
       <div class="mobile-nav-bar">
-        <a href="./index.html"><img class="mobile-wordmark" data-mobile-logo src="./assets/images/logo/HMA - Logo soft.png" alt="HMA Logo" /></a>
+        <a href="./index.html"><img class="mobile-wordmark" data-mobile-logo
+            src="./assets/images/logo/HMA - Logo soft.png" alt="HMA Logo" /></a>
 
         <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-blur-nav-drawer"
           aria-label="Open menu" data-mobile-toggle>
@@ -3708,7 +3719,8 @@
         <div class="about-hero__statement-wrap">
           <div class="about-hero__divider" aria-hidden="true"></div>
           <div class="about-hero__statement">
-            We build AI-driven systems and automation that help businesses work smarter and scale faster.
+            One partner for the digital systems your business needs to move forward
+            from premium web presence and visibility to content, AI and connected operations.
           </div>
         </div>
       </div>
@@ -3719,28 +3731,38 @@
 
   <!-- brand section -->
 
-  <!-- <section class="brands-strip" aria-label="Brands">
-  <div class="brands-strip__container" id="brandContent">
-    <div class="brands-strip__viewport" id="tickerWrapper">
-      <div class="brands-strip__track" id="trackTop" data-direction="right">
-        <div class="brands-strip__group" aria-hidden="false">
-          <div class="brand-card"><img src="https://framerusercontent.com/images/sr2zfy7nUUOWDHnkMiNseKX7aU.svg?width=119&height=28" alt="Brand logo 1" width="119" height="28"></div>
-          <div class="brand-card"><img src="https://framerusercontent.com/images/mLmWvbzvLvVyxCeO3soY6RNaFvg.svg?width=119&height=27" alt="Brand logo 2" width="119" height="27"></div>
-          <div class="brand-card"><img src="https://framerusercontent.com/images/e21wJkiLyldLUm7iyZT1kmUI.svg?width=100&height=40" alt="Brand logo 3" width="100" height="40"></div>
-          <div class="brand-card"><img src="https://framerusercontent.com/images/5sWRcDozlSnVdUsp2YTu7ptfss.svg?width=78&height=30" alt="Brand logo 4" width="78" height="30"></div>
-          <div class="brand-card"><img src="https://framerusercontent.com/images/UrrDkCKJCwgSETHSgV8VtNrmeU.svg?width=119&height=30" alt="Brand logo 5" width="119" height="30"></div>
-        </div>
-        <div class="brands-strip__group" aria-hidden="true"> 
+  <section class="brands-strip" aria-label="Brands">
+    <div class="brands-strip__container" id="brandContent">
+      <div class="brands-strip__viewport" id="tickerWrapper">
+        <div class="brands-strip__track" id="trackTop" data-direction="right">
+          <div class="brands-strip__group" aria-hidden="false">
+            <div class="brand-card"><img
+                src="https://framerusercontent.com/images/sr2zfy7nUUOWDHnkMiNseKX7aU.svg?width=119&height=28"
+                alt="Brand logo 1" width="119" height="28"></div>
+            <div class="brand-card"><img
+                src="https://framerusercontent.com/images/mLmWvbzvLvVyxCeO3soY6RNaFvg.svg?width=119&height=27"
+                alt="Brand logo 2" width="119" height="27"></div>
+            <div class="brand-card"><img
+                src="https://framerusercontent.com/images/e21wJkiLyldLUm7iyZT1kmUI.svg?width=100&height=40"
+                alt="Brand logo 3" width="100" height="40"></div>
+            <div class="brand-card"><img
+                src="https://framerusercontent.com/images/5sWRcDozlSnVdUsp2YTu7ptfss.svg?width=78&height=30"
+                alt="Brand logo 4" width="78" height="30"></div>
+            <div class="brand-card"><img
+                src="https://framerusercontent.com/images/UrrDkCKJCwgSETHSgV8VtNrmeU.svg?width=119&height=30"
+                alt="Brand logo 5" width="119" height="30"></div>
+          </div>
+          <!-- <div class="brands-strip__group" aria-hidden="true"> 
           <div class="brand-card"><img src="https://framerusercontent.com/images/sr2zfy7nUUOWDHnkMiNseKX7aU.svg?width=119&height=28" alt="" width="119" height="28"></div>
           <div class="brand-card"><img src="https://framerusercontent.com/images/mLmWvbzvLvVyxCeO3soY6RNaFvg.svg?width=119&height=27" alt="" width="119" height="27"></div>
           <div class="brand-card"><img src="https://framerusercontent.com/images/e21wJkiLyldLUm7iyZT1kmUI.svg?width=100&height=40" alt="" width="100" height="40"></div>
           <div class="brand-card"><img src="https://framerusercontent.com/images/5sWRcDozlSnVdUsp2YTu7ptfss.svg?width=78&height=30" alt="" width="78" height="30"></div>
           <div class="brand-card"><img src="https://framerusercontent.com/images/UrrDkCKJCwgSETHSgV8VtNrmeU.svg?width=119&height=30" alt="" width="119" height="30"></div>
+        </div> -->
         </div>
       </div>
     </div>
-  </div>
-</section> -->
+  </section>
 
   <!-- who we are  -->
 
@@ -3767,32 +3789,32 @@
         </div>
 
         <h2 class="about-title">
-          We design AI systems that turn complexity into clear, scalable business intelligence
+          We bring strategy, technology, content and AI together so ambitious companies can move with clarity.
         </h2>
 
         <a href="/contact" class="nav-btn">
           <img class="btn-icon about-cta-icon" src="./assets/icons/icon.svg" alt="" />
-          <span class="btn-label about-cta-text">More About Us</span>
+          <span class="btn-label about-cta-text">Book a call</span>
         </a>
       </div>
 
       <div class="about-art">
         <div class="about-topline">
           <span class="about-topline-dot" aria-hidden="true"></span>
-          <p class="about-topline-text">Years of digital innovation experience</p>
+          <p class="about-topline-text">Company history since 2021</p>
         </div>
 
         <div class="about-circle" aria-label="12 plus years of digital innovation experience">
           <div class="about-circle-ring"></div>
           <div class="about-circle-core">
-            <span data-count="12">12</span>
-            <span>+</span>
+            <span data-count="2021">2021</span>
+            <span></span>
           </div>
         </div>
 
         <div class="about-card">
-          <div class="about-card-number"><span data-count="250">250</span>+</div>
-          <p>Projects delivered across AI, automation, and digital systems</p>
+          <div class="about-card-number"><span data-count="4">24</span>+</div>
+          <p>Languages built into our international digital approach</p>
         </div>
       </div>
     </div>
@@ -3817,18 +3839,19 @@
 
             <div class="facts-profile-card__meta">
               <p class="facts-profile-card__name">Sven Hoffmann</p>
-              <p class="facts-profile-card__role">Chief Executive Office</p>
+              <p class="facts-profile-card__role">Founder &amp; Strategic Advisor</p>
             </div>
           </article>
         </div>
 
         <div class="facts-story__right">
-          <p class="facts-story__title" id="factsTitle"><span class="fullName">Ahmed Sven Hoffmann</span> leads Hoffmann
-            Medienagentur with a clear vision for creative communication, strong digital presence, and meaningful brand
-            development. He combines strategic thinking with a practical understanding of modern media, helping shape
-            the agency into a company that values quality, trust, and long term client relationships. His leadership
-            reflects a commitment to professional storytelling, innovative solutions, and a people focused approach that
-            defines the identity of Hoffmann Medienagentur.</p>
+          <p class="facts-story__title" id="factsTitle">
+            <span class="fullName">Sven Hoffmann</span> is the strategic point of contact behind Hoffmann Medienagentur.
+            He works with ambitious companies that need more than a supplier — they need a clear direction across
+            digital strategy, premium web experiences, content, AI and connected operations. From the first conversation
+            to the next phase of growth, you speak to one person who keeps the work focused, accountable and moving
+            forward.
+          </p>
 
           <div class="facts-system">
             <div class="facts-timeline" aria-hidden="true">
@@ -3841,18 +3864,24 @@
 
             <div class="facts-metrics">
               <article class="facts-metric" id="metricOne">
-                <p class="facts-metric__value">98%</p>
-                <p class="facts-metric__text">High-accuracy real-time system outputs.</p>
+                <p class="facts-metric__value">1</p>
+                <p class="facts-metric__text">
+                  Clear point of contact from the first conversation to the next move.
+                </p>
               </article>
 
               <article class="facts-metric" id="metricTwo">
-                <p class="facts-metric__value">240+</p>
-                <p class="facts-metric__text">Autonomous workflows with minimal interruption.</p>
+                <p class="facts-metric__value">4</p>
+                <p class="facts-metric__text">
+                  Languages built into our international digital approach.
+                </p>
               </article>
 
               <article class="facts-metric" id="metricThree">
-                <p class="facts-metric__value">12.6M+</p>
-                <p class="facts-metric__text">Real-time data interpreted into actionable insights.</p>
+                <p class="facts-metric__value">2021</p>
+                <p class="facts-metric__text">
+                  Company history that began in 2021 — built for what comes next.
+                </p>
               </article>
             </div>
 
@@ -3899,24 +3928,27 @@
               <span>Our Story</span>
             </div>
             <h2 class="history-editorial__title js-history-editorial-title">
-              The story behind smarter systems
+              Built on experience.<br>
+              Designed for what comes next.
             </h2>
           </div>
 
           <div class="history-editorial__cards">
             <article class="history-timeline-card">
-              <p class="history-timeline-card__year">2018 — 2022</p>
+              <p class="history-timeline-card__year">2021 — The foundation</p>
               <p class="history-timeline-card__body">
-                Premon launched its first automation platform, partnered with 40+ startups, and built scalable systems
-                for smarter digital operations.
+                Our company story began in 2021 with a simple belief: digital work should create real business value,
+                not just a better-looking surface. The focus was on helping businesses establish stronger, more capable
+                digital foundations.
               </p>
             </article>
 
             <article class="history-timeline-card history-timeline-card--animated js-history-second-card">
-              <p class="history-timeline-card__year">2023 — 2026</p>
+              <p class="history-timeline-card__year">Today — The next chapter</p>
               <p class="history-timeline-card__body">
-                Premon processed 18M+ workflows, expanded across 12 industries, and improved operational efficiency
-                through advanced AI systems.
+                Hoffmann Medienagentur brings strategy, premium web experiences, content, AI and connected operations
+                together under one clear direction. The name is new. The commitment to quality, trust and long-term
+                partnership remains.
               </p>
             </article>
           </div>
@@ -3954,11 +3986,12 @@
               fill="var(--token-a510900e-9a0e-44b4-af51-7ccb422fc9ac, rgb(87, 87, 87))" height="8.908400000000002px"
               id="FtuEXUpqC" transform="translate(11.376 8.425)" width="6.6244px"></path>
           </svg>
-          <span>Our Story</span>
+          <span>Our team</span>
         </div>
 
         <h2 class="team-showcase__title js-team-showcase-title">
-          The brains behind smarter systems
+          One clear lead.<br>
+          A complete digital capability.
         </h2>
       </div>
 
@@ -4060,345 +4093,472 @@
   <!-- awards -->
 
   <section class="awards-editorial" id="awardsEditorial">
-    <div class="awards-editorial__container">
-      <div class="awards-editorial__header">
-        <!-- <div class="awards-editorial__eyebrow">
-        <span class="awards-editorial__eyebrow-icon" aria-hidden="true"></span>
-        <span>Awards and recognition</span>
-      </div> -->
+  <div class="awards-editorial__container">
 
-        <h2 class="awards-editorial__title js-awards-editorial-title">
-          Recognition of our creative excellence
-        </h2>
-      </div>
+    <div class="awards-editorial__header">
+      <div class="about-kicker">
+          <svg xmlns="http://www.w3.org/2000/svg" display="block" id="3357759637" role="presentation"
+            viewBox="0 0 20 20">
+            <path
+              d="M 3.958 0 C 2.485 0 1.291 1.194 1.291 2.667 C 1.291 3.415 1.602 4.09 2.1 4.575 L 0 8.249 L 1.159 8.908 L 3.261 5.23 C 3.484 5.29 3.715 5.333 3.958 5.333 C 5.43 5.333 6.624 4.139 6.624 2.667 C 6.624 1.194 5.43 0 3.958 0 Z M 3.958 4 C 3.221 4 2.624 3.403 2.624 2.667 C 2.624 1.93 3.221 1.333 3.958 1.333 C 4.694 1.333 5.291 1.93 5.291 2.667 C 5.291 3.403 4.694 4 3.958 4 Z"
+              fill="#fff" height="8.9082px" id="y_VccCOJY"
+              transform="translate(6.042 2.667)" width="6.62422px"></path>
+            <path
+              d="M 5.239 2 C 4.941 0.852 3.908 0 2.667 0 C 1.194 0 0 1.194 0 2.667 C 0 4.139 1.194 5.333 2.667 5.333 C 3.908 5.333 4.941 4.481 5.239 3.333 L 9.393 3.333 L 9.393 2 Z M 2.667 4 C 1.93 4 1.333 3.403 1.333 2.667 C 1.333 1.93 1.93 1.333 2.667 1.333 C 3.403 1.333 4 1.93 4 2.667 C 4 3.403 3.403 4 2.667 4 Z"
+              fill="#fff" height="5.333400000000001px"
+              id="d93pYUmjh" transform="translate(2 12)" width="9.393px"></path>
+            <path
+              d="M 3.958 3.575 C 3.715 3.575 3.484 3.618 3.261 3.679 L 1.159 0 L 0 0.66 L 2.1 4.333 C 1.602 4.818 1.291 5.492 1.291 6.242 C 1.291 7.714 2.485 8.908 3.958 8.908 C 5.43 8.908 6.624 7.714 6.624 6.242 C 6.624 4.769 5.43 3.575 3.958 3.575 Z M 3.958 7.575 C 3.221 7.575 2.624 6.978 2.624 6.242 C 2.624 5.505 3.221 4.908 3.958 4.908 C 4.694 4.908 5.291 5.505 5.291 6.242 C 5.291 6.978 4.694 7.575 3.958 7.575 Z"
+              fill="#fff" height="8.908400000000002px"
+              id="FtuEXUpqC" transform="translate(11.376 8.425)" width="6.6244px"></path>
+          </svg>
+          <span style="color:#fff;">The HMA standard.</span>
+        </div>
 
-      <div class="awards-editorial__list">
-        <article class="award-editorial-row js-award-editorial-row">
-          <div class="award-editorial-row__main">
-            <div class="award-editorial-row__left">
-              <p class="award-editorial-row__year">2026</p>
-              <h3 class="award-editorial-row__title">Global Innovation Award</h3>
-            </div>
-
-            <div class="award-editorial-row__right">
-              <div class="award-editorial-row__icon" aria-hidden="true">
-                <img src="https://framerusercontent.com/images/Ss6o2ed9b2D7nrXM272n6KdMhY0.svg?width=31&height=31"
-                  alt="" width="31" height="31" loading="lazy">
-              </div>
-
-              <p class="award-editorial-row__text">
-                Recognized for building next-gen automation systems that scale digital workflows
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="award-editorial-row js-award-editorial-row">
-          <div class="award-editorial-row__main">
-            <div class="award-editorial-row__left">
-              <p class="award-editorial-row__year">2025</p>
-              <h3 class="award-editorial-row__title">AI Automation Award</h3>
-            </div>
-
-            <div class="award-editorial-row__right">
-              <div class="award-editorial-row__icon" aria-hidden="true">
-                <img src="https://framerusercontent.com/images/3VmHvSCzLLSJnRZZw8itEtEsfI.svg?width=31&height=31" alt=""
-                  width="31" height="31" loading="lazy">
-              </div>
-
-              <p class="award-editorial-row__text">
-                Honored for delivering efficient, scalable automation across industries.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="award-editorial-row js-award-editorial-row">
-          <div class="award-editorial-row__main">
-            <div class="award-editorial-row__left">
-              <p class="award-editorial-row__year">2023</p>
-              <h3 class="award-editorial-row__title">UX Systems Award</h3>
-            </div>
-
-            <div class="award-editorial-row__right">
-              <div class="award-editorial-row__icon" aria-hidden="true">
-                <img src="https://framerusercontent.com/images/zLeL61lbgJ9WvBytUoIGuEiPYs.svg?width=31&height=31" alt=""
-                  width="31" height="31" loading="lazy">
-              </div>
-
-              <p class="award-editorial-row__text">
-                Awarded for intelligent UX that blends design and automation seamlessly.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="award-editorial-row js-award-editorial-row">
-          <div class="award-editorial-row__main">
-            <div class="award-editorial-row__left">
-              <p class="award-editorial-row__year">2021</p>
-              <h3 class="award-editorial-row__title">Product Design Award</h3>
-            </div>
-
-            <div class="award-editorial-row__right">
-              <div class="award-editorial-row__icon" aria-hidden="true">
-                <img src="https://framerusercontent.com/images/chjNDDKDrOsPPzT9ZtbUzuqAys.svg?width=31&height=31" alt=""
-                  width="31" height="31" loading="lazy">
-              </div>
-
-              <p class="award-editorial-row__text">
-                Recognized for clean, high-performance interface design focused on usability
-              </p>
-            </div>
-          </div>
-        </article>
-      </div>
+      <h2 class="awards-editorial__title js-awards-editorial-title">
+        The standard behind every engagement.
+      </h2>
     </div>
-  </section>
+
+    <div class="awards-editorial__list">
+
+      <!-- PRINCIPLE 01 -->
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">01</p>
+            <h3 class="award-editorial-row__title">Substance over show</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/Ss6o2ed9b2D7nrXM272n6KdMhY0.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              Beautiful digital work must also be useful, fast, clear and built
+              to perform in the real world.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PRINCIPLE 02 -->
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">02</p>
+            <h3 class="award-editorial-row__title">One connected direction</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/3VmHvSCzLLSJnRZZw8itEtEsfI.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              Strategy, design, content, technology and AI should work together
+              — not compete as separate suppliers, systems or campaigns.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PRINCIPLE 03 -->
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">03</p>
+            <h3 class="award-editorial-row__title">Built around the business</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/zLeL61lbgJ9WvBytUoIGuEiPYs.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              We do not begin with a template or a preferred tool. We begin with
+              what your business needs to achieve and build the right system around it.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PRINCIPLE 04 -->
+      <article class="award-editorial-row js-award-editorial-row">
+        <div class="award-editorial-row__main">
+
+          <div class="award-editorial-row__left">
+            <p class="award-editorial-row__year">04</p>
+            <h3 class="award-editorial-row__title">Ready for what comes next</h3>
+          </div>
+
+          <div class="award-editorial-row__right">
+            <div class="award-editorial-row__icon" aria-hidden="true">
+              <img
+                src="https://framerusercontent.com/images/chjNDDKDrOsPPzT9ZtbUzuqAys.svg?width=31&height=31"
+                alt=""
+                width="31"
+                height="31"
+                loading="lazy"
+              >
+            </div>
+
+            <p class="award-editorial-row__text">
+              We build strong digital foundations today while preparing companies
+              for the technologies, expectations and requirements ahead.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
 
   <!-- FAQ -->
-  <section class="faq-section" id="faqSection">
-    <div class="faq-section__container">
-      <div class="faq-section__header">
-        <div class="faq-section__eyebrow">
-          <span class="faq-section__eyebrow-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20"
-              height="20" fill="none">
-              <path
-                d="M 10 2.667 C 8.527 2.667 7.333 3.861 7.333 5.333 C 7.333 6.082 7.645 6.757 8.142 7.241 L 6.042 10.915 L 7.201 11.575 L 9.303 7.896 C 9.527 7.957 9.757 8 10 8 C 11.473 8 12.667 6.806 12.667 5.333 C 12.667 3.861 11.473 2.667 10 2.667 Z M 10 6.667 C 9.264 6.667 8.667 6.07 8.667 5.333 C 8.667 4.597 9.264 4 10 4 C 10.737 4 11.334 4.597 11.334 5.333 C 11.334 6.07 10.737 6.667 10 6.667 Z"
-                fill="rgb(87, 87, 87)"></path>
-              <path
-                d="M 7.239 14 C 6.941 12.852 5.908 12 4.667 12 C 3.194 12 2 13.194 2 14.667 C 2 16.139 3.194 17.333 4.667 17.333 C 5.908 17.333 6.941 16.481 7.239 15.333 L 11.393 15.333 L 11.393 14 Z M 4.667 16 C 3.93 16 3.333 15.403 3.333 14.667 C 3.333 13.93 3.93 13.333 4.667 13.333 C 5.403 13.333 6 13.93 6 14.667 C 6 15.403 5.403 16 4.667 16 Z"
-                fill="rgb(87, 87, 87)"></path>
-              <path
-                d="M 15.333 12 C 15.09 12 14.86 12.043 14.637 12.103 L 12.534 8.425 L 11.376 9.084 L 13.475 12.758 C 12.978 13.243 12.666 13.917 12.666 14.666 C 12.666 16.139 13.861 17.333 15.333 17.333 C 16.806 17.333 18 16.139 18 14.666 C 18 13.194 16.806 12 15.333 12 Z M 15.333 16 C 14.597 16 14 15.403 14 14.666 C 14 13.93 14.597 13.333 15.333 13.333 C 16.07 13.333 16.666 13.93 16.666 14.666 C 16.666 15.403 16.07 16 15.333 16 Z"
-                fill="rgb(87, 87, 87)"></path>
-            </svg></span>
-          <span>FAQ</span>
-        </div>
+ <section class="faq-section" id="faqSection">
+  <div class="faq-section__container">
 
-        <h2 class="faq-section__title js-faq-title">
-          Frequently asked questions answered
-        </h2>
+    <div class="faq-section__header">
+      <div class="about-kicker">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          display="block"
+          id="3357759637"
+          role="presentation"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            d="M3.958 0C2.485 0 1.291 1.194 1.291 2.667C1.291 3.415 1.602 4.09 2.1 4.575L0 8.249L1.159 8.908L3.261 5.23C3.484 5.29 3.715 5.333 3.958 5.333C5.43 5.333 6.624 4.139 6.624 2.667C6.624 1.194 5.43 0 3.958 0ZM3.958 4C3.221 4 2.624 3.403 2.624 2.667C2.624 1.93 3.221 1.333 3.958 1.333C4.694 1.333 5.291 1.93 5.291 2.667C5.291 3.403 4.694 4 3.958 4Z"
+            fill="#fff"
+            transform="translate(6.042 2.667)"
+          />
+          <path
+            d="M5.239 2C4.941 0.852 3.908 0 2.667 0C1.194 0 0 1.194 0 2.667C0 4.139 1.194 5.333 2.667 5.333C3.908 5.333 4.941 4.481 5.239 3.333H9.393V2H5.239ZM2.667 4C1.93 4 1.333 3.403 1.333 2.667C1.333 1.93 1.93 1.333 2.667 1.333C3.403 1.333 4 1.93 4 2.667C4 3.403 3.403 4 2.667 4Z"
+            fill="#fff"
+            transform="translate(2 12)"
+          />
+          <path
+            d="M3.958 3.575C3.715 3.575 3.484 3.618 3.261 3.679L1.159 0L0 0.66L2.1 4.333C1.602 4.818 1.291 5.492 1.291 6.242C1.291 7.714 2.485 8.908 3.958 8.908C5.43 8.908 6.624 7.714 6.624 6.242C6.624 4.769 5.43 3.575 3.958 3.575ZM3.958 7.575C3.221 7.575 2.624 6.978 2.624 6.242C2.624 5.505 3.221 4.908 3.958 4.908C4.694 4.908 5.291 5.505 5.291 6.242C5.291 6.978 4.694 7.575 3.958 7.575Z"
+            fill="#fff"
+            transform="translate(11.376 8.425)"
+          />
+        </svg>
+
+        <span>Questions &amp; answers</span>
       </div>
 
-      <div class="faq-section__body">
-        <!-- Accordion column -->
-        <div class="faq-accordion" data-faq-accordion>
-          <!-- Item 1 -->
-          <article class="faq-item ">
-            <h3 class="faq-item__heading">
-              <button class="faq-item__trigger" id="faq-q1" aria-expanded="true" aria-controls="faq-a1" type="button">
-                <span class="faq-item__question" data-no-select>What services do you offer?</span>
-                <span class="faq-item__control" aria-hidden="true">
-                  <span class="faq-item__control-icon faq-item__control-icon--open">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                      </path>
-                    </svg>
-                  </span>
-                  <span class="faq-item__control-icon faq-item__control-icon--closed">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z">
-                      </path>
-                    </svg>
-                  </span>
-                </span>
-              </button>
-            </h3>
-
-            <div class="faq-item__panel" id="faq-a1" role="region" aria-labelledby="faq-q1">
-              <div class="faq-item__answer" data-no-select>
-                We deliver end-to-end AI and software solutions, from automation and data analysis to machine learning
-                and custom AI products.
-              </div>
-            </div>
-          </article>
-
-          <!-- Item 2 -->
-          <article class="faq-item">
-            <h3 class="faq-item__heading">
-              <button class="faq-item__trigger" id="faq-q2" aria-expanded="false" aria-controls="faq-a2" type="button">
-                <span class="faq-item__question" data-no-select>What industries do you work with?</span>
-                <span class="faq-item__control" aria-hidden="true">
-                  <span class="faq-item__control-icon faq-item__control-icon--open">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                      </path>
-                    </svg>
-                  </span>
-                  <span class="faq-item__control-icon faq-item__control-icon--closed">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z">
-                      </path>
-                    </svg>
-                  </span>
-                </span>
-              </button>
-            </h3>
-
-            <div class="faq-item__panel" id="faq-a2" role="region" aria-labelledby="faq-q2">
-              <div class="faq-item__answer" data-no-select>
-                We support early-stage startups and established enterprises across sectors like SaaS, finance,
-                healthcare, and operations, adapting our AI approach to each domain.
-              </div>
-            </div>
-          </article>
-
-          <!-- Item 3 -->
-          <article class="faq-item">
-            <h3 class="faq-item__heading">
-              <button class="faq-item__trigger" id="faq-q3" aria-expanded="false" aria-controls="faq-a3" type="button">
-                <span class="faq-item__question" data-no-select>Can you integrate with existing tools?</span>
-                <span class="faq-item__control" aria-hidden="true">
-                  <span class="faq-item__control-icon faq-item__control-icon--open">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                      </path>
-                    </svg>
-                  </span>
-                  <span class="faq-item__control-icon faq-item__control-icon--closed">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z">
-                      </path>
-                    </svg>
-                  </span>
-                </span>
-              </button>
-            </h3>
-
-            <div class="faq-item__panel" id="faq-a3" role="region" aria-labelledby="faq-q3">
-              <div class="faq-item__answer" data-no-select>
-                Absolutely. We embed AI modules into existing apps, dashboards, CRMs, and internal tools, keeping your
-                current workflows intact while adding intelligence.
-              </div>
-            </div>
-          </article>
-
-          <!-- Item 4 -->
-          <article class="faq-item">
-            <h3 class="faq-item__heading">
-              <button class="faq-item__trigger" id="faq-q4" aria-expanded="false" aria-controls="faq-a4" type="button">
-                <span class="faq-item__question" data-no-select>How long does a project take to complete?</span>
-                <span class="faq-item__control" aria-hidden="true">
-                  <span class="faq-item__control-icon faq-item__control-icon--open">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                      </path>
-                    </svg>
-                  </span>
-                  <span class="faq-item__control-icon faq-item__control-icon--closed">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z">
-                      </path>
-                    </svg>
-                  </span>
-                </span>
-              </button>
-            </h3>
-
-            <div class="faq-item__panel" id="faq-a4" role="region" aria-labelledby="faq-q4">
-              <div class="faq-item__answer" data-no-select>
-                Timelines depend on scope, but most AI prototypes are ready in 2–6 weeks, while full production systems
-                typically take 1–3 months from kickoff to deployment.
-              </div>
-            </div>
-          </article>
-
-          <!-- Item 5 -->
-          <article class="faq-item">
-            <h3 class="faq-item__heading">
-              <button class="faq-item__trigger" id="faq-q5" aria-expanded="false" aria-controls="faq-a5" type="button">
-                <span class="faq-item__question" data-no-select>Do you support both startups and enterprises?</span>
-                <span class="faq-item__control" aria-hidden="true">
-                  <span class="faq-item__control-icon faq-item__control-icon--open">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                      </path>
-                    </svg>
-                  </span>
-                  <span class="faq-item__control-icon faq-item__control-icon--closed">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z">
-                      </path>
-                    </svg>
-                  </span>
-                </span>
-              </button>
-            </h3>
-
-            <div class="faq-item__panel" id="faq-a5" role="region" aria-labelledby="faq-q5">
-              <div class="faq-item__answer" data-no-select>
-                Yes. We tailor our engagement model to the team size and stage, from fast-moving startup builds to
-                structured enterprise programs with governance.
-              </div>
-            </div>
-          </article>
-
-
-          <!-- Item 6 -->
-          <article class="faq-item">
-            <h3 class="faq-item__heading">
-              <button class="faq-item__trigger" id="faq-q6" aria-expanded="false" aria-controls="faq-a6" type="button">
-                <span class="faq-item__question" data-no-select>Do you support both startups and enterprises?</span>
-                <span class="faq-item__control" aria-hidden="true">
-                  <span class="faq-item__control-icon faq-item__control-icon--open">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                      </path>
-                    </svg>
-                  </span>
-                  <span class="faq-item__control-icon faq-item__control-icon--closed">
-                    <svg viewBox="0 0 256 256">
-                      <path
-                        d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z">
-                      </path>
-                    </svg>
-                  </span>
-                </span>
-              </button>
-            </h3>
-
-            <div class="faq-item__panel" id="faq-a6" role="region" aria-labelledby="faq-q6">
-              <div class="faq-item__answer" data-no-select>
-                Yes. We tailor our engagement model to the team size and stage, from fast-moving startup builds to
-                structured enterprise programs with governance.
-              </div>
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Contact card -->
-        <aside class="faq-contact-card">
-          <img class="faq-contact-card__image" src="./assets/images/gallery/glassified-background.png" alt=""
-            width="440" height="587" loading="lazy">
-
-          <div class="faq-contact-card__overlay">
-            <h3 class="faq-contact-card__title js-faq-contact-title">
-              Send us an email anytime and we’ll respond with support or details
-            </h3>
-
-            <a href="contact.html" class="faq-contact-card__button">
-              <span class="faq-contact-card__button-text faq-contact-card__button-text--primary">Contact Us</span>
-              <span class="faq-contact-card__button-text faq-contact-card__button-text--secondary">Contact Us</span>
-            </a>
-          </div>
-        </aside>
-      </div>
+      <h2 class="faq-section__title js-faq-title">
+        A clear partnership starts with clear answers.
+      </h2>
     </div>
-  </section>
+
+    <div class="faq-section__body">
+
+      <div class="faq-accordion" data-faq-accordion>
+
+        <!-- FAQ 01 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q1"
+              aria-expanded="true"
+              aria-controls="faq-a1"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>
+                What is Hoffmann Medienagentur?
+              </span>
+
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div class="faq-item__panel" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="faq-item__answer" data-no-select>
+              Hoffmann Medienagentur is a high-end digital partner for ambitious
+              companies. We bring strategy, premium web experiences, visibility,
+              content, AI and connected operations together so businesses can move
+              forward with one clear direction.
+            </div>
+          </div>
+        </article>
+
+        <!-- FAQ 02 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q2"
+              aria-expanded="false"
+              aria-controls="faq-a2"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>
+                Who will I work with?
+              </span>
+
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,1,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div class="faq-item__panel" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="faq-item__answer" data-no-select>
+              You work with Sven Hoffmann as your strategic point of contact. He
+              leads the conversation, helps define the right direction and keeps
+              the work focused from the first discussion through to the next stage
+              of your digital development.
+            </div>
+          </div>
+        </article>
+
+        <!-- FAQ 03 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q3"
+              aria-expanded="false"
+              aria-controls="faq-a3"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>
+                What makes HMA different?
+              </span>
+
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div class="faq-item__panel" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="faq-item__answer" data-no-select>
+              We do not treat websites, content, technology and automation as
+              separate projects. We connect them around your business goals, so
+              every part of your digital operation works in the same direction
+              rather than creating more complexity.
+            </div>
+          </div>
+        </article>
+
+        <!-- FAQ 04 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q4"
+              aria-expanded="false"
+              aria-controls="faq-a4"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>
+                Do you work internationally?
+              </span>
+
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div class="faq-item__panel" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="faq-item__answer" data-no-select>
+              Yes. HMA is designed for international business and works across
+              English, German, French and Arabic. Multilingual structure is
+              considered from the beginning, including proper right-to-left
+              requirements for Arabic.
+            </div>
+          </div>
+        </article>
+
+        <!-- FAQ 05 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q5"
+              aria-expanded="false"
+              aria-controls="faq-a5"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>
+                What kind of businesses do you work with?
+              </span>
+
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div class="faq-item__panel" id="faq-a5" role="region" aria-labelledby="faq-q5">
+            <div class="faq-item__answer" data-no-select>
+              We work with companies that see digital as a serious business
+              advantage and need more than a standard website or one-off campaign.
+              The best fit is an organisation ready to invest in a clear,
+              high-quality digital foundation and long-term progress.
+            </div>
+          </div>
+        </article>
+
+        <!-- FAQ 06 -->
+        <article class="faq-item">
+          <h3 class="faq-item__heading">
+            <button
+              class="faq-item__trigger"
+              id="faq-q6"
+              aria-expanded="false"
+              aria-controls="faq-a6"
+              type="button"
+            >
+              <span class="faq-item__question" data-no-select>
+                What happens after we begin?
+              </span>
+
+              <span class="faq-item__control" aria-hidden="true">
+                <span class="faq-item__control-icon faq-item__control-icon--open">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                  </svg>
+                </span>
+
+                <span class="faq-item__control-icon faq-item__control-icon--closed">
+                  <svg viewBox="0 0 256 256">
+                    <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
+                  </svg>
+                </span>
+              </span>
+            </button>
+          </h3>
+
+          <div class="faq-item__panel" id="faq-a6" role="region" aria-labelledby="faq-q6">
+            <div class="faq-item__answer" data-no-select>
+              Every relationship starts with a focused conversation about your
+              business, current digital position and priorities. From there, we
+              define the right next move, shape the scope and build a practical
+              plan around what will create the most value.
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <aside class="faq-contact-card">
+        <img
+          class="faq-contact-card__image"
+          src="./assets/images/gallery/glassified-background.png"
+          alt=""
+          width="440"
+          height="587"
+          loading="lazy"
+        >
+
+        <div class="faq-contact-card__overlay">
+          <h3 class="faq-contact-card__title js-faq-contact-title">
+            Still have a question?<br>
+            Start with a clear conversation.
+          </h3>
+
+          <a href="./contact.html" class="faq-contact-card__button">
+            <span class="faq-contact-card__button-text faq-contact-card__button-text--primary">
+              Book a call
+            </span>
+
+            <span class="faq-contact-card__button-text faq-contact-card__button-text--secondary">
+              Book a call
+            </span>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
 
   <!-- footer -->
   <footer class="site-footer" id="footer">
@@ -4406,13 +4566,12 @@
       <div class="footer-cta">
         <div class="footer-cta-copy">
           <div class="footer-cta-title reveal-footer-up">
-            <h2>LET’S BUILD THE FUTURE OF WEB3 TOGETHER</h2>
+            <h2>READY TO BUILD WHAT’S NEXT?</h2>
           </div>
 
           <div class="footer-cta-description reveal-footer-up">
             <p>
-              Ready to launch? From start to scale, we turn your Web3 vision
-              into reality.
+             If your digital presence should match your ambition, let’s start with a clear conversation.
             </p>
           </div>
         </div>
@@ -4423,7 +4582,7 @@
               <img src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg" alt="" width="28"
                 height="28" loading="lazy" />
             </span>
-            <span class="footer-cta-btn-label">Get In Touch</span>
+            <span class="footer-cta-btn-label">BOOK A CALL</span>
           </a>
         </div>
       </div>
@@ -4463,7 +4622,7 @@
     </div>
   </footer>
 
-    <!-- mobile navigation -->
+  <!-- mobile navigation -->
   <script src="./js/components/mobile-navmenu.js"></script>
 
 

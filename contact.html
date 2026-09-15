@@ -38,7 +38,7 @@
         border-radius: 999px;
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-            background: rgb(176 176 176 / 43%);
+            background: rgba(0, 0, 0, 0.3);
         box-shadow: var(--shadow);
       }
       .LogoWrapper {
@@ -85,7 +85,7 @@
       }
 
       .nav-item:hover {
-        color: #de0bcc;
+        color: #ffffff67;
       }
 
       .nav-item.active {
@@ -346,7 +346,7 @@
         letter-spacing: -0.06em;
         color: #fff;
         font-weight: 500;
-        max-width: 560px;
+        /* max-width: 560px; */
       }
       .contact-wrap {
         padding: 100px 0 3rem;
@@ -993,6 +993,209 @@
       }
     </style>
 
+    <!-- form style -->
+     <style>
+      /* Select fields — same styling as inputs and textarea */
+.field select {
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 48px 13px 20px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #575757 50%),
+    linear-gradient(135deg, #575757 50%, transparent 50%);
+  background-position:
+    calc(100% - 21px) 50%,
+    calc(100% - 16px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 5px;
+  color: #111;
+  outline: none;
+  cursor: pointer;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+  font-family: Inter, "Inter Placeholder", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+/* Placeholder-like first option */
+.field select:invalid {
+  color: #aaaaaa;
+}
+
+.field select option {
+  background: #ffffff;
+  color: #111111;
+  font-family: Inter, "Inter Placeholder", sans-serif;
+  font-size: 16px;
+}
+
+.field select option[value=""] {
+  color: #aaaaaa;
+}
+
+/* Keep the first placeholder option grey if shown */
+.field select option:disabled {
+  color: #aaaaaa;
+}
+
+/* Same focus state as inputs and textarea */
+.field select:focus {
+  border-color: rgba(77, 73, 219, 0.55);
+  box-shadow: 0 0 0 3px rgba(77, 73, 219, 0.08);
+  background-color: #ffffff;
+}
+
+/* Form consent row */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  color: #575757;
+  cursor: pointer;
+  font-family: Inter, "Inter Placeholder", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+/* Override the generic .field input rule for this checkbox */
+.form-consent input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-radius: 4px;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+/* Checkbox checkmark */
+.form-consent input[type="checkbox"]::before {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  transform: rotate(-45deg) scale(0);
+  transform-origin: center;
+  transition: transform 0.18s ease;
+  margin-top: -2px;
+}
+
+/* Checked state */
+.form-consent input[type="checkbox"]:checked {
+  background: #000000;
+  border-color: #000000;
+}
+
+.form-consent input[type="checkbox"]:checked::before {
+  transform: rotate(-45deg) scale(1);
+}
+
+/* Keyboard accessibility */
+.form-consent input[type="checkbox"]:focus-visible {
+  outline: none;
+  border-color: rgba(77, 73, 219, 0.75);
+  box-shadow: 0 0 0 3px rgba(77, 73, 219, 0.14);
+}
+
+/* Error/invalid state after form submit */
+.field input:invalid:not(:placeholder-shown),
+.field textarea:invalid:not(:placeholder-shown),
+.field select:invalid:focus {
+  border-color: rgba(190, 35, 35, 0.7);
+}
+
+/* Improve button behaviour */
+.button {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  cursor: pointer;
+  font-family: Inter, "Inter Placeholder", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.button:hover {
+  background: #242424;
+  transform: translateY(-1px);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(77, 73, 219, 0.2);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* Tablet and mobile */
+@media (max-width: 767px) {
+  .form-panel {
+    width: 100%;
+    padding: 28px 20px;
+  }
+
+  .form-panel h2 {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .form-panel .intro {
+    height: auto;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 24px;
+  }
+
+  .field.full {
+    grid-column: auto;
+  }
+
+  .field {
+    gap: 10px;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    font-size: 16px;
+  }
+
+  .form-consent {
+    font-size: 13px;
+    gap: 10px;
+  }
+}
+     </style>
+
     <!-- FAQ -->
   <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Sora:wght@400&display=swap');
@@ -1029,7 +1232,7 @@
 .faq-section__eyebrow-icon {
   width: 20px;
   height: 20px;
-  background: rgb(87, 87, 87);
+  /* background: rgb(87, 87, 87); */
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   animation: faqEyebrowSpin 12s linear infinite;
   flex: 0 0 auto;
@@ -1975,7 +2178,7 @@
   <body>
 
      <nav class="nav-wrap">
-    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/HMA-white.png" alt="" class="Logo"></a>
+    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="" class="Logo"></a>
     <div class="nav-bar" id="navBar">
       <a href="./index.html" class="nav-item " data-name="Home">
         <span class="nav-label">Home</span>
@@ -2089,85 +2292,194 @@
 
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero-inner">
-          <div>
-            <div class="section-label">Contact</div>
-            <h1 id="hero-title">Ready to start your next project?</h1>
-          </div>
+  <div class="container hero-inner">
+    <div>
+      <div class="section-label">Book a call</div>
+
+      <h1 id="hero-title">
+        Let’s define<br>
+        what your business needs next.
+      </h1>
+    </div>
+  </div>
+</section>
+
+     <section class="contact-wrap" id="contact">
+  <div class="container contact-grid">
+
+    <div class="contact-list" aria-label="Contact information">
+
+      <div class="theLine"></div>
+
+      <article class="contact-card">
+        <div class="icon-dot">
+          <img src="./assets/icons/phone.svg" alt="">
         </div>
-      </section>
 
-      <section class="contact-wrap" id="contact">
-        <div class="container contact-grid">
-          <div class="contact-list" aria-label="Contact details">
-            <div class="theLine"></div>
-            <article class="contact-card">
-              <div class="icon-dot"><img src="./assets/icons/phone.svg" alt=""></div>
-              <div>
-                <h3>Phone</h3>
-                <a href="tel:+123456789">+1 (234) 567-890</a>
-              </div>
-            </article>
-            <div class="theLine"></div>
-            <article class="contact-card">
-              <div class="icon-dot"><img src="assets/icons/mail.svg" alt=""></div>
-              <div>
-                <h3>Email</h3>
-                <a href="mailto:contact@gmail.com">contact@gmail.com</a>
-              </div>
-            </article>
-            <div class="theLine"></div>
-            <article class="contact-card">
-              <div class="icon-dot"><img src="assets/icons/position.svg" alt=""></div>
-              <div>
-                <h3>Location</h3>
-                <p>Mannheimm Germany</p>
-              </div>
-            </article>
-            <div class="theLine"></div>
-          </div>
-
-          <section class="form-panel" aria-labelledby="form-title">
-
-            <div class="form-header">
-              <h2 id="form-title">We are here to help</h2>
-            <p class="intro">
-              Have questions or need support? Reach out to our team for expert
-              guidance
-            </p>
-            </div>
-            
-            <form class="form-grid">
-              <label class="field">
-                <span>Name</span>
-                <input type="text" placeholder="Jane Smith" required />
-              </label>
-              <label class="field">
-                <span>Phone number</span>
-                <input type="tel" placeholder="+1 (234) 567 890" required />
-              </label>
-              <label class="field">
-                <span>Email</span>
-                <input type="email" placeholder="example@mail.com" required />
-              </label>
-              <label class="field">
-                <span>Subject</span>
-                <input type="text" placeholder="SEO, IT..." required />
-              </label>
-              <label class="field full">
-                <span>Tell us about your project</span>
-                <textarea
-                  placeholder="Your message here ....."
-                  required
-                ></textarea>
-              </label>
-              <div class="field full">
-                <button class="button" type="submit">Send a message</button>
-              </div>
-            </form>
-          </section>
+        <div>
+          <h3>Book a call</h3>
+          <p>A focused conversation about your next digital move.</p>
         </div>
-      </section>
+      </article>
+
+      <div class="theLine"></div>
+
+      <article class="contact-card">
+        <div class="icon-dot">
+          <img src="./assets/icons/mail.svg" alt="">
+        </div>
+
+        <div>
+          <h3>Email</h3>
+          <a href="mailto:REPLACE-WITH-REAL-EMAIL">
+            REPLACE-WITH-REAL-EMAIL
+          </a>
+        </div>
+      </article>
+
+      <div class="theLine"></div>
+
+      <article class="contact-card">
+        <div class="icon-dot">
+          <img src="./assets/icons/position.svg" alt="">
+        </div>
+
+        <div>
+          <h3>Languages</h3>
+          <p>English · German · French · Arabic</p>
+        </div>
+      </article>
+
+      <div class="theLine"></div>
+
+    </div>
+
+    <section class="form-panel" aria-labelledby="form-title">
+
+      <div class="form-header">
+        <h2 id="form-title">Start with a clear conversation.</h2>
+
+        <p class="intro">
+          Tell us where your business is today, what needs to change and what
+          you want to achieve next. We will review your enquiry and come back
+          to you personally.
+        </p>
+      </div>
+
+      <form class="form-grid" action="#" method="post">
+
+        <label class="field">
+          <span>Full name</span>
+          <input
+            type="text"
+            name="name"
+            placeholder="Jane Smith"
+            autocomplete="name"
+            required
+          >
+        </label>
+
+        <label class="field">
+          <span>Company</span>
+          <input
+            type="text"
+            name="company"
+            placeholder="Company name"
+            autocomplete="organization"
+            required
+          >
+        </label>
+
+        <label class="field">
+          <span>Business email</span>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@company.com"
+            autocomplete="email"
+            required
+          >
+        </label>
+
+        <label class="field">
+          <span>Phone number</span>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+49 000 000000"
+            autocomplete="tel"
+          >
+        </label>
+
+        <label class="field">
+          <span>Company size</span>
+          <select name="company_size" required>
+            <option value="" selected disabled>Select company size</option>
+            <option value="1-10">1–10 employees</option>
+            <option value="11-50">11–50 employees</option>
+            <option value="51-200">51–200 employees</option>
+            <option value="201-500">201–500 employees</option>
+            <option value="500-plus">500+ employees</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Estimated investment range</span>
+          <select name="budget" required>
+            <option value="" selected disabled>Select a range</option>
+            <option value="10000-25000">€10,000–€25,000</option>
+            <option value="25000-50000">€25,000–€50,000</option>
+            <option value="50000-100000">€50,000–€100,000</option>
+            <option value="100000-plus">€100,000+</option>
+          </select>
+        </label>
+
+        <label class="field full">
+          <span>What would you like to improve?</span>
+          <select name="service_interest" required>
+            <option value="" selected disabled>Select an area</option>
+            <option value="ignition">IGNITION — Digital Foundation</option>
+            <option value="engine">ENGINE — Content &amp; Media</option>
+            <option value="ai-ops">AI OPS — Automation &amp; Agents</option>
+            <option value="dpp-ready">DPP READY — Product Passport Readiness</option>
+            <option value="domains-email">Domains &amp; Email</option>
+            <option value="infrastructure">Infrastructure</option>
+            <option value="ai-search">AI Search</option>
+            <option value="custom-software">Custom Software</option>
+            <option value="not-sure">Not sure yet</option>
+          </select>
+        </label>
+
+        <label class="field full">
+          <span>Tell us about your business and goals</span>
+          <textarea
+            name="message"
+            placeholder="Where is your business today, what needs to improve, and what would a strong result look like?"
+            required
+          ></textarea>
+        </label>
+
+        <div class="field full">
+          <label class="form-consent">
+            <input type="checkbox" name="privacy_consent" required>
+            <span>
+              I agree that Hoffmann Medienagentur may use my details to respond
+              to this enquiry in accordance with the Privacy Policy.
+            </span>
+          </label>
+        </div>
+
+        <div class="field full">
+          <button class="button" type="submit">
+            Request a conversation
+          </button>
+        </div>
+
+      </form>
+
+    </section>
+  </div>
+</section>
       
 
       <section class="map-wrap" aria-labelledby="map-title">
@@ -2176,10 +2488,10 @@
 
       <div class="map-embed">
         <iframe
-          title="Map showing San Francisco, California"
+          title="Map showing Mannheim, Germany"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=San+Francisco,+California&z=12&output=embed">
+          src="https://www.google.com/maps?q=Mannheim,+Germany&z=12&output=embed">
         </iframe>
       </div>
   </div>
@@ -2188,22 +2500,27 @@
 <!-- FAQ -->
 <section class="faq-section" id="faqSection">
   <div class="faq-section__container">
+
     <div class="faq-section__header">
       <div class="faq-section__eyebrow">
-        <span class="faq-section__eyebrow-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"><path d="M 10 2.667 C 8.527 2.667 7.333 3.861 7.333 5.333 C 7.333 6.082 7.645 6.757 8.142 7.241 L 6.042 10.915 L 7.201 11.575 L 9.303 7.896 C 9.527 7.957 9.757 8 10 8 C 11.473 8 12.667 6.806 12.667 5.333 C 12.667 3.861 11.473 2.667 10 2.667 Z M 10 6.667 C 9.264 6.667 8.667 6.07 8.667 5.333 C 8.667 4.597 9.264 4 10 4 C 10.737 4 11.334 4.597 11.334 5.333 C 11.334 6.07 10.737 6.667 10 6.667 Z" fill="rgb(87, 87, 87)"></path><path d="M 7.239 14 C 6.941 12.852 5.908 12 4.667 12 C 3.194 12 2 13.194 2 14.667 C 2 16.139 3.194 17.333 4.667 17.333 C 5.908 17.333 6.941 16.481 7.239 15.333 L 11.393 15.333 L 11.393 14 Z M 4.667 16 C 3.93 16 3.333 15.403 3.333 14.667 C 3.333 13.93 3.93 13.333 4.667 13.333 C 5.403 13.333 6 13.93 6 14.667 C 6 15.403 5.403 16 4.667 16 Z" fill="rgb(87, 87, 87)"></path><path d="M 15.333 12 C 15.09 12 14.86 12.043 14.637 12.103 L 12.534 8.425 L 11.376 9.084 L 13.475 12.758 C 12.978 13.243 12.666 13.917 12.666 14.666 C 12.666 16.139 13.861 17.333 15.333 17.333 C 16.806 17.333 18 16.139 18 14.666 C 18 13.194 16.806 12 15.333 12 Z M 15.333 16 C 14.597 16 14 15.403 14 14.666 C 14 13.93 14.597 13.333 15.333 13.333 C 16.07 13.333 16.666 13.93 16.666 14.666 C 16.666 15.403 16.07 16 15.333 16 Z" fill="rgb(87, 87, 87)"></path></svg></span>
-        <span>FAQ</span>
+        <span class="faq-section__eyebrow-icon" aria-hidden="true">
+          <img src="./assets/icons/black-triangle.svg" alt="">
+        </span>
+
+        <span>Questions &amp; answers</span>
       </div>
 
       <h2 class="faq-section__title js-faq-title">
-        Frequently asked questions answered
+        Before we begin, let’s make things clear.
       </h2>
     </div>
 
     <div class="faq-section__body">
-      <!-- Accordion column -->
+
       <div class="faq-accordion" data-faq-accordion>
-        <!-- Item 1 -->
-        <article class="faq-item ">
+
+        <!-- FAQ 01 -->
+        <article class="faq-item">
           <h3 class="faq-item__heading">
             <button
               class="faq-item__trigger"
@@ -2212,13 +2529,17 @@
               aria-controls="faq-a1"
               type="button"
             >
-              <span class="faq-item__question" data-no-select>What services do you offer?</span>
+              <span class="faq-item__question" data-no-select>
+                What does Hoffmann Medienagentur do?
+              </span>
+
               <span class="faq-item__control" aria-hidden="true">
                 <span class="faq-item__control-icon faq-item__control-icon--open">
                   <svg viewBox="0 0 256 256">
                     <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
                   </svg>
                 </span>
+
                 <span class="faq-item__control-icon faq-item__control-icon--closed">
                   <svg viewBox="0 0 256 256">
                     <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
@@ -2235,12 +2556,16 @@
             aria-labelledby="faq-q1"
           >
             <div class="faq-item__answer" data-no-select>
-              We deliver end-to-end AI and software solutions, from automation and data analysis to machine learning and custom AI products.
+              Hoffmann Medienagentur is a high-end digital partner for companies
+              that need more than an isolated website or campaign. We connect
+              premium web experiences, search visibility, content and media,
+              AI-supported operations, Digital Product Passport readiness and
+              connected digital systems around one clear business direction.
             </div>
           </div>
         </article>
 
-        <!-- Item 2 -->
+        <!-- FAQ 02 -->
         <article class="faq-item">
           <h3 class="faq-item__heading">
             <button
@@ -2250,13 +2575,17 @@
               aria-controls="faq-a2"
               type="button"
             >
-              <span class="faq-item__question" data-no-select>What industries do you work with?</span>
+              <span class="faq-item__question" data-no-select>
+                What kind of project is a good fit?
+              </span>
+
               <span class="faq-item__control" aria-hidden="true">
                 <span class="faq-item__control-icon faq-item__control-icon--open">
                   <svg viewBox="0 0 256 256">
                     <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
                   </svg>
                 </span>
+
                 <span class="faq-item__control-icon faq-item__control-icon--closed">
                   <svg viewBox="0 0 256 256">
                     <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
@@ -2273,12 +2602,16 @@
             aria-labelledby="faq-q2"
           >
             <div class="faq-item__answer" data-no-select>
-              We support early-stage startups and established enterprises across sectors like SaaS, finance, healthcare, and operations, adapting our AI approach to each domain.
+              We are best suited to companies that see digital as a serious
+              business advantage. Typical engagements include building or
+              relaunching a premium website, improving international visibility,
+              creating a content system, introducing useful automation or preparing
+              for emerging digital requirements.
             </div>
           </div>
         </article>
 
-        <!-- Item 3 -->
+        <!-- FAQ 03 -->
         <article class="faq-item">
           <h3 class="faq-item__heading">
             <button
@@ -2288,13 +2621,17 @@
               aria-controls="faq-a3"
               type="button"
             >
-              <span class="faq-item__question" data-no-select>Can you integrate with existing tools?</span>
+              <span class="faq-item__question" data-no-select>
+                Who will I speak with?
+              </span>
+
               <span class="faq-item__control" aria-hidden="true">
                 <span class="faq-item__control-icon faq-item__control-icon--open">
                   <svg viewBox="0 0 256 256">
                     <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
                   </svg>
                 </span>
+
                 <span class="faq-item__control-icon faq-item__control-icon--closed">
                   <svg viewBox="0 0 256 256">
                     <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
@@ -2311,12 +2648,14 @@
             aria-labelledby="faq-q3"
           >
             <div class="faq-item__answer" data-no-select>
-              Absolutely. We embed AI modules into existing apps, dashboards, CRMs, and internal tools, keeping your current workflows intact while adding intelligence.
+              You speak with Sven Hoffmann, Founder and Strategic Advisor at
+              Hoffmann Medienagentur. He is your clear point of contact for the
+              initial conversation, direction, priorities and next steps.
             </div>
           </div>
         </article>
 
-        <!-- Item 4 -->
+        <!-- FAQ 04 -->
         <article class="faq-item">
           <h3 class="faq-item__heading">
             <button
@@ -2326,13 +2665,17 @@
               aria-controls="faq-a4"
               type="button"
             >
-              <span class="faq-item__question" data-no-select>How long does a project take to complete?</span>
+              <span class="faq-item__question" data-no-select>
+                What does a project cost?
+              </span>
+
               <span class="faq-item__control" aria-hidden="true">
                 <span class="faq-item__control-icon faq-item__control-icon--open">
                   <svg viewBox="0 0 256 256">
-                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
+                    <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1,17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
                   </svg>
                 </span>
+
                 <span class="faq-item__control-icon faq-item__control-icon--closed">
                   <svg viewBox="0 0 256 256">
                     <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
@@ -2349,12 +2692,15 @@
             aria-labelledby="faq-q4"
           >
             <div class="faq-item__answer" data-no-select>
-              Timelines depend on scope, but most AI prototypes are ready in 2–6 weeks, while full production systems typically take 1–3 months from kickoff to deployment.
+              Core HMA services are tailored to your business goals, scope,
+              complexity and technical requirements, so they are priced on
+              request. The first conversation helps establish the right priorities,
+              project scope and suitable investment range before we prepare a proposal.
             </div>
           </div>
         </article>
 
-        <!-- Item 5 -->
+        <!-- FAQ 05 -->
         <article class="faq-item">
           <h3 class="faq-item__heading">
             <button
@@ -2364,13 +2710,17 @@
               aria-controls="faq-a5"
               type="button"
             >
-              <span class="faq-item__question" data-no-select>Do you support both startups and enterprises?</span>
+              <span class="faq-item__question" data-no-select>
+                How long does a project take?
+              </span>
+
               <span class="faq-item__control" aria-hidden="true">
                 <span class="faq-item__control-icon faq-item__control-icon--open">
                   <svg viewBox="0 0 256 256">
                     <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
                   </svg>
                 </span>
+
                 <span class="faq-item__control-icon faq-item__control-icon--closed">
                   <svg viewBox="0 0 256 256">
                     <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
@@ -2387,13 +2737,15 @@
             aria-labelledby="faq-q5"
           >
             <div class="faq-item__answer" data-no-select>
-              Yes. We tailor our engagement model to the team size and stage, from fast-moving startup builds to structured enterprise programs with governance.
+              Timelines depend on the scope, number of languages or markets,
+              required integrations and the availability of decisions and source
+              materials. Before build work begins, we create a clear plan with
+              realistic phases, responsibilities and delivery priorities.
             </div>
           </div>
         </article>
 
-
-        <!-- Item 6 -->
+        <!-- FAQ 06 -->
         <article class="faq-item">
           <h3 class="faq-item__heading">
             <button
@@ -2403,13 +2755,17 @@
               aria-controls="faq-a6"
               type="button"
             >
-              <span class="faq-item__question" data-no-select>Do you support both startups and enterprises?</span>
+              <span class="faq-item__question" data-no-select>
+                Do you work internationally?
+              </span>
+
               <span class="faq-item__control" aria-hidden="true">
                 <span class="faq-item__control-icon faq-item__control-icon--open">
                   <svg viewBox="0 0 256 256">
                     <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
                   </svg>
                 </span>
+
                 <span class="faq-item__control-icon faq-item__control-icon--closed">
                   <svg viewBox="0 0 256 256">
                     <path d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"></path>
@@ -2426,14 +2782,16 @@
             aria-labelledby="faq-q6"
           >
             <div class="faq-item__answer" data-no-select>
-              Yes. We tailor our engagement model to the team size and stage, from fast-moving startup builds to structured enterprise programs with governance.
+              Yes. HMA works across English, German, French and Arabic. We build
+              multilingual experiences as part of the core structure, including
+              proper right-to-left requirements for Arabic rather than treating
+              localisation as an afterthought.
             </div>
           </div>
         </article>
-        
-    </div>
 
-      <!-- Contact card -->
+      </div>
+
       <aside class="faq-contact-card">
         <img
           class="faq-contact-card__image"
@@ -2446,15 +2804,22 @@
 
         <div class="faq-contact-card__overlay">
           <h3 class="faq-contact-card__title js-faq-contact-title">
-            Send us an email anytime and we’ll respond with support or details
+            Still have a question?<br>
+            Start with a clear conversation.
           </h3>
 
-          <a href="/contact" class="faq-contact-card__button">
-            <span class="faq-contact-card__button-text faq-contact-card__button-text--primary">Contact Us</span>
-            <span class="faq-contact-card__button-text faq-contact-card__button-text--secondary">Contact Us</span>
+          <a href="#contact" class="faq-contact-card__button">
+            <span class="faq-contact-card__button-text faq-contact-card__button-text--primary">
+              Book a call
+            </span>
+
+            <span class="faq-contact-card__button-text faq-contact-card__button-text--secondary">
+              Book a call
+            </span>
           </a>
         </div>
       </aside>
+
     </div>
   </div>
 </section>
@@ -2465,19 +2830,19 @@
         <div class="footer-cta">
           <div class="footer-cta-copy">
             <div class="footer-cta-title reveal-footer-up">
-              <h2>LET’S BUILD THE FUTURE OF WEB3 TOGETHER</h2>
+              <h2>READY TO BUILD WHAT’S NEXT?</h2>
             </div>
 
             <div class="footer-cta-description reveal-footer-up">
               <p>
-                Ready to launch? From start to scale, we turn your Web3 vision
-                into reality.
+                If your digital presence should match your ambition, let’s start
+  with a clear conversation.
               </p>
             </div>
           </div>
 
           <div class="footer-cta-action reveal-footer-up">
-            <a href="/contact" class="footer-cta-btn">
+            <a href="#contact" class="footer-cta-btn">
               <span class="footer-cta-btn-icon">
                 <img
                   src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg"
@@ -2487,7 +2852,7 @@
                   loading="lazy"
                 />
               </span>
-              <span class="footer-cta-btn-label">Get In Touch</span>
+              <span class="footer-cta-btn-label">BOOK A CALL</span>
             </a>
           </div>
         </div>
@@ -2556,26 +2921,7 @@
   <script src="./js/components/mobile-navmenu.js" ></script>
 
     
-    <script>
-      document.querySelectorAll(".faq-trigger").forEach((button) => {
-        button.addEventListener("click", () => {
-          const item = button.closest(".faq-item");
-          const isOpen = item.classList.contains("open");
-          document.querySelectorAll(".faq-item").forEach((card) => {
-            card.classList.remove("open");
-            card
-              .querySelector(".faq-trigger")
-              .setAttribute("aria-expanded", "false");
-            card.querySelector(".faq-trigger i").textContent = "−";
-          });
-          if (!isOpen) {
-            item.classList.add("open");
-            button.setAttribute("aria-expanded", "true");
-            button.querySelector("i").textContent = "×";
-          }
-        });
-      });
-    </script>
+ 
 
 
     
