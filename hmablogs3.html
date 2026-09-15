@@ -1664,38 +1664,6 @@ grid-column: span 2 / span 2;
         opacity:.92;
       }
 
-      .page-numbers{
-        display:flex;
-        align-items:center;
-        gap:8px;
-      }
-
-      .page-number{
-        display:grid;
-        place-items:center;
-        width:34px;
-        height:34px;
-        border-radius:999px;
-        color:rgba(255,255,255,.6);
-        font-size:13px;
-        font-weight:500;
-        transition:.25s ease;
-      }
-
-      .page-number:hover{
-        color:#fff;
-        background:rgba(255,255,255,.08);
-      }
-
-      .page-number.is-active{
-        background:linear-gradient(135deg, var(--purple-1), var(--purple-2));
-        color:#fff;
-      }
-
-      .page-number--next svg{
-        width:14px;
-        height:14px;
-      }
 
 
       </style>
@@ -2058,16 +2026,7 @@ grid-column: span 2 / span 2;
             </svg>
           </button>
 
-          <nav class="page-numbers" aria-label="Blog pagination">
-            <a href="#all-blogs" class="page-number is-active" aria-current="page">1</a>
-            <a href="#all-blogs" class="page-number">2</a>
-            <a href="#all-blogs" class="page-number">3</a>
-            <a href="#all-blogs" class="page-number page-number--next" aria-label="Next page">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </nav>
+          
         </div>
       </div>
     </section>
