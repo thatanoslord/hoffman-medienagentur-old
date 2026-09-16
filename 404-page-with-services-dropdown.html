@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error 404</title>
+
+  <link rel="stylesheet" href="./css/hma-header.css">
+  <link rel="stylesheet" href="./css/hmafooter.css">
+  <link rel="stylesheet" href="./css/mobile-navmenu.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--blog-bg, #ffffff);
+      color: var(--blog-text, #161616);
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* =========================================
+       SERVICES DESKTOP DROPDOWN
+       ========================================= */
+    .nav-item--services {
+      position: relative;
+      padding: 0;
+      overflow: visible;
+    }
+
+    .nav-trigger {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0;
+      padding: 10px 24px;
+      border: 0;
+      border-radius: 999px;
+      outline: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .dropdown-arrow {
+      width: 7px;
+      height: 7px;
+      margin-top: -4px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform 0.25s ease;
+    }
+
+    .nav-item--services:hover .dropdown-arrow,
+    .nav-item--services:focus-within .dropdown-arrow,
+    .nav-item--services.is-open .dropdown-arrow {
+      transform: rotate(225deg) translate(-2px, -2px);
+    }
+
+    .services-dropdown {
+      position: absolute;
+      top: calc(100% + 16px);
+      left: 50%;
+      z-index: 200;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(160px, 1fr));
+      gap: 6px;
+      width: 420px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 20px;
+      background: rgba(18, 18, 18, 0.94);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate(-50%, -10px) scale(0.98);
+      transform-origin: top center;
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    }
+
+    .services-dropdown::before {
+      content: "";
+      position: absolute;
+      top: -17px;
+      right: 0;
+      left: 0;
+      height: 17px;
+    }
+
+    .nav-item--services:hover .services-dropdown,
+    .nav-item--services:focus-within .services-dropdown,
+    .nav-item--services.is-open .services-dropdown {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    .service-dropdown-link {
+      display: flex;
+      min-height: 48px;
+      align-items: center;
+      padding: 12px 14px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      color: rgba(255, 255, 255, 0.78);
+      font-family: "DM Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: color 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+    }
+
+    .service-dropdown-link:hover,
+    .service-dropdown-link:focus-visible {
+      border-color: #ffffff;
+      outline: none;
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 1150px) {
+      .services-dropdown {
+        grid-template-columns: 1fr;
+        width: 250px;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .services-dropdown {
+        display: none;
+      }
+    }
+
+    /* =========================================
+       404 SECTION
+       ========================================= */
+    .utomic-404 {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #ffffff;
+      color: #161616;
+      font-family: "DM Sans", "Inter", Arial, sans-serif;
+    }
+
+    .utomic-404 *,
+    .utomic-404 *::before,
+    .utomic-404 *::after {
+      box-sizing: border-box;
+    }
+
+    .utomic-404__container {
+      display: flex;
+      width: min(100%, 1440px);
+      min-height: 70vh;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 124px 24px 72px;
+    }
+
+    .utomic-404__content {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .utomic-404__code {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      color: #151515;
+      font-family: "DM Sans", "Inter", Arial, sans-serif;
+      font-size: clamp(150px, 20.1vw, 350px);
+      font-weight: 500;
+      line-height: 0.9;
+      white-space: nowrap;
+    }
+
+    .utomic-404__digit {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      animation: utomic404DigitIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .utomic-404__digit:nth-child(1) {
+      animation-delay: 0.05s;
+    }
+
+    .utomic-404__digit:nth-child(2) {
+      animation-delay: 0.14s;
+    }
+
+    .utomic-404__digit:nth-child(3) {
+      animation-delay: 0.23s;
+    }
+
+    @keyframes utomic404DigitIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .utomic-404__message {
+      max-width: 420px;
+      margin: 45px 0 27px;
+      color: #1b1b1b;
+      font-size: clamp(20px, 1.72vw, 27px);
+      font-weight: 500;
+      letter-spacing: -0.043em;
+      line-height: 1.03;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: utomic404FadeUp 0.7s 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes utomic404FadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .utomic-404__button {
+      display: inline-flex;
+      min-width: 104px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0 18px;
+      border: 1px solid #171717;
+      border-radius: 999px;
+      background: #171717;
+      color: #ffffff;
+      cursor: pointer;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: utomic404FadeUp 0.7s 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      transition: background-color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+    }
+
+    .utomic-404__button:hover {
+      border-color: #343434;
+      background: #343434;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .utomic-404__button:active {
+      box-shadow: none;
+      transform: translateY(0);
+    }
+
+    .utomic-404__button:focus-visible {
+      outline: 3px solid rgba(34, 91, 255, 0.45);
+      outline-offset: 4px;
+    }
+
+    .utomic-404__button-track {
+      position: relative;
+      display: block;
+      height: 15px;
+      overflow: hidden;
+    }
+
+    .utomic-404__button-label {
+      display: block;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 15px;
+      text-align: center;
+      white-space: nowrap;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .utomic-404__button-label--top {
+      transform: translateY(0);
+    }
+
+    .utomic-404__button-label--bottom {
+      transform: translateY(4px);
+    }
+
+    .utomic-404__button:hover .utomic-404__button-label--top {
+      transform: translateY(-18px);
+    }
+
+    .utomic-404__button:hover .utomic-404__button-label--bottom {
+      transform: translateY(-15px);
+    }
+
+    @media (max-width: 1024px) {
+      .utomic-404__container {
+        min-height: 60vh;
+        padding-top: 110px;
+        padding-bottom: 64px;
+      }
+
+      .utomic-404__message {
+        margin-top: 38px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .utomic-404 {
+        padding-top: 105px;
+      }
+
+      .utomic-404__container {
+        min-height: 480px;
+        padding: 105px 20px 58px;
+      }
+
+      .utomic-404__code {
+        font-size: clamp(122px, 34vw, 210px);
+        line-height: 0.8;
+      }
+
+      .utomic-404__message {
+        max-width: 310px;
+        margin: 34px 0 25px;
+        font-size: 21px;
+        line-height: 1.08;
+      }
+
+      .utomic-404__desktop-break {
+        display: none;
+      }
+
+      .utomic-404__button {
+        min-width: 116px;
+        height: 39px;
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .utomic-404__container {
+        min-height: 435px;
+        padding-top: 92px;
+      }
+
+      .utomic-404__code {
+        font-size: 120px;
+      }
+
+      .utomic-404__message {
+        margin-top: 29px;
+        font-size: 19px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .utomic-404__digit,
+      .utomic-404__message,
+      .utomic-404__button {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .utomic-404__button,
+      .utomic-404__button-label,
+      .services-dropdown,
+      .service-dropdown-link,
+      .dropdown-arrow {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mobile navigation -->
+  <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+
+  <div class="mobile-nav-wrap">
+    <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+      <div class="mobile-nav-bar">
+        <a href="./index.html">
+          <img class="mobile-wordmark" data-mobile-logo src="./assets/images/logo/HMA - Logo soft.png" alt="HMA Logo">
+        </a>
+
+        <button
+          class="mobile-menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-blur-nav-drawer"
+          aria-label="Open menu"
+          data-mobile-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+        <div class="mobile-menu-rows" data-mobile-rows>
+          <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+            <span class="mobile-menu-link-index">01</span>
+            <span class="mobile-menu-link-label">About</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmaservices.html" data-mobile-link>
+            <span class="mobile-menu-link-index">02</span>
+            <span class="mobile-menu-link-label">Services</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+            <span class="mobile-menu-link-index">03</span>
+            <span class="mobile-menu-link-label">Blogs</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+            <span class="mobile-menu-link-index">04</span>
+            <span class="mobile-menu-link-label">Contact</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./privacy-policy.html" data-mobile-link>
+            <span class="mobile-menu-link-index">05</span>
+            <span class="mobile-menu-link-label">Privacy and Policy</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="mobile-menu-link" href="./legal-notice.html" data-mobile-link>
+            <span class="mobile-menu-link-index">06</span>
+            <span class="mobile-menu-link-label">Legal Notice</span>
+            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-foot">
+          <div class="mobile-status">
+            <span class="mobile-status-dot" aria-hidden="true"></span>
+            <span class="mobile-clock" data-mobile-clock>10:37</span>
+          </div>
+
+          <div class="mobile-socials" aria-label="Social links">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Desktop navigation -->
+  <nav class="nav-wrap" aria-label="Primary navigation">
+    <a href="./index.html" class="LogoWrapper" aria-label="Hoffmann Medienagentur home">
+      <img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="Hoffmann Medienagentur" class="Logo">
+    </a>
+
+    <div class="nav-bar" id="navBar">
+      <a href="./index.html" class="nav-item" data-name="Home">
+        <span class="nav-label">Home</span>
+        <span class="nav-icon">⌂</span>
+        <span class="lamp">
+          <span class="lamp-top">
+            <span class="glow glow-1"></span>
+            <span class="glow glow-2"></span>
+            <span class="glow glow-3"></span>
+          </span>
+        </span>
+      </a>
+
+      <a href="./about.html" class="nav-item" data-name="About">
+        <span class="nav-label">About</span>
+        <span class="nav-icon">◎</span>
+      </a>
+
+      <!-- Services dropdown -->
+      <div class="nav-item nav-item--services" data-name="Services">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="services-dropdown">
+          <span class="nav-label">Services</span>
+          <span class="nav-icon">◫</span>
+          <span class="dropdown-arrow" aria-hidden="true"></span>
+        </button>
+
+        <div class="services-dropdown" id="services-dropdown" aria-label="Services menu">
+          <a class="service-dropdown-link" href="./hmaservices.html">All Services</a>
+          <a class="service-dropdown-link" href="./web-design.html">Web Design</a>
+          <a class="service-dropdown-link" href="./web-development.html">Web Development</a>
+          <a class="service-dropdown-link" href="./seo.html">SEO &amp; Content Strategy</a>
+          <a class="service-dropdown-link" href="./ecommerce.html">E-Commerce Solutions</a>
+          <a class="service-dropdown-link" href="./branding.html">Branding &amp; Identity</a>
+          <a class="service-dropdown-link" href="./digital-marketing.html">Digital Marketing</a>
+          <a class="service-dropdown-link" href="./maintenance.html">Website Maintenance</a>
+        </div>
+      </div>
+
+      <a href="./hmablogs.html" class="nav-item active" data-name="Blogs">
+        <span class="nav-label">Blogs</span>
+        <span class="nav-icon">◫</span>
+      </a>
+
+      <a href="./contact.html" class="nav-item" data-name="Contact">
+        <span class="nav-label">Contact</span>
+        <span class="nav-icon">✉</span>
+      </a>
+    </div>
+
+    <div class="nav-cta-wrap">
+      <a href="./contact.html" class="nav-btn light">
+        <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="">
+        <span class="btn-label">Book A Call</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- 404 content -->
+  <section class="utomic-404" aria-labelledby="error-title">
+    <div class="utomic-404__container">
+      <div class="utomic-404__content">
+        <h1 class="utomic-404__code" id="error-title" aria-label="Error 404">
+          <span class="utomic-404__digit">4</span>
+          <span class="utomic-404__digit">0</span>
+          <span class="utomic-404__digit">4</span>
+        </h1>
+
+        <p class="utomic-404__message">
+          Sorry, the page you’re looking for<br class="utomic-404__desktop-break">
+          couldn’t be found.
+        </p>
+
+        <a class="utomic-404__button" href="./index.html" aria-label="Return to the homepage">
+          <span class="utomic-404__button-track">
+            <span class="utomic-404__button-label utomic-404__button-label--top">Return Home</span>
+            <span class="utomic-404__button-label utomic-404__button-label--bottom">Return Home</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-shell">
+      <div class="footer-cta">
+        <div class="footer-cta-copy">
+          <div class="footer-cta-title reveal-footer-up">
+            <h2>READY TO BUILD WHAT’S NEXT?</h2>
+          </div>
+
+          <div class="footer-cta-description reveal-footer-up">
+            <p>If your digital presence should match your ambition, let’s start with a clear conversation.</p>
+          </div>
+        </div>
+
+        <div class="footer-cta-action reveal-footer-up">
+          <a href="./contact.html" class="footer-cta-btn">
+            <span class="footer-cta-btn-icon">
+              <img src="https://framerusercontent.com/images/leABZOrJWtI2j8E8xnY9aX1Yw.svg" alt="" width="28" height="28" loading="lazy">
+            </span>
+            <span class="footer-cta-btn-label">BOOK A CALL</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider" aria-hidden="true"></div>
+
+    <div class="footer-lower">
+      <div class="footer-grid-bg reveal-grid" aria-hidden="true">
+        <img src="https://framerusercontent.com/images/YFlEZtZRPYYJiuJbhArFwEvXMaw.png?width=6400&height=1369" alt="" width="1600" height="341" loading="lazy">
+      </div>
+
+      <div class="footer-lower-inner">
+        <nav class="footer-socials" aria-label="Hoffmann Medienagentur social links">
+          <a class="footer-link reveal-footer-link" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="footer-link reveal-footer-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="footer-link reveal-footer-link" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </nav>
+
+        <a href="./index.html" class="footer-wordmark reveal-footer-brand" aria-label="Hoffmann Medienagentur home">
+          <span>HOFFMANN MEDIENAGENTUR</span>
+        </a>
+
+        <p class="footer-copyright reveal-footer-copy">© 2026 Hoffmann Medienagentur GmbH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/components/mobile-navmenu.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const servicesItem = document.querySelector(".nav-item--services");
+      const servicesTrigger = servicesItem?.querySelector(".nav-trigger");
+
+      if (!servicesItem || !servicesTrigger) return;
+
+      function closeServicesMenu() {
+        servicesItem.classList.remove("is-open");
+        servicesTrigger.setAttribute("aria-expanded", "false");
+      }
+
+      servicesTrigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        const shouldOpen = !servicesItem.classList.contains("is-open");
+        servicesItem.classList.toggle("is-open", shouldOpen);
+        servicesTrigger.setAttribute("aria-expanded", String(shouldOpen));
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!servicesItem.contains(event.target)) {
+          closeServicesMenu();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeServicesMenu();
+          servicesTrigger.focus();
+        }
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const revealItems = document.querySelectorAll(
+        ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid"
+      );
+
+      const observer = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observerInstance.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      revealItems.forEach((item) => observer.observe(item));
+    });
+  </script>
+</body>
+</html>
