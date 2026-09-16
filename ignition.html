@@ -1103,10 +1103,31 @@
         <span class="nav-icon">◎</span>
       </a>
 
-      <a href="./hmaservices.html" class="nav-item" data-name="Projects">
-        <span class="nav-label">Services</span>
-        <span class="nav-icon">◫</span>
-      </a>
+       <!-- Services dropdown -->
+<div class="nav-item nav-item--services" data-name="Services">
+  <button onclick="window.location.href='./hmaservices.html'"
+    class="nav-trigger"
+    type="button"
+    aria-expanded="false"
+    aria-controls="services-dropdown"
+  >
+    <span class="nav-label">Services</span>
+    <span class="nav-icon">◫</span>
+    <span class="dropdown-arrow" aria-hidden="true"></span>
+  </button>
+
+  <div class="services-dropdown" id="services-dropdown" aria-label="Services menu">
+    <a class="service-dropdown-link" href="./hmaservices.html">All Services</a>
+    <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
+    <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
+    <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
+    <a class="service-dropdown-link" href="./dpp-ready.html">DPP READY</a>
+    <a class="service-dropdown-link" href="./domains-email.html">Domains &amp; Email</a>
+    <a class="service-dropdown-link" href="./infrastructure.html">INFRASTRUCTURE</a>
+    <a class="service-dropdown-link" href="./ai-search.html">Ai Search</a>
+    <a class="service-dropdown-link" href="./costum-software.html">Custom Software</a>
+  </div>
+</div>
 
       <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
         <span class="nav-label">Blogs</span>
@@ -1485,34 +1506,75 @@
       </div>
     </footer>
 
-    <!-- navbar -->
-    <script>
-      const navBar = document.getElementById("navBar");
-  const navItems = navBar.querySelectorAll(".nav-item");
+    <!-- navbar  -->
+     <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navBar = document.getElementById("navBar");
+    const servicesItem = document.querySelector(".nav-item--services");
+    const servicesTrigger = servicesItem?.querySelector(".nav-trigger");
 
-  navItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      navItems.forEach((link) => {
-        link.classList.remove("active");
-        const oldLamp = link.querySelector(".lamp");
-        if (oldLamp) oldLamp.remove();
+    if (navBar) {
+      const regularNavItems = navBar.querySelectorAll(
+        ".nav-item:not(.nav-item--services)"
+      );
+
+      regularNavItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          regularNavItems.forEach((link) => {
+            link.classList.remove("active");
+
+            const oldLamp = link.querySelector(".lamp");
+            if (oldLamp) oldLamp.remove();
+          });
+
+          item.classList.add("active");
+
+          const lamp = document.createElement("span");
+          lamp.className = "lamp";
+          lamp.innerHTML = `
+            <span class="lamp-top">
+              <span class="glow glow-1"></span>
+              <span class="glow glow-2"></span>
+              <span class="glow glow-3"></span>
+            </span>
+          `;
+
+          item.appendChild(lamp);
+        });
       });
+    }
 
-      item.classList.add("active");
+    if (!servicesItem || !servicesTrigger) return;
 
-      const lamp = document.createElement("span");
-      lamp.className = "lamp";
-      lamp.innerHTML = `
-        <span class="lamp-top">
-          <span class="glow glow-1"></span>
-          <span class="glow glow-2"></span>
-          <span class="glow glow-3"></span>
-        </span>
-      `;
-      item.appendChild(lamp);
+    function closeServicesMenu() {
+      servicesItem.classList.remove("is-open");
+      servicesTrigger.setAttribute("aria-expanded", "false");
+    }
+
+    servicesTrigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const shouldOpen = !servicesItem.classList.contains("is-open");
+
+      servicesItem.classList.toggle("is-open", shouldOpen);
+      servicesTrigger.setAttribute("aria-expanded", String(shouldOpen));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!servicesItem.contains(event.target)) {
+        closeServicesMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeServicesMenu();
+        servicesTrigger.focus();
+      }
     });
   });
-    </script>
+</script>
 
 
 <!-- navbar mobile -->
