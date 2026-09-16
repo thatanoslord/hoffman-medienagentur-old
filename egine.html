@@ -195,7 +195,140 @@
   }
 }
       
- 
+      
+/* drop down */
+/* =========================================
+   HOME PAGE: SERVICES DROPDOWN
+   ========================================= */
+
+.nav-item--services {
+  position: relative;
+  padding: 0;
+  overflow: visible;
+}
+
+.nav-trigger {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 24px;
+  border: 0;
+  border-radius: 999px;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  width: 7px;
+  height: 7px;
+  margin-top: -4px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.nav-item--services:hover .dropdown-arrow,
+.nav-item--services:focus-within .dropdown-arrow,
+.nav-item--services.is-open .dropdown-arrow {
+  transform: rotate(225deg) translate(-2px, -2px);
+}
+
+.services-dropdown {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  z-index: 500;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+  gap: 6px;
+  width: 420px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 20px;
+  background: rgba(18, 18, 18, 0.94);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -10px) scale(0.98);
+  transform-origin: top center;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    visibility 0.22s ease;
+}
+
+/* Keeps cursor connection between Services and menu */
+.services-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -17px;
+  right: 0;
+  left: 0;
+  height: 17px;
+}
+
+.nav-item--services:hover .services-dropdown,
+.nav-item--services:focus-within .services-dropdown,
+.nav-item--services.is-open .services-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.service-dropdown-link {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    color 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease;
+        text-transform: uppercase;
+}
+
+.service-dropdown-link:hover,
+.service-dropdown-link:focus-visible {
+  border-color: #ffffff;
+  outline: none;
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1150px) {
+  .services-dropdown {
+    grid-template-columns: 1fr;
+    width: 250px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .services-dropdown {
+    display: none;
+  }
+}
 
     </style>
 
@@ -1504,33 +1637,75 @@
     </footer>
 
     <!-- navbar -->
-    <script>
-      const navBar = document.getElementById("navBar");
-  const navItems = navBar.querySelectorAll(".nav-item");
+     <!-- navbar  -->
+     <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navBar = document.getElementById("navBar");
+    const servicesItem = document.querySelector(".nav-item--services");
+    const servicesTrigger = servicesItem?.querySelector(".nav-trigger");
 
-  navItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      navItems.forEach((link) => {
-        link.classList.remove("active");
-        const oldLamp = link.querySelector(".lamp");
-        if (oldLamp) oldLamp.remove();
+    if (navBar) {
+      const regularNavItems = navBar.querySelectorAll(
+        ".nav-item:not(.nav-item--services)"
+      );
+
+      regularNavItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          regularNavItems.forEach((link) => {
+            link.classList.remove("active");
+
+            const oldLamp = link.querySelector(".lamp");
+            if (oldLamp) oldLamp.remove();
+          });
+
+          item.classList.add("active");
+
+          const lamp = document.createElement("span");
+          lamp.className = "lamp";
+          lamp.innerHTML = `
+            <span class="lamp-top">
+              <span class="glow glow-1"></span>
+              <span class="glow glow-2"></span>
+              <span class="glow glow-3"></span>
+            </span>
+          `;
+
+          item.appendChild(lamp);
+        });
       });
+    }
 
-      item.classList.add("active");
+    if (!servicesItem || !servicesTrigger) return;
 
-      const lamp = document.createElement("span");
-      lamp.className = "lamp";
-      lamp.innerHTML = `
-        <span class="lamp-top">
-          <span class="glow glow-1"></span>
-          <span class="glow glow-2"></span>
-          <span class="glow glow-3"></span>
-        </span>
-      `;
-      item.appendChild(lamp);
+    function closeServicesMenu() {
+      servicesItem.classList.remove("is-open");
+      servicesTrigger.setAttribute("aria-expanded", "false");
+    }
+
+    servicesTrigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const shouldOpen = !servicesItem.classList.contains("is-open");
+
+      servicesItem.classList.toggle("is-open", shouldOpen);
+      servicesTrigger.setAttribute("aria-expanded", String(shouldOpen));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!servicesItem.contains(event.target)) {
+        closeServicesMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeServicesMenu();
+        servicesTrigger.focus();
+      }
     });
   });
-    </script>
+</script>
 
 
 <!-- navbar mobile -->
