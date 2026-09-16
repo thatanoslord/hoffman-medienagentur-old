@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./css/mobile-navmenu.css">
+    <link rel="stylesheet" href="./css/mobile-navmenu.css" />
 
     <title>Hoffmann MedienAgentur Services</title>
 
@@ -40,7 +40,7 @@
         border-radius: 999px;
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-            background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.3);
         box-shadow: var(--shadow);
       }
       .LogoWrapper {
@@ -91,11 +91,10 @@
       }
 
       .nav-item.active {
-  background: #fff;
-  color: #000;
-  font-size: 16px;
-}
-
+        background: #fff;
+        color: #000;
+        font-size: 16px;
+      }
 
       .nav-label {
         display: none;
@@ -186,10 +185,10 @@
         }
       }
       @media (max-width: 1000px) {
-    .nav-wrap {
-        display: none;
-    }
-}
+        .nav-wrap {
+          display: none;
+        }
+      }
     </style>
 
     <!-- anner text fluid -->
@@ -199,28 +198,26 @@
     <style>
       /* Reuse button system for nav */
       .nav-btn {
-       
-   
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    width: 160px;
-    height: 42px;
-    border-radius: 45px;
-    overflow: hidden;
-    padding: 10px 24px 10px 10px;
-    gap: 14px;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    text-align: left;
-    box-sizing: border-box;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    background: #000;
-    color: #ffffff;
-    transition: padding 0.5s ease-in-out;
-    text-decoration: none;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 160px;
+        height: 42px;
+        border-radius: 45px;
+        overflow: hidden;
+        padding: 10px 24px 10px 10px;
+        gap: 14px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: left;
+        box-sizing: border-box;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background: #000;
+        color: #ffffff;
+        transition: padding 0.5s ease-in-out;
+        text-decoration: none;
       }
       .nav-btn.light {
         background: #ffffff;
@@ -246,21 +243,18 @@
       .nav-btn:hover .btn-icon {
         transform: translateX(95px);
       }
-      
 
       .nav-btn:hover .btn-label {
         transform: translateX(-52px);
       }
-      
+
       .nav-btn-dark:hover .btn-icon {
         transform: translateX(160px);
       }
-      
 
       .nav-btn-dark:hover .btn-label {
         transform: translateX(-48px);
       }
-
 
       .nav-btn:hover .about-cta-icon {
         transform: translateX(120px);
@@ -1668,9 +1662,7 @@
         justify-content: center;
       }
 
-     
       .page-hero__label {
-        
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -3387,171 +3379,216 @@
       }
     </style>
 
-
     <!-- eybrow style -->
-     <style>
+    <style>
       @keyframes eyebrowSpin {
-      from {
-        transform: rotate(0deg);
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .gp-services-eyebrow-wrap {
+        gap: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        padding: 8px 20px;
+        /* border: 1px solid rgba(224, 228, 243, 0.6); */
+        border-radius: 999px;
+        /* background: #f5f7ff; */
       }
 
-      to {
-        transform: rotate(360deg);
+      .gp-services-eyebrow-shape {
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(
+          180deg,
+          var(--token-a4c4b682-f338-43c8-9c0f-5200c6162db5, rgb(0, 85, 254)) 0%,
+          var(--token-d8404571-fad1-4c38-888c-6fbb7414353a, rgb(0, 0, 0)) 100%
+        );
+        border-radius: 999px;
+        transform: rotate(366.583deg);
       }
-    }
-       .gp-services-eyebrow-wrap {
-      gap: 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      padding: 8px 20px;
-      /* border: 1px solid rgba(224, 228, 243, 0.6); */
-      border-radius: 999px;
-      /* background: #f5f7ff; */
-    }
 
-    .gp-services-eyebrow-shape {
-      width: 10px;
-      height: 10px;
-      background: linear-gradient(180deg, var(--token-a4c4b682-f338-43c8-9c0f-5200c6162db5, rgb(0, 85, 254)) 0%, var(--token-d8404571-fad1-4c38-888c-6fbb7414353a, rgb(0, 0, 0)) 100%);
-      border-radius: 999px;
-      transform: rotate(366.583deg);
-    }
-
-    .gp-services-eyebrow {
-      margin: 0;
-      color: #575757;
-      font-family: "Inter Display", sans-serif;
-      font-size: 18px;
-      font-weight: 500;
-    }
-    .gp-services-eyebrow-icon {
-      width: 25px;
-      fill: #fff;
-      animation: eyebrowSpin 7.8s linear infinite;}
-     </style>
+      .gp-services-eyebrow {
+        margin: 0;
+        color: #575757;
+        font-family: "Inter Display", sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .gp-services-eyebrow-icon {
+        width: 25px;
+        fill: #fff;
+        animation: eyebrowSpin 7.8s linear infinite;
+      }
+    </style>
   </head>
 
   <!-- ------------------------------------------------------------------ -->
   <body>
+    <!-- Mobile Blur Navigation -->
+    <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
 
-      <!-- Mobile Blur Navigation -->
-  <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+    <div class="mobile-nav-wrap">
+      <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+        <div class="mobile-nav-bar">
+          <a href="./index.html"
+            ><img
+              class="mobile-wordmark"
+              data-mobile-logo
+              src="./assets/images/logo/HMA - Logo soft.png"
+              alt="HMA Logo"
+          /></a>
 
-  <div class="mobile-nav-wrap">
-    <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
-      <div class="mobile-nav-bar">
-        <a href="./index.html"><img class="mobile-wordmark" data-mobile-logo src="./assets/images/logo/HMA - Logo soft.png" alt="HMA Logo" /></a>
+          <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-blur-nav-drawer"
+            aria-label="Open menu"
+            data-mobile-toggle
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
 
-        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-blur-nav-drawer"
-          aria-label="Open menu" data-mobile-toggle>
-          <span></span>
-          <span></span>
-        </button>
+        <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+          <div class="mobile-menu-rows" data-mobile-rows>
+            <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+              <span class="mobile-menu-link-index">01</span>
+              <span class="mobile-menu-link-label">About</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              class="mobile-menu-link"
+              href="./hmaservices.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">02</span>
+              <span class="mobile-menu-link-label">Services</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+              <span class="mobile-menu-link-index">03</span>
+              <span class="mobile-menu-link-label">Blogs</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+              <span class="mobile-menu-link-index">04</span>
+              <span class="mobile-menu-link-label">Contact</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./privacy-policy.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">05</span>
+              <span class="mobile-menu-link-label">Privacy and Policy</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./legal-notice.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">06</span>
+              <span class="mobile-menu-link-label">Legal Notice</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="mobile-nav-foot">
+            <div class="mobile-status">
+              <span class="mobile-status-dot" aria-hidden="true"></span>
+              <span class="mobile-clock" data-mobile-clock>10:37</span>
+            </div>
+
+            <div class="mobile-socials" aria-label="Social links">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instagram</a
+              >
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer"
+                >X</a
+              >
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- navbar -->
+    <nav class="nav-wrap">
+      <a href="/" class="LogoWrapper"
+        ><img
+          src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp"
+          alt=""
+          class="Logo"
+      /></a>
+      <div class="nav-bar" id="navBar">
+        <a href="./index.html" class="nav-item" data-name="Home">
+          <span class="nav-label">Home</span>
+          <span class="nav-icon">⌂</span>
+          <span class="lamp">
+            <span class="lamp-top">
+              <span class="glow glow-1"></span>
+              <span class="glow glow-2"></span>
+              <span class="glow glow-3"></span>
+            </span>
+          </span>
+        </a>
+
+        <a href="./about.html" class="nav-item" data-name="About">
+          <span class="nav-label">About</span>
+          <span class="nav-icon">◎</span>
+        </a>
+
+        <a
+          href="./hmaservices.html"
+          class="nav-item active"
+          data-name="Projects"
+        >
+          <span class="nav-label">Services</span>
+          <span class="nav-icon">◫</span>
+        </a>
+
+        <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
+          <span class="nav-label">Blogs</span>
+          <span class="nav-icon">◫</span>
+        </a>
+
+        <a href="./contact.html" class="nav-item" data-name="Contact">
+          <span class="nav-label">Contact</span>
+          <span class="nav-icon">✉</span>
+        </a>
       </div>
-
-      <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
-        <div class="mobile-menu-rows" data-mobile-rows>
-          <a class="mobile-menu-link" href="./about.html" data-mobile-link>
-            <span class="mobile-menu-link-index">01</span>
-            <span class="mobile-menu-link-label">About</span>
-            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="mobile-menu-link" href="./hmaservices.html" data-mobile-link>
-            <span class="mobile-menu-link-index">02</span>
-            <span class="mobile-menu-link-label">Services</span>
-            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
-            <span class="mobile-menu-link-index">03</span>
-            <span class="mobile-menu-link-label">Blogs</span>
-            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
-            <span class="mobile-menu-link-index">04</span>
-            <span class="mobile-menu-link-label">Contact</span>
-            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="mobile-menu-link" href="./privacy-policy.html" data-mobile-link>
-            <span class="mobile-menu-link-index">05</span>
-            <span class="mobile-menu-link-label">Privacy and Policy</span>
-            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="mobile-menu-link" href="./legal-notice.html" data-mobile-link>
-            <span class="mobile-menu-link-index">06</span>
-            <span class="mobile-menu-link-label">Legal Notice</span>
-            <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-
-        <div class="mobile-nav-foot">
-          <div class="mobile-status">
-            <span class="mobile-status-dot" aria-hidden="true"></span>
-            <span class="mobile-clock" data-mobile-clock>10:37</span>
-          </div>
-
-          <div class="mobile-socials" aria-label="Social links">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-        </div>
+      <div class="nav-cta-wrap">
+        <a href="./contact.html" class="nav-btn light">
+          <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
+          <span class="btn-label">Book A Call</span>
+        </a>
       </div>
     </nav>
-  </div>
-    <!-- navbar -->
-       <nav class="nav-wrap">
-    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="" class="Logo"></a>
-    <div class="nav-bar" id="navBar">
-      <a href="./index.html" class="nav-item " data-name="Home">
-        <span class="nav-label">Home</span>
-        <span class="nav-icon">⌂</span>
-        <span class="lamp">
-          <span class="lamp-top">
-            <span class="glow glow-1"></span>
-            <span class="glow glow-2"></span>
-            <span class="glow glow-3"></span>
-          </span>
-        </span>
-      </a>
-
-      <a href="./about.html" class="nav-item" data-name="About">
-        <span class="nav-label">About</span>
-        <span class="nav-icon">◎</span>
-      </a>
-
-      <a href="./hmaservices.html" class="nav-item active" data-name="Projects">
-        <span class="nav-label">Services</span>
-        <span class="nav-icon">◫</span>
-      </a>
-
-      <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
-        <span class="nav-label">Blogs</span>
-        <span class="nav-icon">◫</span>
-      </a>
-
-      <a href="./contact.html" class="nav-item" data-name="Contact">
-        <span class="nav-label">Contact</span>
-        <span class="nav-icon">✉</span>
-      </a>
-    </div>
-    <div class="nav-cta-wrap">
-      <a href="./contact.html" class="nav-btn light">
-        <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
-        <span class="btn-label">Book A Call</span>
-      </a>
-    </div>
-  </nav>
-
 
     <!-- banner -->
     <section class="services-hero" aria-labelledby="services-hero-title">
-     
-
       <div class="services-hero__container">
         <div class="services-hero__content">
           <div class="services-hero__label" data-hero-rotator>
@@ -3586,8 +3623,6 @@
             </span>
             <p class="services-hero__label-text">The HMA systems</p>
           </div>
-
-         
 
           <h1 class="services-fluid-title" aria-hidden="true">
             <div
@@ -3634,14 +3669,38 @@
                 <span class="comparison-mark" aria-hidden="true">×</span>
               </div>
               <h3 id="before-stage-title" class="comparison-card__title">
-               Disconnected digital work.
+                Disconnected digital work.
               </h3>
             </div>
             <ul class="comparison-list" role="list">
-              <li><span class="comparison-mark" aria-hidden="true">×</span><span>Different suppliers working without one shared direction.</span></li>
-              <li><span class="comparison-mark" aria-hidden="true">×</span><span>A website, content and technology that do not support each other.</span></li>
-              <li><span class="comparison-mark" aria-hidden="true">×</span><span>Important decisions delayed by unclear ownership and scattered communication.</span></li>
-              <li><span class="comparison-mark" aria-hidden="true">×</span><span>New tools added without solving the real operational problem.</span></li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">×</span
+                ><span
+                  >Different suppliers working without one shared
+                  direction.</span
+                >
+              </li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">×</span
+                ><span
+                  >A website, content and technology that do not support each
+                  other.</span
+                >
+              </li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">×</span
+                ><span
+                  >Important decisions delayed by unclear ownership and
+                  scattered communication.</span
+                >
+              </li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">×</span
+                ><span
+                  >New tools added without solving the real operational
+                  problem.</span
+                >
+              </li>
             </ul>
           </article>
 
@@ -3659,10 +3718,34 @@
               </h3>
             </div>
             <ul class="comparison-list" role="list">
-              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>A clear digital strategy shaped around your business priorities.</span></li>
-              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>Web, content, visibility, AI and infrastructure designed to work together.</span></li>
-              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>One senior point of contact from first conversation to next move.</span></li>
-              <li><span class="comparison-mark" aria-hidden="true">✓</span><span>Digital systems built to evolve as your company moves forward.</span></li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">✓</span
+                ><span
+                  >A clear digital strategy shaped around your business
+                  priorities.</span
+                >
+              </li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">✓</span
+                ><span
+                  >Web, content, visibility, AI and infrastructure designed to
+                  work together.</span
+                >
+              </li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">✓</span
+                ><span
+                  >One senior point of contact from first conversation to next
+                  move.</span
+                >
+              </li>
+              <li>
+                <span class="comparison-mark" aria-hidden="true">✓</span
+                ><span
+                  >Digital systems built to evolve as your company moves
+                  forward.</span
+                >
+              </li>
             </ul>
           </article>
         </div>
@@ -3676,25 +3759,28 @@
         <div class="services-v2-header">
           <div class="h2-eyebrow">
             <div class="gp-services-eyebrow-wrap">
-            <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon">
-            <span class="gp-services-eyebrow">What We Build</span>
-          </div>
-            <h2>One partner.<br>Eight ways forward.</h2>
+              <img
+                src="./assets/icons/triangle.svg"
+                alt=""
+                class="gp-services-eyebrow-icon"
+              />
+              <span class="gp-services-eyebrow">What We Build</span>
+            </div>
+            <h2>One partner.<br />Eight ways forward.</h2>
           </div>
 
           <p>
-            From your first digital foundation to the systems behind daily operations,
-  Hoffmann Medienagentur brings strategy, technology, content and intelligent
-  infrastructure together built around the way your business needs to move.
+            From your first digital foundation to the systems behind daily
+            operations, Hoffmann Medienagentur brings strategy, technology,
+            content and intelligent infrastructure together built around the way
+            your business needs to move.
           </p>
         </div>
         <div class="services-v2__list" id="servicesList">
           <article class="service-item js-service-row">
             <a class="service-item__link" href="./ignition.html">
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">
-                  01. IGNITION 
-                </h3>
+                <h3 class="service-item__title">01. IGNITION</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3709,7 +3795,10 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Build a digital presence that earns attention and trust. IGNITION combines premium multilingual websites, brand systems, technical SEO and AI-ready visibility into a foundation built for long-term growth.
+                  Build a digital presence that earns attention and trust.
+                  IGNITION combines premium multilingual websites, brand
+                  systems, technical SEO and AI-ready visibility into a
+                  foundation built for long-term growth.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">Premium Websites</span>
@@ -3731,14 +3820,9 @@
           </article>
 
           <article class="service-item js-service-row">
-            <a
-              class="service-item__link"
-              href="./egine.html"
-            >
+            <a class="service-item__link" href="./egine.html">
               <div class="service-item__title-panel">
-                <h3 class="service-item__title">
-                  02. ENGINE
-                </h3>
+                <h3 class="service-item__title">02. ENGINE</h3>
                 <span class="service-item__arrow" aria-hidden="true">
                   <svg viewBox="0 0 25 25" fill="none">
                     <path
@@ -3753,7 +3837,10 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Turn expertise into a consistent market presence. ENGINE creates podcasts, video, social content and multilingual publishing systems that keep your company visible, credible and relevant over time.
+                  Turn expertise into a consistent market presence. ENGINE
+                  creates podcasts, video, social content and multilingual
+                  publishing systems that keep your company visible, credible
+                  and relevant over time.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">Podcast</span>
@@ -3775,10 +3862,7 @@
           </article>
 
           <article class="service-item js-service-row">
-            <a
-              class="service-item__link"
-              href="./ai-ops.html"
-            >
+            <a class="service-item__link" href="./ai-ops.html">
               <div class="service-item__title-panel">
                 <h3 class="service-item__title">03. AI OPS</h3>
                 <span class="service-item__arrow" aria-hidden="true">
@@ -3795,7 +3879,11 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Make your operations faster without making them more complicated. AI OPS brings together AI agents, automation workflows, intelligent chat and phone systems, cloud setup and integrations that reduce repetitive work and improve responsiveness.
+                  Make your operations faster without making them more
+                  complicated. AI OPS brings together AI agents, automation
+                  workflows, intelligent chat and phone systems, cloud setup and
+                  integrations that reduce repetitive work and improve
+                  responsiveness.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">AI Agents</span>
@@ -3817,10 +3905,7 @@
           </article>
 
           <article class="service-item js-service-row">
-            <a
-              class="service-item__link"
-              href="./dpp-ready.html"
-            >
+            <a class="service-item__link" href="./dpp-ready.html">
               <div class="service-item__title-panel">
                 <h3 class="service-item__title">04. DPP READY</h3>
                 <span class="service-item__arrow" aria-hidden="true">
@@ -3837,7 +3922,10 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Prepare before product-data requirements become urgent. DPP READY helps your company understand the implications of Digital Product Passports and create a practical roadmap for the data, processes and digital foundations required next.
+                  Prepare before product-data requirements become urgent. DPP
+                  READY helps your company understand the implications of
+                  Digital Product Passports and create a practical roadmap for
+                  the data, processes and digital foundations required next.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">DPP Readiness</span>
@@ -3859,10 +3947,7 @@
           </article>
 
           <article class="service-item js-service-row">
-            <a
-              class="service-item__link"
-              href="./domains-email.html"
-            >
+            <a class="service-item__link" href="./domains-email.html">
               <div class="service-item__title-panel">
                 <h3 class="service-item__title">05. DOMAINS & EMAIL</h3>
                 <span class="service-item__arrow" aria-hidden="true">
@@ -3879,7 +3964,10 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Secure the essentials of your digital presence in one place. Search for your domain, set up professional email and create a reliable foundation for the brand, website and communications your business depends on.
+                  Secure the essentials of your digital presence in one place.
+                  Search for your domain, set up professional email and create a
+                  reliable foundation for the brand, website and communications
+                  your business depends on.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">Domain Search</span>
@@ -3901,10 +3989,7 @@
           </article>
 
           <article class="service-item js-service-row">
-            <a
-              class="service-item__link"
-              href="./infrastructure.html"
-            >
+            <a class="service-item__link" href="./infrastructure.html">
               <div class="service-item__title-panel">
                 <h3 class="service-item__title">06. INFRASTRUCTURE</h3>
                 <span class="service-item__arrow" aria-hidden="true">
@@ -3921,7 +4006,10 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                 The systems behind your business should be secure, reliable and easy to manage. We bring hosting, cloud environments, servers and essential technical support together through one clear point of contact.
+                  The systems behind your business should be secure, reliable
+                  and easy to manage. We bring hosting, cloud environments,
+                  servers and essential technical support together through one
+                  clear point of contact.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">Managed Hosting</span>
@@ -3943,10 +4031,7 @@
           </article>
 
           <article class="service-item js-service-row service-item--hidden">
-            <a
-              class="service-item__link"
-              href="./ai-search.html"
-            >
+            <a class="service-item__link" href="./ai-search.html">
               <div class="service-item__title-panel">
                 <h3 class="service-item__title">07. AI SEARCH</h3>
                 <span class="service-item__arrow" aria-hidden="true">
@@ -3963,14 +4048,16 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  Help visitors find the right answer without searching through endless pages. AI SEARCH adds an intelligent search and guidance layer to your website, making complex information easier to discover, understand and act on.
+                  Help visitors find the right answer without searching through
+                  endless pages. AI SEARCH adds an intelligent search and
+                  guidance layer to your website, making complex information
+                  easier to discover, understand and act on.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">Website Search</span>
                   <span class="service-item__tag">AI Assistant</span>
                   <span class="service-item__tag">Knowledge Discovery</span>
-                  <span class="service-item__tag">Customer Guidance
-</span>
+                  <span class="service-item__tag">Customer Guidance </span>
                 </div>
               </div>
               <div class="service-item__media-panel">
@@ -4003,7 +4090,11 @@
               </div>
               <div class="service-item__content-panel">
                 <p class="service-item__description">
-                  When standard tools no longer fit, we help shape and deliver custom digital products around the way your business works. From internal platforms and customer portals to connected applications, we turn complex requirements into practical systems.
+                  When standard tools no longer fit, we help shape and deliver
+                  custom digital products around the way your business works.
+                  From internal platforms and customer portals to connected
+                  applications, we turn complex requirements into practical
+                  systems.
                 </p>
                 <div class="service-item__tags">
                   <span class="service-item__tag">Web Applications</span>
@@ -4041,17 +4132,26 @@
     <div class="page">
       <div class="page-v2-header">
         <div class="page-h2-eyebrow">
-         <div class="gp-services-eyebrow-wrap">
-            <img src="./assets/icons/white-triangle.svg" alt="" class="gp-services-eyebrow-icon">
-            <span class="gp-services-eyebrow" style="color:#fff;     text-shadow: 0 0 20px #000000;">What We Build</span>
+          <div class="gp-services-eyebrow-wrap">
+            <img
+              src="./assets/icons/white-triangle.svg"
+              alt=""
+              class="gp-services-eyebrow-icon"
+            />
+            <span
+              class="gp-services-eyebrow"
+              style="color: #fff; text-shadow: 0 0 20px #000000"
+              >What We Build</span
+            >
           </div>
           <h2>Clear thinking, Connected execution.</h2>
         </div>
 
         <p>
-           Serious digital work begins with understanding, not assumptions. We start
-  with your business, define the right priorities and build the connected
-  systems that move your organisation forward with clarity at every stage.
+          Serious digital work begins with understanding, not assumptions. We
+          start with your business, define the right priorities and build the
+          connected systems that move your organisation forward with clarity at
+          every stage.
         </p>
       </div>
       <div class="flipper-stack">
@@ -4088,8 +4188,9 @@
               <div class="flip-card-tag">STEP 01</div>
               <h3 class="flip-card-title">Start with clarity</h3>
               <p class="flip-card-desc">
-                We begin with a focused conversation about your business, your current
-  digital position and the opportunity worth acting on next.
+                We begin with a focused conversation about your business, your
+                current digital position and the opportunity worth acting on
+                next.
               </p>
             </div>
           </div>
@@ -4126,8 +4227,9 @@
               <div class="flip-card-tag">STEP 02</div>
               <h3 class="flip-card-title">Design the system</h3>
               <p class="flip-card-desc">
-                We turn the right priorities into a clear plan, connecting strategy,
-  technology, content and visibility around the way your business works.
+                We turn the right priorities into a clear plan, connecting
+                strategy, technology, content and visibility around the way your
+                business works.
               </p>
             </div>
           </div>
@@ -4159,8 +4261,9 @@
               <div class="flip-card-tag">STEP 03</div>
               <h3 class="flip-card-title">Build with intent</h3>
               <p class="flip-card-desc">
-                Once the direction is agreed, we turn the plan into working digital
-  systems designed for performance, usability and long-term value.
+                Once the direction is agreed, we turn the plan into working
+                digital systems designed for performance, usability and
+                long-term value.
               </p>
             </div>
           </div>
@@ -4199,8 +4302,9 @@
               <div class="flip-card-tag">STEP 04</div>
               <h3 class="flip-card-title">Keep moving forward</h3>
               <p class="flip-card-desc">
-                 Launch is not the finish line. We remain a clear point of contact for
-  optimisation, new content, evolving systems and the next move that matters.
+                Launch is not the finish line. We remain a clear point of
+                contact for optimisation, new content, evolving systems and the
+                next move that matters.
               </p>
             </div>
           </div>
@@ -4210,104 +4314,101 @@
 
     <!-- pricing -->
     <!-- Engagement model -->
-<section class="pricing-reference" aria-labelledby="pricing-title">
-  <div class="pricing-reference__container">
-
-    <div class="pricing-reference__header">
-      <div class="gp-services-eyebrow-wrap">
-            <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon">
+    <section class="pricing-reference" aria-labelledby="pricing-title">
+      <div class="pricing-reference__container">
+        <div class="pricing-reference__header">
+          <div class="gp-services-eyebrow-wrap">
+            <img
+              src="./assets/icons/triangle.svg"
+              alt=""
+              class="gp-services-eyebrow-icon"
+            />
             <span class="gp-services-eyebrow">How we engage</span>
           </div>
 
-      <h2 id="pricing-title">
-        The right system<br>
-        starts with the right conversation.
-      </h2>
-    </div>
-
-    <div class="pricing-board">
-
-      <!-- CARD 01 -->
-      <article class="pricing-card pricing-card--dark">
-        <div class="pricing-card__inner">
-
-          <div class="pricing-card__top">
-            <h3>Focused projects</h3>
-
-            <p>
-              For companies ready to build, relaunch or improve a critical part
-              of their digital operation from a premium website and visibility
-              foundation to content production, automation or a tailored digital solution.
-            </p>
-
-            <a href="./contact.html" class="pricing-btn pricing-btn--light">
-              Book a call
-            </a>
-
-            <ul class="pricing-list" role="list">
-              <li>Clear project scope and priorities</li>
-              <li>Tailored strategy and solution design</li>
-              <li>Premium delivery built around your business</li>
-              <li>Direct communication and clear next steps</li>
-              <li>Investment discussed on request</li>
-            </ul>
-          </div>
-
-          <div class="pricing-card__price">
-            <span class="pricing-value">On request</span>
-            <span class="pricing-period">tailored to your scope</span>
-          </div>
-
+          <h2 id="pricing-title">
+            The right system<br />
+            starts with the right conversation.
+          </h2>
         </div>
-      </article>
 
-      <!-- CARD 02 -->
-      <article class="pricing-card pricing-card--light">
-        <div class="pricing-card__inner">
+        <div class="pricing-board">
+          <!-- CARD 01 -->
+          <article class="pricing-card pricing-card--dark">
+            <div class="pricing-card__inner">
+              <div class="pricing-card__top">
+                <h3>Focused projects</h3>
 
-          <div class="pricing-card__top">
-            <h3>Long-term digital partnership</h3>
+                <p>
+                  For companies ready to build, relaunch or improve a critical
+                  part of their digital operation from a premium website and
+                  visibility foundation to content production, automation or a
+                  tailored digital solution.
+                </p>
 
-            <p>
-              For businesses that need an ongoing partner to keep their digital
-              systems connected, visible and moving forward across content,
-              optimisation, AI operations, infrastructure and new opportunities.
-            </p>
+                <a href="./contact.html" class="pricing-btn pricing-btn--light">
+                  Book a call
+                </a>
 
-            <a href="./contact.html" class="pricing-btn pricing-btn--dark">
-              Book a call
-            </a>
+                <ul class="pricing-list" role="list">
+                  <li>Clear project scope and priorities</li>
+                  <li>Tailored strategy and solution design</li>
+                  <li>Premium delivery built around your business</li>
+                  <li>Direct communication and clear next steps</li>
+                  <li>Investment discussed on request</li>
+                </ul>
+              </div>
 
-            <div class="pricing-list-grid">
-
-              <ul class="pricing-list pricing-list--soft" role="list">
-                <li>Ongoing strategic direction</li>
-                <li>Content and media systems</li>
-                <li>Website optimisation and visibility</li>
-                <li>AI operations and automation support</li>
-                <li>Connected digital infrastructure</li>
-              </ul>
-
-              <ul class="pricing-list pricing-list--soft" role="list">
-                <li>One clear point of contact</li>
-                <li>Flexible priorities as your business evolves</li>
-                <li>Long-term system development</li>
-              </ul>
-
+              <div class="pricing-card__price">
+                <span class="pricing-value">On request</span>
+                <span class="pricing-period">tailored to your scope</span>
+              </div>
             </div>
-          </div>
+          </article>
 
-          <div class="pricing-card__price pricing-card__price--light">
-            <span class="pricing-value">On request</span>
-            <span class="pricing-period">built around your ambition</span>
-          </div>
+          <!-- CARD 02 -->
+          <article class="pricing-card pricing-card--light">
+            <div class="pricing-card__inner">
+              <div class="pricing-card__top">
+                <h3>Long-term digital partnership</h3>
 
+                <p>
+                  For businesses that need an ongoing partner to keep their
+                  digital systems connected, visible and moving forward across
+                  content, optimisation, AI operations, infrastructure and new
+                  opportunities.
+                </p>
+
+                <a href="./contact.html" class="pricing-btn pricing-btn--dark">
+                  Book a call
+                </a>
+
+                <div class="pricing-list-grid">
+                  <ul class="pricing-list pricing-list--soft" role="list">
+                    <li>Ongoing strategic direction</li>
+                    <li>Content and media systems</li>
+                    <li>Website optimisation and visibility</li>
+                    <li>AI operations and automation support</li>
+                    <li>Connected digital infrastructure</li>
+                  </ul>
+
+                  <ul class="pricing-list pricing-list--soft" role="list">
+                    <li>One clear point of contact</li>
+                    <li>Flexible priorities as your business evolves</li>
+                    <li>Long-term system development</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="pricing-card__price pricing-card__price--light">
+                <span class="pricing-value">On request</span>
+                <span class="pricing-period">built around your ambition</span>
+              </div>
+            </div>
+          </article>
         </div>
-      </article>
-
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
     <!-- why us and trus cards -->
     <section class="facts-v2" aria-labelledby="facts-title">
@@ -4315,17 +4416,24 @@
         <div class="facts-v2__top">
           <div class="facts-v2__heading">
             <div class="gp-services-eyebrow-wrap">
-            <img src="./assets/icons/triangle.svg" alt="" class="gp-services-eyebrow-icon">
-            <span class="gp-services-eyebrow">Built differently</span>
-          </div>
-            
+              <img
+                src="./assets/icons/triangle.svg"
+                alt=""
+                class="gp-services-eyebrow-icon"
+              />
+              <span class="gp-services-eyebrow">Built differently</span>
+            </div>
 
-            <h2 id="facts-title">Substance first.<br />Everything connected.</h2>
+            <h2 id="facts-title">
+              Substance first.<br />Everything connected.
+            </h2>
           </div>
 
-           <a href="./contact.html" class="nav-btn nav-btn-dark" style=" height: 54px;
-    width: 230px;
-    font-size: 20px;">
+          <a
+            href="./contact.html"
+            class="nav-btn nav-btn-dark"
+            style="height: 54px; width: 230px; font-size: 20px"
+          >
             <img class="btn-icon" src="./assets/icons/icon.svg" alt="" />
             <span class="btn-label">Enter the system</span>
           </a>
@@ -4348,7 +4456,9 @@
               <div class="fact-card__stat">2021</div>
               <h3 class="fact-card__title">Built on experience</h3>
               <p class="fact-card__text">
-                Our company history began in 2021. Today, Hoffmann Medienagentur is built for the technologies, expectations and opportunities shaping what comes next.
+                Our company history began in 2021. Today, Hoffmann Medienagentur
+                is built for the technologies, expectations and opportunities
+                shaping what comes next.
               </p>
             </div>
           </article>
@@ -4368,7 +4478,9 @@
               <div class="fact-card__stat">4</div>
               <h3 class="fact-card__title">Languages</h3>
               <p class="fact-card__text">
-                We create digital experiences across English, German, French and Arabic with multilingual structure designed from the beginning, not added later.
+                We create digital experiences across English, German, French and
+                Arabic with multilingual structure designed from the beginning,
+                not added later.
               </p>
             </div>
           </article>
@@ -4388,7 +4500,8 @@
               <div class="fact-card__stat">1</div>
               <h3 class="fact-card__title">Clear point of contact</h3>
               <p class="fact-card__text">
-                One partner to connect strategy, design, content, technology and AI around the goals that matter to your business.
+                One partner to connect strategy, design, content, technology and
+                AI around the goals that matter to your business.
               </p>
             </div>
           </article>
@@ -4417,140 +4530,142 @@
 
             <div class="faq-description reveal-up">
               <p>
-  Got questions? We’ve answered the most common ones to help you
-  get started with confidence.
-</p>
+                Got questions? We’ve answered the most common ones to help you
+                get started with confidence.
+              </p>
             </div>
           </div>
           <div class="faq-accordion">
             <div class="faq-table">
+              <!-- FAQ 01 -->
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="true">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
 
-  <!-- FAQ 01 -->
-  <article class="faq-row reveal-row">
-    <button class="faq-trigger" type="button" aria-expanded="true">
-      <span class="faq-control" aria-hidden="true">
-        <span class="faq-control-plus"></span>
-        <span class="faq-control-minus"></span>
-      </span>
+                  <span class="faq-text">
+                    <span class="faq-question">
+                      WHAT SERVICES DOES HMA OFFER?
+                    </span>
 
-      <span class="faq-text">
-        <span class="faq-question">
-          WHAT SERVICES DOES HMA OFFER?
-        </span>
+                    <span class="faq-answer">
+                      Hoffmann Medienagentur brings together premium websites,
+                      brand systems, search visibility, content and media
+                      production, AI operations, Digital Product Passport
+                      readiness, domains, email, infrastructure, AI-powered
+                      website search and custom software solutions.
+                    </span>
+                  </span>
+                </button>
 
-        <span class="faq-answer">
-          Hoffmann Medienagentur brings together premium websites, brand systems,
-          search visibility, content and media production, AI operations, Digital
-          Product Passport readiness, domains, email, infrastructure, AI-powered
-          website search and custom software solutions.
-        </span>
-      </span>
-    </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
 
-    <span class="faq-divider" aria-hidden="true"></span>
-  </article>
+              <!-- FAQ 02 -->
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
 
-  <!-- FAQ 02 -->
-  <article class="faq-row reveal-row">
-    <button class="faq-trigger" type="button" aria-expanded="false">
-      <span class="faq-control" aria-hidden="true">
-        <span class="faq-control-plus"></span>
-        <span class="faq-control-minus"></span>
-      </span>
+                  <span class="faq-text">
+                    <span class="faq-question">
+                      DO I NEED EVERY HMA SERVICE?
+                    </span>
 
-      <span class="faq-text">
-        <span class="faq-question">
-          DO I NEED EVERY HMA SERVICE?
-        </span>
+                    <span class="faq-answer">
+                      No. Some clients start with a premium website, a content
+                      system or an automation project. Others need several
+                      connected services. We begin by identifying the
+                      highest-value next move, then build the right scope around
+                      your business priorities.
+                    </span>
+                  </span>
+                </button>
 
-        <span class="faq-answer">
-          No. Some clients start with a premium website, a content system or an
-          automation project. Others need several connected services. We begin by
-          identifying the highest-value next move, then build the right scope
-          around your business priorities.
-        </span>
-      </span>
-    </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
 
-    <span class="faq-divider" aria-hidden="true"></span>
-  </article>
+              <!-- FAQ 03 -->
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
 
-  <!-- FAQ 03 -->
-  <article class="faq-row reveal-row">
-    <button class="faq-trigger" type="button" aria-expanded="false">
-      <span class="faq-control" aria-hidden="true">
-        <span class="faq-control-plus"></span>
-        <span class="faq-control-minus"></span>
-      </span>
+                  <span class="faq-text">
+                    <span class="faq-question">
+                      CAN YOU WORK WITH OUR EXISTING WEBSITE AND TOOLS?
+                    </span>
 
-      <span class="faq-text">
-        <span class="faq-question">
-          CAN YOU WORK WITH OUR EXISTING WEBSITE AND TOOLS?
-        </span>
+                    <span class="faq-answer">
+                      Yes. We assess what is already in place, what creates
+                      friction and what should be improved, connected or
+                      replaced. Depending on the project, we can work with
+                      existing websites, CRM platforms, cloud tools, content
+                      systems and operational workflows.
+                    </span>
+                  </span>
+                </button>
 
-        <span class="faq-answer">
-          Yes. We assess what is already in place, what creates friction and what
-          should be improved, connected or replaced. Depending on the project, we
-          can work with existing websites, CRM platforms, cloud tools, content
-          systems and operational workflows.
-        </span>
-      </span>
-    </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
 
-    <span class="faq-divider" aria-hidden="true"></span>
-  </article>
+              <!-- FAQ 04 -->
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
 
-  <!-- FAQ 04 -->
-  <article class="faq-row reveal-row">
-    <button class="faq-trigger" type="button" aria-expanded="false">
-      <span class="faq-control" aria-hidden="true">
-        <span class="faq-control-plus"></span>
-        <span class="faq-control-minus"></span>
-      </span>
+                  <span class="faq-text">
+                    <span class="faq-question">
+                      HOW DOES A PROJECT BEGIN?
+                    </span>
 
-      <span class="faq-text">
-        <span class="faq-question">
-          HOW DOES A PROJECT BEGIN?
-        </span>
+                    <span class="faq-answer">
+                      We begin with a focused conversation about your business,
+                      objectives, existing systems and the opportunity you want
+                      to pursue. From there, we define priorities, clarify the
+                      scope and recommend the most effective way forward.
+                    </span>
+                  </span>
+                </button>
 
-        <span class="faq-answer">
-          We begin with a focused conversation about your business, objectives,
-          existing systems and the opportunity you want to pursue. From there, we
-          define priorities, clarify the scope and recommend the most effective
-          way forward.
-        </span>
-      </span>
-    </button>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
 
-    <span class="faq-divider" aria-hidden="true"></span>
-  </article>
+              <!-- FAQ 05 -->
+              <article class="faq-row reveal-row">
+                <button class="faq-trigger" type="button" aria-expanded="false">
+                  <span class="faq-control" aria-hidden="true">
+                    <span class="faq-control-plus"></span>
+                    <span class="faq-control-minus"></span>
+                  </span>
 
-  <!-- FAQ 05 -->
-  <article class="faq-row reveal-row">
-    <button class="faq-trigger" type="button" aria-expanded="false">
-      <span class="faq-control" aria-hidden="true">
-        <span class="faq-control-plus"></span>
-        <span class="faq-control-minus"></span>
-      </span>
+                  <span class="faq-text">
+                    <span class="faq-question">
+                      HOW LONG DOES A DIGITAL PROJECT TAKE?
+                    </span>
 
-      <span class="faq-text">
-        <span class="faq-question">
-          HOW LONG DOES A DIGITAL PROJECT TAKE?
-        </span>
+                    <span class="faq-answer">
+                      Timelines depend on the scope, the number of markets or
+                      languages, the required integrations and how quickly
+                      decisions and source materials are available. Before work
+                      begins, we define clear phases, responsibilities and a
+                      realistic delivery plan.
+                    </span>
+                  </span>
+                </button>
 
-        <span class="faq-answer">
-          Timelines depend on the scope, the number of markets or languages, the
-          required integrations and how quickly decisions and source materials are
-          available. Before work begins, we define clear phases, responsibilities
-          and a realistic delivery plan.
-        </span>
-      </span>
-    </button>
-
-    <span class="faq-divider" aria-hidden="true"></span>
-  </article>
-
-</div>
+                <span class="faq-divider" aria-hidden="true"></span>
+              </article>
+            </div>
             <div class="faq-table">
               <article class="faq-row reveal-row">
                 <button class="faq-trigger" type="button" aria-expanded="true">
@@ -4675,9 +4790,10 @@
 
             <div class="footer-cta-description reveal-footer-up">
               <p>
-  From digital foundations and content systems to AI operations and
-  connected infrastructure, let’s define the next move for your business.
-</p>
+                From digital foundations and content systems to AI operations
+                and connected infrastructure, let’s define the next move for
+                your business.
+              </p>
             </div>
           </div>
 
@@ -4759,8 +4875,8 @@
 
     <!-- ------------------------------------------------------------------ -->
 
-      <!-- mobile navigation -->
-  <script src="./js/components/mobile-navmenu.js"></script>
+    <!-- mobile navigation -->
+    <script src="./js/components/mobile-navmenu.js"></script>
 
     <script>
       (() => {
@@ -5729,7 +5845,6 @@
           const progress = clamp((value - inMin) / (inMax - inMin), 0, 1);
           return outMin + (outMax - outMin) * progress;
         }
-        
 
         function updateComparisonScene() {
           const rootStyles = getComputedStyle(document.documentElement);
