@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domain Brokerage & Sales — Meridian Domains</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#1B1F6B;
+    --indigo:#3A2E9C;
+    --cyan:#17C3E8;
+    --teal:#20D3B8;
+    --violet:#6C5CE7;
+    --ink:#1D2140;
+    --body:#6B7189;
+    --bg-light:#F4F6FB;
+    --white:#FFFFFF;
+    --line:#E7E9F3;
+    --grad: linear-gradient(115deg, var(--deep) 0%, var(--indigo) 45%, var(--cyan) 100%);
+    --font: 'Plus Jakarta Sans', sans-serif;
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:var(--font); color:var(--ink);
+    background:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img,svg{max-width:100%; display:block;}
+  h1,h2,h3{margin:0; font-weight:800; letter-spacing:-0.01em;}
+  p{margin:0;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:2px solid var(--cyan); outline-offset:2px;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 28px; border-radius:30px; font-weight:600; font-size:15px;
+    text-decoration:none; border:none; cursor:pointer; transition:transform .15s, box-shadow .15s;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-light{background:var(--white); color:var(--indigo); box-shadow:0 8px 20px rgba(0,0,0,0.12);}
+  .btn-light:hover{box-shadow:0 10px 26px rgba(0,0,0,0.18);}
+  .btn-grad{background:linear-gradient(90deg, var(--violet), var(--cyan)); color:var(--white); box-shadow:0 8px 20px rgba(60,50,180,0.25);}
+  .btn-grad:hover{box-shadow:0 10px 26px rgba(60,50,180,0.35);}
+  .btn-outline-dark{background:transparent; color:var(--ink); border:1.5px solid var(--line);}
+  .btn-outline-dark:hover{border-color:var(--indigo); color:var(--indigo);}
+  .btn-block{width:100%;}
+
+  /* ---------- Topbar ---------- */
+  .topbar{background:var(--deep); color:#C9CCEE; font-size:13px;}
+  .topbar .wrap{display:flex; justify-content:space-between; align-items:center; padding:9px 24px;}
+  .topbar-left{display:flex; gap:22px;}
+  .topbar-left span{display:inline-flex; align-items:center; gap:6px;}
+  .topbar-right{display:flex; gap:20px;}
+  .topbar-right a{text-decoration:none; color:#C9CCEE;}
+  @media (max-width:760px){ .topbar-left span:last-child{display:none;} }
+
+  /* ---------- Nav ---------- */
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 24px; position:relative; z-index:30;}
+  .brand{display:flex; align-items:center; gap:9px; font-size:20px; font-weight:800; color:var(--white); text-decoration:none;}
+  .brand .dot{width:11px; height:11px; border-radius:3px; background:var(--teal); transform:rotate(45deg);}
+  .nav-links{display:flex; gap:30px; font-size:15px; color:#E4E6FA;}
+  .nav-links a{text-decoration:none; opacity:.9; transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-toggle{display:none; background:none; border:none; color:var(--white); font-size:24px; cursor:pointer;}
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed; inset:64px 0 0 0; background:var(--deep);
+      flex-direction:column; padding:30px 28px; gap:22px; font-size:17px;
+      transform:translateX(100%); transition:transform .25s ease; z-index:29;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-toggle{display:block;}
+    .nav .btn-light{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{background:var(--grad); position:relative; overflow:hidden; padding-bottom:120px;}
+  .hero::after{
+    content:""; position:absolute; right:-120px; top:-160px; width:460px; height:460px;
+    border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,0.10), transparent 70%);
+  }
+  .hero-grid{display:grid; grid-template-columns:1fr 1.05fr; gap:40px; align-items:center; padding:36px 0 10px; position:relative;}
+  .hero-copy h1{font-size:clamp(2rem,4vw,2.7rem); color:var(--white); line-height:1.15; max-width:12ch;}
+  .hero-copy p{color:#D9DBF7; margin-top:18px; font-size:16px; max-width:42ch;}
+  .hero-copy .btn{margin-top:28px;}
+  .hero-art{position:relative; height:300px;}
+
+  .searchbar{
+    background:var(--white); border-radius:14px; box-shadow:0 20px 50px rgba(15,10,60,0.25);
+    padding:10px; display:flex; gap:8px; margin-top:56px; position:relative; z-index:2;
+  }
+  .searchbar input{
+    flex:1; border:none; outline:none; padding:14px 16px; font-family:var(--font);
+    font-size:15px; color:var(--ink); background:transparent; min-width:0;
+  }
+  .searchbar select{
+    border:none; border-left:1px solid var(--line); background:transparent;
+    font-family:var(--font); font-size:14px; color:var(--body); padding:0 14px;
+  }
+  .searchbar button{
+    background:linear-gradient(90deg, var(--teal), var(--cyan)); color:var(--white);
+    border:none; padding:0 30px; border-radius:10px; font-weight:700; font-size:15px;
+    cursor:pointer; white-space:nowrap;
+  }
+  @media (max-width:560px){ .searchbar{flex-wrap:wrap;} .searchbar select{border-left:none; border-top:1px solid var(--line); width:100%;} .searchbar button{width:100%; padding:14px;} }
+
+  .lookup-result{margin-top:14px; font-size:14px; min-height:20px; color:#D9DBF7;}
+  .lookup-result.available{color:#8CF5D8;}
+  .lookup-result.taken{color:#FFC2B8;}
+
+  .tld-strip{display:flex; flex-wrap:wrap; gap:34px; margin-top:26px; position:relative; z-index:2;}
+  .tld-strip div{color:#C9CCEE; font-size:14px;}
+  .tld-strip b{color:var(--white); font-weight:700;}
+  .tld-strip span{color:#8CF5D8; font-weight:700;}
+
+  .iso{position:absolute; inset:0;}
+
+  /* ---------- Why us ---------- */
+  .why{background:var(--bg-light); padding:90px 0;}
+  .why-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:50px; align-items:start;}
+  .eyebrow{color:var(--violet); font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;}
+  .why h2{font-size:clamp(1.6rem,3vw,2rem); margin-bottom:16px;}
+  .why-copy p{color:var(--body); margin-bottom:14px; max-width:42ch;}
+  .why-copy .btn{margin-top:14px;}
+
+  .why-cards{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  .why-card{
+    background:var(--white); border-radius:16px; padding:28px 24px;
+    box-shadow:0 10px 30px rgba(30,25,90,0.06);
+  }
+  .why-card.offset{margin-top:44px;}
+  .why-icon{
+    width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px; color:var(--white);
+  }
+  .why-icon.c1{background:linear-gradient(135deg, var(--violet), #9B8CFF);}
+  .why-icon.c2{background:linear-gradient(135deg, var(--cyan), #7FE3F7);}
+  .why-card h3{font-size:16.5px; margin-bottom:8px;}
+  .why-card p{color:var(--body); font-size:13.5px;}
+  @media (max-width:860px){ .why-grid{grid-template-columns:1fr;} .why-cards{grid-template-columns:1fr;} .why-card.offset{margin-top:0;} }
+
+  /* ---------- Pricing ---------- */
+  .pricing{background:var(--grad); padding:90px 0; position:relative; overflow:hidden;}
+  .pricing::before{content:""; position:absolute; left:-140px; bottom:-140px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,0.09), transparent 70%);}
+  .pricing-head{text-align:center; max-width:560px; margin:0 auto 50px; position:relative;}
+  .pricing-head h2{color:var(--white); font-size:clamp(1.6rem,3vw,2.1rem);}
+  .pricing-head p{color:#D9DBF7; margin-top:12px;}
+  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative;}
+  .plan{
+    background:var(--white); border-radius:18px; padding:34px 28px; text-align:center;
+    box-shadow:0 20px 40px rgba(10,5,50,0.2);
+  }
+  .plan.featured{transform:translateY(-14px); box-shadow:0 26px 54px rgba(10,5,50,0.3);}
+  .plan-name{color:var(--body); font-size:14px; font-weight:600; margin-bottom:14px;}
+  .plan-price{font-size:38px; font-weight:800; color:var(--ink);}
+  .plan-price sup{font-size:16px; font-weight:700; vertical-align:top; margin-right:2px;}
+  .plan-fee{color:var(--body); font-size:12.5px; margin-top:6px; margin-bottom:20px;}
+  .plan ul{list-style:none; margin:0 0 26px; padding:0; text-align:left;}
+  .plan li{font-size:13.5px; color:var(--body); padding:9px 0; border-top:1px solid var(--line); display:flex; gap:9px;}
+  .plan li:first-child{border-top:none;}
+  .plan li::before{content:"✓"; color:var(--teal); font-weight:800; flex-shrink:0;}
+  @media (max-width:860px){ .plans{grid-template-columns:1fr; max-width:380px; margin:0 auto;} .plan.featured{transform:none;} }
+
+  /* ---------- Feature split ---------- */
+  .split{padding:90px 0;}
+  .split-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .split-grid.rev .art{order:2;}
+  .split h2{font-size:clamp(1.5rem,3vw,2rem); margin-bottom:16px; max-width:12ch;}
+  .split p{color:var(--body); margin-bottom:14px; max-width:44ch;}
+  .split .btn{margin-top:14px;}
+  @media (max-width:860px){ .split-grid, .split-grid.rev{grid-template-columns:1fr;} .split-grid.rev .art{order:0;} }
+
+  /* ---------- Domains for sale ---------- */
+  .listings{background:var(--bg-light); padding:90px 0;}
+  .listings-head{text-align:center; max-width:560px; margin:0 auto 50px;}
+  .listings-head h2{font-size:clamp(1.6rem,3vw,2.1rem);}
+  .listings-head p{color:var(--body); margin-top:12px;}
+  .listing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .listing-card{background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(30,25,90,0.06); transition:transform .15s;}
+  .listing-card:hover{transform:translateY(-4px);}
+  .listing-top{padding:34px 22px; color:var(--white); position:relative;}
+  .listing-top.g1{background:linear-gradient(135deg, var(--violet), #4834D4);}
+  .listing-top.g2{background:linear-gradient(135deg, var(--cyan), #1A73E8);}
+  .listing-top.g3{background:linear-gradient(135deg, var(--teal), #0FA898);}
+  .listing-top .name{font-size:20px; font-weight:800;}
+  .listing-top .cat{font-size:12.5px; opacity:.85; margin-top:4px;}
+  .listing-body{padding:20px 22px;}
+  .listing-price{font-size:22px; font-weight:800; color:var(--ink);}
+  .listing-price span{font-size:13px; font-weight:500; color:var(--body);}
+  .listing-status{font-size:12.5px; font-weight:600; color:var(--teal); margin-top:4px; margin-bottom:16px;}
+  @media (max-width:860px){ .listing-grid{grid-template-columns:1fr; max-width:380px; margin:0 auto;} }
+
+  /* ---------- Testimonials ---------- */
+  .testi{padding:90px 0;}
+  .testi-head{text-align:center; max-width:520px; margin:0 auto 46px;}
+  .testi-head h2{font-size:clamp(1.5rem,3vw,2rem);}
+  .testi-head p{color:var(--body); margin-top:12px;}
+  .testi-row{display:grid; grid-template-columns:0.85fr 1.3fr 0.85fr; gap:20px; align-items:center;}
+  .testi-card{background:var(--white); border-radius:18px; padding:32px 28px; box-shadow:0 20px 46px rgba(30,25,90,0.1); position:relative; z-index:2;}
+  .testi-card.dim{opacity:.4; box-shadow:none; padding:24px;}
+  .testi-person{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
+  .avatar{width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--violet), var(--cyan)); flex-shrink:0;}
+  .testi-name{font-weight:700; font-size:15px;}
+  .testi-role{font-size:12.5px; color:var(--violet);}
+  .testi-card p{color:var(--body); font-size:14.5px;}
+  @media (max-width:860px){ .testi-row{grid-template-columns:1fr;} .testi-card.dim{display:none;} }
+
+  /* ---------- CTA split ---------- */
+  .cta-split{display:grid; grid-template-columns:1fr 1fr;}
+  .cta-panel{padding:70px 40px; color:var(--white); position:relative; overflow:hidden;}
+  .cta-panel.p1{background:linear-gradient(135deg, var(--deep), var(--indigo));}
+  .cta-panel.p2{background:linear-gradient(135deg, var(--indigo), var(--violet));}
+  .cta-panel .icon-badge{
+    width:56px; height:56px; border-radius:14px; border:1.5px solid rgba(255,255,255,0.4);
+    display:flex; align-items:center; justify-content:center; margin-bottom:22px;
+  }
+  .cta-panel h3{font-size:22px; margin-bottom:12px;}
+  .cta-panel p{color:#D9DBF7; max-width:38ch; margin-bottom:24px;}
+  @media (max-width:760px){ .cta-split{grid-template-columns:1fr;} }
+
+  /* ---------- Insights ---------- */
+  .insights{padding:90px 0;}
+  .insights-head{text-align:center; max-width:560px; margin:0 auto 50px;}
+  .insights-head h2{font-size:clamp(1.6rem,3vw,2.1rem);}
+  .insights-head p{color:var(--body); margin-top:12px;}
+  .insight-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .insight-card{border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(30,25,90,0.06);}
+  .insight-img{height:150px; background:linear-gradient(135deg, var(--deep), var(--cyan));}
+  .insight-img.b{background:linear-gradient(135deg, var(--violet), var(--teal));}
+  .insight-img.c{background:linear-gradient(135deg, var(--indigo), #1A73E8);}
+  .insight-body{padding:20px 20px 24px; background:var(--white);}
+  .insight-meta{font-size:12px; color:var(--body); display:flex; gap:14px; margin-bottom:10px;}
+  .insight-meta b{color:var(--violet);}
+  .insight-body h3{font-size:15.5px; line-height:1.4;}
+  @media (max-width:860px){ .insight-grid{grid-template-columns:1fr; max-width:380px; margin:0 auto;} }
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--bg-light); padding:90px 0;}
+  .faq-head{text-align:center; max-width:560px; margin:0 auto 40px;}
+  .faq-head h2{font-size:clamp(1.6rem,3vw,2.1rem);}
+  .faq-list{max-width:760px; margin:0 auto;}
+  .faq-item{background:var(--white); border-radius:12px; margin-bottom:12px; box-shadow:0 6px 18px rgba(30,25,90,0.05);}
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; padding:18px 22px;
+    font-weight:700; font-size:15.5px; color:var(--ink); cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+  }
+  .faq-q .icon{color:var(--violet); font-size:20px; transition:transform .2s; flex-shrink:0;}
+  .faq-item.open .faq-q .icon{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .25s ease; color:var(--body); font-size:14.5px;}
+  .faq-a-inner{padding:0 22px 20px;}
+  .faq-item.open .faq-a{max-height:220px;}
+
+  /* ---------- Contact ---------- */
+  .contact{padding:90px 0;}
+  .contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;}
+  .contact-copy h2{font-size:clamp(1.6rem,3vw,2rem); margin-bottom:16px; max-width:14ch;}
+  .contact-copy p{color:var(--body); margin-bottom:8px;}
+  .contact-copy .direct{margin-top:22px; font-size:14px; color:var(--body);}
+  .contact-copy .direct a{color:var(--violet); text-decoration:none; font-weight:600;}
+  form.request{background:var(--bg-light); border-radius:18px; padding:34px; display:flex; flex-direction:column; gap:16px;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:13px; color:var(--body); font-weight:600;}
+  .field input, .field textarea, .field select{
+    background:var(--white); border:1.5px solid var(--line); border-radius:10px;
+    padding:12px 14px; font-family:var(--font); font-size:14.5px; color:var(--ink); width:100%;
+  }
+  .field textarea{resize:vertical; min-height:90px;}
+  .form-msg{font-size:14px; min-height:20px;}
+  .form-msg.ok{color:#0FA898; font-weight:600;}
+  .form-msg.err{color:#E8556F;}
+  @media (max-width:860px){ .contact-grid{grid-template-columns:1fr;} .field-row{grid-template-columns:1fr;} }
+
+  /* ---------- Logos ---------- */
+  .logos{padding:50px 0 90px;}
+  .logos-row{display:flex; flex-wrap:wrap; gap:40px; align-items:center; justify-content:space-between; opacity:.55; filter:grayscale(1);}
+  .logos-row span{font-weight:800; font-size:17px; color:var(--ink);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--deep); color:#C9CCEE; padding:70px 0 24px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.3fr; gap:40px;}
+  .foot-brand{color:var(--white); font-size:20px; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px;}
+  .foot-grid p{font-size:13.5px; color:#A9ACD4; max-width:32ch;}
+  .foot-col h4{color:var(--white); font-size:14.5px; margin-bottom:16px;}
+  .foot-col ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .foot-col a{text-decoration:none; color:#C9CCEE; font-size:13.5px;}
+  .foot-col a:hover{color:var(--white);}
+  .newsletter{display:flex; gap:8px; margin-top:16px;}
+  .newsletter input{flex:1; border:none; border-radius:8px; padding:11px 12px; font-family:var(--font); min-width:0;}
+  .newsletter button{background:var(--teal); color:var(--deep); border:none; border-radius:8px; padding:0 16px; font-weight:700; cursor:pointer;}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.1); margin-top:50px; padding-top:22px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:#A9ACD4;
+  }
+  @media (max-width:860px){ .foot-grid{grid-template-columns:1fr 1fr; row-gap:36px;} }
+  @media (max-width:520px){ .foot-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-left">
+      <span>✉ hello@meridiandomains.com</span>
+      <span>☎ +48 7180 254 025</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#contact">Live Chat</a>
+      <a href="#contact">Login</a>
+      <a href="#contact">Support</a>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <nav class="nav wrap">
+    <a href="#" class="brand"><span class="dot"></span>Meridian Domains</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#available">Buy</a>
+      <a href="#split-sell">Sell</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#insights">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn btn-light">Get Started</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </nav>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Buy, Sell or Broker Any Domain</h1>
+      <p>We find the name, negotiate the price, and move it into your hands through secure escrow — whether it's open, owned, or up for auction.</p>
+      <a href="#contact" class="btn btn-grad">Get Started</a>
+    </div>
+    <div class="hero-art">
+      <svg class="iso" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stack of domain extension tags beside a workstation">
+        <ellipse cx="260" cy="300" rx="220" ry="26" fill="#0E1150" opacity="0.35"/>
+        <g>
+          <rect x="60" y="90" width="46" height="170" rx="8" fill="#6C5CE7"/>
+          <rect x="60" y="90" width="46" height="170" rx="8" fill="url(#g1)" opacity="0.5"/>
+          <rect x="52" y="70" width="62" height="30" rx="7" fill="#FFFFFF"/>
+          <text x="83" y="90" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#3A2E9C">.COM</text>
+        </g>
+        <g>
+          <rect x="118" y="120" width="46" height="140" rx="8" fill="#17C3E8"/>
+          <rect x="118" y="120" width="46" height="140" rx="8" fill="url(#g2)" opacity="0.5"/>
+          <rect x="110" y="100" width="62" height="30" rx="7" fill="#FFFFFF"/>
+          <text x="141" y="120" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#0F7FA0">.NET</text>
+        </g>
+        <g>
+          <rect x="176" y="70" width="46" height="190" rx="8" fill="#20D3B8"/>
+          <rect x="176" y="70" width="46" height="190" rx="8" fill="url(#g3)" opacity="0.5"/>
+          <rect x="168" y="50" width="62" height="30" rx="7" fill="#FFFFFF"/>
+          <text x="199" y="70" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#0FA898">.ORG</text>
+        </g>
+        <g>
+          <rect x="234" y="130" width="46" height="130" rx="8" fill="#4834D4"/>
+          <rect x="226" y="110" width="62" height="30" rx="7" fill="#FFFFFF"/>
+          <text x="257" y="130" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#3A2E9C">.BIZ</text>
+        </g>
+        <rect x="310" y="190" width="150" height="8" rx="4" fill="#B6B9E8"/>
+        <rect x="330" y="150" width="90" height="60" rx="6" fill="#FFFFFF" stroke="#D8DBF5" stroke-width="2"/>
+        <rect x="340" y="160" width="70" height="38" rx="3" fill="#3A2E9C"/>
+        <circle cx="375" cy="204" r="4" fill="#B6B9E8"/>
+        <rect x="360" y="198" width="30" height="6" rx="3" fill="#D8DBF5"/>
+        <circle cx="410" cy="230" r="10" fill="#3A2E9C"/>
+        <rect x="399" y="240" width="22" height="30" rx="8" fill="#6C5CE7"/>
+        <rect x="330" y="250" width="150" height="10" rx="5" fill="#D8DBF5"/>
+        <rect x="345" y="260" width="16" height="30" fill="#B6B9E8"/>
+        <rect x="450" y="260" width="16" height="30" fill="#B6B9E8"/>
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.3"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.3"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+          <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.3"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="searchbar">
+      <input type="text" id="domainInput" placeholder="Search your domain here" autocomplete="off">
+      <select id="tldSelect">
+        <option>.com</option>
+        <option>.net</option>
+        <option>.org</option>
+        <option>.co</option>
+        <option>.io</option>
+      </select>
+      <button id="checkBtn" type="button">Search</button>
+    </div>
+    <div class="lookup-result" id="lookupResult"></div>
+    <div class="tld-strip">
+      <div><b>.COM</b> from <span>$9.99</span></div>
+      <div><b>.NET</b> from <span>$7.85</span></div>
+      <div><b>.ORG</b> from <span>$5.70</span></div>
+      <div><b>.CO</b> from <span>$7.82</span></div>
+      <div><b>.IO</b> from <span>$27.99</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="why">
+  <div class="wrap why-grid">
+    <div class="why-copy">
+      <div class="eyebrow">WHY MERIDIAN</div>
+      <h2>Why we are the broker to call</h2>
+      <p>We've handled acquisitions across every major registrar and marketplace, negotiating on behalf of clients who'd rather not show up in a seller's inbox themselves.</p>
+      <p>Every deal moves through licensed escrow, so funds and the domain only change hands once both sides confirm.</p>
+      <a href="#contact" class="btn btn-outline-dark">Get Started</a>
+    </div>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-icon c1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.4 8.7 8 9 4.6-.3 8-4 8-9V5l-8-3z" stroke="white" stroke-width="1.8"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Confidential Negotiation</h3>
+        <p>We contact owners under our name, so pricing isn't inflated by knowing who's buying.</p>
+      </div>
+      <div class="why-card offset">
+        <div class="why-icon c2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="6" rx="1.5" stroke="white" stroke-width="1.8"/><rect x="4" y="14" width="16" height="6" rx="1.5" stroke="white" stroke-width="1.8"/><circle cx="8" cy="7" r="1" fill="white"/><circle cx="8" cy="17" r="1" fill="white"/></svg>
+        </div>
+        <h3>Secure Escrow</h3>
+        <p>Funds sit with a licensed escrow provider until the transfer is verified on both sides.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon c1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 8" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M20 4v4h-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 16" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M4 20v-4h4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Fast Transfer</h3>
+        <p>Open names are secured same-day; owner-held names typically move in one to four weeks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="pricing-head">
+      <h2>Our Best Pricing</h2>
+      <p>You pay the domain's agreed price plus one flat broker fee — never a hidden markup folded into the sale.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">Single Name</div>
+        <div class="plan-price"><sup>$</sup>150</div>
+        <div class="plan-fee">flat fee + domain price</div>
+        <ul>
+          <li>Availability & ownership check</li>
+          <li>Purchase or negotiation</li>
+          <li>Escrow-backed transfer</li>
+          <li>DNS handover</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline-dark btn-block">Buy Now</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-name">Managed Acquisition</div>
+        <div class="plan-price"><sup>$</sup>450</div>
+        <div class="plan-fee">flat fee + domain price</div>
+        <ul>
+          <li>Confidential owner outreach</li>
+          <li>Full negotiation on your behalf</li>
+          <li>Written valuation report</li>
+          <li>Escrow-backed transfer</li>
+          <li>DNS & registrar setup</li>
+        </ul>
+        <a href="#contact" class="btn btn-grad btn-block">Buy Now</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Portfolio Care</div>
+        <div class="plan-price"><sup>$</sup>60</div>
+        <div class="plan-fee">per domain / year</div>
+        <ul>
+          <li>Consolidated account</li>
+          <li>Renewal & expiry alerts</li>
+          <li>Annual valuation summary</li>
+          <li>Priority broker access</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline-dark btn-block">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="split">
+  <div class="wrap split-grid">
+    <div class="art">
+      <svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Search and comparison illustration">
+        <circle cx="240" cy="160" r="130" fill="#F4F6FB"/>
+        <circle cx="240" cy="160" r="70" fill="none" stroke="#17C3E8" stroke-width="10"/>
+        <path d="M240 90a70 70 0 0 1 0 140" fill="none" stroke="#6C5CE7" stroke-width="10" stroke-linecap="round"/>
+        <rect x="120" y="70" width="30" height="90" rx="6" fill="#3A2E9C"/>
+        <rect x="330" y="90" width="30" height="70" rx="6" fill="#20D3B8"/>
+        <rect x="90" y="180" width="30" height="60" rx="6" fill="#17C3E8"/>
+        <rect x="360" y="170" width="30" height="80" rx="6" fill="#4834D4"/>
+        <circle cx="150" cy="250" r="14" fill="#FFD3B0"/>
+        <rect x="140" y="264" width="20" height="34" rx="8" fill="#1B1F6B"/>
+        <circle cx="340" cy="260" r="14" fill="#FFD3B0"/>
+        <rect x="330" y="274" width="20" height="34" rx="8" fill="#6C5CE7"/>
+      </svg>
+    </div>
+    <div>
+      <div class="eyebrow">SOURCING</div>
+      <h2>We search where the good names actually are</h2>
+      <p>Beyond registrar look-ups, we track aftermarket listings, expiring-domain auctions, and direct owner outreach — so you're not limited to what's simply unclaimed.</p>
+      <p>Every result comes with a written comparison against similar recent sales, so you know if the asking price is fair before you commit.</p>
+      <a href="#contact" class="btn btn-grad">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<section class="split" id="split-sell">
+  <div class="wrap split-grid rev">
+    <div>
+      <div class="eyebrow">FOR SELLERS</div>
+      <h2>Selling a domain? We'll find the right buyer</h2>
+      <p>If you're holding a name and want it appraised or sold, we handle buyer outreach, offer negotiation, and escrow — the same process, working for you instead of against you.</p>
+      <a href="#contact" class="btn btn-outline-dark">List your domain</a>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Laptop and secure transfer illustration">
+        <rect x="80" y="60" width="220" height="150" rx="10" fill="#FFFFFF" stroke="#E7E9F3" stroke-width="2"/>
+        <rect x="96" y="76" width="188" height="90" rx="4" fill="#F4F6FB"/>
+        <rect x="110" y="90" width="120" height="10" rx="5" fill="#3A2E9C"/>
+        <rect x="110" y="108" width="90" height="8" rx="4" fill="#B6B9E8"/>
+        <rect x="110" y="124" width="140" height="8" rx="4" fill="#B6B9E8"/>
+        <rect x="60" y="210" width="260" height="14" rx="7" fill="#D8DBF5"/>
+        <g>
+          <circle cx="360" cy="130" r="60" fill="#EAF0FF"/>
+          <path d="M360 95l35 14v28c0 26-16 44-35 50-19-6-35-24-35-50V109l35-14z" fill="#6C5CE7"/>
+          <path d="M345 130l10 10 20-20" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="listings" id="available">
+  <div class="wrap">
+    <div class="listings-head">
+      <h2>Domains Currently for Sale</h2>
+      <p>A sample of names moving through acquisition right now. Full listings are shared directly with clients on request.</p>
+    </div>
+    <div class="listing-grid">
+      <div class="listing-card">
+        <div class="listing-top g1"><div class="name">nortlake.com</div><div class="cat">Short brandable</div></div>
+        <div class="listing-body">
+          <div class="listing-price">$4,200 <span>guide price</span></div>
+          <div class="listing-status">● Open to offers</div>
+          <a href="#contact" class="btn btn-outline-dark btn-block enquire-btn" data-domain="nortlake.com">Enquire</a>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-top g2"><div class="name">fieldnote.io</div><div class="cat">SaaS / product</div></div>
+        <div class="listing-body">
+          <div class="listing-price">$2,800 <span>guide price</span></div>
+          <div class="listing-status">● In negotiation</div>
+          <a href="#contact" class="btn btn-outline-dark btn-block enquire-btn" data-domain="fieldnote.io">Enquire</a>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-top g3"><div class="name">verdanthome.com</div><div class="cat">E-commerce</div></div>
+        <div class="listing-body">
+          <div class="listing-price">$3,500 <span>guide price</span></div>
+          <div class="listing-status">● Open to offers</div>
+          <a href="#contact" class="btn btn-outline-dark btn-block enquire-btn" data-domain="verdanthome.com">Enquire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="wrap">
+    <div class="testi-head">
+      <div class="eyebrow">TESTIMONIALS</div>
+      <h2>Our best client feedback</h2>
+      <p>A few words from clients who've bought, sold, or built a portfolio with us.</p>
+    </div>
+    <div class="testi-row">
+      <div class="testi-card dim">
+        <div class="testi-person"><div class="avatar"></div><div><div class="testi-name">Karin Voss</div><div class="testi-role">Operations Lead</div></div></div>
+        <p>Straightforward from search to transfer, no surprises on price.</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-person"><div class="avatar"></div><div><div class="testi-name">Kiling Moynur</div><div class="testi-role">Founder, USA</div></div></div>
+        <p>We'd been trying to buy a name directly for months with no luck. Meridian reached the owner, negotiated a fair price, and had it in our registrar within three weeks — all without the seller ever knowing who we were.</p>
+      </div>
+      <div class="testi-card dim">
+        <div class="testi-person"><div class="avatar"></div><div><div class="testi-name">Nikima Adesi</div><div class="testi-role">Brand Director</div></div></div>
+        <p>The valuation report alone was worth the fee — saved us from overpaying.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-split">
+  <div class="cta-panel p1">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.4 8.7-8 9-4.6-.3-8-4-8-9V5l8-3z" stroke="white" stroke-width="1.8"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h3>Escrow-backed transfers</h3>
+    <p>Every acquisition moves through licensed escrow, so payment and domain only change hands once both sides confirm.</p>
+    <a href="#contact" class="btn btn-light">Learn more</a>
+  </div>
+  <div class="cta-panel p2">
+    <div class="icon-badge">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="white" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="white" stroke-width="1.8"/></svg>
+    </div>
+    <h3>Confidential broker service</h3>
+    <p>We approach owners under our own name, keeping your identity private until a deal is agreed.</p>
+    <a href="#contact" class="btn btn-light">Learn more</a>
+  </div>
+</div>
+
+<section class="insights" id="insights">
+  <div class="wrap">
+    <div class="insights-head">
+      <h2>Latest Insights</h2>
+      <p>Notes from the broker's desk on buying, selling, and valuing domain names.</p>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-img"></div>
+        <div class="insight-body">
+          <div class="insight-meta"><b>Buying</b><span>10 Oct 2026</span></div>
+          <h3>What a fair domain valuation actually looks like</h3>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-img b"></div>
+        <div class="insight-body">
+          <div class="insight-meta"><b>Escrow</b><span>03 Oct 2026</span></div>
+          <h3>Why we never skip licensed escrow, even for small deals</h3>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-img c"></div>
+        <div class="insight-body">
+          <div class="insight-meta"><b>Selling</b><span>28 Sep 2026</span></div>
+          <h3>A seller's guide to pricing an aftermarket domain</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <div class="eyebrow">QUESTIONS</div>
+      <h2>Before you reach out</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q"><span>How long does a purchase usually take?</span><span class="icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">An open, unregistered name can be secured same-day. A name already owned by someone else typically takes one to four weeks.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you mark up the domain price itself?</span><span class="icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. You see the actual agreed price, and we charge a separate flat broker fee on top — never a hidden margin.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can you keep my identity private during negotiation?</span><span class="icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. We negotiate under our own name so the seller doesn't know who the buyer is, which usually keeps pricing more reasonable.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What if a deal falls through after escrow is funded?</span><span class="icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Funds sit with the licensed escrow provider, not with us. If a transfer never completes, escrow returns your payment in full, minus its own service fee.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-copy">
+      <div class="eyebrow">GET STARTED</div>
+      <h2>Tell us the name you're after</h2>
+      <p>Share the domain, or a few directions if you're still deciding, plus your budget range. We'll reply with an availability and pricing summary within one business day.</p>
+      <div class="direct">Prefer email? Write to <a href="mailto:hello@meridiandomains.com">hello@meridiandomains.com</a></div>
+    </div>
+    <form class="request" id="requestForm">
+      <div class="field-row">
+        <div class="field"><label for="name">Your name</label><input type="text" id="name" required></div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" required></div>
+      </div>
+      <div class="field"><label for="domain">Domain name(s) you want</label><input type="text" id="domain" placeholder="e.g. yourbrand.com" required></div>
+      <div class="field-row">
+        <div class="field">
+          <label for="budget">Budget range</label>
+          <select id="budget">
+            <option>Under $1,000</option>
+            <option>$1,000 – $5,000</option>
+            <option>$5,000 – $20,000</option>
+            <option>$20,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="service">Service needed</label>
+          <select id="service">
+            <option>Single name</option>
+            <option>Managed acquisition</option>
+            <option>Portfolio care</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="notes">Anything else we should know?</label><textarea id="notes" placeholder="Timeline, brand context, alternate names you'd accept..."></textarea></div>
+      <button type="submit" class="btn btn-grad btn-block">Submit request</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+</section>
+
+<section class="logos">
+  <div class="wrap logos-row">
+    <span>Escrow.com</span><span>Namecheap</span><span>GoDaddy</span><span>Sedo</span><span>DAN.com</span><span>Afternic</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-brand"><span style="width:11px;height:11px;border-radius:3px;background:#20D3B8;transform:rotate(45deg);display:inline-block;"></span>Meridian Domains</div>
+      <p>We source, negotiate, and transfer domain names for clients who'd rather not do it themselves. Every deal moves through licensed escrow.</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Email address" aria-label="Email address">
+        <button type="button">Send</button>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Quick Links</h4>
+      <ul><li><a href="#available">Buy a domain</a></li><li><a href="#split-sell">Sell a domain</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#insights">Blog</a></li></ul>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <ul><li><a href="#">About</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Support</a></li><li><a href="#">Legal</a></li></ul>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <ul><li><a href="mailto:hello@meridiandomains.com">hello@meridiandomains.com</a></li><li><a href="tel:+487180254025">+48 7180 254 025</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <div>Copyright © <span id="year"></span> Meridian Domains</div>
+    <div>Privacy · Terms · Sitemap</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.textContent = open ? '✕' : '☰';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.textContent = '☰';
+  }));
+
+  // Domain availability "check" — front-end demo only.
+  // Replace with a real WHOIS / registrar-API call on your backend.
+  const takenSample = ['google.com','facebook.com','amazon.com','apple.com','meridiandomains.com'];
+  const checkBtn = document.getElementById('checkBtn');
+  const domainInput = document.getElementById('domainInput');
+  const tldSelect = document.getElementById('tldSelect');
+  const lookupResult = document.getElementById('lookupResult');
+
+  function runCheck(){
+    let val = domainInput.value.trim().toLowerCase();
+    lookupResult.className = 'lookup-result';
+    if(!val){ lookupResult.textContent = 'Enter a domain to check.'; return; }
+    if(!val.includes('.')) val += tldSelect.value;
+    if(takenSample.includes(val)){
+      lookupResult.textContent = '✕ ' + val + ' already has an owner — we can still pursue an acquisition.';
+      lookupResult.classList.add('taken');
+    } else {
+      lookupResult.textContent = '✓ ' + val + ' looks available. Send us a request to lock it in.';
+      lookupResult.classList.add('available');
+    }
+  }
+  checkBtn.addEventListener('click', runCheck);
+  domainInput.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); runCheck(); } });
+
+  // "Enquire" buttons prefill and jump to the contact form
+  document.querySelectorAll('.enquire-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('domain').value = btn.dataset.domain;
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      document.getElementById('name').focus();
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => { if(i !== item) i.classList.remove('open'); });
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+
+  // Contact form — front-end validation + demo submit.
+  // Wire the fetch() call below to your real endpoint / CRM.
+  const form = document.getElementById('requestForm');
+  const formMsg = document.getElementById('formMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    formMsg.className = 'form-msg';
+    formMsg.textContent = '';
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const domain = document.getElementById('domain').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!name || !emailOk || !domain){
+      formMsg.textContent = 'Please fill in your name, a valid email, and the domain you want.';
+      formMsg.classList.add('err');
+      return;
+    }
+    // Demo behaviour — replace with a real request, e.g.:
+    // fetch('/api/domain-requests', { method:'POST', body: JSON.stringify({...}) })
+    formMsg.textContent = 'Thanks, ' + name.split(' ')[0] + ' — we\'ll follow up at ' + email + ' within one business day.';
+    formMsg.classList.add('ok');
+    form.reset();
+  });
+</script>
+
+</body>
+</html>

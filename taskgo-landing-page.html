@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskGo — Task Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --purple: #5f43e9;
+        --purple-dark: #452cc5;
+        --ink: #171526;
+        --muted: #777589;
+        --line: #e8e7ef;
+        --soft: #f9f9fc;
+        --lavender: #f1edff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #fff;
+        font-family: "DM Sans", Arial, sans-serif;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      button {
+        font: inherit;
+      }
+      .container {
+        width: min(100% - 48px, 980px);
+        margin: auto;
+      }
+
+      .hero {
+        min-height: 730px;
+        position: relative;
+        overflow: hidden;
+        padding: 20px 0 0;
+        background:
+          radial-gradient(
+            circle at 20% 47%,
+            rgba(196, 224, 255, 0.65),
+            transparent 23%
+          ),
+          radial-gradient(
+            circle at 79% 38%,
+            rgba(222, 211, 255, 0.7),
+            transparent 26%
+          ),
+          linear-gradient(180deg, #fff 0%, #fbfbff 82%, #fff 100%);
+      }
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 310px;
+        height: 130px;
+        border-radius: 100%;
+        filter: blur(18px);
+        opacity: 0.8;
+        background: rgba(255, 255, 255, 0.85);
+        z-index: 0;
+      }
+      .hero::before {
+        left: -50px;
+        top: 305px;
+        transform: rotate(10deg);
+      }
+      .hero::after {
+        right: -70px;
+        top: 275px;
+        transform: rotate(-12deg);
+      }
+      .hero > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      nav {
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: -0.4px;
+      }
+      .mark {
+        position: relative;
+        width: 21px;
+        height: 21px;
+        transform: rotate(45deg);
+      }
+      .mark::before,
+      .mark::after {
+        content: "";
+        position: absolute;
+        background: var(--purple);
+        border-radius: 3px;
+      }
+      .mark::before {
+        width: 15px;
+        height: 15px;
+        left: 3px;
+        top: 3px;
+      }
+      .mark::after {
+        width: 8px;
+        height: 8px;
+        left: 6.5px;
+        top: 6.5px;
+        background: #fff;
+        box-shadow:
+          -6px 6px 0 -2px var(--purple),
+          6px -6px 0 -2px var(--purple);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        font-size: 9px;
+        font-weight: 600;
+      }
+      .nav-links a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .contact {
+        border: 0;
+        border-radius: 22px;
+        color: #fff;
+        background: #171526;
+        padding: 10px 21px;
+        font-size: 9px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .hero-copy {
+        text-align: center;
+        padding-top: 62px;
+      }
+      .eyebrow {
+        font-size: 9px;
+        color: #6d6c79;
+        margin-bottom: 11px;
+      }
+      h1 {
+        font:
+          800 clamp(34px, 4.3vw, 62px) "Manrope",
+          sans-serif;
+        letter-spacing: -2.6px;
+        /* max-width: 530px; */
+        margin: auto;
+      }
+      .subtitle {
+        color: #6e6d7a;
+        font-size: 10px;
+        margin-top: 13px;
+      }
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .button {
+        border-radius: 22px;
+        padding: 12px 19px;
+        border: 1px solid var(--purple);
+        background: var(--purple);
+        color: #fff;
+        font-size: 9px;
+        box-shadow: 0 7px 16px rgba(94, 66, 232, 0.2);
+        cursor: pointer;
+      }
+      .button.ghost {
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.5);
+        border-color: #c8c7d1;
+        box-shadow: none;
+      }
+
+      .tag {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border-radius: 8px;
+        padding: 5px 8px;
+        color: #393744;
+        background: rgba(255, 255, 255, 0.83);
+        box-shadow: 0 5px 13px rgba(92, 80, 145, 0.13);
+        font-size: 7px;
+        z-index: 4;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border: 2px solid #f1d23b;
+        border-radius: 50%;
+      }
+      .tag.analysis {
+        left: calc(50% - 255px);
+        top: 278px;
+      }
+      .tag.programmer {
+        right: calc(50% - 265px);
+        top: 281px;
+      }
+      .tag.web {
+        left: calc(50% - 350px);
+        top: 400px;
+      }
+      .tag.hr {
+        right: calc(50% - 345px);
+        top: 400px;
+      }
+
+      .app-window {
+        width: min(90%, 1220px);
+        height: 265px;
+        margin: 38px auto 0;
+        border: 7px solid #eef2fb;
+        border-radius: 18px 18px 0 0;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 21px 38px rgba(83, 84, 145, 0.19);
+      }
+      .app-top {
+        height: 38px;
+        border-bottom: 1px solid #edf0f6;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        gap: 27px;
+      }
+      .mini-brand {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 8px;
+        font-weight: 700;
+      }
+      .mini-mark {
+        width: 13px;
+        height: 13px;
+        transform: rotate(45deg);
+        border-radius: 2px;
+        background: var(--purple);
+      }
+      .top-tabs {
+        display: flex;
+        gap: 15px;
+        font-size: 6px;
+        color: #858495;
+      }
+      .top-icons {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: #aaa9b5;
+        font-size: 10px;
+      }
+      .avatar {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f7c3a8, #743e4e);
+        border: 2px solid white;
+      }
+      .app-content {
+        padding: 16px 18px;
+      }
+      .app-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .app-heading strong {
+        font-size: 11px;
+      }
+      .view-tabs {
+        display: flex;
+        gap: 11px;
+        font-size: 6px;
+        color: #9997a7;
+      }
+      .view-tabs b {
+        color: var(--purple);
+      }
+      .board-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 12px 0;
+      }
+      .views {
+        display: flex;
+        gap: 8px;
+      }
+      .small-btn,
+      .filter {
+        border: 1px solid #edecf3;
+        border-radius: 4px;
+        padding: 5px 8px;
+        font-size: 6px;
+        color: #737182;
+        background: #fff;
+      }
+      .filter {
+        min-width: 70px;
+      }
+      .columns {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      .column {
+        min-width: 0;
+      }
+      .col-title {
+        font-size: 7px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 7px;
+      }
+      .task-card {
+        min-height: 72px;
+        border: 1px solid #ecebf1;
+        border-radius: 5px;
+        padding: 8px;
+        margin-bottom: 6px;
+        box-shadow: 0 2px 5px rgba(21, 18, 47, 0.03);
+      }
+      .stripe {
+        display: block;
+        width: 20px;
+        height: 3px;
+        border-radius: 3px;
+        background: #a45fe6;
+        margin-bottom: 6px;
+      }
+      .stripe.blue {
+        background: #37aee4;
+      }
+      .stripe.orange {
+        background: #f5ad3a;
+      }
+      .stripe.green {
+        background: #43b98b;
+      }
+      .task-title {
+        font-size: 6px;
+        line-height: 1.25;
+        font-weight: 700;
+        min-height: 17px;
+      }
+      .task-foot {
+        margin-top: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #9694a1;
+        font-size: 5px;
+      }
+      .mini-avatars {
+        display: flex;
+      }
+      .mini-avatars i {
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 1px solid white;
+        background: #e8a179;
+        margin-left: -2px;
+      }
+      .mini-avatars i:nth-child(2) {
+        background: #8ac5d6;
+      }
+      .mini-avatars i:nth-child(3) {
+        background: #c0a3e9;
+      }
+
+      .trusted {
+        padding: 34px 0 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+      }
+      .trusted p {
+        width: 85px;
+        color: #666574;
+        font-size: 7px;
+        line-height: 1.35;
+      }
+      .trusted-logos {
+        display: flex;
+        gap: 10px;
+      }
+      .logo-pill {
+        width: 112px;
+        height: 43px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #e6e5ed;
+        border-radius: 24px;
+        color: #93929e;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      .logo-pill:nth-child(2) {
+        font-size: 9px;
+        letter-spacing: 0;
+      }
+      .logo-pill:nth-child(3) {
+        font-style: italic;
+      }
+      .logo-pill:nth-child(4) {
+        font-size: 12px;
+      }
+
+      section {
+        padding: 0 0 102px;
+      }
+      .section-title {
+        text-align: center;
+      }
+      h2 {
+        font:
+          800 27px/1.07 "Manrope",
+          sans-serif;
+        letter-spacing: -1.35px;
+      }
+      .section-lead {
+        font-size: 8px;
+        color: #7d7b89;
+        margin-top: 10px;
+      }
+
+      .features {
+        padding-top: 0;
+      }
+      .feature-grid {
+        width: min(100% - 48px, 1200px);
+        margin: 31px auto 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .feature-card {
+        min-height: 175px;
+        padding: 15px 13px;
+        border: 1px solid #ecebf2;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #fff, #fbfbff);
+        box-shadow: 0 9px 21px rgba(42, 40, 70, 0.035);
+        overflow: hidden;
+      }
+      .feature-card h3 {
+        font-size: 10px;
+        letter-spacing: -0.4px;
+      }
+      .feature-card p {
+        font-size: 6.5px;
+        color: #777584;
+        line-height: 1.4;
+        margin-top: 6px;
+        min-height: 30px;
+      }
+      .feature-card.tall {
+        min-height: 250px;
+      }
+      .feature-card.center {
+        margin-top: 64px;
+        min-height: 185px;
+      }
+      .mini-ui {
+        margin-top: 11px;
+        background: #fff;
+        border: 1px solid #efedf4;
+        border-radius: 6px;
+        padding: 9px;
+        box-shadow: 0 5px 10px rgba(48, 45, 80, 0.06);
+      }
+      .line {
+        height: 4px;
+        background: #ededf2;
+        border-radius: 3px;
+        margin: 6px 0;
+      }
+      .line.short {
+        width: 63%;
+      }
+      .line.colored {
+        background: #694ae7;
+        width: 42%;
+      }
+      .line.blue {
+        background: #49b7e7;
+        width: 73%;
+      }
+      .mini-ui .ui-title {
+        font-size: 7px;
+        font-weight: 700;
+      }
+      .ui-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 6px;
+        color: #777584;
+        margin-top: 8px;
+      }
+      .ui-badge {
+        font-size: 5px;
+        border-radius: 6px;
+        background: #fae4e5;
+        color: #e77e83;
+        padding: 3px 5px;
+      }
+      .message {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 9px 0;
+        font-size: 6px;
+        font-weight: 600;
+      }
+      .message span {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #e9b397;
+      }
+      .message:nth-child(3) span {
+        background: #a7c4ed;
+      }
+      .message:nth-child(4) span {
+        background: #c1aed8;
+      }
+      .message em {
+        font-style: normal;
+        color: #aaa8b4;
+        margin-left: auto;
+        font-size: 5px;
+      }
+      .project-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 6px;
+        margin: 8px 0;
+        color: #787684;
+      }
+      .project-row b {
+        font-size: 6px;
+        color: #444250;
+      }
+      .progress {
+        height: 4px;
+        background: #eceaf2;
+        border-radius: 3px;
+        margin: 4px 0 8px;
+      }
+      .progress i {
+        height: 100%;
+        width: 63%;
+        display: block;
+        background: #694ae7;
+        border-radius: 3px;
+      }
+
+      .stats-grid {
+        width: min(100% - 48px, 1200px);
+        margin: 33px auto 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .stat {
+        height: 138px;
+        padding: 17px 14px;
+        border: 1px solid #e9e8ef;
+        border-radius: 8px;
+        position: relative;
+        background: linear-gradient(135deg, #fff 38%, #f1eeff);
+        box-shadow: 0 6px 15px rgba(31, 29, 59, 0.03);
+      }
+      .stat b {
+        font:
+          800 22px "Manrope",
+          sans-serif;
+        letter-spacing: -1px;
+      }
+      .stat i {
+        position: absolute;
+        right: 13px;
+        top: 15px;
+        width: 7px;
+        height: 7px;
+        border: 2px solid var(--purple);
+        border-radius: 50%;
+      }
+      .stat p {
+        font-size: 6.5px;
+        color: #777584;
+        line-height: 1.35;
+        position: absolute;
+        bottom: 15px;
+        max-width: 105px;
+      }
+
+      .steps-wrap {
+        width: min(100% - 48px, 1200px);
+        margin: 34px auto 0;
+        display: grid;
+        grid-template-columns: 1fr 1.05fr;
+        gap: 33px;
+        align-items: center;
+      }
+      .dashboard-shot {
+        height: 215px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: linear-gradient(145deg, #6248ec 0 18%, #f5f5fd 18%);
+        padding: 41px 12px 11px;
+        box-shadow: 0 12px 23px rgba(90, 68, 230, 0.17);
+      }
+      .dash-inner {
+        height: 100%;
+        background: #fff;
+        border-radius: 4px;
+        padding: 11px;
+        display: grid;
+        grid-template-columns: 35px 1fr;
+        gap: 9px;
+        box-shadow: 0 4px 10px rgba(33, 30, 69, 0.12);
+      }
+      .sidebar {
+        border-right: 1px solid #efedf4;
+      }
+      .side-logo {
+        font-weight: 700;
+        font-size: 6px;
+        color: var(--purple);
+        margin-bottom: 15px;
+      }
+      .side-dot {
+        height: 5px;
+        width: 18px;
+        background: #e8e7ee;
+        border-radius: 3px;
+        margin: 7px 0;
+      }
+      .dash-main h3 {
+        font-size: 11px;
+        margin: 3px 0 12px;
+      }
+      .dash-tabs {
+        display: flex;
+        gap: 7px;
+      }
+      .dash-tabs span {
+        padding: 4px 7px;
+        background: #f2f1f7;
+        border-radius: 3px;
+        font-size: 5px;
+      }
+      .dash-lanes {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        margin-top: 9px;
+      }
+      .lane {
+        height: 90px;
+        background: #fafafd;
+        border: 1px solid #eeeef4;
+        border-radius: 3px;
+        padding: 4px;
+      }
+      .lane i {
+        display: block;
+        height: 20px;
+        border-radius: 3px;
+        background: #f3e8fc;
+        margin: 4px 0;
+      }
+      .lane:nth-child(2) i {
+        background: #e6f5ff;
+      }
+      .lane:nth-child(3) i {
+        background: #fff1df;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .step {
+        border: 1px solid #e6e5ed;
+        border-radius: 8px;
+        padding: 12px;
+        min-height: 57px;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(38, 35, 70, 0.025);
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .step:first-child {
+        min-height: 91px;
+      }
+      .number {
+        flex: none;
+        width: 21px;
+        height: 21px;
+        background: var(--purple);
+        color: #fff;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 8px;
+        font-weight: 700;
+      }
+      .step h3 {
+        font-size: 9px;
+        margin: 1px 0 4px;
+      }
+      .step p {
+        font-size: 6px;
+        color: #7b7987;
+        line-height: 1.4;
+      }
+      .setup-fields {
+        display: flex;
+        gap: 9px;
+        margin-top: 7px;
+      }
+      .field {
+        font-size: 5px;
+        border: 1px solid #eeeef3;
+        border-radius: 3px;
+        padding: 5px;
+        width: 78px;
+        color: #9d9ba7;
+      }
+      .field b {
+        display: block;
+        color: #656371;
+        margin-bottom: 4px;
+      }
+
+      .stories {
+        padding-bottom: 50px;
+      }
+
+      @media (max-width: 700px) {
+        .container,
+        nav {
+          width: min(100% - 32px, 980px);
+        }
+        .nav-links {
+          gap: 12px;
+        }
+        .nav-links a:nth-child(n + 4) {
+          display: none;
+        }
+        h1 {
+          font-size: 36px;
+        }
+        .hero {
+          min-height: 650px;
+        }
+        .app-window {
+          width: 94%;
+          height: 220px;
+        }
+        .tag.web,
+        .tag.hr {
+          display: none;
+        }
+        .tag.analysis {
+          left: 6%;
+          top: 280px;
+        }
+        .tag.programmer {
+          right: 5%;
+          top: 281px;
+        }
+        .trusted {
+          gap: 14px;
+          flex-wrap: wrap;
+        }
+        .trusted-logos {
+          gap: 5px;
+        }
+        .logo-pill {
+          width: 75px;
+          height: 36px;
+          font-size: 9px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        .feature-grid,
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .feature-card.center {
+          margin-top: 0;
+        }
+        .feature-card.tall {
+          min-height: 175px;
+        }
+        .stats-grid {
+          gap: 9px;
+        }
+        .stat {
+          height: 120px;
+        }
+        .steps-wrap {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .dashboard-shot {
+          max-width: 340px;
+          margin: auto;
+        }
+        .columns {
+          gap: 4px;
+        }
+        .task-card {
+          padding: 5px;
+        }
+        .task-foot {
+          display: none;
+        }
+      }
+      @media (max-width: 410px) {
+        .nav-links {
+          display: none;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .app-window {
+          height: 200px;
+        }
+        .top-tabs {
+          gap: 6px;
+        }
+        .app-content {
+          padding: 10px;
+        }
+        .trusted p {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero" id="home">
+      <nav>
+        <div class="brand"><span class="mark"></span><span>TaskGo</span></div>
+        <div class="nav-links">
+          <a href="#home">Home</a><a href="#features">Features</a
+          ><a href="#why">Why Choose</a><a href="#stories">Testimonial</a
+          ><a href="#pricing">Pricing</a>
+        </div>
+        <button class="contact">Contact Us</button>
+      </nav>
+
+      <div class="hero-copy container">
+        <p class="eyebrow">Organize tasks. Amplify results.</p>
+        <h1>Simplify Task Management<br />Boost Productivity</h1>
+        <p class="subtitle">
+          Easily manage tasks and enhance productivity from start to finish.
+        </p>
+        <div class="hero-actions">
+          <button class="button">Get Started Free</button
+          ><button class="button ghost">Book a Demo</button>
+        </div>
+      </div>
+
+      <div class="tag analysis"><span class="dot"></span> Analyst</div>
+      <div class="tag programmer">
+        <span class="dot" style="border-color: #56c8e5"></span> Programmer
+      </div>
+      <div class="tag web"><span class="dot"></span> Web Developer</div>
+      <div class="tag hr">
+        <span class="dot" style="border-color: #f7bf4a"></span> Human Resources
+      </div>
+
+      <div class="app-window">
+        <div class="app-top">
+          <div class="mini-brand"><span class="mini-mark"></span>TaskGo</div>
+          <div class="top-tabs">
+            <span>Dashboard</span><span>My Tasks</span><span>My Team</span
+            ><span>Reporting</span><span>Workflows</span><span>Stats</span>
+          </div>
+          <div class="top-icons">
+            <span>⌕</span><span>♧</span><span>◌</span
+            ><span class="avatar"></span>
+          </div>
+        </div>
+        <div class="app-content">
+          <div class="app-heading">
+            <strong>Task Boards <span style="color: #9593a2">↗</span></strong>
+            <div class="view-tabs">
+              <b>Timeline</b><span>Calendar</span><span>Dashboard</span
+              ><span>Reports</span><span>More</span>
+            </div>
+          </div>
+          <div class="board-controls">
+            <div class="views">
+              <span class="small-btn">▦ Board View</span
+              ><span class="small-btn">☷ List View</span>
+            </div>
+            <div class="views">
+              <span class="small-btn">☷</span><span class="small-btn">☷</span
+              ><span class="filter">⌕ Search tasks</span>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <div class="col-title"><span>To Do</span><span>•••</span></div>
+              <div class="task-card">
+                <span class="stripe"></span>
+                <div class="task-title">Competitive Analysis</div>
+                <div class="task-foot">
+                  <span class="mini-avatars"><i></i><i></i></span
+                  ><span>◷ 2h</span>
+                </div>
+              </div>
+              <div class="task-card">
+                <span class="stripe"></span>
+                <div class="task-title">Create task page</div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="col-title">
+                <span>In Process</span><span>•••</span>
+              </div>
+              <div class="task-card">
+                <span class="stripe blue"></span>
+                <div class="task-title">Dashboard UI Refinement</div>
+                <div class="task-foot">
+                  <span class="mini-avatars"><i></i><i></i></span
+                  ><span>◷ 4h</span>
+                </div>
+              </div>
+              <div class="task-card">
+                <span class="stripe blue"></span>
+                <div class="task-title">Product review</div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="col-title">
+                <span>In Review</span><span>•••</span>
+              </div>
+              <div class="task-card">
+                <span class="stripe orange"></span>
+                <div class="task-title">Review Task Automation Rules</div>
+                <div class="task-foot">
+                  <span class="mini-avatars"><i></i><i></i></span
+                  ><span>◷ 1h</span>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="col-title">
+                <span>Completed</span><span>•••</span>
+              </div>
+              <div class="task-card">
+                <span class="stripe green"></span>
+                <div class="task-title">Fix Progress Consistency</div>
+                <div class="task-foot">
+                  <span class="mini-avatars"><i></i><i></i></span
+                  ><span>◷ 3h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="trusted container">
+      <p>Endorsed by the globe’s leading innovative enterprises.</p>
+      <div class="trusted-logos">
+        <div class="logo-pill">IP<span style="font-size: 8px">SUM</span></div>
+        <div class="logo-pill">◈ Logoipsum</div>
+        <div class="logo-pill">∞</div>
+        <div class="logo-pill">LOCO</div>
+      </div>
+    </div>
+
+    <main>
+      <section class="features" id="features">
+        <div class="section-title">
+          <h2>Unlock Premium Benefits With<br />Our Advanced Features.</h2>
+          <p class="section-lead">
+            Unlock premium benefits with advanced features designed to scale.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Smart Task Organization</h3>
+            <p>
+              Create, categorize, and prioritize tasks with ease using flexible
+              task boards, smart labels.
+            </p>
+            <div class="mini-ui">
+              <div class="ui-title">IOS Tasks</div>
+              <div class="ui-row">
+                <span>● New feature</span><span>5 hours</span>
+              </div>
+              <div class="ui-row">
+                <span>● UI Progress</span><span>1 hour</span>
+              </div>
+              <div class="ui-row">
+                <span>● New feature</span><span>30 mins</span>
+              </div>
+              <div class="line colored"></div>
+              <div class="line blue"></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <h3>Automated Workflows</h3>
+            <p>
+              Streamline your workflow with automation for tasks, updates, and
+              reminders.
+            </p>
+            <div class="mini-ui">
+              <div class="ui-title">
+                Assignments <span style="float: right">+ Add</span>
+              </div>
+              <div class="ui-row">
+                <span>User: Johnny Mapping &amp; Design</span
+                ><span class="ui-badge">High</span>
+              </div>
+              <div class="line short"></div>
+              <div class="ui-row">
+                <span style="background: #ede7ff; color: #6749e8; padding: 3px"
+                  >UI/UX Design</span
+                ><span>●</span>
+              </div>
+              <div class="line"></div>
+            </div>
+          </article>
+          <article class="feature-card tall">
+            <h3>File &amp; Comment Management</h3>
+            <p>
+              Consolidate everything with task comments, file attachments, and
+              feedback threads.
+            </p>
+            <div class="mini-ui" style="margin-top: 18px">
+              <div class="ui-title">
+                New Messages <span style="color: var(--purple)">●</span>
+              </div>
+              <div class="message">
+                <span></span>Henry Masson <em>9:30 AM</em>
+              </div>
+              <div class="message"><span></span>Mon Roy <em>9:30 AM</em></div>
+              <div class="message">
+                <span></span>Liam Parker <em>9:30 AM</em>
+              </div>
+              <div class="message">
+                <span></span>Emma Collins <em>9:30 AM</em>
+              </div>
+              <div class="message"><span></span>Mon Roy <em>9:30 AM</em></div>
+            </div>
+          </article>
+          <article class="feature-card">
+            <h3>Real-Time Progress Tracking</h3>
+            <p>
+              Track deadlines, milestones, and performance with live status
+              updates.
+            </p>
+            <div class="mini-ui">
+              <div class="ui-title">Task Progress</div>
+              <div class="line colored"></div>
+              <div class="line"></div>
+              <div class="line blue"></div>
+            </div>
+          </article>
+          <article class="feature-card center">
+            <h3>Project Overview</h3>
+            <p>
+              Get a clear visual of project status, team progress, and upcoming
+              tasks.
+            </p>
+            <div class="mini-ui">
+              <div class="project-row"><b>Project Name</b><b>Team</b></div>
+              <div class="project-row">
+                <span>Support</span><span>● ● ●</span>
+              </div>
+              <div class="progress"><i></i></div>
+              <div class="project-row">
+                <span>Marketing project</span><span>● ● ●</span>
+              </div>
+              <div class="progress">
+                <i style="width: 80%; background: #45b7e8"></i>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="why">
+        <div class="section-title">
+          <h2>Why Teams Choose Task Pilot</h2>
+          <p class="section-lead">
+            Trusted by teams to manage work more efficiently. Designed to
+            help<br />teams do their best work.
+          </p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat">
+            <b>40%</b><i></i>
+            <p>Faster Task Completion and Automated workflows.</p>
+          </div>
+          <div class="stat">
+            <b>3×</b><i></i>
+            <p>Higher Team Alignment and Real-time updates.</p>
+          </div>
+          <div class="stat">
+            <b>100%</b><i></i>
+            <p>Real-Time Insights Across all work progress bottlenecks.</p>
+          </div>
+          <div class="stat">
+            <b>10k+</b><i></i>
+            <p>Active Users Startup, agencies, and growing teams.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h2>Get Started In Just 3 Easy Steps</h2>
+          <p class="section-lead">
+            Get started in just 3 easy steps with a guided onboarding
+            experience<br />designed for speed and simplicity.
+          </p>
+        </div>
+        <div class="steps-wrap">
+          <div class="dashboard-shot">
+            <div class="dash-inner">
+              <aside class="sidebar">
+                <div class="side-logo">◆ TaskGo</div>
+                <div class="side-dot"></div>
+                <div class="side-dot"></div>
+                <div class="side-dot"></div>
+                <div class="side-dot"></div>
+                <div class="side-dot"></div>
+              </aside>
+              <div class="dash-main">
+                <h3>Task Boards</h3>
+                <div class="dash-tabs">
+                  <span>▦ Board View</span><span>☷ List View</span>
+                </div>
+                <div class="dash-lanes">
+                  <div class="lane"><i></i><i></i></div>
+                  <div class="lane"><i></i><i></i></div>
+                  <div class="lane"><i></i><i></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <span class="number">01</span>
+              <div>
+                <h3>Simple And Fast Setup</h3>
+                <p>
+                  Set up your workspace, add tasks, and start planning in just a
+                  few clicks.
+                </p>
+                <div class="setup-fields">
+                  <div class="field">
+                    <b>Workspace Setup</b>▣ Project settings
+                  </div>
+                  <div class="field">
+                    <b>Workspace Setup</b>▣ Personal workspace
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="step">
+              <span class="number">02</span>
+              <div>
+                <h3>Work Together Effortlessly</h3>
+                <p>Sales teams connect to AI for superior decision-making.</p>
+              </div>
+            </article>
+            <article class="step">
+              <span class="number">03</span>
+              <div>
+                <h3>Monitor Your Progress</h3>
+                <p>An AI-powered sales team for exceptional decision-making.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="stories" id="stories">
+        <div class="section-title">
+          <h2>Real Results, Real Impact.<br />Our Success Stories</h2>
+          <p class="section-lead">
+            Real-world success stories showcasing growth, performance,<br />and
+            productivity improvements.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

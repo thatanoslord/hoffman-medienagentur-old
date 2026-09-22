@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Search, register, transfer, and manage your perfect domain name."
+  />
+  <title>DomainFinder — Search & Register Domains</title>
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0c1c31;
+      --card: rgba(16, 37, 63, 0.72);
+      --card-solid: #10263f;
+      --text: #f5f8ff;
+      --muted: #aebed3;
+      --primary: #6c63ff;
+      --primary-hover: #847dff;
+      --secondary: #00d4a8;
+      --secondary-hover: #19edc0;
+      --danger: #ff5c7c;
+      --warning: #ffbd4a;
+      --border: rgba(190, 212, 241, 0.15);
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+      --radius-lg: 26px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(108, 99, 255, 0.19), transparent 32%),
+        radial-gradient(circle at 90% 20%, rgba(0, 212, 168, 0.13), transparent 28%),
+        linear-gradient(180deg, #07111f 0%, #081725 35%, #06101c 100%);
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -2;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      opacity: 0.24;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black 15%, transparent 90%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: auto;
+    }
+
+    .section {
+      padding: 105px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(108, 99, 255, 0.35);
+      border-radius: 999px;
+      color: #d7d5ff;
+      font-size: 0.79rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(108, 99, 255, 0.11);
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 0 6px rgba(0, 212, 168, 0.12);
+    }
+
+    .section-heading h2 {
+      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    /* Navigation */
+
+    .navbar {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      border-color: var(--border);
+      background: rgba(7, 17, 31, 0.82);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 24px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.16rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .logo-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 11px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), #9a78ff);
+      box-shadow: 0 10px 25px rgba(108, 99, 255, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #c6d2e2;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .login-link {
+      color: #d4deeb;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 47px;
+      padding: 0 19px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 850;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), #8772ff);
+      box-shadow: 0 14px 30px rgba(108, 99, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 17px 38px rgba(108, 99, 255, 0.45);
+    }
+
+    .btn-secondary {
+      color: #021f1a;
+      background: var(--secondary);
+      box-shadow: 0 13px 30px rgba(0, 212, 168, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: var(--secondary-hover);
+      box-shadow: 0 17px 35px rgba(0, 212, 168, 0.3);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: white;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(108, 99, 255, 0.65);
+      background: rgba(108, 99, 255, 0.11);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 810px;
+      padding: 155px 0 90px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 0 auto 24px;
+      font-size: clamp(2.8rem, 6vw, 5.45rem);
+      line-height: 0.99;
+      letter-spacing: -0.075em;
+    }
+
+    .hero h1 span {
+      color: transparent;
+      background: linear-gradient(90deg, #b7b2ff, #7bf5d9, #d6d2ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 660px;
+      margin: 0 auto;
+      color: #bdcadb;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.75;
+    }
+
+    .domain-search-wrap {
+      max-width: 850px;
+      margin: 42px auto 0;
+    }
+
+    .domain-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid rgba(177, 202, 234, 0.22);
+      border-radius: 19px;
+      background: rgba(12, 30, 51, 0.83);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+    }
+
+    .search-icon {
+      flex: 0 0 auto;
+      margin-left: 9px;
+      color: #a5b7cc;
+    }
+
+    .domain-search input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 7px;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 1.05rem;
+      background: transparent;
+    }
+
+    .domain-search input::placeholder {
+      color: #8294ab;
+    }
+
+    .domain-search button {
+      flex: 0 0 auto;
+      min-height: 52px;
+      padding: 0 25px;
+      border-radius: 12px;
+      color: #031f1a;
+      font-weight: 900;
+      background: var(--secondary);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .domain-search button:hover {
+      background: var(--secondary-hover);
+      transform: scale(1.02);
+    }
+
+    .quick-domains {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 19px;
+      color: #8fa2b8;
+      font-size: 0.84rem;
+    }
+
+    .quick-domain {
+      padding: 7px 11px;
+      border: 1px solid rgba(190, 212, 241, 0.11);
+      border-radius: 999px;
+      color: #aebed3;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.025);
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+
+    .quick-domain:hover {
+      border-color: rgba(0, 212, 168, 0.45);
+      color: #d7fff6;
+      background: rgba(0, 212, 168, 0.08);
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 38px;
+      color: #aebed3;
+      font-size: 0.87rem;
+      font-weight: 700;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-check {
+      display: grid;
+      width: 20px;
+      height: 20px;
+      place-items: center;
+      border-radius: 50%;
+      color: #051b17;
+      font-size: 0.74rem;
+      background: var(--secondary);
+    }
+
+    .floating-domain {
+      position: absolute;
+      z-index: 1;
+      padding: 12px 17px;
+      border: 1px solid rgba(175, 202, 234, 0.13);
+      border-radius: 13px;
+      color: rgba(232, 242, 255, 0.77);
+      font-size: 0.88rem;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      pointer-events: none;
+      background: rgba(16, 38, 63, 0.55);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-domain.one {
+      top: 23%;
+      left: 7%;
+    }
+
+    .floating-domain.two {
+      top: 34%;
+      right: 8%;
+      animation-delay: -2.3s;
+    }
+
+    .floating-domain.three {
+      bottom: 18%;
+      left: 13%;
+      animation-delay: -4.4s;
+    }
+
+    .floating-domain.four {
+      right: 18%;
+      bottom: 17%;
+      animation-delay: -1.2s;
+    }
+
+    .hero-orb {
+      position: absolute;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(3px);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .orb-one {
+      top: 110px;
+      left: -120px;
+      width: 350px;
+      height: 350px;
+      background: rgba(108, 99, 255, 0.13);
+    }
+
+    .orb-two {
+      right: -70px;
+      bottom: 50px;
+      width: 330px;
+      height: 330px;
+      background: rgba(0, 212, 168, 0.11);
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-16px) rotate(1deg);
+      }
+    }
+
+    /* Search Result */
+
+    .search-result-section {
+      display: none;
+      padding: 0 0 65px;
+    }
+
+    .search-result-section.active {
+      display: block;
+      animation: resultEnter 0.45s ease both;
+    }
+
+    @keyframes resultEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-box {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(16, 38, 63, 0.92), rgba(12, 28, 47, 0.88));
+      box-shadow: var(--shadow);
+    }
+
+    .result-loading {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      min-height: 145px;
+      color: #c7d4e4;
+      font-weight: 700;
+    }
+
+    .result-loading.active {
+      display: flex;
+    }
+
+    .spinner {
+      width: 23px;
+      height: 23px;
+      border: 3px solid rgba(255, 255, 255, 0.16);
+      border-top-color: var(--secondary);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .result-content {
+      display: none;
+    }
+
+    .result-content.active {
+      display: block;
+    }
+
+    .result-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-status {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .status-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 15px;
+      color: #03241d;
+      font-size: 1.25rem;
+      background: var(--secondary);
+    }
+
+    .status-icon.taken {
+      color: #fff1f4;
+      background: var(--danger);
+    }
+
+    .result-status p {
+      margin-bottom: 3px;
+      color: #a6b7ca;
+      font-size: 0.86rem;
+    }
+
+    .result-status h3 {
+      font-size: clamp(1.15rem, 3vw, 1.55rem);
+      word-break: break-word;
+    }
+
+    .result-price {
+      text-align: right;
+    }
+
+    .result-price span {
+      color: #91a4ba;
+      font-size: 0.82rem;
+    }
+
+    .result-price strong {
+      display: block;
+      margin: 3px 0 10px;
+      font-size: 1.58rem;
+    }
+
+    .suggestions {
+      padding-top: 25px;
+    }
+
+    .suggestions h4 {
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    .suggestion-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+    }
+
+    .suggestion-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .suggestion-item strong {
+      overflow: hidden;
+      font-size: 0.91rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .suggestion-item span {
+      display: block;
+      margin-top: 4px;
+      color: #90a3ba;
+      font-size: 0.76rem;
+    }
+
+    .suggestion-item button {
+      flex: 0 0 auto;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: #041f1a;
+      font-size: 0.76rem;
+      font-weight: 900;
+      background: var(--secondary);
+    }
+
+    /* Domain Pricing */
+
+    .pricing-section {
+      position: relative;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .domain-card {
+      position: relative;
+      overflow: hidden;
+      padding: 27px 23px 23px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: rgba(14, 34, 57, 0.68);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .domain-card::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: transform 0.3s ease;
+    }
+
+    .domain-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(108, 99, 255, 0.45);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .domain-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .domain-card.featured {
+      border-color: rgba(0, 212, 168, 0.37);
+      background: linear-gradient(145deg, rgba(0, 212, 168, 0.1), rgba(14, 34, 57, 0.74));
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 15px;
+      right: 14px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #03211b;
+      font-size: 0.65rem;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--secondary);
+    }
+
+    .domain-extension {
+      display: block;
+      margin-bottom: 17px;
+      color: #f4f8ff;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.07em;
+    }
+
+    .domain-card p {
+      min-height: 38px;
+      margin-bottom: 21px;
+      color: #9eb0c5;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .price-row strong {
+      font-size: 1.5rem;
+      letter-spacing: -0.04em;
+    }
+
+    .price-row small {
+      color: #8ea1b6;
+      font-size: 0.75rem;
+    }
+
+    .card-add {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid rgba(0, 212, 168, 0.35);
+      border-radius: 10px;
+      color: var(--secondary);
+      font-size: 1.2rem;
+      background: rgba(0, 212, 168, 0.08);
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .card-add:hover {
+      color: #031e19;
+      background: var(--secondary);
+    }
+
+    /* Features */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 31px 27px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: rgba(15, 35, 59, 0.57);
+    }
+
+    .feature-icon {
+      display: grid;
+      width: 51px;
+      height: 51px;
+      place-items: center;
+      margin-bottom: 21px;
+      border-radius: 15px;
+      color: #dedcff;
+      font-size: 1.32rem;
+      background: rgba(108, 99, 255, 0.18);
+    }
+
+    .feature-card:nth-child(2) .feature-icon {
+      color: #b9fff0;
+      background: rgba(0, 212, 168, 0.14);
+    }
+
+    .feature-card:nth-child(3) .feature-icon {
+      color: #ffe2ae;
+      background: rgba(255, 189, 74, 0.13);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 11px;
+      font-size: 1.1rem;
+    }
+
+    .feature-card p {
+      color: #a3b5c9;
+      font-size: 0.92rem;
+      line-height: 1.72;
+    }
+
+    /* Transfer Banner */
+
+    .transfer-section {
+      padding: 30px 0 100px;
+    }
+
+    .transfer-box {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 40px;
+      overflow: hidden;
+      padding: clamp(30px, 5vw, 65px);
+      border: 1px solid rgba(108, 99, 255, 0.35);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 85% 30%, rgba(0, 212, 168, 0.17), transparent 30%),
+        linear-gradient(130deg, rgba(65, 54, 163, 0.45), rgba(11, 29, 51, 0.95));
+    }
+
+    .transfer-box h2 {
+      max-width: 570px;
+      margin-bottom: 15px;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.055em;
+    }
+
+    .transfer-box p {
+      max-width: 580px;
+      margin-bottom: 27px;
+      color: #c2d0e0;
+      line-height: 1.72;
+    }
+
+    .transfer-points {
+      display: grid;
+      gap: 13px;
+      color: #e7effa;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .transfer-points div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .transfer-visual {
+      display: grid;
+      min-height: 230px;
+      place-items: center;
+    }
+
+    .transfer-circle {
+      position: relative;
+      display: grid;
+      width: min(240px, 70vw);
+      height: min(240px, 70vw);
+      place-items: center;
+      border: 1px solid rgba(185, 255, 240, 0.29);
+      border-radius: 50%;
+      background: rgba(0, 212, 168, 0.06);
+      box-shadow: inset 0 0 45px rgba(0, 212, 168, 0.08), 0 0 70px rgba(108, 99, 255, 0.16);
+    }
+
+    .transfer-circle::before,
+    .transfer-circle::after {
+      position: absolute;
+      border: 1px dashed rgba(208, 255, 244, 0.34);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .transfer-circle::before {
+      width: 150%;
+      height: 150%;
+      animation: spin 18s linear infinite;
+    }
+
+    .transfer-circle::after {
+      width: 123%;
+      height: 123%;
+      animation: spin 12s linear infinite reverse;
+    }
+
+    .transfer-center {
+      display: grid;
+      z-index: 1;
+      width: 105px;
+      height: 105px;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      font-size: 2.3rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 0 38px rgba(0, 212, 168, 0.34);
+    }
+
+    /* FAQ */
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .faq-intro h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .faq-intro p {
+      max-width: 360px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(15, 35, 59, 0.56);
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 21px 22px;
+      color: white;
+      text-align: left;
+      font-weight: 850;
+      background: transparent;
+    }
+
+    .faq-plus {
+      display: grid;
+      width: 27px;
+      height: 27px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 8px;
+      color: #cfccff;
+      font-size: 1.3rem;
+      background: rgba(108, 99, 255, 0.16);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease;
+    }
+
+    .faq-answer-inner {
+      min-height: 0;
+      overflow: hidden;
+      padding: 0 22px;
+      color: #a8b8ca;
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-answer {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-item.active .faq-answer-inner {
+      padding-bottom: 22px;
+    }
+
+    .faq-item.active .faq-plus {
+      color: #022019;
+      transform: rotate(45deg);
+      background: var(--secondary);
+    }
+
+    /* CTA + Footer */
+
+    .cta-section {
+      padding: 30px 0 80px;
+    }
+
+    .cta-box {
+      padding: clamp(33px, 5vw, 65px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(108, 99, 255, 0.27), transparent 47%),
+        rgba(13, 31, 53, 0.88);
+    }
+
+    .cta-box h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      letter-spacing: -0.06em;
+    }
+
+    .cta-box p {
+      max-width: 610px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 31px 0;
+      color: #8ea0b4;
+      font-size: 0.86rem;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 19px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* Scroll Animation */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Toast */
+
+    .toast {
+      position: fixed;
+      z-index: 2000;
+      right: 20px;
+      bottom: 20px;
+      max-width: 350px;
+      padding: 15px 18px;
+      border: 1px solid rgba(0, 212, 168, 0.33);
+      border-radius: 13px;
+      color: #dffdf6;
+      opacity: 0;
+      transform: translateY(25px);
+      pointer-events: none;
+      background: rgba(10, 38, 45, 0.96);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.33);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 950px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .transfer-box,
+      .faq-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-layout {
+        gap: 35px;
+      }
+
+      .faq-intro p {
+        max-width: 620px;
+      }
+
+      .transfer-visual {
+        order: -1;
+        min-height: 180px;
+      }
+
+      .floating-domain.one,
+      .floating-domain.two {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section {
+        padding: 76px 0;
+      }
+
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .mobile-menu-button {
+        display: block;
+      }
+
+      .mobile-menu {
+        display: none;
+        padding: 8px 0 19px;
+        border-top: 1px solid var(--border);
+      }
+
+      .mobile-menu.active {
+        display: grid;
+        gap: 9px;
+      }
+
+      .mobile-menu a {
+        padding: 12px 0;
+        color: #d9e3ef;
+        font-weight: 750;
+      }
+
+      .hero {
+        min-height: 730px;
+        padding-top: 130px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.65rem, 12vw, 4.2rem);
+      }
+
+      .domain-search {
+        flex-wrap: wrap;
+        padding: 8px;
+      }
+
+      .search-icon {
+        margin-left: 10px;
+      }
+
+      .domain-search input {
+        width: calc(100% - 48px);
+      }
+
+      .domain-search button {
+        width: 100%;
+      }
+
+      .hero-trust {
+        gap: 13px 19px;
+      }
+
+      .result-main {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .result-price {
+        text-align: left;
+      }
+
+      .suggestion-list {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-domain.three {
+        bottom: 12%;
+        left: 4%;
+      }
+
+      .floating-domain.four {
+        right: 3%;
+        bottom: 28%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 28px));
+      }
+
+      .hero {
+        min-height: 720px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-domains {
+        gap: 8px;
+      }
+
+      .floating-domain {
+        padding: 9px 12px;
+        font-size: 0.75rem;
+      }
+
+      .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .result-box {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <a href="#home" class="logo" aria-label="DomainFinder home">
+          <span class="logo-mark">◈</span>
+          <span>DomainFinder</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#domains">Domains</a>
+          <a href="#features">Why Us</a>
+          <a href="#transfer">Transfer</a>
+          <a href="#faq">Help Center</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#login" class="login-link">Sign in</a>
+          <a href="#domains" class="btn btn-primary">Find a domain</a>
+        </div>
+
+        <button
+          class="mobile-menu-button"
+          id="mobileMenuButton"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </div>
+
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="#domains">Domains</a>
+        <a href="#features">Why Us</a>
+        <a href="#transfer">Transfer</a>
+        <a href="#faq">Help Center</a>
+        <a href="#login">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-orb orb-one"></div>
+      <div class="hero-orb orb-two"></div>
+
+      <div class="floating-domain one">yourbrand.com</div>
+      <div class="floating-domain two">future.ai</div>
+      <div class="floating-domain three">studio.co</div>
+      <div class="floating-domain four">shop.online</div>
+
+      <div class="container hero-content">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Find your digital home
+        </div>
+
+        <h1>
+          Your next big idea starts with a
+          <span>great domain.</span>
+        </h1>
+
+        <p class="hero-description">
+          Search millions of domain names, secure the one that fits your brand,
+          and launch your online presence with confidence.
+        </p>
+
+        <div class="domain-search-wrap">
+          <form class="domain-search" id="domainSearchForm">
+            <span class="search-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle>
+                <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </span>
+
+            <input
+              type="text"
+              id="domainInput"
+              placeholder="Search for your perfect domain..."
+              autocomplete="off"
+              aria-label="Enter a domain name"
+            />
+
+            <button type="submit">Search domain</button>
+          </form>
+
+          <div class="quick-domains">
+            <span>Try:</span>
+            <button class="quick-domain" data-domain="mybusiness.com">mybusiness.com</button>
+            <button class="quick-domain" data-domain="creativestudio.co">creativestudio.co</button>
+            <button class="quick-domain" data-domain="futurebrand.ai">futurebrand.ai</button>
+          </div>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            Free WHOIS privacy
+          </div>
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            24/7 expert support
+          </div>
+          <div class="trust-item">
+            <span class="trust-check">✓</span>
+            Easy DNS management
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Search Results -->
+    <section class="search-result-section" id="searchResults">
+      <div class="container">
+        <div class="result-box">
+          <div class="result-loading" id="resultLoading">
+            <span class="spinner"></span>
+            Checking availability across registries...
+          </div>
+
+          <div class="result-content" id="resultContent">
+            <div class="result-main">
+              <div class="result-status">
+                <div class="status-icon" id="statusIcon">✓</div>
+                <div>
+                  <p id="statusText">Great news — this domain is available</p>
+                  <h3 id="resultDomain">yourdomain.com</h3>
+                </div>
+              </div>
+
+              <div class="result-price">
+                <span>First year registration</span>
+                <strong id="resultPrice">$12.99</strong>
+                <button class="btn btn-secondary" id="addToCartButton">
+                  Add to cart
+                </button>
+              </div>
+            </div>
+
+            <div class="suggestions">
+              <h4 id="suggestionTitle">You may also like</h4>
+              <div class="suggestion-list" id="suggestionList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Extensions -->
+    <section class="section pricing-section" id="domains">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Popular extensions
+          </div>
+          <h2>A domain for every kind of idea.</h2>
+          <p>
+            Choose an extension that makes your business, portfolio, store, or
+            new project easy to remember.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="domain-card reveal">
+            <span class="domain-extension">.com</span>
+            <p>The trusted global choice for brands and businesses.</p>
+            <div class="price-row">
+              <div>
+                <strong>$12.99</strong>
+                <small>/ first year</small>
+              </div>
+              <button class="card-add" data-extension=".com" aria-label="Search .com domains">+</button>
+            </div>
+          </article>
+
+          <article class="domain-card featured reveal">
+            <span class="popular-badge">Most popular</span>
+            <span class="domain-extension">.co</span>
+            <p>A modern, short, and professional alternative for creators.</p>
+            <div class="price-row">
+              <div>
+                <strong>$19.99</strong>
+                <small>/ first year</small>
+              </div>
+              <button class="card-add" data-extension=".co" aria-label="Search .co domains">+</button>
+            </div>
+          </article>
+
+          <article class="domain-card reveal">
+            <span class="domain-extension">.net</span>
+            <p>Perfect for networks, technology projects, and communities.</p>
+            <div class="price-row">
+              <div>
+                <strong>$14.99</strong>
+                <small>/ first year</small>
+              </div>
+              <button class="card-add" data-extension=".net" aria-label="Search .net domains">+</button>
+            </div>
+          </article>
+
+          <article class="domain-card reveal">
+            <span class="domain-extension">.ai</span>
+            <p>Built for innovative AI products, startups, and builders.</p>
+            <div class="price-row">
+              <div>
+                <strong>$59.99</strong>
+                <small>/ first year</small>
+              </div>
+              <button class="card-add" data-extension=".ai" aria-label="Search .ai domains">+</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            More than a name
+          </div>
+          <h2>Everything you need to own your online identity.</h2>
+          <p>
+            Register your domain with the essential protection, control, and
+            support needed to grow online.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card reveal">
+            <div class="feature-icon">◉</div>
+            <h3>Free domain privacy</h3>
+            <p>
+              Keep your personal registration details protected from public
+              WHOIS lookup databases where eligible.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon">⌘</div>
+            <h3>Simple DNS control</h3>
+            <p>
+              Connect your domain to your website, email provider, online
+              store, or hosting account with easy-to-manage DNS settings.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-icon">✦</div>
+            <h3>Support when it matters</h3>
+            <p>
+              Get help from a real support team whenever you need assistance
+              with registration, transfers, renewals, or setup.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transfer -->
+    <section class="transfer-section" id="transfer">
+      <div class="container">
+        <div class="transfer-box reveal">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Domain transfer
+            </div>
+
+            <h2>Bring your domain to a better home.</h2>
+            <p>
+              Transfer an existing domain and manage everything in one clean,
+              simple dashboard. We guide you through every step.
+            </p>
+
+            <div class="transfer-points">
+              <div><span class="trust-check">✓</span> Fast and secure transfer process</div>
+              <div><span class="trust-check">✓</span> One additional year added to eligible transfers</div>
+              <div><span class="trust-check">✓</span> Dedicated migration assistance</div>
+            </div>
+
+            <a href="#home" class="btn btn-secondary" style="margin-top: 28px;">
+              Transfer your domain →
+            </a>
+          </div>
+
+          <div class="transfer-visual" aria-hidden="true">
+            <div class="transfer-circle">
+              <div class="transfer-center">↔</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container faq-layout">
+        <div class="faq-intro reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Need help?
+          </div>
+          <h2>Frequently asked questions.</h2>
+          <p>
+            Here are quick answers to common questions clients ask before
+            registering a new domain.
+          </p>
+        </div>
+
+        <div class="faq-list reveal">
+          <article class="faq-item active">
+            <button class="faq-question">
+              <span>What is a domain name?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                A domain name is your website’s readable address on the internet,
+                such as yourbusiness.com. People use it to find your website and
+                to recognize your brand online.
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>How long can I register a domain for?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Most domain extensions can be registered for one year at a time
+                and renewed before expiration. Many registrars also allow
+                multi-year registrations depending on the extension.
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Can I connect my domain to my existing website?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. You can connect a domain to WordPress, Shopify, custom
+                hosting, email services, or another platform by updating its DNS
+                records or nameservers.
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Can I transfer a domain from another registrar?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes. Usually, you unlock the domain at the current registrar,
+                request an authorization code, and begin the transfer. Some
+                domains have eligibility or timing restrictions.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box reveal">
+          <h2>Your domain is waiting.</h2>
+          <p>
+            Search for a name that people will remember. Secure it today and
+            make your idea easier to find online.
+          </p>
+          <a href="#home" class="btn btn-secondary">Start your search →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 DomainFinder. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+        <a href="#support">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const domainSearchForm = document.getElementById("domainSearchForm");
+    const domainInput = document.getElementById("domainInput");
+    const searchResults = document.getElementById("searchResults");
+    const resultLoading = document.getElementById("resultLoading");
+    const resultContent = document.getElementById("resultContent");
+    const resultDomain = document.getElementById("resultDomain");
+    const resultPrice = document.getElementById("resultPrice");
+    const statusText = document.getElementById("statusText");
+    const statusIcon = document.getElementById("statusIcon");
+    const suggestionTitle = document.getElementById("suggestionTitle");
+    const suggestionList = document.getElementById("suggestionList");
+    const toast = document.getElementById("toast");
+    const navbar = document.getElementById("navbar");
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    const domainPrices = {
+      ".com": "$12.99",
+      ".co": "$19.99",
+      ".net": "$14.99",
+      ".org": "$13.99",
+      ".io": "$39.99",
+      ".ai": "$59.99",
+      ".online": "$4.99",
+      ".site": "$3.99"
+    };
+
+    function sanitizeDomain(value) {
+      return value
+        .toLowerCase()
+        .trim()
+        .replace(/^https?:\/\//, "")
+        .replace(/^www\./, "")
+        .replace(/[^a-z0-9.-]/g, "")
+        .replace(/\.+/g, ".");
+    }
+
+    function getDomainParts(domain) {
+      const extensions = Object.keys(domainPrices).sort(
+        (a, b) => b.length - a.length
+      );
+
+      const matchedExtension = extensions.find((extension) =>
+        domain.endsWith(extension)
+      );
+
+      if (matchedExtension) {
+        return {
+          name: domain.slice(0, -matchedExtension.length),
+          extension: matchedExtension
+        };
+      }
+
+      const firstPart = domain.split(".")[0];
+      return {
+        name: firstPart,
+        extension: ".com"
+      };
+    }
+
+    function createSuggestion(domainName, extension, index) {
+      const price = domainPrices[extension] || "$14.99";
+
+      return `
+        <div class="suggestion-item">
+          <div>
+            <strong>${domainName}${extension}</strong>
+            <span>${price} / first year</span>
+          </div>
+          <button
+            class="suggestion-cart"
+            data-domain="${domainName}${extension}"
+            data-price="${price}"
+          >
+            Add
+          </button>
+        </div>
+      `;
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(window.toastTimeout);
+
+      window.toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3500);
+    }
+
+    function searchDomain(rawDomain) {
+      let domain = sanitizeDomain(rawDomain);
+
+      if (!domain) {
+        showToast("Please enter a domain name first.");
+        domainInput.focus();
+        return;
+      }
+
+      const { name, extension } = getDomainParts(domain);
+      domain = `${name}${extension}`;
+
+      domainInput.value = domain;
+      searchResults.classList.add("active");
+      resultLoading.classList.add("active");
+      resultContent.classList.remove("active");
+
+      searchResults.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      const isTaken =
+        name.includes("taken") ||
+        name.includes("google") ||
+        name.includes("facebook") ||
+        name.includes("amazon") ||
+        name.length % 5 === 0;
+
+      setTimeout(() => {
+        resultLoading.classList.remove("active");
+        resultContent.classList.add("active");
+
+        const alternativeExtensions = [".co", ".net", ".io", ".ai", ".online"]
+          .filter((item) => item !== extension)
+          .slice(0, 3);
+
+        if (isTaken) {
+          statusIcon.textContent = "!";
+          statusIcon.classList.add("taken");
+          statusText.textContent = "This domain is already registered";
+          resultDomain.textContent = domain;
+          resultPrice.textContent = "Unavailable";
+          suggestionTitle.textContent = "Try one of these available alternatives";
+
+          suggestionList.innerHTML = alternativeExtensions
+            .map((item, index) => createSuggestion(name, item, index))
+            .join("");
+        } else {
+          statusIcon.textContent = "✓";
+          statusIcon.classList.remove("taken");
+          statusText.textContent = "Great news — this domain is available";
+          resultDomain.textContent = domain;
+          resultPrice.textContent = domainPrices[extension] || "$12.99";
+          suggestionTitle.textContent = "You may also like";
+
+          const suggestions = [
+            `${name}hq`,
+            `get${name}`,
+            `${name}online`
+          ];
+
+          suggestionList.innerHTML = suggestions
+            .map((suggestion, index) =>
+              createSuggestion(
+                suggestion,
+                alternativeExtensions[index] || ".co",
+                index
+              )
+            )
+            .join("");
+        }
+
+        document.getElementById("addToCartButton").dataset.domain = domain;
+        document.getElementById("addToCartButton").dataset.price =
+          domainPrices[extension] || "$12.99";
+      }, 1100);
+    }
+
+    domainSearchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      searchDomain(domainInput.value);
+    });
+
+    document.querySelectorAll(".quick-domain").forEach((button) => {
+      button.addEventListener("click", () => {
+        domainInput.value = button.dataset.domain;
+        searchDomain(button.dataset.domain);
+      });
+    });
+
+    document.querySelectorAll(".card-add").forEach((button) => {
+      button.addEventListener("click", () => {
+        const extension = button.dataset.extension;
+        const currentName = sanitizeDomain(domainInput.value).split(".")[0] || "yourbrand";
+
+        domainInput.value = `${currentName}${extension}`;
+        searchDomain(domainInput.value);
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const addButton = event.target.closest(
+        "#addToCartButton, .suggestion-cart"
+      );
+
+      if (!addButton) return;
+
+      const domain = addButton.dataset.domain || resultDomain.textContent;
+      const price = addButton.dataset.price || resultPrice.textContent;
+
+      if (price === "Unavailable") {
+        showToast("This domain is unavailable. Choose one of the alternatives.");
+        return;
+      }
+
+      showToast(`${domain} has been added to your cart at ${price}.`);
+    });
+
+    document.querySelectorAll(".faq-question").forEach((button) => {
+      button.addEventListener("click", () => {
+        const faqItem = button.parentElement;
+        const isOpen = faqItem.classList.contains("active");
+
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        if (!isOpen) {
+          faqItem.classList.add("active");
+        }
+      });
+    });
+
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 25);
+    });
+
+    mobileMenuButton.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("active");
+
+      mobileMenuButton.setAttribute("aria-expanded", isOpen);
+      mobileMenuButton.textContent = isOpen ? "✕" : "☰";
+    });
+
+    document.querySelectorAll(".mobile-menu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+        mobileMenuButton.setAttribute("aria-expanded", "false");
+        mobileMenuButton.textContent = "☰";
+      });
+    });
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.14
+      }
+    );
+
+    revealElements.forEach((element) => revealObserver.observe(element));
+  </script>
+</body>
+</html>
