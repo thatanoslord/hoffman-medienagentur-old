@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search for a domain name - Hostinger</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+
     <link rel="stylesheet" href="./css/hma-header.css" />
     <link rel="stylesheet" href="./css/hmafooter.css" />
     <link rel="stylesheet" href="./css/mobile-navmenu.css" />
@@ -129,7 +132,14 @@
 
       /* ---------- HERO ---------- */
       .hero {
-            background: var(--purple-dark);
+            background: radial-gradient(
+      60% 90% at 75% 22%,
+      rgba(86, 77, 255, 0.95),
+      rgba(59, 51, 182, 0.75) 35%,
+      rgba(19, 14, 63, 0.25) 58%,
+      rgba(0, 0, 0, 0) 72%
+    ),
+    linear-gradient(90deg, #000 24%, #08082e 58%, #4d49db 100%);
     padding: 56px 0 40px;
     text-align: center;
     display: flex;
@@ -139,10 +149,11 @@
       }
       .hero h1 {
         color: #fff;
-        font-size: 40px;
-        font-weight: 600;
-        margin-bottom: 28px;
-        letter-spacing: -0.5px;
+        font-size: 56px;
+        font-weight: 500;
+        margin-bottom: 48px;
+        letter-spacing: -.005em;
+        line-height: 64px;
       }
       .search-bar {
         max-width: 640px;
@@ -236,8 +247,31 @@
         background: linear-gradient(160deg, #3a2a6b, #2a1f52);
         color: #fff;
         background-image: none;
-        position: relative;
+       display: flex;
+        justify-content: end;
       }
+
+      .stat::before {
+  content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+
+    z-index: 3;
+    background: linear-gradient(180deg, transparent, rgb(255 255 255 / 20%), rgb(255 255 255 / 40%));
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+}
+
+
+
+
+
+
+      
       .hcard.stat img {
         position: absolute;
         right: 0;
@@ -253,40 +287,58 @@
         font-weight: 700;
         margin-bottom: 2px;
         position: relative;
-        z-index: 1;
+        z-index: 4;
       }
       .hcard.stat .stat-label {
         font-size: 12px;
-        color: #cfc9e6;
+        color: #fff;
         margin-bottom: 16px;
         position: relative;
-        z-index: 1;
+        z-index: 4;
       }
       .hcard.stat .stat-num2 {
         font-size: 26px;
         font-weight: 700;
-        margin-top: 38px;
+        /* margin-top: 38px; */
         position: relative;
-        z-index: 1;
+        z-index: 4;
       }
       .hcard.stat .stat-label2 {
         font-size: 12px;
-        color: #cfc9e6;
+        color: #fff;
         position: relative;
-        z-index: 1;
+        z-index: 4;
       }
       .hcard.transfer {
-        background: #1c1338;
-        color: #fff;
+        background: #fff;
+        color: #000000;
         
+      }
+
+      .transfer::before{
+        content: "";
+         content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+
+        background: radial-gradient(101.4% 61.3% at 12.4% 00%, #8b00e863 0%, #d7bdff 36.292934%, rgb(168 24 255 / 6%) 86.29293355855856%, rgb(235 239 255 / 0%) 100%);
+      }
+      .transfer img{
+        position: relative;
+        z-index: 1;
       }
       .hcard.transfer .top-row {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        position: relative;
+        z-index: 1;
       }
       .hcard.transfer .arrow {
-        color: #cfc9e6;
+        color: #000000;
         font-size: 14px;
       }
       .hcard.transfer .mockup {
@@ -1645,9 +1697,9 @@
       <div class="wrap">
         <h1>Search for a domain name</h1>
         <div class="search-bar">
-          <span class="search-icon">🔍</span>
+          <span class="search-icon"><i class="ri-search-line" style="color: #000;"></i></span>
           <input type="text" placeholder="Type the domain you want" />
-          <div class="search-go">➜</div>
+          <a class="search-go" href="">➜</a>
         </div>
 
         <div class="hero-cards">
@@ -1672,14 +1724,15 @@
           </div>
           <div class="hcard transfer">
             <div class="top-row">
-              <div style="font-size: 14px; font-weight: 600">
+              <div style="font-size: 22px; font-weight: 600">
                 Domain transfer
               </div>
-              <div class="arrow">↗</div>
+              <!-- <div class="arrow">↗</div> -->
+
             </div>
-            <div class="mockup"><span class="dot"></span> yourdomain.com</div>
-            <p style="font-size: 12px; color: #cfc9e6">
-              We made domain transfer easy – from $9.99
+            <img src="./assets/images/gallery/switch.webp" alt="">
+            <p style="font-size: 16px; font-weight: 500; color: #000000">
+              We made domain transfer easy from $9.99
             </p>
           </div>
         </div>
@@ -1696,7 +1749,7 @@
     <!-- ================= WHY BUY DOMAIN NAMES ================= -->
     <section class="section">
       <div class="wrap">
-        <h2 class="section-title">Why buy domain names at Hostinger?</h2>
+        <h2 class="section-title">Why buy domain names at Hoffmann Medienagentur?</h2>
 
         <div class="why-grid">
           <div class="why-card">
