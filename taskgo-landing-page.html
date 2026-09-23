@@ -49,7 +49,7 @@
       }
       .container {
         width: min(100% - 48px, 980px);
-        margin: auto;
+        margin: 0 auto;
       }
 
       .hero {
@@ -72,7 +72,7 @@
         
         display: flex;
         flex-flow: column;
-        justify-items: unset;
+        justify-content: end;
       }
       .hero::before,
       .hero::after {
@@ -125,29 +125,6 @@
         font-size: 18px;
         margin-top: 13px;
       }
-      .hero-actions {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 22px;
-      }
-      .button {
-        border-radius: 22px;
-        padding: 12px 19px;
-        border: 1px solid var(--purple);
-        background: var(--purple);
-        color: #fff;
-        font-size: 14px;
-        box-shadow: 0 7px 16px rgba(94, 66, 232, 0.2);
-        cursor: pointer;
-      }
-      .button.ghost {
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.5);
-        border-color: #c8c7d1;
-        box-shadow: none;
-      }
-
       .tag {
         position: absolute;
         display: flex;
@@ -168,11 +145,11 @@
         border-radius: 50%;
       }
       .tag.analysis {
-        left: calc(50% - 255px);
+        left: calc(50% - 455px);
         top: 327px;
       }
       .tag.programmer {
-        right: calc(50% - 265px);
+        right: calc(50% - 465px);
         top: 327px;
       }
       .tag.web {
@@ -1363,10 +1340,7 @@
         <p class="subtitle">
           Easily manage tasks and enhance productivity from start to finish.
         </p>
-        <div class="hero-actions">
-          <button class="button">Get Started Free</button
-          ><button class="button ghost">Book a Demo</button>
-        </div>
+        
       </div>
 
       <div class="tag analysis"><span class="dot"></span> Analyst</div>

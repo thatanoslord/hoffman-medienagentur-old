@@ -1,0 +1,2830 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search for a domain name - Hostinger</title>
+
+    <link rel="stylesheet" href="./css/hma-header.css" />
+    <link rel="stylesheet" href="./css/hmafooter.css" />
+    <link rel="stylesheet" href="./css/mobile-navmenu.css" />
+
+    <style>
+      :root {
+        --purple-dark: #0e0629;
+        --purple: #673de6;
+        --purple-light: #7c5cf0;
+        --purple-pale: #f2effd;
+        --text-dark: #1a1523;
+        --text-gray: #5e5a68;
+        --green: #00c569;
+        --border: #e6e3ee;
+        --bg: #ffffff;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-dark);
+        background: #fff;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+      }
+      ul {
+        list-style: none;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ---------- HEADER ---------- */
+      header.topnav {
+        background: var(--purple-dark);
+        padding: 16px 0;
+      }
+      .topnav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 18px;
+        color: #fff;
+        letter-spacing: 0.2px;
+      }
+      .logo svg {
+        width: 22px;
+        height: 22px;
+      }
+      nav.mainlinks {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      nav.mainlinks a {
+        color: #e4e1ee;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .navright {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .agent-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 14px;
+        border-radius: 999px;
+      }
+      .icon-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 12px;
+      }
+      .lang {
+        color: #e4e1ee;
+        font-size: 13px;
+        font-weight: 500;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        background: var(--purple-dark);
+        padding: 56px 0 40px;
+        text-align: center;
+        height: 100vh;
+      }
+      .hero h1 {
+        color: #fff;
+        font-size: 40px;
+        font-weight: 600;
+        margin-bottom: 28px;
+        letter-spacing: -0.5px;
+      }
+      .search-bar {
+        max-width: 640px;
+        margin: 0 auto 32px;
+        background: #fff;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        padding: 6px 6px 6px 22px;
+      }
+      .search-bar input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        padding: 10px 0;
+        color: #1a1523;
+      }
+      .search-bar input::placeholder {
+        color: #9a96a6;
+      }
+      .search-icon {
+        color: #9a96a6;
+        margin-right: 10px;
+        font-size: 16px;
+      }
+      .search-go {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--purple);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+      }
+
+      .hero-cards {
+        max-width: 900px;
+        margin: 0 auto 22px;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr 1fr;
+        gap: 14px;
+      }
+      .hcard {
+        border-radius: 16px;
+        padding: 18px 20px;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        min-height: 150px;
+      }
+      .hcard.promo {
+        background: linear-gradient(135deg, #8b6df2, #6d4ce0);
+        color: #fff;
+      }
+      .hcard.promo .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        background: #c6ff5c;
+        color: #1a1523;
+        border-radius: 7px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 34px;
+      }
+      .hcard.promo p {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.3;
+        max-width: 150px;
+      }
+      .hcard.stat {
+        background: linear-gradient(160deg, #3a2a6b, #2a1f52);
+        color: #fff;
+        background-image: none;
+        position: relative;
+      }
+      .hcard.stat img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 56%;
+        object-fit: cover;
+        border-radius: 0 16px 16px 0;
+        opacity: 0.9;
+      }
+      .hcard.stat .stat-num {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .hcard.stat .stat-label {
+        font-size: 12px;
+        color: #cfc9e6;
+        margin-bottom: 16px;
+      }
+      .hcard.stat .stat-num2 {
+        font-size: 26px;
+        font-weight: 700;
+        margin-top: 38px;
+      }
+      .hcard.stat .stat-label2 {
+        font-size: 12px;
+        color: #cfc9e6;
+      }
+      .hcard.transfer {
+        background: #1c1338;
+        color: #fff;
+      }
+      .hcard.transfer .top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .hcard.transfer .arrow {
+        color: #cfc9e6;
+        font-size: 14px;
+      }
+      .hcard.transfer .mockup {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin: 14px 0;
+        font-size: 11px;
+        color: #cfc9e6;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .hcard.transfer .mockup .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #8b6df2;
+      }
+      .hcard.transfer h4 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .hcard.transfer p {
+        font-size: 12px;
+        color: #cfc9e6;
+      }
+
+      .trust-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: #cfc9e6;
+        font-size: 13px;
+      }
+      .stars {
+        color: #00c569;
+        letter-spacing: 1px;
+        font-size: 13px;
+      }
+
+      /* ---------- WHY BUY SECTION ---------- */
+      .section {
+        padding: 80px 0;
+      }
+      .section-title {
+        font-size: 32px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 44px;
+        letter-spacing: -0.3px;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .why-card {
+        background: var(--purple-pale);
+        border-radius: 18px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 340px;
+      }
+      .why-card .media {
+        flex: 1;
+        position: relative;
+        padding: 34px;
+        display: flex;
+        align-items: flex-start;
+      }
+      .why-card .body {
+        padding: 24px 30px 30px;
+      }
+      .why-card h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .why-card p {
+        font-size: 14px;
+        color: var(--text-gray);
+        line-height: 1.55;
+        margin-bottom: 10px;
+        max-width: 420px;
+      }
+      .why-card .link {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-dark);
+        border-bottom: 1.5px solid var(--text-dark);
+        display: inline-block;
+        padding-bottom: 1px;
+      }
+
+      .url-pill {
+        background: #fff;
+        border-radius: 999px;
+        padding: 10px 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #4a4557;
+        box-shadow: 0 6px 18px rgba(90, 60, 160, 0.12);
+      }
+      .url-pill .dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--purple);
+      }
+
+      .privacy-panel {
+        background: #fff;
+        border-radius: 14px;
+        padding: 16px 18px;
+        width: 100%;
+        max-width: 260px;
+        box-shadow: 0 10px 30px rgba(60, 30, 120, 0.12);
+        margin-left: auto;
+      }
+      .privacy-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .toggle {
+        width: 34px;
+        height: 18px;
+        background: var(--purple);
+        border-radius: 999px;
+        position: relative;
+      }
+      .toggle::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-radius: 50%;
+      }
+      .privacy-sub {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: var(--text-gray);
+        padding: 6px 0;
+        border-top: 1px solid var(--border);
+      }
+      .privacy-sub .active-pill {
+        background: #e6faf1;
+        color: #00a85c;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 999px;
+      }
+
+      .why-grid2 {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 20px;
+      }
+      .why-card.dark {
+        background: #0e0629;
+        color: #fff;
+      }
+      .why-card.dark .media {
+        background: linear-gradient(135deg, #1c8fa0, #0e0629);
+        border-radius: 14px;
+        margin: 20px;
+        padding: 20px;
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+      }
+      .why-card.dark h3 {
+        color: #fff;
+      }
+      .why-card.dark p {
+        color: #cfc9e6;
+      }
+      .why-card.dark .link {
+        color: #fff;
+        border-bottom-color: #fff;
+      }
+      .chip-nav {
+        display: flex;
+        gap: 14px;
+        background: #0e0629cc;
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 10px;
+        color: #cfc9e6;
+        width: fit-content;
+        margin-bottom: 14px;
+      }
+      .chat-bubble {
+        background: #fff;
+        border-radius: 12px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 220px;
+        font-size: 11px;
+        color: #1a1523;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+      .chat-bubble img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .chip-btn {
+        background: #fff;
+        color: #1a1523;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 999px;
+        width: fit-content;
+        margin-top: 60px;
+      }
+
+      .quicksetup {
+        background: var(--purple-pale);
+        border-radius: 18px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+      }
+      .quicksetup .steps {
+        background: #fff;
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(60, 30, 120, 0.08);
+      }
+      .step-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 0;
+      }
+      .step-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--purple);
+        flex-shrink: 0;
+      }
+      .step-item.faded {
+        color: #b3aec2;
+      }
+      .step-item.faded .step-dot {
+        background: #d8d4e6;
+      }
+
+      .findbtn-wrap {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .btn-primary {
+        background: var(--purple);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 14px 32px;
+        border-radius: 999px;
+        display: inline-block;
+      }
+
+      /* ---------- TRUSTED / TESTIMONIALS ---------- */
+      .trusted {
+        padding: 80px 0;
+        text-align: center;
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto 26px;
+      }
+      .testi-card {
+        background: #f7f6fb;
+        border-radius: 16px;
+        padding: 24px;
+        text-align: left;
+      }
+      .testi-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .testi-name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .testi-card .stars {
+        margin-bottom: 12px;
+        display: block;
+      }
+      .testi-card p {
+        font-size: 13px;
+        color: var(--text-gray);
+        line-height: 1.6;
+      }
+      .see-more {
+        font-size: 13px;
+        color: var(--text-gray);
+      }
+      .see-more a {
+        color: #00a85c;
+        font-weight: 600;
+      }
+
+      /* ---------- POPULAR DOMAINS (dark) ---------- */
+      .popular {
+        background: var(--purple-dark);
+        padding: 70px 0;
+        color: #fff;
+      }
+      .popular-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 34px;
+      }
+      .popular-head h2 {
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 1.25;
+        max-width: 360px;
+      }
+      .popular-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .compare-link {
+        font-size: 13px;
+        color: #cfc9e6;
+        border-bottom: 1px solid #cfc9e6;
+        padding-bottom: 2px;
+      }
+      .carousel-arrows {
+        display: flex;
+        gap: 8px;
+      }
+      .carousel-arrows button {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .domains-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 14px;
+      }
+      .domain-card {
+        background: #1a1140;
+        border-radius: 14px;
+        padding: 20px 16px;
+      }
+      .domain-card .ext {
+        font-size: 19px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .domain-card .desc {
+        font-size: 12px;
+        color: #9d97b8;
+        line-height: 1.5;
+        margin-bottom: 18px;
+        min-height: 52px;
+      }
+      .domain-card .price-old {
+        font-size: 12px;
+        color: #726c8c;
+        text-decoration: line-through;
+        margin-bottom: 2px;
+      }
+      .domain-card .price-new {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+      .domain-card .price-new span {
+        font-size: 11px;
+        font-weight: 500;
+        color: #9d97b8;
+      }
+      .btn-check {
+        width: 100%;
+        background: var(--purple);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 0;
+        border-radius: 999px;
+      }
+
+      /* ---------- HOW TO GET BEST DOMAIN ---------- */
+      .howto {
+        padding: 80px 0;
+      }
+      .howto-grid {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 60px;
+      }
+      .howto h2 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+      .accordion-item {
+        border-bottom: 1px solid var(--border);
+      }
+      .accordion-item:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .accordion-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 4px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .accordion-head .plus {
+        font-size: 18px;
+        color: var(--text-gray);
+        transition: transform 0.2s;
+        width: 20px;
+        text-align: center;
+      }
+      .accordion-item.open .plus {
+        transform: rotate(45deg);
+      }
+      .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+      }
+      .accordion-item.open .accordion-body {
+        max-height: 200px;
+      }
+      .accordion-body p {
+        font-size: 14px;
+        color: var(--text-gray);
+        line-height: 1.6;
+        padding: 0 4px 20px;
+        max-width: 520px;
+      }
+
+      /* ---------- LOST SECTION (dark) ---------- */
+      .lost {
+        background: var(--purple-dark);
+        color: #fff;
+        padding: 80px 0;
+        text-align: center;
+      }
+      .lost h2 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 44px;
+      }
+      .lost-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        text-align: left;
+      }
+      .lost-card {
+        background: #1a1140;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .lost-card .media {
+        padding: 30px;
+        min-height: 190px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .lost-card .body {
+        padding: 22px 24px 26px;
+      }
+      .lost-card h3 {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .lost-card p {
+        font-size: 13px;
+        color: #9d97b8;
+        line-height: 1.55;
+        margin-bottom: 8px;
+      }
+      .lost-card .link {
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 1px;
+      }
+
+      /* ---------- COMPARE PRICES TABLE ---------- */
+      .compare {
+        padding: 80px 0;
+        text-align: center;
+      }
+      .compare-controls {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin: 0 auto 30px;
+        max-width: 640px;
+      }
+      .compare-search {
+        flex: 1;
+        background: #f7f6fb;
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-size: 13px;
+        color: #9a96a6;
+        text-align: left;
+      }
+      .compare-select {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-size: 13px;
+        min-width: 160px;
+        text-align: left;
+      }
+      table.price-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 26px;
+        text-align: left;
+      }
+      .price-table th {
+        font-size: 13px;
+        color: var(--text-gray);
+        font-weight: 500;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .price-table td {
+        font-size: 14px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .price-table tr:nth-child(even) td {
+        background: #faf9fc;
+      }
+      .btn-outline {
+        border: 1px solid var(--border);
+        color: var(--text-dark);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 999px;
+        display: inline-block;
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq {
+        padding: 80px 0;
+        text-align: center;
+      }
+      .faq p.sub {
+        color: var(--text-gray);
+        font-size: 14px;
+        margin-bottom: 40px;
+      }
+      .faq-list {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      /* ---------- FOOTER ---------- */
+      footer {
+        background: #f7f6fb;
+        padding: 60px 0 30px;
+      }
+      .footer-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 36px;
+      }
+      .breadcrumb {
+        font-size: 13px;
+        color: var(--text-gray);
+        margin-bottom: 36px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      .footer-col h5 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        margin-bottom: 16px;
+      }
+      .footer-col a {
+        display: block;
+        font-size: 13px;
+        color: var(--text-gray);
+        margin-bottom: 11px;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--border);
+        padding-top: 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-bottom-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 13px;
+        color: var(--text-gray);
+      }
+      .payment-icons {
+        display: flex;
+        gap: 8px;
+      }
+      .payment-icons span {
+        width: 34px;
+        height: 22px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+      }
+      .social-icons {
+        display: flex;
+        gap: 14px;
+      }
+      .social-icons span {
+        width: 16px;
+        height: 16px;
+        background: var(--text-gray);
+        border-radius: 3px;
+        display: inline-block;
+      }
+      .legal-links {
+        display: flex;
+        gap: 18px;
+        font-size: 13px;
+        color: var(--text-gray);
+      }
+
+      @media (max-width: 1000px) {
+        .why-grid,
+        .why-grid2,
+        .howto-grid,
+        .testi-grid,
+        .lost-grid {
+          grid-template-columns: 1fr;
+        }
+        .domains-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .footer-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        nav.mainlinks {
+          display: none;
+        }
+        .hero-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+
+    <!-- faq -->
+    <!-- FAQ -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Sora:wght@400&display=swap");
+
+      .faq-section {
+        background: #fff;
+        padding: 80px 30px 60px;
+      }
+
+      .faq-section__container {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .faq-section__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .faq-section__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        color: rgb(87, 87, 87);
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.25;
+      }
+
+      .faq-section__eyebrow-icon {
+        width: 20px;
+        height: 20px;
+        /* background: rgb(87, 87, 87); */
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        animation: faqEyebrowSpin 12s linear infinite;
+        flex: 0 0 auto;
+      }
+
+      @keyframes faqEyebrowSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .faq-section__title {
+        margin: 0;
+        max-width: 650px;
+        color: rgb(23, 23, 23);
+        font-family: "Sora", sans-serif;
+        font-size: 60px;
+        font-weight: 400;
+        line-height: 1.12;
+        letter-spacing: 0;
+        text-align: center;
+      }
+
+      .faq-section__title .word,
+      .faq-contact-card__title .word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(10px);
+        filter: blur(10px);
+        transition:
+          opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .faq-section__title.is-visible .word,
+      .faq-contact-card__title.is-visible .word {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      .faq-section__body {
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: 840px 440px;
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      /* Accordion */
+
+      .faq-accordion {
+        max-width: 840px;
+      }
+
+      .faq-item {
+        max-width: 840px;
+        margin-bottom: 12px;
+        background: rgb(255, 255, 255);
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        height: 96px;
+
+        opacity: 0;
+        transform: translateY(42px);
+        filter: blur(14px);
+        transition:
+          opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform, filter;
+      }
+
+      .faq-item.is-revealed {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      .faq-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .faq-item__heading {
+        margin: 0;
+      }
+
+      .faq-item__trigger {
+        width: 100%;
+        max-width: 840px;
+        padding: 24px 30px;
+        background: rgb(255, 255, 255);
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .faq-item__question {
+        color: rgb(23, 23, 23);
+        font-family: "Sora", sans-serif;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 1.32;
+      }
+
+      [data-no-select] {
+        user-select: none;
+      }
+
+      .faq-item__control {
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        border: 1px solid rgb(200, 200, 200);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        background: transparent;
+        transition:
+          background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .faq-item__control-icon {
+        width: 20px;
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .faq-item__control-icon svg {
+        width: 20px;
+        height: 20px;
+        fill: rgb(0, 0, 0);
+      }
+
+      .faq-item__control-icon--open {
+        display: none;
+      }
+
+      .faq-item__control-icon--closed {
+        display: inline-flex;
+      }
+
+      /* Panel */
+
+      .faq-item__panel {
+        max-width: 840px;
+        padding: 0 30px 0;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition:
+          grid-template-rows 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          padding-bottom 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .faq-item__answer {
+        overflow: hidden;
+        /* padding-top: 24px;
+  padding-bottom: 25px; */
+        color: rgb(120, 120, 120);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      /* Open state */
+      .faq-item.is-open {
+        height: fit-content;
+      }
+      .faq-item.is-open .faq-item__panel {
+        grid-template-rows: 1fr;
+        padding-bottom: 24px;
+      }
+
+      .faq-item.is-open .faq-item__control {
+        background: rgb(0, 0, 0);
+        border-color: rgb(0, 0, 0);
+      }
+
+      .faq-item.is-open .faq-item__control-icon--open {
+        display: inline-flex;
+      }
+
+      .faq-item.is-open .faq-item__control-icon--open svg {
+        fill: rgb(255, 255, 255);
+      }
+
+      .faq-item.is-open .faq-item__control-icon--closed {
+        display: none;
+      }
+
+      /* Contact card */
+
+      .faq-contact-card {
+        width: 440px;
+        min-height: 587px;
+        height: 100%;
+        align-self: stretch;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .faq-contact-card__image {
+        width: 100%;
+        height: 100%;
+        min-height: 587px;
+        object-fit: cover;
+      }
+
+      .faq-contact-card__overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 30px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.1) 0%,
+          rgba(0, 0, 0, 0.4) 40%,
+          rgba(0, 0, 0, 0.75) 100%
+        );
+      }
+
+      .faq-contact-card__title {
+        margin: 0;
+        max-width: 340px;
+        color: rgb(255, 255, 255);
+        font-family: "Sora", sans-serif;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 1.32;
+      }
+
+      .faq-contact-card__button {
+        position: relative;
+        width: 200px;
+        height: 50px;
+        border-radius: 999px;
+        background: rgb(255, 255, 255);
+        text-decoration: none;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .faq-contact-card__button-text {
+        position: absolute;
+        color: rgb(23, 23, 23);
+        font-family: "Inter", sans-serif;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 1;
+        transition:
+          transform 0.45s ease,
+          opacity 0.45s ease;
+      }
+
+      .faq-contact-card__button-text--primary {
+        transform: translateY(0);
+      }
+
+      .faq-contact-card__button-text--secondary {
+        transform: translateY(150%);
+      }
+
+      .faq-contact-card__button:hover .faq-contact-card__button-text--primary {
+        transform: translateY(-150%);
+      }
+
+      .faq-contact-card__button:hover
+        .faq-contact-card__button-text--secondary {
+        transform: translateY(0);
+      }
+
+      /* Tablet */
+
+      @media (max-width: 1359.98px) {
+        .faq-section {
+          padding: 100px 30px 50px;
+        }
+
+        .faq-section__title {
+          font-size: 52px;
+        }
+
+        .faq-section__body {
+          margin-top: 50px;
+          grid-template-columns: 1fr;
+          gap: 30px;
+          justify-items: center;
+        }
+
+        .faq-accordion {
+          max-width: 750px;
+          width: 100%;
+        }
+
+        .faq-item,
+        .faq-item__trigger,
+        .faq-item__panel {
+          max-width: 750px;
+        }
+
+        .faq-contact-card {
+          width: 750px;
+          min-height: 386px;
+        }
+
+        .faq-contact-card__image {
+          min-height: 386px;
+        }
+
+        .faq-contact-card__overlay {
+          padding: 30px;
+        }
+
+        .faq-contact-card__title {
+          font-size: 24px;
+        }
+      }
+
+      /* Phone */
+
+      @media (max-width: 767.98px) {
+        .faq-section {
+          padding: 80px 20px 40px;
+        }
+
+        .faq-section__title {
+          font-size: 42px;
+        }
+
+        .faq-section__body {
+          margin-top: 40px;
+          gap: 20px;
+        }
+
+        .faq-accordion {
+          max-width: 350px;
+        }
+
+        .faq-item,
+        .faq-item__trigger,
+        .faq-item__panel {
+          max-width: 350px;
+        }
+
+        .faq-item__trigger {
+          padding: 20px 20px;
+        }
+
+        .faq-item__question {
+          font-size: 18px;
+        }
+
+        .faq-item__answer {
+          font-size: 15px;
+        }
+
+        .faq-contact-card {
+          width: 350px;
+          min-height: 249px;
+        }
+
+        .faq-contact-card__image {
+          min-height: 249px;
+        }
+
+        .faq-contact-card__overlay {
+          padding: 30px 20px;
+        }
+
+        .faq-contact-card__title {
+          font-size: 22px;
+          max-width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .faq-section__eyebrow-icon {
+          animation: none;
+        }
+
+        .faq-section__title .word,
+        .faq-contact-card__title .word,
+        .faq-item__panel,
+        .faq-contact-card__button-text {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+
+    <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+
+    <div class="mobile-nav-wrap">
+      <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+        <div class="mobile-nav-bar">
+          <a href="./index.html"
+            ><img
+              class="mobile-wordmark"
+              data-mobile-logo
+              src="./assets/images/logo/HMA - Logo soft.png"
+              alt="HMA Logo"
+          /></a>
+
+          <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-blur-nav-drawer"
+            aria-label="Open menu"
+            data-mobile-toggle
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+          <div class="mobile-menu-rows" data-mobile-rows>
+            <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+              <span class="mobile-menu-link-index">01</span>
+              <span class="mobile-menu-link-label">About</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              class="mobile-menu-link"
+              href="./hmaservices.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">02</span>
+              <span class="mobile-menu-link-label">Services</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+              <span class="mobile-menu-link-index">03</span>
+              <span class="mobile-menu-link-label">Blogs</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+              <span class="mobile-menu-link-index">04</span>
+              <span class="mobile-menu-link-label">Contact</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./privacy-policy.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">05</span>
+              <span class="mobile-menu-link-label">Privacy and Policy</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./legal-notice.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">06</span>
+              <span class="mobile-menu-link-label">Legal Notice</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="mobile-nav-foot">
+            <div class="mobile-status">
+              <span class="mobile-status-dot" aria-hidden="true"></span>
+              <span class="mobile-clock" data-mobile-clock>10:37</span>
+            </div>
+
+            <div class="mobile-socials" aria-label="Social links">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instagram</a
+              >
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer"
+                >X</a
+              >
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- navbar -->
+    <nav class="nav-wrap">
+      <a href="/" class="LogoWrapper"
+        ><img
+          src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp"
+          alt=""
+          class="Logo"
+      /></a>
+      <div class="nav-bar" id="navBar">
+        <a href="./index.html" class="nav-item" data-name="Home">
+          <span class="nav-label">Home</span>
+          <span class="nav-icon">⌂</span>
+          <span class="lamp">
+            <span class="lamp-top">
+              <span class="glow glow-1"></span>
+              <span class="glow glow-2"></span>
+              <span class="glow glow-3"></span>
+            </span>
+          </span>
+        </a>
+
+        <a href="./about.html" class="nav-item" data-name="About">
+          <span class="nav-label">About</span>
+          <span class="nav-icon">◎</span>
+        </a>
+
+        <!-- Services dropdown -->
+        <div class="nav-item nav-item--services" data-name="Services">
+          <button
+            onclick="window.location.href = './hmaservices.html'"
+            class="nav-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="services-dropdown"
+          >
+            <span class="nav-label">Services</span>
+            <span class="nav-icon">◫</span>
+            <span class="dropdown-arrow" aria-hidden="true"></span>
+          </button>
+
+          <div
+            class="services-dropdown"
+            id="services-dropdown"
+            aria-label="Services menu"
+          >
+            <a class="service-dropdown-link" href="./hmaservices.html"
+              >All Services</a
+            >
+            <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
+            <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
+            <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
+            <a class="service-dropdown-link" href="./dpp-ready.html"
+              >DPP READY</a
+            >
+            <a class="service-dropdown-link" href="./domains-email.html"
+              >Domains &amp; Email</a
+            >
+            <a class="service-dropdown-link" href="./infrastructure.html"
+              >INFRASTRUCTURE</a
+            >
+            <a class="service-dropdown-link" href="./ai-search.html"
+              >Ai Search</a
+            >
+            <a class="service-dropdown-link" href="./costum-software.html"
+              >Custom Software</a
+            >
+          </div>
+        </div>
+
+        <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
+          <span class="nav-label">Blogs</span>
+          <span class="nav-icon">◫</span>
+        </a>
+
+        <a href="./contact.html" class="nav-item" data-name="Contact">
+          <span class="nav-label">Contact</span>
+          <span class="nav-icon">✉</span>
+        </a>
+      </div>
+      <div class="nav-cta-wrap">
+        <a href="./contact.html" class="nav-btn light">
+          <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
+          <span class="btn-label">Book A Call</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="wrap">
+        <h1>Search for a domain name</h1>
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Type the domain you want" />
+          <div class="search-go">➜</div>
+        </div>
+
+        <div class="hero-cards">
+          <div class="hcard promo">
+            <div class="badge">%</div>
+            <p>Get 1 month of the Unlimited plan free</p>
+            <div style="font-size: 11px; margin-top: 10px; color: #e9e2ff">
+              Applies to .ai, .org, .net and more with 3+ year periods.
+            </div>
+          </div>
+          <div class="hcard stat">
+            <div class="stat-num">9M+</div>
+            <div class="stat-label">domains registered</div>
+            <div class="stat-num2">500+</div>
+            <div class="stat-label2">domain extensions</div>
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=400&fit=crop"
+              alt=""
+            />
+          </div>
+          <div class="hcard transfer">
+            <div class="top-row">
+              <div style="font-size: 14px; font-weight: 600">
+                Domain transfer
+              </div>
+              <div class="arrow">↗</div>
+            </div>
+            <div class="mockup"><span class="dot"></span> yourdomain.com</div>
+            <p style="font-size: 12px; color: #cfc9e6">
+              We made domain transfer easy – from $9.99
+            </p>
+          </div>
+        </div>
+
+        <div class="trust-row">
+          <span>Excellent</span>
+          <span class="stars">★★★★★</span>
+          <span>73,466 reviews on</span>
+          <strong style="color: #fff">★ Trustpilot</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY BUY DOMAIN NAMES ================= -->
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-title">Why buy domain names at Hostinger?</h2>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="media">
+              <div class="url-pill">
+                <span class="dot"></span> http://www.bringyourideas.online
+              </div>
+            </div>
+            <div class="body">
+              <h3>Trusted domain registrar</h3>
+              <p>
+                Hostinger is ICANN-accredited and offers 500+ domain extensions.
+              </p>
+              <a class="link" href="#">Find more about domains</a>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="media" style="padding: 0">
+              <img
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&h=260&fit=crop"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  position: absolute;
+                  inset: 0;
+                "
+              />
+              <div class="privacy-panel">
+                <div class="privacy-row">
+                  RDAP Privacy
+                  <div class="toggle"></div>
+                </div>
+                <div class="privacy-sub">🔒 Security</div>
+                <div class="privacy-sub">
+                  SSL certificate <span class="active-pill">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="body">
+              <h3>Privacy</h3>
+              <p>
+                When you register a domain, your contact details may appear in
+                public RDAP/WHOIS records. For supported extensions, Hostinger
+                automatically includes free privacy protection to keep your
+                personal information hidden from third parties.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-grid2">
+          <div class="why-card dark">
+            <div class="media">
+              <div class="chip-nav">
+                <span>HOME</span><span>ABOUT US</span><span>CONTACT</span>
+                <span style="margin-left: auto">🔍 🔔</span>
+              </div>
+              <div class="chat-bubble">
+                <img
+                  src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=60&h=60&fit=crop"
+                  alt=""
+                />
+                Hello, I would like to migrate my website to Hostinger.
+              </div>
+              <div class="chip-btn">Shop now</div>
+            </div>
+            <div class="body">
+              <h3>MATCHING THE ENERGY</h3>
+              <h3 style="font-size: 18px; margin-top: -6px">24/7 support</h3>
+              <p>
+                Our agents are always available on live chat or email,
+                responding in less than 3 minutes on average. You won't have
+                trouble communicating either, with agents fluent in 8+
+                languages.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="why-card"
+            style="
+              background: var(--purple-pale);
+              display: flex;
+              flex-direction: column;
+            "
+          >
+            <div
+              class="media"
+              style="align-items: center; justify-content: center"
+            >
+              <div
+                style="
+                  background: #fff;
+                  border-radius: 14px;
+                  padding: 20px 26px;
+                  box-shadow: 0 10px 30px rgba(60, 30, 120, 0.1);
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    padding: 8px 0;
+                  "
+                >
+                  <span class="step-dot"></span>Buy
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    padding: 8px 0;
+                  "
+                >
+                  <span class="step-dot"></span>Register
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    padding: 8px 0;
+                    color: #b3aec2;
+                  "
+                >
+                  <span class="step-dot" style="background: #d8d4e6"></span>Go
+                  online
+                </div>
+              </div>
+            </div>
+            <div class="body">
+              <h3>Quick setup, easy management</h3>
+              <p>
+                Register your domain in a few clicks, then manage everything in
+                one place — renewals, DNS settings, and connections to your
+                website or email.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="findbtn-wrap">
+          <a class="btn-primary" href="#">Find your domain</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRUSTED BY 4M ================= -->
+    <section class="trusted">
+      <div class="wrap">
+        <h2 class="section-title">
+          Trusted by 4+ million website<br />owners worldwide
+        </h2>
+        <div class="testi-grid">
+          <div class="testi-card">
+            <div class="testi-top">
+              <span class="testi-name">Joanna Murray</span><span>↗</span>
+            </div>
+            <span class="stars">★★★★★</span>
+            <p>
+              I needed to get all my websites and emails in one place, so I
+              choose Hostinger to make that happen. It's been brilliant! I now
+              feel like I have far more control of everything.
+            </p>
+          </div>
+          <div class="testi-card">
+            <div class="testi-top">
+              <span class="testi-name">Martynas Jucys</span><span>↗</span>
+            </div>
+            <span class="stars">★★★★★</span>
+            <p>
+              Bought several domains already. Best price deals. Everything went
+              smooth so far.
+            </p>
+          </div>
+          <div class="testi-card">
+            <div class="testi-top">
+              <span class="testi-name">Agustin Campos</span><span>↗</span>
+            </div>
+            <span class="stars">★★★★★</span>
+            <p>
+              Hostinger is life changing. The support, loading speeds,
+              everything in hostinger is easy. From managing websites to
+              domains. The technical team will guide you through everything.
+            </p>
+          </div>
+        </div>
+        <div class="see-more">
+          See our 73,466 reviews on <a href="#">★ Trustpilot</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= POPULAR DOMAINS ================= -->
+    <section class="popular">
+      <div class="wrap">
+        <div class="popular-head">
+          <h2>Choose from the most popular domains</h2>
+          <div class="popular-right">
+            <a class="compare-link" href="#">Compare all TLD prices</a>
+            <div class="carousel-arrows">
+              <button>‹</button><button>›</button>
+            </div>
+          </div>
+        </div>
+        <div class="domains-grid">
+          <div class="domain-card">
+            <div class="ext">.com</div>
+            <div class="desc">
+              Build trust with the best-known domain names.
+            </div>
+            <div class="price-old">$9.99</div>
+            <div class="price-new">$0.01 <span>/1st yr</span></div>
+            <button class="btn-check">Check availability</button>
+          </div>
+          <div class="domain-card">
+            <div class="ext">.cloud</div>
+            <div class="desc">Showcase your technology project with cloud.</div>
+            <div class="price-old">$25.99</div>
+            <div class="price-new">$1.99 <span>/1st yr</span></div>
+            <button class="btn-check">Check availability</button>
+          </div>
+          <div class="domain-card">
+            <div class="ext">.shop</div>
+            <div class="desc">Start selling products online with shop.</div>
+            <div class="price-old">$29.99</div>
+            <div class="price-new">$0.99 <span>/1st yr</span></div>
+            <button class="btn-check">Check availability</button>
+          </div>
+          <div class="domain-card">
+            <div class="ext">.io</div>
+            <div class="desc">Register .io for your tech websites.</div>
+            <div class="price-old">$59.99</div>
+            <div class="price-new">$31.99 <span>/1st yr</span></div>
+            <button class="btn-check">Check availability</button>
+          </div>
+          <div class="domain-card">
+            <div class="ext">.icu</div>
+            <div class="desc">Stay unique with .icu extension.</div>
+            <div class="price-old">$34.99</div>
+            <div class="price-new">$1.99 <span>/1st yr</span></div>
+            <button class="btn-check">Check availability</button>
+          </div>
+          <div class="domain-card">
+            <div class="ext">.info</div>
+            <div class="desc">Create an informative website with .info.</div>
+            <div class="price-old">$17.99</div>
+            <div class="price-new">$3.99 <span>/1st yr</span></div>
+            <button class="btn-check">Check availability</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW TO GET BEST DOMAIN ================= -->
+    <section class="howto">
+      <div class="wrap howto-grid">
+        <h2>How to get the best domain name</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span>1. Include your brand name</span><span class="plus">−</span>
+            </div>
+            <div class="accordion-body" style="max-height: 200px">
+              <p>
+                Use your brand name or keywords to boost recognition and
+                visibility in search engines.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span>2. Keep it short</span><span class="plus">+</span>
+            </div>
+            <div class="accordion-body">
+              <p>Short domain names are easier to remember, type and share.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span>3. Less is more</span><span class="plus">+</span>
+            </div>
+            <div class="accordion-body">
+              <p>Avoid hyphens, numbers and hard-to-spell words.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span>4. Think locally</span><span class="plus">+</span>
+            </div>
+            <div class="accordion-body">
+              <p>
+                Consider a country-specific extension if you serve a local
+                audience.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span>5. Domain availability search</span
+              ><span class="plus">+</span>
+            </div>
+            <div class="accordion-body">
+              <p>Check multiple extensions before settling on a final name.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span>6. Act fast</span><span class="plus">+</span>
+            </div>
+            <div class="accordion-body">
+              <p>
+                Good domain names get taken quickly, so register yours as soon
+                as you decide.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LOST SECTION ================= -->
+    <section class="lost">
+      <div class="wrap">
+        <h2>Lost? Here's what you need to know about domains</h2>
+        <div class="lost-grid">
+          <div class="lost-card">
+            <div class="media">
+              <div class="url-pill" style="background: #241a4a; color: #cfc9e6">
+                www.bringyourideas.online
+              </div>
+            </div>
+            <div class="body">
+              <h3>What is domain?</h3>
+              <p>
+                A domain name is how people find your site online. It's much
+                easier to remember than a lengthy IP address, so it's vital to
+                register one.
+              </p>
+            </div>
+          </div>
+          <div class="lost-card">
+            <div
+              class="media"
+              style="background: linear-gradient(135deg, #3a2a6b, #241a4a)"
+            >
+              <div style="font-size: 26px; font-weight: 700; color: #fff">
+                your.com
+              </div>
+            </div>
+            <div class="body">
+              <h3>How do I transfer my domain?</h3>
+              <p>
+                If you already have a domain name, you can transfer it to
+                Hostinger with just a few clicks.
+              </p>
+              <a class="link" href="#">Domain transfer ↗</a>
+            </div>
+          </div>
+          <div class="lost-card">
+            <div class="media">
+              <div
+                style="
+                  background: #fff;
+                  color: #1a1523;
+                  border-radius: 10px;
+                  padding: 14px 20px;
+                  font-size: 13px;
+                "
+              >
+                .org · .com · .net
+              </div>
+            </div>
+            <div class="body">
+              <h3>Hosting + domain</h3>
+              <p>
+                Your domain is your website's address. Hosting keeps it online.
+                Get everything you need at Hostinger, including a free domain
+                for the first year with eligible plans.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMPARE PRICES ================= -->
+    <section class="compare">
+      <div class="wrap">
+        <h2 class="section-title">Compare domain extension prices</h2>
+        <div class="compare-controls">
+          <div class="compare-search">🔍 Find a domain extension</div>
+          <div class="compare-select">Choose from ▾ Popular</div>
+        </div>
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>Domain extension</th>
+              <th>First year</th>
+              <th>Renews at</th>
+              <th>Transfer</th>
+            </tr>
+          </thead>
+          <tbody id="priceTable">
+            <tr>
+              <td>.com</td>
+              <td>$0.01</td>
+              <td>$19.99/yr</td>
+              <td>$9.99</td>
+            </tr>
+            <tr>
+              <td>.tech</td>
+              <td>$0.99</td>
+              <td>$53.99/yr</td>
+              <td>$53.99</td>
+            </tr>
+            <tr>
+              <td>.cloud</td>
+              <td>$1.99</td>
+              <td>$25.99/yr</td>
+              <td>$21.99</td>
+            </tr>
+            <tr>
+              <td>.shop</td>
+              <td>$0.99</td>
+              <td>$39.99/yr</td>
+              <td>$34.99</td>
+            </tr>
+            <tr>
+              <td>.org</td>
+              <td>$0.99</td>
+              <td>$17.99/yr</td>
+              <td>$12.99</td>
+            </tr>
+            <tr>
+              <td>.online</td>
+              <td>$0.99</td>
+              <td>$35.99/yr</td>
+              <td>$30.99</td>
+            </tr>
+            <tr>
+              <td>.pro</td>
+              <td>$2.99</td>
+              <td>$39.99/yr</td>
+              <td>$23.99</td>
+            </tr>
+            <tr>
+              <td>.store</td>
+              <td>$0.99</td>
+              <td>$54.99/yr</td>
+              <td>$46.99</td>
+            </tr>
+            <tr>
+              <td>.space</td>
+              <td>$0.99</td>
+              <td>$22.99/yr</td>
+              <td>$27.99</td>
+            </tr>
+            <tr>
+              <td>.site</td>
+              <td>$0.99</td>
+              <td>$38.99/yr</td>
+              <td>$32.99</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn-outline" id="showMoreBtn">Show more</button>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="faq-section" id="faqSection">
+      <div class="faq-section__container">
+        <div class="faq-section__header">
+          <div class="faq-section__eyebrow">
+            <span class="faq-section__eyebrow-icon" aria-hidden="true">
+              <img src="./assets/icons/black-triangle.svg" alt="" />
+            </span>
+
+            <span>Questions &amp; answers</span>
+          </div>
+
+          <h2 class="faq-section__title js-faq-title">
+            Before we begin, let’s make things clear.
+          </h2>
+        </div>
+
+        <div class="faq-section__body">
+          <div class="faq-accordion" data-faq-accordion>
+            <!-- FAQ 01 -->
+            <article class="faq-item">
+              <h3 class="faq-item__heading">
+                <button
+                  class="faq-item__trigger"
+                  id="faq-q1"
+                  aria-expanded="true"
+                  aria-controls="faq-a1"
+                  type="button"
+                >
+                  <span class="faq-item__question" data-no-select>
+                    What does Hoffmann Medienagentur do?
+                  </span>
+
+                  <span class="faq-item__control" aria-hidden="true">
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--open"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+                        ></path>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--closed"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                class="faq-item__panel"
+                id="faq-a1"
+                role="region"
+                aria-labelledby="faq-q1"
+              >
+                <div class="faq-item__answer" data-no-select>
+                  Hoffmann Medienagentur is a high-end digital partner for
+                  companies that need more than an isolated website or campaign.
+                  We connect premium web experiences, search visibility, content
+                  and media, AI-supported operations, Digital Product Passport
+                  readiness and connected digital systems around one clear
+                  business direction.
+                </div>
+              </div>
+            </article>
+
+            <!-- FAQ 02 -->
+            <article class="faq-item">
+              <h3 class="faq-item__heading">
+                <button
+                  class="faq-item__trigger"
+                  id="faq-q2"
+                  aria-expanded="false"
+                  aria-controls="faq-a2"
+                  type="button"
+                >
+                  <span class="faq-item__question" data-no-select>
+                    What kind of project is a good fit?
+                  </span>
+
+                  <span class="faq-item__control" aria-hidden="true">
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--open"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+                        ></path>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--closed"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                class="faq-item__panel"
+                id="faq-a2"
+                role="region"
+                aria-labelledby="faq-q2"
+              >
+                <div class="faq-item__answer" data-no-select>
+                  We are best suited to companies that see digital as a serious
+                  business advantage. Typical engagements include building or
+                  relaunching a premium website, improving international
+                  visibility, creating a content system, introducing useful
+                  automation or preparing for emerging digital requirements.
+                </div>
+              </div>
+            </article>
+
+            <!-- FAQ 03 -->
+            <article class="faq-item">
+              <h3 class="faq-item__heading">
+                <button
+                  class="faq-item__trigger"
+                  id="faq-q3"
+                  aria-expanded="false"
+                  aria-controls="faq-a3"
+                  type="button"
+                >
+                  <span class="faq-item__question" data-no-select>
+                    Who will I speak with?
+                  </span>
+
+                  <span class="faq-item__control" aria-hidden="true">
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--open"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+                        ></path>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--closed"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                class="faq-item__panel"
+                id="faq-a3"
+                role="region"
+                aria-labelledby="faq-q3"
+              >
+                <div class="faq-item__answer" data-no-select>
+                  You speak with Sven Hoffmann, Founder and Strategic Advisor at
+                  Hoffmann Medienagentur. He is your clear point of contact for
+                  the initial conversation, direction, priorities and next
+                  steps.
+                </div>
+              </div>
+            </article>
+
+            <!-- FAQ 04 -->
+            <article class="faq-item">
+              <h3 class="faq-item__heading">
+                <button
+                  class="faq-item__trigger"
+                  id="faq-q4"
+                  aria-expanded="false"
+                  aria-controls="faq-a4"
+                  type="button"
+                >
+                  <span class="faq-item__question" data-no-select>
+                    What does a project cost?
+                  </span>
+
+                  <span class="faq-item__control" aria-hidden="true">
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--open"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1,17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+                        ></path>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--closed"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                class="faq-item__panel"
+                id="faq-a4"
+                role="region"
+                aria-labelledby="faq-q4"
+              >
+                <div class="faq-item__answer" data-no-select>
+                  Core HMA services are tailored to your business goals, scope,
+                  complexity and technical requirements, so they are priced on
+                  request. The first conversation helps establish the right
+                  priorities, project scope and suitable investment range before
+                  we prepare a proposal.
+                </div>
+              </div>
+            </article>
+
+            <!-- FAQ 05 -->
+            <article class="faq-item">
+              <h3 class="faq-item__heading">
+                <button
+                  class="faq-item__trigger"
+                  id="faq-q5"
+                  aria-expanded="false"
+                  aria-controls="faq-a5"
+                  type="button"
+                >
+                  <span class="faq-item__question" data-no-select>
+                    How long does a project take?
+                  </span>
+
+                  <span class="faq-item__control" aria-hidden="true">
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--open"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+                        ></path>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--closed"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                class="faq-item__panel"
+                id="faq-a5"
+                role="region"
+                aria-labelledby="faq-q5"
+              >
+                <div class="faq-item__answer" data-no-select>
+                  Timelines depend on the scope, number of languages or markets,
+                  required integrations and the availability of decisions and
+                  source materials. Before build work begins, we create a clear
+                  plan with realistic phases, responsibilities and delivery
+                  priorities.
+                </div>
+              </div>
+            </article>
+
+            <!-- FAQ 06 -->
+            <article class="faq-item">
+              <h3 class="faq-item__heading">
+                <button
+                  class="faq-item__trigger"
+                  id="faq-q6"
+                  aria-expanded="false"
+                  aria-controls="faq-a6"
+                  type="button"
+                >
+                  <span class="faq-item__question" data-no-select>
+                    Do you work internationally?
+                  </span>
+
+                  <span class="faq-item__control" aria-hidden="true">
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--open"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"
+                        ></path>
+                      </svg>
+                    </span>
+
+                    <span
+                      class="faq-item__control-icon faq-item__control-icon--closed"
+                    >
+                      <svg viewBox="0 0 256 256">
+                        <path
+                          d="M228,160a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,160ZM40,108H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                class="faq-item__panel"
+                id="faq-a6"
+                role="region"
+                aria-labelledby="faq-q6"
+              >
+                <div class="faq-item__answer" data-no-select>
+                  Yes. HMA works across English, German, French and Arabic. We
+                  build multilingual experiences as part of the core structure,
+                  including proper right-to-left requirements for Arabic rather
+                  than treating localisation as an afterthought.
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="faq-contact-card">
+            <img
+              class="faq-contact-card__image"
+              src="./assets/images/gallery/glassified-background.png"
+              alt=""
+              width="440"
+              height="587"
+              loading="lazy"
+            />
+
+            <div class="faq-contact-card__overlay">
+              <h3 class="faq-contact-card__title js-faq-contact-title">
+                Still have a question?<br />
+                Start with a clear conversation.
+              </h3>
+
+              <a href="#contact" class="faq-contact-card__button">
+                <span
+                  class="faq-contact-card__button-text faq-contact-card__button-text--primary"
+                >
+                  Book a call
+                </span>
+
+                <span
+                  class="faq-contact-card__button-text faq-contact-card__button-text--secondary"
+                >
+                  Book a call
+                </span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer" id="footer">
+      <div class="footer-shell">
+        <div class="footer-cta">
+          <div class="footer-cta-copy">
+            <div class="footer-cta-title reveal-footer-up">
+              <h2><h2>READY TO BUILD WHAT’S NEXT?</h2></h2>
+            </div>
+
+            <div class="footer-cta-description reveal-footer-up">
+              <p>
+                From digital foundations and content systems to AI operations
+                and connected infrastructure, let’s define the next move for
+                your business.
+              </p>
+            </div>
+          </div>
+
+          <div class="footer-cta-action reveal-footer-up">
+            <a href="./contact.html" class="footer-cta-btn">
+              <span class="footer-cta-btn-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  fill="none"
+                >
+                  <rect width="28" height="28" fill="#000" rx="14" />
+                  <path
+                    fill="#fff"
+                    d="M16.719 10.125c.125-.156.375-.156.531 0l3.625 3.625a.36.36 0 0 1 0 .531l-3.625 3.625c-.156.157-.406.157-.531 0l-.25-.218a.42.42 0 0 1 0-.532l2.625-2.625H7.375A.36.36 0 0 1 7 14.156v-.312a.38.38 0 0 1 .375-.375h11.719l-2.625-2.594a.42.42 0 0 1 0-.531z"
+                  />
+                </svg>
+              </span>
+              <span class="footer-cta-btn-label">BOOK A CALL</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-lower">
+        <div class="footer-grid-bg reveal-grid" aria-hidden="true">
+          <img
+            src="./assets/images/gallery/grid-background.webp"
+            alt=""
+            width="1600"
+            height="341"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="footer-lower-inner">
+          <nav class="footer-socials" aria-label="Social links">
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Instagram</a
+            >
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Twitter (x)</a
+            >
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://behance.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Behance</a
+            >
+            <a
+              class="footer-link reveal-footer-link"
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+          </nav>
+
+          <a href="/" class="footer-wordmark reveal-footer-brand">
+            <span>HOFFMANN MEDIENAGENTUR</span>
+          </a>
+
+          <p class="footer-copyright reveal-footer-copy">
+            © Copyright
+            <a href="#" target="_blank" rel="noopener noreferrer"></a>, 2026 All
+            Right Reserved by
+            <a href="/">Hoffmann Medienagentur</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- mobile navigation -->
+    <script src="./js/components/mobile-navmenu.js"></script>
+
+    <!-- ========================== -->
+
+    <script>
+      document.querySelectorAll(".accordion-head").forEach((head) => {
+        head.addEventListener("click", () => {
+          const item = head.parentElement;
+          const isOpen = item.classList.contains("open");
+          item.parentElement
+            .querySelectorAll(".accordion-item")
+            .forEach((i) => {
+              i.classList.remove("open");
+              i.querySelector(".plus").textContent = "+";
+              i.querySelector(".accordion-body").style.maxHeight = null;
+            });
+          if (!isOpen) {
+            item.classList.add("open");
+            item.querySelector(".plus").textContent = "−";
+            const body = item.querySelector(".accordion-body");
+            body.style.maxHeight = body.scrollHeight + "px";
+          }
+        });
+      });
+
+      // Show more prices
+      const extra = [
+        [".xyz", "$0.99", "$14.99/yr", "$9.99"],
+        [".live", "$0.99", "$29.99/yr", "$24.99"],
+        [".website", "$0.99", "$29.99/yr", "$24.99"],
+        [".fun", "$0.99", "$22.99/yr", "$17.99"],
+        [".club", "$0.99", "$19.99/yr", "$14.99"],
+      ];
+      document
+        .getElementById("showMoreBtn")
+        .addEventListener("click", function () {
+          const tbody = document.getElementById("priceTable");
+          extra.forEach((row) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>`;
+            tbody.appendChild(tr);
+          });
+          this.style.display = "none";
+        });
+    </script>
+
+    <!-- Faqs -->
+    <script>
+      (function () {
+        const titles = document.querySelectorAll(
+          ".js-faq-title, .js-faq-contact-title",
+        );
+
+        titles.forEach((title) => {
+          const text = title.textContent.trim();
+          const words = text.split(" ");
+
+          title.innerHTML = words
+            .map((word, index) => {
+              return (
+                '<span class="word" style="transition-delay:' +
+                index * 0.08 +
+                's">' +
+                word +
+                "</span>"
+              );
+            })
+            .join(" ");
+
+          const observer = new IntersectionObserver(
+            (entries, obs) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              });
+            },
+            {
+              threshold: 0.35,
+              rootMargin: "0px 0px -20px 0px",
+            },
+          );
+
+          observer.observe(title);
+        });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const accordion = document.querySelector("[data-faq-accordion]");
+        if (!accordion) return;
+
+        const items = Array.from(accordion.querySelectorAll(".faq-item"));
+
+        function openItem(item) {
+          const button = item.querySelector(".faq-item__trigger");
+          const panel = item.querySelector(".faq-item__panel");
+
+          item.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+        }
+
+        function closeItem(item) {
+          const button = item.querySelector(".faq-item__trigger");
+          const panel = item.querySelector(".faq-item__panel");
+
+          item.classList.remove("is-open");
+          button.setAttribute("aria-expanded", "false");
+        }
+
+        items.forEach((item) => {
+          const button = item.querySelector(".faq-item__trigger");
+
+          button.addEventListener("click", () => {
+            const isOpen = item.classList.contains("is-open");
+
+            items.forEach(closeItem);
+
+            if (!isOpen) {
+              openItem(item);
+            }
+          });
+        });
+
+        items.forEach((item) => {
+          if (item.classList.contains("is-open")) {
+            openItem(item);
+          } else {
+            closeItem(item);
+          }
+        });
+      })();
+    </script>
+
+    <!-- reveal script faq  -->
+    <script>
+      (function () {
+        const items = document.querySelectorAll(".faq-accordion .faq-item");
+        if (!items.length) return;
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        if (reduceMotion) {
+          items.forEach((item) => item.classList.add("is-revealed"));
+          return;
+        }
+
+        items.forEach((item, index) => {
+          item.style.transitionDelay = index * 0.12 + "s";
+        });
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-revealed");
+              obs.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.18,
+            rootMargin: "0px 0px -8% 0px",
+          },
+        );
+
+        items.forEach((item) => observer.observe(item));
+      })();
+    </script>
+
+    <!-- cta and footer -->
+
+    <!-- footer -->
+    <script>
+      (function () {
+        const revealItems = document.querySelectorAll(
+          ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid",
+        );
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+          },
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+  </body>
+</html>
