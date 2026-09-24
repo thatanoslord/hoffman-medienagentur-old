@@ -192,6 +192,45 @@
         font-size: 15px;
       }
 
+
+      /* ---------- DOMAIN AVAILABILITY SEARCH ---------- */
+      .domain-search-result {
+        width: min(640px, calc(100% - 48px));
+        min-height: 0;
+        margin: -18px auto 22px;
+        color: #fff;
+        text-align: left;
+      }
+      .domain-search-result:empty { display: none; }
+      .domain-result-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 14px 16px 14px 18px;
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: 14px;
+        background: rgba(13, 8, 45, .56);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 14px 35px rgba(0,0,0,.16);
+      }
+      .domain-result-card.is-available { border-color: rgba(0,197,105,.7); }
+      .domain-result-card.is-taken { border-color: rgba(255,111,111,.68); }
+      .domain-result-card.is-error { border-color: rgba(255,201,79,.72); }
+      .domain-result-main { min-width: 0; }
+      .domain-result-domain { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; font-weight: 700; }
+      .domain-result-text { display: block; margin-top: 3px; color: rgba(255,255,255,.74); font-size: 13px; }
+      .domain-result-status { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; min-width: 112px; min-height: 36px; padding: 8px 12px; border-radius: 999px; color: #062517; background: #00c569; font-size: 12px; font-weight: 700; }
+      .is-taken .domain-result-status { color: #5d0a14; background: #ffb4bb; }
+      .is-error .domain-result-status { color: #583700; background: #ffe09a; }
+      .domain-search-result.is-loading .domain-result-status::before { content: ""; width: 12px; height: 12px; margin-right: 7px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: domain-spin .75s linear infinite; }
+      @keyframes domain-spin { to { transform: rotate(360deg); } }
+      @media (max-width: 560px) {
+        .domain-search-result { width: min(640px, calc(100% - 32px)); }
+        .domain-result-card { align-items: flex-start; flex-direction: column; }
+        .domain-result-status { width: 100%; }
+      }
+
       .hero-cards {
         max-width: 1400px;
         margin: 0 auto 22px;
@@ -1498,185 +1537,6 @@
           transition: none;
         }
       }
-
-
-      /* the search bar css */
-      /* ---------- DOMAIN AVAILABILITY SEARCH ---------- */
-.domain-search-result {
-  width: min(640px, calc(100% - 48px));
-  min-height: 0;
-  margin: -18px auto 22px;
-  color: #fff;
-  text-align: left;
-}
-
-.domain-search-result:empty {
-  display: none;
-}
-
-.domain-result-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 14px 16px 14px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
-  background: rgba(13, 8, 45, 0.56);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.16);
-}
-
-.domain-result-card.is-available {
-  border-color: rgba(0, 197, 105, 0.7);
-}
-
-.domain-result-card.is-taken {
-  border-color: rgba(255, 111, 111, 0.68);
-}
-
-.domain-result-card.is-error {
-  border-color: rgba(255, 201, 79, 0.72);
-}
-
-.domain-result-main {
-  min-width: 0;
-}
-
-.domain-result-domain {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.domain-result-text {
-  display: block;
-  margin-top: 3px;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
-}
-
-.domain-result-status {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  min-width: 112px;
-  min-height: 36px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  color: #062517;
-  background: #00c569;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.is-taken .domain-result-status {
-  color: #5d0a14;
-  background: #ffb4bb;
-}
-
-.is-error .domain-result-status {
-  color: #583700;
-  background: #ffe09a;
-}
-
-.domain-search-result.is-loading .domain-result-status::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  margin-right: 7px;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: domain-spin 0.75s linear infinite;
-}
-
-@keyframes domain-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 560px) {
-  .domain-search-result {
-    width: min(640px, calc(100% - 32px));
-  }
-
-  .domain-result-card {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .domain-result-status {
-    width: 100%;
-  }
-}
-
-
-    
-/* ---------- AVAILABLE ALTERNATIVES LIST ---------- */
-.domain-alt {
-  margin-top: 12px;
-  padding: 14px 16px 8px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
-  background: rgba(13, 8, 45, 0.56);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.16);
-}
-.domain-alt-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 700;
-}
-.domain-alt-progress {
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 12px;
-  font-weight: 500;
-}
-.domain-alt-list {
-  max-height: 260px;
-  overflow-y: auto;
-}
-.domain-alt-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 15px;
-  font-weight: 600;
-}
-.domain-alt-row span:first-child {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.domain-alt-badge {
-  flex: 0 0 auto;
-  padding: 4px 10px;
-  border-radius: 999px;
-  color: #062517;
-  background: #00c569;
-  font-size: 11px;
-  font-weight: 700;
-}
-.domain-alt-empty {
-  padding: 10px 0 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
-}
-
     </style>
   </head>
   <body>
@@ -1876,35 +1736,11 @@
       <div class="wrap">
         <h1>Search for a domain name</h1>
         <form class="search-bar" id="domainSearchForm" novalidate>
-  <span class="search-icon">
-    <i class="ri-search-line" style="color: #000;"></i>
-  </span>
-
-  <input
-    id="domainSearchInput"
-    type="text"
-    inputmode="url"
-    autocomplete="off"
-    placeholder="Type the domain you want"
-    aria-label="Domain name"
-  />
-
-  <button
-    class="search-go"
-    id="domainSearchButton"
-    type="submit"
-    aria-label="Check domain availability"
-  >
-    ➜
-  </button>
-</form>
-
-<div
-  id="domainSearchResult"
-  class="domain-search-result"
-  role="status"
-  aria-live="polite"
-></div>
+          <span class="search-icon"><i class="ri-search-line" style="color: #000;"></i></span>
+          <input id="domainSearchInput" type="text" inputmode="url" autocomplete="off" placeholder="Type the domain you want" aria-label="Domain name" />
+          <button class="search-go" id="domainSearchButton" type="submit" aria-label="Check domain availability">➜</button>
+        </form>
+        <div id="domainSearchResult" class="domain-search-result" role="status" aria-live="polite"></div>
 
         <div class="hero-cards">
           <div class="hcard promo">
@@ -3110,220 +2946,77 @@
         revealItems.forEach((item) => observer.observe(item));
       })();
     </script>
+  
+    <script>
+      (function () {
+        const form = document.getElementById("domainSearchForm");
+        const input = document.getElementById("domainSearchInput");
+        const result = document.getElementById("domainSearchResult");
+        const button = document.getElementById("domainSearchButton");
+        if (!form || !input || !result || !button) return;
 
-    <!-- search bar scrip -->
-<script>
-  (function () {
-    const form = document.getElementById("domainSearchForm");
-    const input = document.getElementById("domainSearchInput");
-    const result = document.getElementById("domainSearchResult");
-    const button = document.getElementById("domainSearchButton");
+        const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (char) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+        }[char]));
 
-    if (!form || !input || !result || !button) return;
-
-    // Extensions to check. Add or remove freely.
-    const TLDS = [
-      "com", "net", "org", "io", "co", "shop", "online", "store", "site",
-      "tech", "app", "dev", "info", "biz", "xyz", "de", "eu", "me"
-    ];
-    const CONCURRENCY = 6; // requests running at the same time
-
-    const AVAILABLE = ["available", "free", "unregistered"];
-    const TAKEN = ["taken", "registered", "unavailable"];
-    let searchId = 0;
-
-    const escapeHtml = (value) =>
-      String(value).replace(/[&<>'"]/g, (c) => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
-      }[c]));
-
-    function normalizeDomain(value) {
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/^https?:\/\//, "")
-        .replace(/^www\./, "")
-        .replace(/[\/?#].*$/, "")
-        .replace(/\s+/g, "");
-    }
-
-    function cardHtml(type, domain, message, label) {
-      return `
-        <div class="domain-result-card is-${type}">
-          <div class="domain-result-main">
-            <span class="domain-result-domain">${escapeHtml(domain)}</span>
-            <span class="domain-result-text">${escapeHtml(message)}</span>
-          </div>
-          <span class="domain-result-status">${escapeHtml(label)}</span>
-        </div>`;
-    }
-
-    // Check one domain. Never throws: failures come back as "unknown".
-    async function checkDomain(domain) {
-      try {
-        const response = await fetch(
-          `https://dotsweep.com/check/${encodeURIComponent(domain)}`,
-          { headers: { Accept: "application/json" } }
-        );
-        if (!response.ok) throw new Error("HTTP " + response.status);
-        const data = await response.json();
-        const status = String(data.status || "").toLowerCase();
-        return {
-          domain: data.domain || domain,
-          state: AVAILABLE.includes(status)
-            ? "available"
-            : TAKEN.includes(status)
-              ? "taken"
-              : "unknown",
-          confirmed: String(data.confidence || "").toLowerCase() === "certain"
-        };
-      } catch (error) {
-        console.error("Domain check failed for " + domain, error);
-        return { domain, state: "unknown", confirmed: false };
-      }
-    }
-
-    // Run tasks with a limited number in flight at once.
-    async function runPool(items, worker) {
-      let next = 0;
-      const runners = Array.from(
-        { length: Math.min(CONCURRENCY, items.length) },
-        async () => {
-          while (next < items.length) {
-            const item = items[next++];
-            await worker(item);
-          }
+        function normalizeDomain(value) {
+          let domain = value.trim().toLowerCase();
+          domain = domain.replace(/^https?:\/\//, "").replace(/^www\./, "");
+          domain = domain.replace(/\/$/, "").replace(/\s+/g, "");
+          return domain;
         }
-      );
-      await Promise.all(runners);
-    }
 
-    function mainCard(main) {
-      if (!main) return "";
-      if (main.state === "loading")
-        return cardHtml("loading", main.domain, "Checking live registry data…", "Checking");
-      if (main.state === "available")
-        return cardHtml(
-          "available", main.domain,
-          main.confirmed
-            ? "This domain is available and confirmed by the registry."
-            : "This domain appears to be available. Final confirmation is required at registration.",
-          "Available"
-        );
-      if (main.state === "taken")
-        return cardHtml("taken", main.domain,
-          "This domain is already registered. See available alternatives below.", "Taken");
-      return cardHtml("error", main.domain,
-        "We could not confirm the status right now. Please try again shortly.", "Unknown");
-    }
+        function render(type, domain, message, label) {
+          result.className = `domain-search-result ${type === "loading" ? "is-loading" : ""}`;
+          result.innerHTML = `
+            <div class="domain-result-card is-${type}">
+              <div class="domain-result-main">
+                <span class="domain-result-domain">${escapeHtml(domain)}</span>
+                <span class="domain-result-text">${escapeHtml(message)}</span>
+              </div>
+              <span class="domain-result-status">${escapeHtml(label)}</span>
+            </div>`;
+        }
 
-    function altHtml(name, alts, done, total, checked) {
-      const rows = alts
-        .map((r) => `
-          <div class="domain-alt-row">
-            <span>${escapeHtml(r.domain)}</span>
-            <span class="domain-alt-badge">Available</span>
-          </div>`)
-        .join("");
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const domain = normalizeDomain(input.value);
 
-      let footer = "";
-      if (!alts.length && done) {
-        footer = `<div class="domain-alt-empty">${
-          checked === 0
-            ? "We could not reach the domain service. Please try again shortly."
-            : "No other available extensions found for “" + escapeHtml(name) + "”. Try a different name."
-        }</div>`;
-      }
-
-      return `
-        <div class="domain-alt">
-          <div class="domain-alt-head">
-            <span>Available with “${escapeHtml(name)}”</span>
-            <span class="domain-alt-progress">${
-              done ? alts.length + " available" : "Checked " + checked + " of " + total + "…"
-            }</span>
-          </div>
-          <div class="domain-alt-list">${rows}</div>
-          ${footer}
-        </div>`;
-    }
-
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      const domain = normalizeDomain(input.value);
-      const dot = domain.indexOf(".");
-      const name = dot === -1 ? domain : domain.slice(0, dot);
-      const tld = dot === -1 ? "" : domain.slice(dot + 1);
-
-      if (!name || !/^[a-z0-9-]+$/.test(name) || (dot !== -1 && !tld)) {
-        result.className = "domain-search-result";
-        result.innerHTML = cardHtml(
-          "error", domain || "Domain name",
-          "Enter a name like zeb or a full domain like zeb.com (letters, numbers and hyphens only).",
-          "Check input"
-        );
-        input.focus();
-        return;
-      }
-
-      const myId = ++searchId;
-      button.disabled = true;
-
-      // Full domain typed: that one gets its own card. Just a name: no card.
-      let main = tld ? { domain, state: "loading" } : null;
-      const toCheck = TLDS.filter((t) => t !== tld).map((t) => `${name}.${t}`);
-      const alts = [];
-      let checked = 0;
-      let reachable = 0;
-      let done = false;
-
-      const render = () => {
-        if (myId !== searchId) return;
-        const loading = !done || (main && main.state === "loading");
-        result.className = "domain-search-result" + (loading ? " is-loading" : "");
-        result.innerHTML =
-          mainCard(main) +
-          altHtml(name, alts, done, toCheck.length, reachable === 0 ? 0 : checked);
-      };
-
-      render();
-
-      const tasks = [];
-      if (main) {
-        tasks.push(
-          checkDomain(domain).then((r) => {
-            main = r;
-            render();
-          })
-        );
-      }
-
-      tasks.push(
-        runPool(toCheck, async (d) => {
-          const r = await checkDomain(d);
-          if (myId !== searchId) return;
-          checked++;
-          if (r.state !== "unknown") reachable++;
-          if (r.state === "available") {
-            alts.push(r);
-            alts.sort(
-              (a, b) =>
-                TLDS.indexOf(a.domain.split(".").slice(1).join(".")) -
-                TLDS.indexOf(b.domain.split(".").slice(1).join("."))
-            );
+          if (!domain || !domain.includes(".")) {
+            render("error", domain || "Domain name", "Please enter a complete domain, for example hoffmann.de.", "Check input");
+            input.focus();
+            return;
           }
-          render();
-        })
-      );
 
-      await Promise.all(tasks);
-      if (myId !== searchId) return;
-      done = true;
-      render();
-      button.disabled = false;
-    });
-  })();
-</script>
+          button.disabled = true;
+          render("loading", domain, "Checking live registry data…", "Checking");
+
+          try {
+            const response = await fetch(`https://dotsweep.com/check/${encodeURIComponent(domain)}`, {
+              headers: { "Accept": "application/json" }
+            });
+            if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+            const data = await response.json();
+            const status = String(data.status || "").toLowerCase();
+            const confirmed = String(data.confidence || "").toLowerCase() === "certain";
+
+            if (["available", "free", "unregistered"].includes(status)) {
+              render("available", data.domain || domain, confirmed ? "This domain is available and confirmed by the registry." : "This domain appears to be available. Final confirmation is required at registration.", "Available");
+            } else if (["taken", "registered", "unavailable"].includes(status)) {
+              render("taken", data.domain || domain, "This domain is already registered. Try another name or extension.", "Taken");
+            } else {
+              render("error", data.domain || domain, "We could not confirm the status right now. Please try again shortly.", "Unknown");
+            }
+          } catch (error) {
+            console.error("Domain availability check failed:", error);
+            render("error", domain, "The domain service is temporarily unavailable. Please try again later.", "Unavailable");
+          } finally {
+            button.disabled = false;
+          }
+        });
+      })();
+    </script>
+
   </body>
 </html>
