@@ -1215,143 +1215,204 @@
 
   </head>
   <body>
-          <nav class="nav-wrap">
-    <a href="/" class="LogoWrapper"><img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="" class="Logo"></a>
-    <div class="nav-bar" id="navBar">
-      <a href="./index.html" class="nav-item active" data-name="Home">
-        <span class="nav-label">Home</span>
-        <span class="nav-icon">⌂</span>
-        <span class="lamp">
-          <span class="lamp-top">
-            <span class="glow glow-1"></span>
-            <span class="glow glow-2"></span>
-            <span class="glow glow-3"></span>
+            <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+
+    <div class="mobile-nav-wrap">
+      <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+        <div class="mobile-nav-bar">
+          <a href="./index.html"
+            ><img
+              class="mobile-wordmark"
+              data-mobile-logo
+              src="./assets/images/logo/HMA - Logo soft.png"
+              alt="HMA Logo"
+          /></a>
+
+          <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-blur-nav-drawer"
+            aria-label="Open menu"
+            data-mobile-toggle
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+          <div class="mobile-menu-rows" data-mobile-rows>
+            <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+              <span class="mobile-menu-link-index">01</span>
+              <span class="mobile-menu-link-label">About</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              class="mobile-menu-link"
+              href="./hmaservices.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">02</span>
+              <span class="mobile-menu-link-label">Services</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./domain.html" data-mobile-link>
+              <span class="mobile-menu-link-index">03</span>
+              <span class="mobile-menu-link-label">Domains</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+              <span class="mobile-menu-link-index">04</span>
+              <span class="mobile-menu-link-label">Blogs</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+              <span class="mobile-menu-link-index">05</span>
+              <span class="mobile-menu-link-label">Contact</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./privacy-policy.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">06</span>
+              <span class="mobile-menu-link-label">Privacy and Policy</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./legal-notice.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">07</span>
+              <span class="mobile-menu-link-label">Legal Notice</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="mobile-nav-foot">
+            <div class="mobile-status">
+              <span class="mobile-status-dot" aria-hidden="true"></span>
+              <span class="mobile-clock" data-mobile-clock>10:37</span>
+            </div>
+
+            <div class="mobile-socials" aria-label="Social links">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instagram</a
+              >
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer"
+                >X</a
+              >
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- navbar -->
+    <nav class="nav-wrap">
+      <a href="/" class="LogoWrapper"
+        ><img
+          src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp"
+          alt=""
+          class="Logo"
+      /></a>
+      <div class="nav-bar" id="navBar">
+        <a href="./index.html" class="nav-item" data-name="Home">
+          <span class="nav-label">Home</span>
+          <span class="nav-icon">⌂</span>
+          <span class="lamp">
+            <span class="lamp-top">
+              <span class="glow glow-1"></span>
+              <span class="glow glow-2"></span>
+              <span class="glow glow-3"></span>
+            </span>
           </span>
-        </span>
-      </a>
-
-      <a href="./about.html" class="nav-item" data-name="About">
-        <span class="nav-label">About</span>
-        <span class="nav-icon">◎</span>
-      </a>
-
-            <!-- Services dropdown -->
-<div class="nav-item nav-item--services" data-name="Services">
-  <button onclick="window.location.href='./hmaservices.html'"
-    class="nav-trigger"
-    type="button"
-    aria-expanded="false"
-    aria-controls="services-dropdown"
-  >
-    <span class="nav-label">Services</span>
-    <span class="nav-icon">◫</span>
-    <span class="dropdown-arrow" aria-hidden="true"></span>
-  </button>
-
-  <div class="services-dropdown" id="services-dropdown" aria-label="Services menu">
-    <a class="service-dropdown-link" href="./hmaservices.html">All Services</a>
-    <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
-    <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
-    <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
-    <a class="service-dropdown-link" href="./dpp-ready.html">DPP READY</a>
-    <a class="service-dropdown-link" href="./domains-email.html">Domains &amp; Email</a>
-    <a class="service-dropdown-link" href="./infrastructure.html">INFRASTRUCTURE</a>
-    <a class="service-dropdown-link" href="./ai-search.html">Ai Search</a>
-    <a class="service-dropdown-link" href="./costum-software.html">Custom Software</a>
-  </div>
-</div>
-
-      <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
-        <span class="nav-label">Blogs</span>
-        <span class="nav-icon">◫</span>
-      </a>
-
-      <a href="./contact.html" class="nav-item" data-name="Contact">
-        <span class="nav-label">Contact</span>
-        <span class="nav-icon">✉</span>
-      </a>
-    </div>
-    <div class="nav-cta-wrap">
-      <a href="./contact.html" class="nav-btn light">
-        <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
-        <span class="btn-label">Book A Call</span>
-      </a>
-    </div>
-  </nav>
-
-     <!-- Mobile Blur Navigation -->
-<div class="mobile-nav-backdrop" data-mobile-backdrop></div>
-
-<div class="mobile-nav-wrap">
-  <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
-    <div class="mobile-nav-bar">
-      <a href="./index.html"><img class="mobile-wordmark" data-mobile-logo src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="HMA Logo" /></a>
-
-      <button
-        class="mobile-menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-blur-nav-drawer"
-        aria-label="Open menu"
-        data-mobile-toggle
-      >
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-
-    <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
-      <div class="mobile-menu-rows" data-mobile-rows>
-        <a class="mobile-menu-link" href="#marketplace" data-mobile-link>
-          <span class="mobile-menu-link-index">01</span>
-          <span class="mobile-menu-link-label">About</span>
-          <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
         </a>
 
-        <a class="mobile-menu-link" href="#sellers" data-mobile-link>
-          <span class="mobile-menu-link-index">02</span>
-          <span class="mobile-menu-link-label">Services</span>
-          <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+        <a href="./about.html" class="nav-item" data-name="About">
+          <span class="nav-label">About</span>
+          <span class="nav-icon">◎</span>
         </a>
 
-        <a class="mobile-menu-link" href="#editorial" data-mobile-link>
-          <span class="mobile-menu-link-index">03</span>
-          <span class="mobile-menu-link-label">Blogs</span>
-          <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-        </a>
+        <!-- Services dropdown -->
+        <div class="nav-item nav-item--services" data-name="Services">
+          <button
+            onclick="window.location.href = './hmaservices.html'"
+            class="nav-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="services-dropdown"
+          >
+            <span class="nav-label">Services</span>
+            <span class="nav-icon">◫</span>
+            <span class="dropdown-arrow" aria-hidden="true"></span>
+          </button>
 
-        <a class="mobile-menu-link" href="#pricing" data-mobile-link>
-          <span class="mobile-menu-link-index">04</span>
-          <span class="mobile-menu-link-label">Contact</span>
-          <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="mobile-menu-link" href="#pricing" data-mobile-link>
-          <span class="mobile-menu-link-index">05</span>
-          <span class="mobile-menu-link-label">Privacy and Policy</span>
-          <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="mobile-menu-link" href="#pricing" data-mobile-link>
-          <span class="mobile-menu-link-index">06</span>
-          <span class="mobile-menu-link-label">Legal Notice</span>
-          <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-
-      <div class="mobile-nav-foot">
-        <div class="mobile-status">
-          <span class="mobile-status-dot" aria-hidden="true"></span>
-          <span class="mobile-clock" data-mobile-clock>10:37</span>
+          <div
+            class="services-dropdown"
+            id="services-dropdown"
+            aria-label="Services menu"
+          >
+            <a class="service-dropdown-link" href="./hmaservices.html"
+              >All Services</a
+            >
+            <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
+            <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
+            <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
+            <a class="service-dropdown-link" href="./dpp-ready.html"
+              >DPP READY</a
+            >
+            <a class="service-dropdown-link" href="./domains-email.html"
+              >Domains &amp; Email</a
+            >
+            <a class="service-dropdown-link" href="./infrastructure.html"
+              >INFRASTRUCTURE</a
+            >
+            <a class="service-dropdown-link" href="./ai-search.html"
+              >Ai Search</a
+            >
+            <a class="service-dropdown-link" href="./costum-software.html"
+              >Custom Software</a
+            >
+          </div>
         </div>
 
-        <div class="mobile-socials" aria-label="Social links">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
+        <a href="./domain.html" class="nav-item" data-name="About">
+          <span class="nav-label">Domains</span>
+          <span class="nav-icon">◎</span>
+        </a>
+
+        <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
+          <span class="nav-label">Blogs</span>
+          <span class="nav-icon">◫</span>
+        </a>
+
+        <a href="./contact.html" class="nav-item" data-name="Contact">
+          <span class="nav-label">Contact</span>
+          <span class="nav-icon">✉</span>
+        </a>
       </div>
-    </div>
-  </nav>
-</div>
+      <div class="nav-cta-wrap">
+        <a href="./contact.html" class="nav-btn light">
+          <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
+          <span class="btn-label">Book A Call</span>
+        </a>
+      </div>
+    </nav>
 
   <!-- service page -->
 <section class="service-page">
