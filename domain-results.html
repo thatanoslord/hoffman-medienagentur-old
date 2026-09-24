@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domain name results - Hoffmann Medienagentur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="./css/hma-header.css" />
+    <link rel="stylesheet" href="./css/hmafooter.css" />
+    <link rel="stylesheet" href="./css/mobile-navmenu.css" />
+    <style>
+      :root {
+        --purple: #673de6;
+        --purple-dark: #0e0629;
+        --pale: #f2f2f4;
+        --border: #e6e3ee;
+        --text: #1a1523;
+        --gray: #6d6a77;
+        --green: #008361;
+        --green-bg: #dff5ec;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        color: var(--text);
+         background:radial-gradient(
+          101.4% 61.3% at 12.4% 00%,
+          #8b00e863 0%,
+          rgb(215 189 255) 36.292934%,
+          rgb(168 24 255 / 6%) 86.29293355855856%,
+          rgb(235 239 255 / 0%) 100%
+        );
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+      :focus-visible {
+        outline: 2px solid var(--purple);
+        outline-offset: 2px;
+      }
+
+     
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 200px 20px 80px;
+        height: 100vh;
+       
+      }
+      h1 {
+        text-align: center;
+        font-size: clamp(32px, 6vw, 48px);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        margin-bottom: 36px;
+      }
+
+      .search {
+        max-width: 700px;
+        margin: 0 auto 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 6px 6px 18px;
+        background: #fff;
+      }
+      .search:focus-within {
+        border-color: var(--purple);
+      }
+      .search svg {
+        flex: 0 0 auto;
+        color: var(--gray);
+      }
+      .search input {
+        flex: 1;
+        min-width: 0;
+        border: none;
+        outline: none;
+        font: inherit;
+        font-size: 15px;
+        padding: 8px 0;
+      }
+      .clear {
+        flex: 0 0 auto;
+        width: 28px;
+        height: 28px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--gray);
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .clear:hover {
+        background: var(--pale);
+        color: var(--text);
+      }
+      .clear[hidden] {
+        display: none;
+      }
+      .go {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: var(--purple);
+        color: #fff;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .go:hover {
+        background: #5530d1;
+      }
+
+      .banner {
+        background: var(--pale);
+        border-radius: 12px;
+        padding: 14px 18px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .banner svg {
+        flex: 0 0 auto;
+      }
+      .banner.is-error {
+        background: #fff4d6;
+      }
+
+      .feature {
+        background: var(--pale);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 44px;
+      }
+      .feature-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        display: inline-block;
+        background: #00905d;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 5px;
+        margin-bottom: 8px;
+      }
+      .feature h2 {
+        font-size: 19px;
+        font-weight: 600;
+      }
+      .feature-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .feature-note {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid #dcdae3;
+        font-size: 12.5px;
+        color: var(--gray);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        white-space: nowrap;
+      }
+      .price s {
+        font-size: 12px;
+        color: var(--gray);
+      }
+      .price b {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .btn-solid,
+      .btn-line {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 13px 22px;
+        border: 1px solid var(--purple);
+        white-space: nowrap;
+      }
+      .btn-solid {
+        background: var(--purple);
+        color: #fff;
+      }
+      .btn-solid:hover {
+        background: #5530d1;
+      }
+      .btn-line {
+        background: #fff;
+        color: var(--purple);
+        padding: 12px 20px;
+      }
+      .btn-line:hover {
+        background: #f2effd;
+      }
+
+      .more-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .chip {
+        border: 1px solid var(--border);
+        background: #fff;
+        border-radius: 999px;
+        padding: 7px 14px;
+        font-size: 13px;
+        color: var(--text);
+      }
+      .chip:hover {
+        background: #f7f5fc;
+      }
+      .chip.is-active {
+        background: #ebe7f7;
+        border-color: #ebe7f7;
+        font-weight: 600;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 24px;
+        border-bottom: 1px solid var(--border);
+        border-radius: 12px;
+        transition: background 0.15s;
+      }
+      .row:hover {
+        background: var(--pale);
+        border-bottom-color: transparent;
+      }
+      .row-name {
+        font-size: 19px;
+        font-weight: 600;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .row-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .row-right .price {
+        min-width: 110px;
+        justify-content: flex-end;
+      }
+
+      .status {
+        padding: 28px 24px;
+        color: var(--gray);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .spin {
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--purple);
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.75s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .spin {
+          animation-duration: 2s;
+        }
+      }
+
+      @media (max-width: 600px) {
+        
+        .row {
+          padding: 12px 8px;
+        }
+        .row-right {
+          gap: 12px;
+        }
+        .row-right .price {
+          min-width: 0;
+        }
+        .row-name {
+          font-size: 16px;
+        }
+        .feature-right {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+
+    <div class="mobile-nav-wrap">
+      <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
+        <div class="mobile-nav-bar">
+          <a href="./index.html"
+            ><img
+              class="mobile-wordmark"
+              data-mobile-logo
+              src="./assets/images/logo/HMA - Logo soft.png"
+              alt="HMA Logo"
+          /></a>
+
+          <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-blur-nav-drawer"
+            aria-label="Open menu"
+            data-mobile-toggle
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <div class="mobile-nav-drawer" id="mobile-blur-nav-drawer">
+          <div class="mobile-menu-rows" data-mobile-rows>
+            <a class="mobile-menu-link" href="./about.html" data-mobile-link>
+              <span class="mobile-menu-link-index">01</span>
+              <span class="mobile-menu-link-label">About</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              class="mobile-menu-link"
+              href="./hmaservices.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">02</span>
+              <span class="mobile-menu-link-label">Services</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./domain.html" data-mobile-link>
+              <span class="mobile-menu-link-index">03</span>
+              <span class="mobile-menu-link-label">Domains</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+              <span class="mobile-menu-link-index">04</span>
+              <span class="mobile-menu-link-label">Blogs</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
+              <span class="mobile-menu-link-index">05</span>
+              <span class="mobile-menu-link-label">Contact</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./privacy-policy.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">06</span>
+              <span class="mobile-menu-link-label">Privacy and Policy</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="mobile-menu-link"
+              href="./legal-notice.html"
+              data-mobile-link
+            >
+              <span class="mobile-menu-link-index">07</span>
+              <span class="mobile-menu-link-label">Legal Notice</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="mobile-nav-foot">
+            <div class="mobile-status">
+              <span class="mobile-status-dot" aria-hidden="true"></span>
+              <span class="mobile-clock" data-mobile-clock>10:37</span>
+            </div>
+
+            <div class="mobile-socials" aria-label="Social links">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instagram</a
+              >
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer"
+                >X</a
+              >
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- navbar -->
+    <nav class="nav-wrap">
+      <a href="/" class="LogoWrapper"
+        ><img
+          src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp"
+          alt=""
+          class="Logo"
+      /></a>
+      <div class="nav-bar" id="navBar">
+        <a href="./index.html" class="nav-item" data-name="Home">
+          <span class="nav-label">Home</span>
+          <span class="nav-icon">⌂</span>
+          <span class="lamp">
+            <span class="lamp-top">
+              <span class="glow glow-1"></span>
+              <span class="glow glow-2"></span>
+              <span class="glow glow-3"></span>
+            </span>
+          </span>
+        </a>
+
+        <a href="./about.html" class="nav-item" data-name="About">
+          <span class="nav-label">About</span>
+          <span class="nav-icon">◎</span>
+        </a>
+
+        <!-- Services dropdown -->
+        <div class="nav-item nav-item--services" data-name="Services">
+          <button
+            onclick="window.location.href = './hmaservices.html'"
+            class="nav-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="services-dropdown"
+          >
+            <span class="nav-label">Services</span>
+            <span class="nav-icon">◫</span>
+            <span class="dropdown-arrow" aria-hidden="true"></span>
+          </button>
+
+          <div
+            class="services-dropdown"
+            id="services-dropdown"
+            aria-label="Services menu"
+          >
+            <a class="service-dropdown-link" href="./hmaservices.html"
+              >All Services</a
+            >
+            <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
+            <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
+            <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
+            <a class="service-dropdown-link" href="./dpp-ready.html"
+              >DPP READY</a
+            >
+            <a class="service-dropdown-link" href="./domains-email.html"
+              >Domains &amp; Email</a
+            >
+            <a class="service-dropdown-link" href="./infrastructure.html"
+              >INFRASTRUCTURE</a
+            >
+            <a class="service-dropdown-link" href="./ai-search.html"
+              >Ai Search</a
+            >
+            <a class="service-dropdown-link" href="./costum-software.html"
+              >Custom Software</a
+            >
+          </div>
+        </div>
+
+        <a href="./domain.html" class="nav-item" data-name="About">
+          <span class="nav-label">Domains</span>
+          <span class="nav-icon">◎</span>
+        </a>
+
+        <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
+          <span class="nav-label">Blogs</span>
+          <span class="nav-icon">◫</span>
+        </a>
+
+        <a href="./contact.html" class="nav-item" data-name="Contact">
+          <span class="nav-label">Contact</span>
+          <span class="nav-icon">✉</span>
+        </a>
+      </div>
+      <div class="nav-cta-wrap">
+        <a href="./contact.html" class="nav-btn light">
+          <img class="btn-icon" src="./assets/icons/dark-icon.svg" alt="" />
+          <span class="btn-label">Book A Call</span>
+        </a>
+      </div>
+    </nav>
+
+
+    
+
+    <main class="page">
+      <h1>Find your domain name</h1>
+
+      <form class="search" id="form" novalidate>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20l-3.5-3.5" />
+        </svg>
+        <input
+          id="q"
+          type="text"
+          autocomplete="off"
+          placeholder="Type the domain you want"
+          aria-label="Domain name"
+        />
+        <button
+          class="clear"
+          id="clear"
+          type="button"
+          aria-label="Clear search"
+          hidden
+        >
+          <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+        <button class="go" type="submit" aria-label="Search">&#10140;</button>
+      </form>
+
+      <div id="banner"></div>
+      <div id="feature"></div>
+
+      <div id="more" hidden>
+        <p class="more-title">More options</p>
+        <div class="chips" id="chips" role="tablist"></div>
+        <div id="list" aria-live="polite"></div>
+      </div>
+    </main>
+
+    <!-- nav bar -->
+     <script src="./js/components/mobile-navmenu.js"></script>
+    <!-- =========== -->
+
+    <script>
+      (function () {
+        /* ============ EDIT THESE ============ */
+        const CURRENCY = "$";
+        const SHOW_PRICES = true; // set false to hide all prices
+        const BUY_URL = "contact.html?domain={domain}"; // where "Get it" sends people
+        // t = extension, p = your price, o = crossed-out price, c = categories
+        const TLDS = [
+          { t: "com", p: 12.99, o: 19.99, c: ["popular", "business"] },
+          { t: "net", p: 14.99, o: 19.99, c: ["popular", "business"] },
+          { t: "org", p: 9.99, o: 17.99, c: ["popular", "professional"] },
+          { t: "online", p: 0.99, o: 35.99, c: ["popular", "social"] },
+          { t: "tech", p: 6.99, o: 63.99, c: ["popular", "technology"] },
+          { t: "store", p: 0.99, o: 54.99, c: ["popular", "business"] },
+          { t: "site", p: 0.99, o: 38.99, c: ["popular", "social"] },
+          { t: "info", p: 3.99, o: 24.99, c: ["popular"] },
+          { t: "io", p: 39.99, o: 49.99, c: ["technology"] },
+          { t: "co", p: 9.99, o: 29.99, c: ["business"] },
+          { t: "app", p: 9.99, o: 19.99, c: ["technology"] },
+          { t: "dev", p: 9.99, o: 18.99, c: ["technology"] },
+          { t: "ai", p: 89.99, o: 109.99, c: ["technology"] },
+          { t: "cloud", p: 1.99, o: 25.99, c: ["technology"] },
+          { t: "digital", p: 2.99, o: 47.99, c: ["technology", "business"] },
+          { t: "shop", p: 1.99, o: 34.99, c: ["business"] },
+          { t: "biz", p: 4.99, o: 20.99, c: ["business"] },
+          { t: "pro", p: 2.99, o: 31.99, c: ["professional"] },
+          {
+            t: "studio",
+            p: 12.99,
+            o: 46.99,
+            c: ["professional", "entertainment"],
+          },
+          { t: "blog", p: 1.99, o: 29.99, c: ["social"] },
+          { t: "space", p: 0.99, o: 32.99, c: ["social"] },
+          { t: "me", p: 7.99, o: 19.99, c: ["social", "international"] },
+          { t: "live", p: 2.99, o: 37.99, c: ["entertainment"] },
+          { t: "fun", p: 0.99, o: 38.99, c: ["entertainment"] },
+          { t: "academy", p: 5.99, o: 39.99, c: ["education"] },
+          { t: "school", p: 9.99, o: 34.99, c: ["education"] },
+          { t: "de", p: 8.99, o: 12.99, c: ["international"] },
+          { t: "eu", p: 6.99, o: 11.99, c: ["international"] },
+          { t: "ma", p: 24.99, o: 29.99, c: ["international"] },
+          { t: "fr", p: 9.99, o: 12.99, c: ["international"] },
+        ];
+        const CONCURRENCY = 6;
+        /* ==================================== */
+
+        const CATS = [
+          ["popular", "Popular"],
+          ["business", "Business"],
+          ["education", "Education"],
+          ["international", "International"],
+          ["technology", "Technology"],
+          ["social", "Social"],
+          ["professional", "Professional"],
+          ["entertainment", "Entertainment"],
+          ["all", "All"],
+        ];
+        const AVAILABLE = ["available", "free", "unregistered"];
+        const TAKEN = ["taken", "registered", "unavailable"];
+        const $ = (id) => document.getElementById(id);
+        const esc = (v) =>
+          String(v).replace(
+            /[&<>'"]/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                "'": "&#39;",
+                '"': "&quot;",
+              })[c],
+          );
+        const money = (n) => CURRENCY + Number(n).toFixed(2);
+        const buy = (d) => BUY_URL.replace("{domain}", encodeURIComponent(d));
+        const info = (t) => TLDS.find((x) => x.t === t);
+        const order = (t) => {
+          const i = TLDS.findIndex((x) => x.t === t);
+          return i === -1 ? 999 : i;
+        };
+
+        function normalize(v) {
+          return v
+            .trim()
+            .toLowerCase()
+            .replace(/^https?:\/\//, "")
+            .replace(/^www\./, "")
+            .replace(/[\/?#].*$/, "")
+            .replace(/\s+/g, "");
+        }
+
+        async function check(domain) {
+          try {
+            const r = await fetch(
+              "https://dotsweep.com/check/" + encodeURIComponent(domain),
+              { headers: { Accept: "application/json" } },
+            );
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            const d = await r.json();
+            const s = String(d.status || "").toLowerCase();
+            return {
+              domain: d.domain || domain,
+              state: AVAILABLE.includes(s)
+                ? "available"
+                : TAKEN.includes(s)
+                  ? "taken"
+                  : "unknown",
+            };
+          } catch (e) {
+            console.error("Check failed:", domain, e);
+            return { domain, state: "unknown" };
+          }
+        }
+
+        async function pool(items, worker) {
+          let i = 0;
+          await Promise.all(
+            Array.from(
+              { length: Math.min(CONCURRENCY, items.length) },
+              async () => {
+                while (i < items.length) await worker(items[i++]);
+              },
+            ),
+          );
+        }
+
+        const priceHtml = (t) => {
+          const x = info(t);
+          if (!SHOW_PRICES || !x) return "";
+          return (
+            '<div class="price">' +
+            (x.o ? "<s>" + money(x.o) + "/1st yr</s>" : "") +
+            "<b>" +
+            money(x.p) +
+            "</b></div>"
+          );
+        };
+
+        /* ---------- search form ---------- */
+        const q = normalize(
+          new URLSearchParams(location.search).get("q") || "",
+        );
+        $("q").value = q;
+
+        const toggleClear = () => {
+          $("clear").hidden = !$("q").value;
+        };
+        $("q").addEventListener("input", toggleClear);
+        $("clear").addEventListener("click", () => {
+          $("q").value = "";
+          toggleClear();
+          // If results are showing, reset the whole page (no ?q= in the URL)
+          if (new URLSearchParams(location.search).get("q")) {
+            location.href = "domain-results.html";
+          } else {
+            $("q").focus();
+          }
+        });
+        toggleClear();
+        $("form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const v = normalize($("q").value);
+          if (v)
+            location.href = "domain-results.html?q=" + encodeURIComponent(v);
+        });
+
+        const infoIcon =
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01" stroke-linecap="round"/></svg>';
+        const checkIcon =
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+        if (!q) {
+          $("banner").innerHTML =
+            '<div class="banner">' +
+            infoIcon +
+            "<span>Type a name above to see which domains are available.</span></div>";
+          return;
+        }
+
+        const dot = q.indexOf(".");
+        const name = dot === -1 ? q : q.slice(0, dot);
+        const mainTld = dot === -1 ? "com" : q.slice(dot + 1);
+        if (!/^[a-z0-9-]+$/.test(name) || !mainTld) {
+          $("banner").innerHTML =
+            '<div class="banner is-error">' +
+            infoIcon +
+            "<span>Use letters, numbers and hyphens only, for example <b>zeb</b> or <b>zeb.com</b>.</span></div>";
+          return;
+        }
+        const mainDomain = name + "." + mainTld;
+
+        /* ---------- state ---------- */
+        let main = null,
+          done = false,
+          checked = 0,
+          cat = "popular";
+        const found = [];
+        const toCheck = TLDS.map((x) => x.t).filter((t) => t !== mainTld);
+
+        function renderBanner() {
+          const el = $("banner");
+          if (!main) {
+            el.innerHTML =
+              '<div class="status"><span class="spin"></span>Checking ' +
+              esc(mainDomain) +
+              "…</div>";
+            return;
+          }
+          if (main.state === "available")
+            el.innerHTML =
+              '<div class="banner">' +
+              infoIcon +
+              "<span><b>" +
+              esc(mainDomain) +
+              "</b> is available. Get it before someone else does.</span></div>";
+          else if (main.state === "taken")
+            el.innerHTML =
+              '<div class="banner">' +
+              infoIcon +
+              "<span><b>" +
+              esc(mainDomain) +
+              "</b> is already taken." +
+              (found.length
+                ? " We found a great alternative just for you!"
+                : done
+                  ? " We found no available alternatives. Try a different name."
+                  : " Looking for alternatives…") +
+              "</span></div>";
+          else
+            el.innerHTML =
+              '<div class="banner is-error">' +
+              infoIcon +
+              "<span>We could not confirm <b>" +
+              esc(mainDomain) +
+              "</b> right now. Please try again shortly.</span></div>";
+        }
+
+        function renderFeature() {
+          const el = $("feature");
+          let pick = null,
+            badge = "Great alternative";
+          if (main && main.state === "available") {
+            pick = main.domain;
+            badge = "Your domain";
+          } else if (main && main.state !== "unknown" && found.length)
+            pick = found[0].domain;
+          if (!pick) {
+            el.innerHTML = "";
+            return;
+          }
+          const t = pick.slice(pick.indexOf(".") + 1);
+          el.innerHTML =
+            '<div class="feature"><div class="feature-top"><div><span class="badge">' +
+            badge +
+            "</span><h2>" +
+            esc(pick) +
+            "</h2></div>" +
+            '<div class="feature-right">' +
+            priceHtml(t) +
+            '<a class="btn-solid" href="' +
+            buy(pick) +
+            '">Make it yours</a></div></div>' +
+            '<div class="feature-note">' +
+            checkIcon +
+            "<span>." +
+            esc(t) +
+            " domains work for any digital project, anywhere.</span></div></div>";
+        }
+
+        function renderChips() {
+          $("chips").innerHTML = CATS.map(
+            ([k, label]) =>
+              '<button type="button" class="chip' +
+              (k === cat ? " is-active" : "") +
+              '" data-cat="' +
+              k +
+              '" role="tab" aria-selected="' +
+              (k === cat) +
+              '">' +
+              label +
+              "</button>",
+          ).join("");
+        }
+
+        function renderList() {
+          const rows = found.filter(
+            (r) => cat === "all" || (info(r.t) && info(r.t).c.includes(cat)),
+          );
+          let html = rows
+            .map(
+              (r) =>
+                '<div class="row"><span class="row-name">' +
+                esc(r.domain) +
+                '</span><div class="row-right">' +
+                priceHtml(r.t) +
+                '<a class="btn-line" href="' +
+                buy(r.domain) +
+                '">Get it</a></div></div>',
+            )
+            .join("");
+          if (!done)
+            html +=
+              '<div class="status"><span class="spin"></span>Checked ' +
+              checked +
+              " of " +
+              toCheck.length +
+              " extensions…</div>";
+          else if (!rows.length)
+            html +=
+              '<div class="status">' +
+              (cat === "all"
+                ? "No available extensions found for this name."
+                : "Nothing available in this category. Try “All”.") +
+              "</div>";
+          $("list").innerHTML = html;
+        }
+
+        const renderAll = () => {
+          renderBanner();
+          renderFeature();
+          renderList();
+        };
+
+        $("chips").addEventListener("click", (e) => {
+          const b = e.target.closest("[data-cat]");
+          if (!b) return;
+          cat = b.dataset.cat;
+          renderChips();
+          renderList();
+        });
+
+        $("more").hidden = false;
+        renderChips();
+        renderAll();
+
+        /* ---------- run checks ---------- */
+        const mainTask = check(mainDomain).then((r) => {
+          main = r;
+          renderAll();
+        });
+        const restTask = pool(toCheck, async (t) => {
+          const r = await check(name + "." + t);
+          checked++;
+          if (r.state === "available") {
+            found.push({ domain: r.domain, t });
+            found.sort((a, b) => order(a.t) - order(b.t));
+          }
+          renderAll();
+        });
+        Promise.all([mainTask, restTask]).then(() => {
+          done = true;
+          renderAll();
+        });
+      })();
+    </script>
+  </body>
+</html>
