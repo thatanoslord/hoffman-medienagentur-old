@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search for a domain name - Hoffmann Medienagentur</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="./css/hma-header.css" />
     <link rel="stylesheet" href="./css/hmafooter.css" />
@@ -132,27 +134,28 @@
 
       /* ---------- HERO ---------- */
       .hero {
-            background: radial-gradient(
-      60% 90% at 75% 22%,
-      rgba(86, 77, 255, 0.95),
-      rgba(59, 51, 182, 0.75) 35%,
-      rgba(19, 14, 63, 0.25) 58%,
-      rgba(0, 0, 0, 0) 72%
-    ),
-    linear-gradient(90deg, #000 24%, #08082e 58%, #4d49db 100%);
-    padding: 56px 0 40px;
-    text-align: center;
-    display: flex;
-    flex-flow: column;
-    height: 100vh;
-    justify-content: flex-end;
+        background:
+          radial-gradient(
+            60% 90% at 75% 22%,
+            rgba(86, 77, 255, 0.95),
+            rgba(59, 51, 182, 0.75) 35%,
+            rgba(19, 14, 63, 0.25) 58%,
+            rgba(0, 0, 0, 0) 72%
+          ),
+          linear-gradient(90deg, #000 24%, #08082e 58%, #4d49db 100%);
+        padding: 56px 0 40px;
+        text-align: center;
+        display: flex;
+        flex-flow: column;
+        height: 100vh;
+        justify-content: flex-end;
       }
       .hero h1 {
         color: #fff;
         font-size: 56px;
         font-weight: 500;
         margin-bottom: 48px;
-        letter-spacing: -.005em;
+        letter-spacing: -0.005em;
         line-height: 64px;
       }
       .search-bar {
@@ -192,7 +195,6 @@
         font-size: 15px;
       }
 
-
       /* ---------- DOMAIN AVAILABILITY SEARCH ---------- */
       .domain-search-result {
         width: min(640px, calc(100% - 48px));
@@ -201,34 +203,95 @@
         color: #fff;
         text-align: left;
       }
-      .domain-search-result:empty { display: none; }
+      .domain-search-result:empty {
+        display: none;
+      }
       .domain-result-card {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 18px;
         padding: 14px 16px 14px 18px;
-        border: 1px solid rgba(255,255,255,.18);
+        border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 14px;
-        background: rgba(13, 8, 45, .56);
+        background: rgba(13, 8, 45, 0.56);
         backdrop-filter: blur(12px);
-        box-shadow: 0 14px 35px rgba(0,0,0,.16);
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.16);
       }
-      .domain-result-card.is-available { border-color: rgba(0,197,105,.7); }
-      .domain-result-card.is-taken { border-color: rgba(255,111,111,.68); }
-      .domain-result-card.is-error { border-color: rgba(255,201,79,.72); }
-      .domain-result-main { min-width: 0; }
-      .domain-result-domain { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; font-weight: 700; }
-      .domain-result-text { display: block; margin-top: 3px; color: rgba(255,255,255,.74); font-size: 13px; }
-      .domain-result-status { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; min-width: 112px; min-height: 36px; padding: 8px 12px; border-radius: 999px; color: #062517; background: #00c569; font-size: 12px; font-weight: 700; }
-      .is-taken .domain-result-status { color: #5d0a14; background: #ffb4bb; }
-      .is-error .domain-result-status { color: #583700; background: #ffe09a; }
-      .domain-search-result.is-loading .domain-result-status::before { content: ""; width: 12px; height: 12px; margin-right: 7px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: domain-spin .75s linear infinite; }
-      @keyframes domain-spin { to { transform: rotate(360deg); } }
+      .domain-result-card.is-available {
+        border-color: rgba(0, 197, 105, 0.7);
+      }
+      .domain-result-card.is-taken {
+        border-color: rgba(255, 111, 111, 0.68);
+      }
+      .domain-result-card.is-error {
+        border-color: rgba(255, 201, 79, 0.72);
+      }
+      .domain-result-main {
+        min-width: 0;
+      }
+      .domain-result-domain {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .domain-result-text {
+        display: block;
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 13px;
+      }
+      .domain-result-status {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        min-width: 112px;
+        min-height: 36px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        color: #062517;
+        background: #00c569;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .is-taken .domain-result-status {
+        color: #5d0a14;
+        background: #ffb4bb;
+      }
+      .is-error .domain-result-status {
+        color: #583700;
+        background: #ffe09a;
+      }
+      .domain-search-result.is-loading .domain-result-status::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        margin-right: 7px;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: domain-spin 0.75s linear infinite;
+      }
+      @keyframes domain-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
       @media (max-width: 560px) {
-        .domain-search-result { width: min(640px, calc(100% - 32px)); }
-        .domain-result-card { align-items: flex-start; flex-direction: column; }
-        .domain-result-status { width: 100%; }
+        .domain-search-result {
+          width: min(640px, calc(100% - 32px));
+        }
+        .domain-result-card {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .domain-result-status {
+          width: 100%;
+        }
       }
 
       .hero-cards {
@@ -237,11 +300,10 @@
         display: grid;
         grid-template-columns: 1.75fr 1fr 1fr;
         gap: 14px;
-        ;
       }
       .hcard {
         border-radius: 16px;
-        padding:24px;
+        padding: 24px;
         text-align: left;
         position: relative;
         overflow: hidden;
@@ -271,7 +333,7 @@
         font-size: 32px;
         font-weight: 400;
         line-height: 40px;
-        letter-spacing: -.005em;
+        letter-spacing: -0.005em;
         margin-bottom: 16px;
         /* max-width: 150px; */
       }
@@ -286,31 +348,29 @@
         background: linear-gradient(160deg, #3a2a6b, #2a1f52);
         color: #fff;
         background-image: none;
-       display: flex;
+        display: flex;
         justify-content: end;
       }
 
       .stat::before {
-  content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60%;
 
-    z-index: 3;
-    background: linear-gradient(180deg, transparent, rgb(255 255 255 / 20%), rgb(255 255 255 / 40%));
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+        z-index: 3;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgb(255 255 255 / 20%),
+          rgb(255 255 255 / 40%)
+        );
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+      }
 
-}
-
-
-
-
-
-
-      
       .hcard.stat img {
         position: absolute;
         right: 0;
@@ -351,21 +411,26 @@
       .hcard.transfer {
         background: #fff;
         color: #000000;
-        
       }
 
-      .transfer::before{
+      .transfer::before {
         content: "";
-         content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         height: 100%;
 
-        background: radial-gradient(101.4% 61.3% at 12.4% 00%, #8b00e863 0%, #d7bdff 36.292934%, rgb(168 24 255 / 6%) 86.29293355855856%, rgb(235 239 255 / 0%) 100%);
+        background: radial-gradient(
+          101.4% 61.3% at 12.4% 00%,
+          #8b00e863 0%,
+          #d7bdff 36.292934%,
+          rgb(168 24 255 / 6%) 86.29293355855856%,
+          rgb(235 239 255 / 0%) 100%
+        );
       }
-      .transfer img{
+      .transfer img {
         position: relative;
         z-index: 1;
       }
@@ -1586,14 +1651,19 @@
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
 
-            <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+            <a class="mobile-menu-link" href="./domain.html" data-mobile-link>
               <span class="mobile-menu-link-index">03</span>
+              <span class="mobile-menu-link-label">Domains</span>
+              <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="mobile-menu-link" href="./hmablogs.html" data-mobile-link>
+              <span class="mobile-menu-link-index">04</span>
               <span class="mobile-menu-link-label">Blogs</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
 
             <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
-              <span class="mobile-menu-link-index">04</span>
+              <span class="mobile-menu-link-index">05</span>
               <span class="mobile-menu-link-label">Contact</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
@@ -1602,7 +1672,7 @@
               href="./privacy-policy.html"
               data-mobile-link
             >
-              <span class="mobile-menu-link-index">05</span>
+              <span class="mobile-menu-link-index">06</span>
               <span class="mobile-menu-link-label">Privacy and Policy</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
@@ -1611,7 +1681,7 @@
               href="./legal-notice.html"
               data-mobile-link
             >
-              <span class="mobile-menu-link-index">06</span>
+              <span class="mobile-menu-link-index">07</span>
               <span class="mobile-menu-link-label">Legal Notice</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
@@ -1713,6 +1783,11 @@
           </div>
         </div>
 
+        <a href="./domain.html" class="nav-item" data-name="About">
+          <span class="nav-label">Domains</span>
+          <span class="nav-icon">◎</span>
+        </a>
+
         <a href="./hmablogs.html" class="nav-item" data-name="Blogs">
           <span class="nav-label">Blogs</span>
           <span class="nav-icon">◫</span>
@@ -1736,20 +1811,41 @@
       <div class="wrap">
         <h1>Search for a domain name</h1>
         <form class="search-bar" id="domainSearchForm" novalidate>
-          <span class="search-icon"><i class="ri-search-line" style="color: #000;"></i></span>
-          <input id="domainSearchInput" type="text" inputmode="url" autocomplete="off" placeholder="Type the domain you want" aria-label="Domain name" />
-          <button class="search-go" id="domainSearchButton" type="submit" aria-label="Check domain availability">➜</button>
+          <span class="search-icon"
+            ><i class="ri-search-line" style="color: #000"></i
+          ></span>
+          <input
+            id="domainSearchInput"
+            type="text"
+            inputmode="url"
+            autocomplete="off"
+            placeholder="Type the domain you want"
+            aria-label="Domain name"
+          />
+          <button
+            class="search-go"
+            id="domainSearchButton"
+            type="submit"
+            aria-label="Check domain availability"
+          >
+            ➜
+          </button>
         </form>
-        <div id="domainSearchResult" class="domain-search-result" role="status" aria-live="polite"></div>
+        <div
+          id="domainSearchResult"
+          class="domain-search-result"
+          role="status"
+          aria-live="polite"
+        ></div>
 
         <div class="hero-cards">
           <div class="hcard promo">
             <div class="badge">%</div>
             <div>
-                <p>Get 1 month of the Unlimited plan free</p>
-            <div class="hcard-stats">
-              Applies to .ai, .org, .net and more with 3+ year periods.
-            </div>
+              <p>Get 1 month of the Unlimited plan free</p>
+              <div class="hcard-stats">
+                Applies to .ai, .org, .net and more with 3+ year periods.
+              </div>
             </div>
           </div>
           <div class="hcard stat">
@@ -1768,9 +1864,8 @@
                 Domain transfer
               </div>
               <!-- <div class="arrow">↗</div> -->
-
             </div>
-            <img src="./assets/images/gallery/switch.webp" alt="">
+            <img src="./assets/images/gallery/switch.webp" alt="" />
             <p style="font-size: 16px; font-weight: 500; color: #000000">
               We made domain transfer easy from $9.99
             </p>
@@ -1789,7 +1884,9 @@
     <!-- ================= WHY BUY DOMAIN NAMES ================= -->
     <section class="section">
       <div class="wrap">
-        <h2 class="section-title">Why buy domain names at Hoffmann Medienagentur?</h2>
+        <h2 class="section-title">
+          Why buy domain names at Hoffmann Medienagentur?
+        </h2>
 
         <div class="why-grid">
           <div class="why-card">
@@ -1801,7 +1898,8 @@
             <div class="body">
               <h3>Trusted domain registrar</h3>
               <p>
-                Hoffmann Medienagentur is ICANN-accredited and offers 500+ domain extensions.
+                Hoffmann Medienagentur is ICANN-accredited and offers 500+
+                domain extensions.
               </p>
               <a class="link" href="#">Find more about domains</a>
             </div>
@@ -1834,9 +1932,9 @@
               <h3>Privacy</h3>
               <p>
                 When you register a domain, your contact details may appear in
-                public RDAP/WHOIS records. For supported extensions, Hoffmann Medienagentur
-                automatically includes free privacy protection to keep your
-                personal information hidden from third parties.
+                public RDAP/WHOIS records. For supported extensions, Hoffmann
+                Medienagentur automatically includes free privacy protection to
+                keep your personal information hidden from third parties.
               </p>
             </div>
           </div>
@@ -1854,7 +1952,8 @@
                   src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=60&h=60&fit=crop"
                   alt=""
                 />
-                Hello, I would like to migrate my website to Hoffmann Medienagentur.
+                Hello, I would like to migrate my website to Hoffmann
+                Medienagentur.
               </div>
               <div class="chip-btn">Shop now</div>
             </div>
@@ -1961,8 +2060,8 @@
             <span class="stars">★★★★★</span>
             <p>
               I needed to get all my websites and emails in one place, so I
-              choose Hoffmann Medienagentur to make that happen. It's been brilliant! I now
-              feel like I have far more control of everything.
+              choose Hoffmann Medienagentur to make that happen. It's been
+              brilliant! I now feel like I have far more control of everything.
             </p>
           </div>
           <div class="testi-card">
@@ -1981,8 +2080,8 @@
             </div>
             <span class="stars">★★★★★</span>
             <p>
-              Hoffmann Medienagentur is life changing. The support, loading speeds,
-              everything in HMA is easy. From managing websites to
+              Hoffmann Medienagentur is life changing. The support, loading
+              speeds, everything in HMA is easy. From managing websites to
               domains. The technical team will guide you through everything.
             </p>
           </div>
@@ -2177,8 +2276,8 @@
               <h3>Hosting + domain</h3>
               <p>
                 Your domain is your website's address. Hosting keeps it online.
-                Get everything you need at Hoffmann Medienagentur, including a free domain
-                for the first year with eligible plans.
+                Get everything you need at Hoffmann Medienagentur, including a
+                free domain for the first year with eligible plans.
               </p>
             </div>
           </div>
@@ -2946,7 +3045,7 @@
         revealItems.forEach((item) => observer.observe(item));
       })();
     </script>
-  
+
     <script>
       (function () {
         const form = document.getElementById("domainSearchForm");
@@ -2955,9 +3054,18 @@
         const button = document.getElementById("domainSearchButton");
         if (!form || !input || !result || !button) return;
 
-        const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (char) => ({
-          "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
-        }[char]));
+        const escapeHtml = (value) =>
+          String(value).replace(
+            /[&<>'"]/g,
+            (char) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                "'": "&#39;",
+                '"': "&quot;",
+              })[char],
+          );
 
         function normalizeDomain(value) {
           let domain = value.trim().toLowerCase();
@@ -2983,7 +3091,12 @@
           const domain = normalizeDomain(input.value);
 
           if (!domain || !domain.includes(".")) {
-            render("error", domain || "Domain name", "Please enter a complete domain, for example hoffmann.de.", "Check input");
+            render(
+              "error",
+              domain || "Domain name",
+              "Please enter a complete domain, for example hoffmann.de.",
+              "Check input",
+            );
             input.focus();
             return;
           }
@@ -2992,31 +3105,59 @@
           render("loading", domain, "Checking live registry data…", "Checking");
 
           try {
-            const response = await fetch(`https://dotsweep.com/check/${encodeURIComponent(domain)}`, {
-              headers: { "Accept": "application/json" }
-            });
-            if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+            const response = await fetch(
+              `https://dotsweep.com/check/${encodeURIComponent(domain)}`,
+              {
+                headers: { Accept: "application/json" },
+              },
+            );
+            if (!response.ok)
+              throw new Error(`Request failed: ${response.status}`);
 
             const data = await response.json();
             const status = String(data.status || "").toLowerCase();
-            const confirmed = String(data.confidence || "").toLowerCase() === "certain";
+            const confirmed =
+              String(data.confidence || "").toLowerCase() === "certain";
 
             if (["available", "free", "unregistered"].includes(status)) {
-              render("available", data.domain || domain, confirmed ? "This domain is available and confirmed by the registry." : "This domain appears to be available. Final confirmation is required at registration.", "Available");
-            } else if (["taken", "registered", "unavailable"].includes(status)) {
-              render("taken", data.domain || domain, "This domain is already registered. Try another name or extension.", "Taken");
+              render(
+                "available",
+                data.domain || domain,
+                confirmed
+                  ? "This domain is available and confirmed by the registry."
+                  : "This domain appears to be available. Final confirmation is required at registration.",
+                "Available",
+              );
+            } else if (
+              ["taken", "registered", "unavailable"].includes(status)
+            ) {
+              render(
+                "taken",
+                data.domain || domain,
+                "This domain is already registered. Try another name or extension.",
+                "Taken",
+              );
             } else {
-              render("error", data.domain || domain, "We could not confirm the status right now. Please try again shortly.", "Unknown");
+              render(
+                "error",
+                data.domain || domain,
+                "We could not confirm the status right now. Please try again shortly.",
+                "Unknown",
+              );
             }
           } catch (error) {
             console.error("Domain availability check failed:", error);
-            render("error", domain, "The domain service is temporarily unavailable. Please try again later.", "Unavailable");
+            render(
+              "error",
+              domain,
+              "The domain service is temporarily unavailable. Please try again later.",
+              "Unavailable",
+            );
           } finally {
             button.disabled = false;
           }
         });
       })();
     </script>
-
   </body>
 </html>
