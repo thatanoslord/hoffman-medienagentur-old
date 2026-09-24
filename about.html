@@ -952,141 +952,139 @@
         }
       }
 
-
-      
-/* drop down */
-/* =========================================
+      /* drop down */
+      /* =========================================
    HOME PAGE: SERVICES DROPDOWN
    ========================================= */
 
-.nav-item--services {
-  position: relative;
-  padding: 0;
-  overflow: visible;
-}
+      .nav-item--services {
+        position: relative;
+        padding: 0;
+        overflow: visible;
+      }
 
-.nav-trigger {
-  display: inline-flex;
-  min-height: 40px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 0;
-  padding: 10px 24px;
-  border: 0;
-  border-radius: 999px;
-  outline: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
+      .nav-trigger {
+        display: inline-flex;
+        min-height: 40px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 0;
+        padding: 10px 24px;
+        border: 0;
+        border-radius: 999px;
+        outline: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
 
-.dropdown-arrow {
-  width: 7px;
-  height: 7px;
-  margin-top: -4px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg);
-  transition: transform 0.25s ease;
-}
+      .dropdown-arrow {
+        width: 7px;
+        height: 7px;
+        margin-top: -4px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 0.25s ease;
+      }
 
-.nav-item--services:hover .dropdown-arrow,
-.nav-item--services:focus-within .dropdown-arrow,
-.nav-item--services.is-open .dropdown-arrow {
-  transform: rotate(225deg) translate(-2px, -2px);
-}
+      .nav-item--services:hover .dropdown-arrow,
+      .nav-item--services:focus-within .dropdown-arrow,
+      .nav-item--services.is-open .dropdown-arrow {
+        transform: rotate(225deg) translate(-2px, -2px);
+      }
 
-.services-dropdown {
-  position: absolute;
-  top: calc(100% + 16px);
-  left: 50%;
-  z-index: 500;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(160px, 1fr));
-  gap: 6px;
-  width: 420px;
-  padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 20px;
-  background: rgba(18, 18, 18, 0.94);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+      .services-dropdown {
+        position: absolute;
+        top: calc(100% + 16px);
+        left: 50%;
+        z-index: 500;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
+        gap: 6px;
+        width: 420px;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 20px;
+        background: rgba(18, 18, 18, 0.94);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
 
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translate(-50%, -10px) scale(0.98);
-  transform-origin: top center;
-  transition:
-    opacity 0.22s ease,
-    transform 0.22s ease,
-    visibility 0.22s ease;
-}
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translate(-50%, -10px) scale(0.98);
+        transform-origin: top center;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s ease;
+      }
 
-/* Keeps cursor connection between Services and menu */
-.services-dropdown::before {
-  content: "";
-  position: absolute;
-  top: -17px;
-  right: 0;
-  left: 0;
-  height: 17px;
-}
+      /* Keeps cursor connection between Services and menu */
+      .services-dropdown::before {
+        content: "";
+        position: absolute;
+        top: -17px;
+        right: 0;
+        left: 0;
+        height: 17px;
+      }
 
-.nav-item--services:hover .services-dropdown,
-.nav-item--services:focus-within .services-dropdown,
-.nav-item--services.is-open .services-dropdown {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translate(-50%, 0) scale(1);
-}
+      .nav-item--services:hover .services-dropdown,
+      .nav-item--services:focus-within .services-dropdown,
+      .nav-item--services.is-open .services-dropdown {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translate(-50%, 0) scale(1);
+      }
 
-.service-dropdown-link {
-  display: flex;
-  min-height: 48px;
-  align-items: center;
-  padding: 12px 14px;
-  border: 1px solid transparent;
-  border-radius: 13px;
-  color: rgba(255, 255, 255, 0.78);
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
-  transition:
-    color 0.22s ease,
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    transform 0.22s ease;
+      .service-dropdown-link {
+        display: flex;
+        min-height: 48px;
+        align-items: center;
+        padding: 12px 14px;
+        border: 1px solid transparent;
+        border-radius: 13px;
+        color: rgba(255, 255, 255, 0.78);
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        transition:
+          color 0.22s ease,
+          background-color 0.22s ease,
+          border-color 0.22s ease,
+          transform 0.22s ease;
         text-transform: uppercase;
-}
+      }
 
-.service-dropdown-link:hover,
-.service-dropdown-link:focus-visible {
-  border-color: #ffffff;
-  outline: none;
-  background: #ffffff;
-  color: #000000;
-  transform: translateY(-1px);
-}
+      .service-dropdown-link:hover,
+      .service-dropdown-link:focus-visible {
+        border-color: #ffffff;
+        outline: none;
+        background: #ffffff;
+        color: #000000;
+        transform: translateY(-1px);
+      }
 
-@media (max-width: 1150px) {
-  .services-dropdown {
-    grid-template-columns: 1fr;
-    width: 250px;
-  }
-}
+      @media (max-width: 1150px) {
+        .services-dropdown {
+          grid-template-columns: 1fr;
+          width: 250px;
+        }
+      }
 
-@media (max-width: 1000px) {
-  .services-dropdown {
-    display: none;
-  }
-}
+      @media (max-width: 1000px) {
+        .services-dropdown {
+          display: none;
+        }
+      }
     </style>
 
     <!-- who we are  -->
@@ -3727,7 +3725,7 @@
   <body>
     <!-- header navbar -->
 
-       <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+    <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
 
     <div class="mobile-nav-wrap">
       <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
@@ -3966,10 +3964,57 @@
           <div class="brands-strip__track" id="trackTop" data-direction="right">
             <div class="brands-strip__group" aria-hidden="false">
               <div class="brand-card">
-               <svg xmlns="http://www.w3.org/2000/svg" width="119" height="28" fill="none"><g fill="#B1B1B1" clip-path="url(#a)"><path fill-rule="evenodd" d="M7.052 1.75V28H0V1.75zm3.525 0h14.985c4.869 0 8.815 3.918 8.815 8.75 0 4.833-3.946 8.75-8.815 8.75H17.63V28h-7.052zm7.052 10.5h7.933c.974 0 1.763-.784 1.763-1.75s-.789-1.75-1.763-1.75H17.63zm43.193-10.5v13.563c0 3.14 2.566 5.687 5.73 5.687s5.73-2.546 5.73-5.687V1.75h7.052v13.563C79.334 22.32 73.61 28 66.552 28S53.77 22.32 53.77 15.313V1.75z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M37.022 14c0-6.765 5.525-12.25 12.34-12.25h1.764v7h-1.764c-2.92 0-5.288 2.35-5.288 5.25v.875C44.074 22.124 38.154 28 30.85 28h-.881v-7h.881c3.408 0 6.17-2.742 6.17-6.125z" clip-rule="evenodd"/><path d="M118.999 2.625a2.634 2.634 0 0 1-2.645 2.625 2.635 2.635 0 0 1-2.644-2.625A2.635 2.635 0 0 1 116.354 0a2.634 2.634 0 0 1 2.645 2.625M86.904 28l3.365-13.988 2.502 8.415c1.492 5.019 8.653 5.019 10.146 0l2.501-8.415L108.783 28h7.25l-5.291-21.995c-1.259-5.23-8.684-5.424-10.217-.266l-2.681 9.019-2.681-9.02C93.63.582 86.203.776 84.945 6.006L79.655 28z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h119v28H0z"/></clipPath></defs></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="119"
+                  height="28"
+                  fill="none"
+                >
+                  <g fill="#B1B1B1" clip-path="url(#a)">
+                    <path
+                      fill-rule="evenodd"
+                      d="M7.052 1.75V28H0V1.75zm3.525 0h14.985c4.869 0 8.815 3.918 8.815 8.75 0 4.833-3.946 8.75-8.815 8.75H17.63V28h-7.052zm7.052 10.5h7.933c.974 0 1.763-.784 1.763-1.75s-.789-1.75-1.763-1.75H17.63zm43.193-10.5v13.563c0 3.14 2.566 5.687 5.73 5.687s5.73-2.546 5.73-5.687V1.75h7.052v13.563C79.334 22.32 73.61 28 66.552 28S53.77 22.32 53.77 15.313V1.75z"
+                      clip-rule="evenodd"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M37.022 14c0-6.765 5.525-12.25 12.34-12.25h1.764v7h-1.764c-2.92 0-5.288 2.35-5.288 5.25v.875C44.074 22.124 38.154 28 30.85 28h-.881v-7h.881c3.408 0 6.17-2.742 6.17-6.125z"
+                      clip-rule="evenodd"
+                    />
+                    <path
+                      d="M118.999 2.625a2.634 2.634 0 0 1-2.645 2.625 2.635 2.635 0 0 1-2.644-2.625A2.635 2.635 0 0 1 116.354 0a2.634 2.634 0 0 1 2.645 2.625M86.904 28l3.365-13.988 2.502 8.415c1.492 5.019 8.653 5.019 10.146 0l2.501-8.415L108.783 28h7.25l-5.291-21.995c-1.259-5.23-8.684-5.424-10.217-.266l-2.681 9.019-2.681-9.02C93.63.582 86.203.776 84.945 6.006L79.655 28z"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path fill="#fff" d="M0 0h119v28H0z" />
+                    </clipPath>
+                  </defs>
+                </svg>
               </div>
               <div class="brand-card">
-               <svg xmlns="http://www.w3.org/2000/svg" width="119" height="27" fill="none"><g fill="#B1B1B1" clip-path="url(#a)"><path fill-rule="evenodd" d="M10.142 18.9a3.38 3.38 0 0 1-2.39-.988 3.37 3.37 0 0 1-.99-2.387V0H0v15.525C0 21.117 4.54 25.65 10.142 25.65h7.438V18.9zM30.426 6.75a6.1 6.1 0 0 0-4.303 1.78 6.08 6.08 0 0 0-1.782 4.295 6.07 6.07 0 0 0 1.782 4.296 6.1 6.1 0 0 0 4.303 1.779 6.1 6.1 0 0 0 4.303-1.78 6.07 6.07 0 0 0 0-8.59 6.1 6.1 0 0 0-4.303-1.78M17.58 12.825C17.58 5.742 23.33 0 30.426 0s12.847 5.742 12.847 12.825S37.52 25.65 30.426 25.65 17.58 19.908 17.58 12.825m85.869-6.075a6.1 6.1 0 0 0-4.303 1.78 6.07 6.07 0 0 0 0 8.59 6.09 6.09 0 0 0 8.606 0 6.07 6.07 0 0 0 0-8.59 6.1 6.1 0 0 0-4.303-1.78m-12.847 6.075C90.602 5.742 96.354 0 103.45 0s12.846 5.742 12.846 12.825-5.751 12.825-12.846 12.825-12.847-5.742-12.847-12.825M57.472 0c-7.095 0-12.847 5.742-12.847 12.825S50.377 25.65 57.472 25.65h18.931c1.332 0 2.616-.202 3.823-.578L83.841 27l3.9-7.293a12.8 12.8 0 0 0 1.509-6.03v-.852C89.25 5.742 83.498 0 76.403 0zm25.017 12.825a6.07 6.07 0 0 0-1.783-4.296 6.1 6.1 0 0 0-4.303-1.779H57.472a6.1 6.1 0 0 0-4.303 1.78 6.07 6.07 0 0 0-1.32 6.62 6.07 6.07 0 0 0 3.294 3.288 6.1 6.1 0 0 0 2.329.462h18.931a6.1 6.1 0 0 0 4.286-1.763 6.07 6.07 0 0 0 1.8-4.265z" clip-rule="evenodd"/><path d="M119 1.688a1.686 1.686 0 0 1-1.691 1.687 1.69 1.69 0 0 1-1.69-1.687A1.686 1.686 0 0 1 117.309 0 1.69 1.69 0 0 1 119 1.688"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h119v27H0z"/></clipPath></defs></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="119"
+                  height="27"
+                  fill="none"
+                >
+                  <g fill="#B1B1B1" clip-path="url(#a)">
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.142 18.9a3.38 3.38 0 0 1-2.39-.988 3.37 3.37 0 0 1-.99-2.387V0H0v15.525C0 21.117 4.54 25.65 10.142 25.65h7.438V18.9zM30.426 6.75a6.1 6.1 0 0 0-4.303 1.78 6.08 6.08 0 0 0-1.782 4.295 6.07 6.07 0 0 0 1.782 4.296 6.1 6.1 0 0 0 4.303 1.779 6.1 6.1 0 0 0 4.303-1.78 6.07 6.07 0 0 0 0-8.59 6.1 6.1 0 0 0-4.303-1.78M17.58 12.825C17.58 5.742 23.33 0 30.426 0s12.847 5.742 12.847 12.825S37.52 25.65 30.426 25.65 17.58 19.908 17.58 12.825m85.869-6.075a6.1 6.1 0 0 0-4.303 1.78 6.07 6.07 0 0 0 0 8.59 6.09 6.09 0 0 0 8.606 0 6.07 6.07 0 0 0 0-8.59 6.1 6.1 0 0 0-4.303-1.78m-12.847 6.075C90.602 5.742 96.354 0 103.45 0s12.846 5.742 12.846 12.825-5.751 12.825-12.846 12.825-12.847-5.742-12.847-12.825M57.472 0c-7.095 0-12.847 5.742-12.847 12.825S50.377 25.65 57.472 25.65h18.931c1.332 0 2.616-.202 3.823-.578L83.841 27l3.9-7.293a12.8 12.8 0 0 0 1.509-6.03v-.852C89.25 5.742 83.498 0 76.403 0zm25.017 12.825a6.07 6.07 0 0 0-1.783-4.296 6.1 6.1 0 0 0-4.303-1.779H57.472a6.1 6.1 0 0 0-4.303 1.78 6.07 6.07 0 0 0-1.32 6.62 6.07 6.07 0 0 0 3.294 3.288 6.1 6.1 0 0 0 2.329.462h18.931a6.1 6.1 0 0 0 4.286-1.763 6.07 6.07 0 0 0 1.8-4.265z"
+                      clip-rule="evenodd"
+                    />
+                    <path
+                      d="M119 1.688a1.686 1.686 0 0 1-1.691 1.687 1.69 1.69 0 0 1-1.69-1.687A1.686 1.686 0 0 1 117.309 0 1.69 1.69 0 0 1 119 1.688"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path fill="#fff" d="M0 0h119v27H0z" />
+                    </clipPath>
+                  </defs>
+                </svg>
               </div>
               <div class="brand-card">
                 <img
@@ -3980,13 +4025,41 @@
                 />
               </div>
               <div class="brand-card">
-                <svg xmlns="http://www.w3.org/2000/svg" width="78" height="30" fill="none"><g fill="#B1B1B1" clip-path="url(#a)"><path d="M18.515 0c-3.046 0-5.968 1.21-8.122 3.364l-7.029 7.03A11.5 11.5 0 0 0 0 18.513C0 24.859 5.142 30 11.485 30c3.046 0 5.968-1.21 8.122-3.364l4.862-4.862L38.636 7.607a5.485 5.485 0 0 1 9.095 2.177l4.471-4.471A11.48 11.48 0 0 0 42.515 0c-3.046 0-5.968 1.21-8.122 3.364l-19.029 19.03a5.485 5.485 0 0 1-7.757-7.758l7.029-7.03a5.485 5.485 0 0 1 9.095 2.178l4.471-4.47A11.48 11.48 0 0 0 18.515 0"/><path d="M39.365 22.393a5.485 5.485 0 0 1-9.095-2.176l-4.471 4.47A11.48 11.48 0 0 0 35.486 30c3.046 0 5.967-1.21 8.121-3.364l19.03-19.03a5.485 5.485 0 0 1 7.757 7.758l-7.03 7.03a5.485 5.485 0 0 1-9.094-2.178l-4.471 4.471A11.48 11.48 0 0 0 59.486 30c3.046 0 5.967-1.21 8.121-3.364l7.03-7.03A11.5 11.5 0 0 0 78 11.487C78 5.141 72.859 0 66.515 0c-3.046 0-5.967 1.21-8.121 3.364z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h78v30H0z"/></clipPath></defs></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="78"
+                  height="30"
+                  fill="none"
+                >
+                  <g fill="#B1B1B1" clip-path="url(#a)">
+                    <path
+                      d="M18.515 0c-3.046 0-5.968 1.21-8.122 3.364l-7.029 7.03A11.5 11.5 0 0 0 0 18.513C0 24.859 5.142 30 11.485 30c3.046 0 5.968-1.21 8.122-3.364l4.862-4.862L38.636 7.607a5.485 5.485 0 0 1 9.095 2.177l4.471-4.471A11.48 11.48 0 0 0 42.515 0c-3.046 0-5.968 1.21-8.122 3.364l-19.029 19.03a5.485 5.485 0 0 1-7.757-7.758l7.029-7.03a5.485 5.485 0 0 1 9.095 2.178l4.471-4.47A11.48 11.48 0 0 0 18.515 0"
+                    />
+                    <path
+                      d="M39.365 22.393a5.485 5.485 0 0 1-9.095-2.176l-4.471 4.47A11.48 11.48 0 0 0 35.486 30c3.046 0 5.967-1.21 8.121-3.364l19.03-19.03a5.485 5.485 0 0 1 7.757 7.758l-7.03 7.03a5.485 5.485 0 0 1-9.094-2.178l-4.471 4.471A11.48 11.48 0 0 0 59.486 30c3.046 0 5.967-1.21 8.121-3.364l7.03-7.03A11.5 11.5 0 0 0 78 11.487C78 5.141 72.859 0 66.515 0c-3.046 0-5.967 1.21-8.121 3.364z"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path fill="#fff" d="M0 0h78v30H0z" />
+                    </clipPath>
+                  </defs>
+                </svg>
               </div>
               <div class="brand-card">
-                <svg xmlns="http://www.w3.org/2000/svg" width="119" height="30" fill="none"><path fill="#B1B1B1" d="M2.941 27.825h25.65V2.175H2.941zm20.713-15.293h-5.42v-5.42h5.42zM7.877 7.112H13.3v10.356h10.354v5.42H7.877zm37.417-4.937A12.825 12.825 0 1 0 58.12 15 12.84 12.84 0 0 0 45.294 2.175m0 20.713A7.888 7.888 0 1 1 53.182 15a7.9 7.9 0 0 1-7.888 7.888m58.719-20.713A12.823 12.823 0 0 0 91.433 17.5a12.824 12.824 0 0 0 25.405-2.5 12.84 12.84 0 0 0-12.824-12.825m0 20.713A7.887 7.887 0 1 1 111.9 15a7.897 7.897 0 0 1-7.887 7.888M74.653 2.175A12.825 12.825 0 1 0 87.478 15 12.84 12.84 0 0 0 74.653 2.175m0 20.713a7.888 7.888 0 1 1 7.488-10.356h-7.488v4.936h7.488a7.9 7.9 0 0 1-7.488 5.42"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="119"
+                  height="30"
+                  fill="none"
+                >
+                  <path
+                    fill="#B1B1B1"
+                    d="M2.941 27.825h25.65V2.175H2.941zm20.713-15.293h-5.42v-5.42h5.42zM7.877 7.112H13.3v10.356h10.354v5.42H7.877zm37.417-4.937A12.825 12.825 0 1 0 58.12 15 12.84 12.84 0 0 0 45.294 2.175m0 20.713A7.888 7.888 0 1 1 53.182 15a7.9 7.9 0 0 1-7.888 7.888m58.719-20.713A12.823 12.823 0 0 0 91.433 17.5a12.824 12.824 0 0 0 25.405-2.5 12.84 12.84 0 0 0-12.824-12.825m0 20.713A7.887 7.887 0 1 1 111.9 15a7.897 7.897 0 0 1-7.887 7.888M74.653 2.175A12.825 12.825 0 1 0 87.478 15 12.84 12.84 0 0 0 74.653 2.175m0 20.713a7.888 7.888 0 1 1 7.488-10.356h-7.488v4.936h7.488a7.9 7.9 0 0 1-7.488 5.42"
+                  />
+                </svg>
               </div>
             </div>
-          
           </div>
         </div>
       </div>
@@ -4514,7 +4587,21 @@
 
               <div class="award-editorial-row__right">
                 <div class="award-editorial-row__icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="none"><path fill="#fff" d="M7.233 11.366a4.134 4.134 0 1 1 4.133-4.133 4.134 4.134 0 0 0 8.267 0 4.134 4.134 0 1 1 4.133 4.133c-6.849 0-12.4 5.553-12.4 12.4a4.134 4.134 0 1 1-4.133-4.133 4.133 4.133 0 0 0 0-8.267"/><path fill="#fff" d="M14.467 21.184a6.715 6.715 0 0 1 6.717-6.717 6.715 6.715 0 0 1 6.716 6.717 6.716 6.716 0 0 1-6.717 6.716 6.716 6.716 0 0 1-6.716-6.716"/></svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="31"
+                    height="31"
+                    fill="none"
+                  >
+                    <path
+                      fill="#fff"
+                      d="M7.233 11.366a4.134 4.134 0 1 1 4.133-4.133 4.134 4.134 0 0 0 8.267 0 4.134 4.134 0 1 1 4.133 4.133c-6.849 0-12.4 5.553-12.4 12.4a4.134 4.134 0 1 1-4.133-4.133 4.133 4.133 0 0 0 0-8.267"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M14.467 21.184a6.715 6.715 0 0 1 6.717-6.717 6.715 6.715 0 0 1 6.716 6.717 6.716 6.716 0 0 1-6.717 6.716 6.716 6.716 0 0 1-6.716-6.716"
+                    />
+                  </svg>
                 </div>
 
                 <p class="award-editorial-row__text">
@@ -4537,7 +4624,24 @@
 
               <div class="award-editorial-row__right">
                 <div class="award-editorial-row__icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="none"><g fill="#fff" clip-path="url(#a)"><path d="M19.36 19.36H31V31H19.36z"/><path d="M7.718 15.5a7.782 7.782 0 1 1 15.564 0H31C31 6.94 24.06 0 15.5 0S0 6.94 0 15.5 6.94 31 15.5 31v-7.718A7.78 7.78 0 0 1 7.718 15.5"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h31v31H0z"/></clipPath></defs></svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="31"
+                    height="31"
+                    fill="none"
+                  >
+                    <g fill="#fff" clip-path="url(#a)">
+                      <path d="M19.36 19.36H31V31H19.36z" />
+                      <path
+                        d="M7.718 15.5a7.782 7.782 0 1 1 15.564 0H31C31 6.94 24.06 0 15.5 0S0 6.94 0 15.5 6.94 31 15.5 31v-7.718A7.78 7.78 0 0 1 7.718 15.5"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="a">
+                        <path fill="#fff" d="M0 0h31v31H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
                 </div>
 
                 <p class="award-editorial-row__text">
@@ -4561,7 +4665,26 @@
 
               <div class="award-editorial-row__right">
                 <div class="award-editorial-row__icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="none"><g fill="#fff" clip-path="url(#a)"><path d="M25.767 10.333c.04.426.066.855.066 1.291 0 7.835-6.374 14.209-14.208 14.209-.437 0-.866-.026-1.292-.066V31H31V10.333zM11.625 0C5.205 0 0 5.205 0 11.625c0 5.06 3.238 9.352 7.75 10.949V7.75h14.824C20.977 3.238 16.684 0 11.625 0"/><path d="M23.174 10.333H10.333v12.84c.424.046.855.075 1.291.075 6.421 0 11.626-5.203 11.626-11.624 0-.436-.03-.866-.076-1.291"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h31v31H0z"/></clipPath></defs></svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="31"
+                    height="31"
+                    fill="none"
+                  >
+                    <g fill="#fff" clip-path="url(#a)">
+                      <path
+                        d="M25.767 10.333c.04.426.066.855.066 1.291 0 7.835-6.374 14.209-14.208 14.209-.437 0-.866-.026-1.292-.066V31H31V10.333zM11.625 0C5.205 0 0 5.205 0 11.625c0 5.06 3.238 9.352 7.75 10.949V7.75h14.824C20.977 3.238 16.684 0 11.625 0"
+                      />
+                      <path
+                        d="M23.174 10.333H10.333v12.84c.424.046.855.075 1.291.075 6.421 0 11.626-5.203 11.626-11.624 0-.436-.03-.866-.076-1.291"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="a">
+                        <path fill="#fff" d="M0 0h31v31H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
                 </div>
 
                 <p class="award-editorial-row__text">
@@ -4585,7 +4708,25 @@
 
               <div class="award-editorial-row__right">
                 <div class="award-editorial-row__icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="none"><path fill="#fff" d="M19.19 27.823C4.776 25.078 6.49 4.437 21.139 4.035c.394-.025.99.172 1.119-.354a.47.47 0 0 0-.271-.552 13.4 13.4 0 0 0-5.551-1.191c-17.992.744-17.988 26.383 0 27.125a13.8 13.8 0 0 0 2.775-.286.485.485 0 0 0-.02-.954"/><path fill="#fff" d="M28.098 11.519c-2.15-5.833-9.904-7.504-14.25-3.052a8.686 8.686 0 0 0 1.385 13.403.484.484 0 0 0 .659-.688 7.323 7.323 0 0 1 11.13-9.445c.221.25.514.595.873.368a.49.49 0 0 0 .203-.587"/><path fill="#fff" d="M21.788 11.281a5.28 5.28 0 0 0-5.275 5.27c.05.488-.082 1.43.595 1.468a.49.49 0 0 0 .47-.407c.96-5.03 8.218-4.237 8.094.877a.49.49 0 0 0 .748.432.5.5 0 0 0 .177-.21 5.2 5.2 0 0 0 .465-2.16 5.28 5.28 0 0 0-5.274-5.27"/></svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="31"
+                    height="31"
+                    fill="none"
+                  >
+                    <path
+                      fill="#fff"
+                      d="M19.19 27.823C4.776 25.078 6.49 4.437 21.139 4.035c.394-.025.99.172 1.119-.354a.47.47 0 0 0-.271-.552 13.4 13.4 0 0 0-5.551-1.191c-17.992.744-17.988 26.383 0 27.125a13.8 13.8 0 0 0 2.775-.286.485.485 0 0 0-.02-.954"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M28.098 11.519c-2.15-5.833-9.904-7.504-14.25-3.052a8.686 8.686 0 0 0 1.385 13.403.484.484 0 0 0 .659-.688 7.323 7.323 0 0 1 11.13-9.445c.221.25.514.595.873.368a.49.49 0 0 0 .203-.587"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M21.788 11.281a5.28 5.28 0 0 0-5.275 5.27c.05.488-.082 1.43.595 1.468a.49.49 0 0 0 .47-.407c.96-5.03 8.218-4.237 8.094.877a.49.49 0 0 0 .748.432.5.5 0 0 0 .177-.21 5.2 5.2 0 0 0 .465-2.16 5.28 5.28 0 0 0-5.274-5.27"
+                    />
+                  </svg>
                 </div>
 
                 <p class="award-editorial-row__text">
@@ -5015,7 +5156,18 @@
           <div class="footer-cta-action reveal-footer-up">
             <a href="contact.html" class="footer-cta-btn">
               <span class="footer-cta-btn-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none"><rect width="28" height="28" fill="#000" rx="14"/><path fill="#fff" d="M16.719 10.125c.125-.156.375-.156.531 0l3.625 3.625a.36.36 0 0 1 0 .531l-3.625 3.625c-.156.157-.406.157-.531 0l-.25-.218a.42.42 0 0 1 0-.532l2.625-2.625H7.375A.36.36 0 0 1 7 14.156v-.312a.38.38 0 0 1 .375-.375h11.719l-2.625-2.594a.42.42 0 0 1 0-.531z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  fill="none"
+                >
+                  <rect width="28" height="28" fill="#000" rx="14" />
+                  <path
+                    fill="#fff"
+                    d="M16.719 10.125c.125-.156.375-.156.531 0l3.625 3.625a.36.36 0 0 1 0 .531l-3.625 3.625c-.156.157-.406.157-.531 0l-.25-.218a.42.42 0 0 1 0-.532l2.625-2.625H7.375A.36.36 0 0 1 7 14.156v-.312a.38.38 0 0 1 .375-.375h11.719l-2.625-2.594a.42.42 0 0 1 0-.531z"
+                  />
+                </svg>
               </span>
               <span class="footer-cta-btn-label">BOOK A CALL</span>
             </a>
