@@ -2357,7 +2357,484 @@
     }
   </style>
 
-  <!-- btn -->
+  <style>
+    /* =========================================
+   CONTACT HERO — REVEAL ANIMATION
+========================================= */
+
+/* Prevent visible jump before JavaScript starts */
+.js .contact-hero .hero-label,
+.js .contact-hero .title-line {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* Small label reveals first */
+.js .contact-hero .hero-label {
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Each headline line comes from the left */
+.js .contact-hero .title-line {
+  display: block;
+  transform: translateX(-90px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Visible state */
+.js .contact-hero.is-visible .hero-label,
+.js .contact-hero.is-visible .title-line {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Stagger timing */
+.js .contact-hero.is-visible .hero-label {
+  transition-delay: 0.12s;
+}
+
+.js .contact-hero.is-visible .title-line:nth-child(1) {
+  transition-delay: 0.28s;
+}
+
+.js .contact-hero.is-visible .title-line:nth-child(2) {
+  transition-delay: 0.43s;
+}
+
+/* Optional: a subtle glow behind the hero once loaded */
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  top: -180px;
+  left: -120px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(107, 78, 255, 0.18) 0%,
+    rgba(107, 78, 255, 0) 70%
+  );
+  pointer-events: none;
+  filter: blur(12px);
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 1.1s ease 0.2s,
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+/* Makes sure the glow stays behind text */
+.contact-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-hero .hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.js .contact-hero.is-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Accessibility: immediately display content without movement */
+@media (prefers-reduced-motion: reduce) {
+  .js .contact-hero .hero-label,
+  .js .contact-hero .title-line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .contact-hero::before {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* =========================================
+   CONTACT DETAILS + FORM — SCROLL REVEAL
+========================================= */
+
+/* Initial hidden state only when JS is enabled */
+.js .contact-wrap .contact-list,
+.js .contact-wrap .form-panel {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* Left side: contact information */
+.js .contact-wrap .contact-list {
+  transform: translateX(-85px);
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Right side: enquiry form */
+.js .contact-wrap .form-panel {
+  transform: translateX(85px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Final visible position */
+.js .contact-wrap.is-visible .contact-list,
+.js .contact-wrap.is-visible .form-panel {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Left comes in first, form follows slightly after */
+.js .contact-wrap.is-visible .contact-list {
+  transition-delay: 0.08s;
+}
+
+.js .contact-wrap.is-visible .form-panel {
+  transition-delay: 0.2s;
+}
+
+/* =========================================
+   CONTACT CARDS — STAGGER REVEAL
+========================================= */
+
+.js .contact-wrap .contact-card {
+  opacity: 0;
+  transform: translateX(-25px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .contact-wrap.is-visible .contact-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.js .contact-wrap.is-visible .contact-card:nth-of-type(1) {
+  transition-delay: 0.25s;
+}
+
+.js .contact-wrap.is-visible .contact-card:nth-of-type(2) {
+  transition-delay: 0.37s;
+}
+
+.js .contact-wrap.is-visible .contact-card:nth-of-type(3) {
+  transition-delay: 0.49s;
+}
+
+/* Lines grow horizontally between cards */
+.js .contact-wrap .theLine {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .contact-wrap.is-visible .theLine {
+  transform: scaleX(1);
+}
+
+.js .contact-wrap.is-visible .theLine:nth-of-type(1) {
+  transition-delay: 0.2s;
+}
+
+.js .contact-wrap.is-visible .theLine:nth-of-type(2) {
+  transition-delay: 0.33s;
+}
+
+.js .contact-wrap.is-visible .theLine:nth-of-type(3) {
+  transition-delay: 0.45s;
+}
+
+.js .contact-wrap.is-visible .theLine:nth-of-type(4) {
+  transition-delay: 0.57s;
+}
+
+/* Icon circles have a small pop-in effect */
+.js .contact-wrap .icon-dot {
+  transform: scale(0.55) rotate(-18deg);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .contact-wrap.is-visible .icon-dot {
+  transform: scale(1) rotate(0);
+}
+
+.js .contact-wrap.is-visible .contact-card:nth-of-type(1) .icon-dot {
+  transition-delay: 0.32s;
+}
+
+.js .contact-wrap.is-visible .contact-card:nth-of-type(2) .icon-dot {
+  transition-delay: 0.44s;
+}
+
+.js .contact-wrap.is-visible .contact-card:nth-of-type(3) .icon-dot {
+  transition-delay: 0.56s;
+}
+
+/* =========================================
+   FORM CONTENT — STAGGER REVEAL
+========================================= */
+
+.js .contact-wrap .form-header,
+.js .contact-wrap .form-grid > .field {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .contact-wrap.is-visible .form-header,
+.js .contact-wrap.is-visible .form-grid > .field {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Form heading */
+.js .contact-wrap.is-visible .form-header {
+  transition-delay: 0.38s;
+}
+
+/* Form fields */
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(1) {
+  transition-delay: 0.48s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(2) {
+  transition-delay: 0.54s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(3) {
+  transition-delay: 0.6s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(4) {
+  transition-delay: 0.66s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(5) {
+  transition-delay: 0.72s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(6) {
+  transition-delay: 0.78s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(7) {
+  transition-delay: 0.84s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(8) {
+  transition-delay: 0.9s;
+}
+
+.js .contact-wrap.is-visible .form-grid > .field:nth-child(9) {
+  transition-delay: 0.96s;
+}
+
+/* Contact card hover effect */
+.contact-wrap .contact-card {
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.contact-wrap .contact-card:hover {
+  transform: translateX(8px) !important;
+}
+
+/* Icon hover effect */
+.contact-wrap .contact-card:hover .icon-dot {
+  transform: scale(1.08) rotate(6deg) !important;
+}
+
+/* Form input interaction */
+.contact-wrap .field input,
+.contact-wrap .field select,
+.contact-wrap .field textarea {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.contact-wrap .field input:focus,
+.contact-wrap .field select:focus,
+.contact-wrap .field textarea:focus {
+  transform: translateY(-2px);
+  border-color: #6b4eff;
+  box-shadow: 0 8px 20px rgba(107, 78, 255, 0.12);
+  outline: none;
+}
+
+/* Submit button interaction */
+.contact-wrap .button {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.contact-wrap .button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(36, 26, 74, 0.2);
+}
+
+/* =========================================
+   ACCESSIBILITY — REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .js .contact-wrap .contact-list,
+  .js .contact-wrap .form-panel,
+  .js .contact-wrap .contact-card,
+  .js .contact-wrap .form-header,
+  .js .contact-wrap .form-grid > .field {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .js .contact-wrap .theLine {
+    transform: scaleX(1);
+    transition: none;
+  }
+
+  .js .contact-wrap .icon-dot {
+    transform: none;
+    transition: none;
+  }
+
+  .contact-wrap .contact-card:hover,
+  .contact-wrap .contact-card:hover .icon-dot,
+  .contact-wrap .field input:focus,
+  .contact-wrap .field select:focus,
+  .contact-wrap .field textarea:focus,
+  .contact-wrap .button:hover {
+    transform: none !important;
+  }
+}
+
+/* =========================================
+   CONTACT MAP — REVEAL + IFRAME LOADING
+========================================= */
+
+/* Important for the overlay positioning */
+.contact-map .map-embed {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Start hidden only when JavaScript exists */
+.js .contact-map .map-grid {
+  opacity: 0;
+  transform: translateY(55px);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Map image/frame begins slightly zoomed */
+.js .contact-map .map-embed iframe {
+  opacity: 0;
+  transform: scale(1.08);
+  transform-origin: center;
+  transition:
+    opacity 1s ease 0.2s,
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+/* Final reveal state */
+.js .contact-map.is-visible .map-grid {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js .contact-map.is-visible .map-embed iframe {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Loading overlay */
+.contact-map .map-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  background: #f4f1fb;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
+  pointer-events: none;
+}
+
+/* Small animated circle */
+.contact-map .map-loader span {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(36, 26, 74, 0.16);
+  border-top-color: #6b4eff;
+  border-radius: 50%;
+  animation: map-spin 0.75s linear infinite;
+}
+
+/* Hide overlay only after Google Maps iframe finishes loading */
+.contact-map.map-loaded .map-loader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Hover: very subtle premium zoom */
+.contact-map .map-embed iframe {
+  transition:
+    opacity 1s ease 0.2s,
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.contact-map.is-visible .map-embed:hover iframe {
+  transform: scale(1.025);
+}
+
+/* Spinner */
+@keyframes map-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibility: no movement for reduced-motion visitors */
+@media (prefers-reduced-motion: reduce) {
+  .js .contact-map .map-grid,
+  .js .contact-map .map-embed iframe {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .contact-map .map-loader span {
+    animation: none;
+  }
+
+  .contact-map.is-visible .map-embed:hover iframe {
+    transform: none;
+  }
+}
+  </style>
 
 
 </head>
@@ -2504,18 +2981,18 @@
 
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero-inner">
-        <div>
-          <div class="section-label">Book a call</div>
+    <section class="hero contact-hero" aria-labelledby="hero-title">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="section-label hero-label">Book a call</div>
 
-          <h1 id="hero-title">
-            Let’s define<br>
-            what your business needs next.
-          </h1>
-        </div>
-      </div>
-    </section>
+      <h1 id="hero-title" class="contact-hero-title">
+        <span class="title-line">Let’s define</span>
+        <span class="title-line">what your business needs next.</span>
+      </h1>
+    </div>
+  </div>
+</section>
 
     <section class="contact-wrap" id="contact">
       <div class="container contact-grid">
@@ -3241,8 +3718,168 @@
         revealItems.forEach((item) => observer.observe(item));
       })();
     </script>
+<!-- /* =======================================  CONTACT HERO — REVEAL ANIMATION========================================= */ -->
+    <script>
+  document.documentElement.classList.add("js");
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const contactHero = document.querySelector(".contact-hero");
 
+    if (!contactHero) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducedMotion) {
+      contactHero.classList.add("is-visible");
+      return;
+    }
+
+    setTimeout(() => {
+      contactHero.classList.add("is-visible");
+    }, 120);
+  });
+</script>
+
+<!-- /* =========================================CONTACT DETAILS + FORM — SCROLL REVEAL========================================= */ -->
+<script>
+  document.documentElement.classList.add("js");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const contactHero = document.querySelector(".contact-hero");
+    const contactSection = document.querySelector(".contact-wrap");
+
+    /* Hero animation: page-load reveal */
+    if (contactHero) {
+      if (reducedMotion) {
+        contactHero.classList.add("is-visible");
+      } else {
+        setTimeout(() => {
+          contactHero.classList.add("is-visible");
+        }, 120);
+      }
+    }
+
+    /* Contact form: reveal once when section enters viewport */
+    if (!contactSection) return;
+
+    /* If visitor asks for less movement, show it immediately */
+    if (
+      reducedMotion ||
+      !("IntersectionObserver" in window)
+    ) {
+      contactSection.classList.add("is-visible");
+      return;
+    }
+
+    const contactObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -70px 0px",
+      }
+    );
+
+    contactObserver.observe(contactSection);
+  });
+</script>
+<!-- 
+/* =========================================
+   CONTACT MAP — REVEAL + IFRAME LOADING
+========================================= */ -->
+
+<script>
+  document.documentElement.classList.add("js");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const contactHero = document.querySelector(".contact-hero");
+    const contactSection = document.querySelector(".contact-wrap");
+    const contactMap = document.querySelector(".contact-map");
+    const mapFrame = document.querySelector(".contact-map iframe");
+
+    /* Hero: reveal on page load */
+    if (contactHero) {
+      if (reducedMotion) {
+        contactHero.classList.add("is-visible");
+      } else {
+        setTimeout(() => {
+          contactHero.classList.add("is-visible");
+        }, 120);
+      }
+    }
+
+    /* Map loader disappears once Google Maps has loaded */
+    if (contactMap && mapFrame) {
+      mapFrame.addEventListener("load", () => {
+        contactMap.classList.add("map-loaded");
+      });
+    }
+
+    /* Contact form section */
+    if (contactSection) {
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        contactSection.classList.add("is-visible");
+      } else {
+        const contactObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px",
+          }
+        );
+
+        contactObserver.observe(contactSection);
+      }
+    }
+
+    /* Map: reveal only after the visitor reaches the map */
+    if (contactMap) {
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        contactMap.classList.add("is-visible");
+      } else {
+        const mapObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.25,
+            rootMargin: "0px",
+          }
+        );
+
+        mapObserver.observe(contactMap);
+      }
+    }
+  });
+</script>
 </body>
 
 </html>
