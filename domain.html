@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search for a domain name - Hoffmann Medienagentur</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="./css/hma-header.css" />
     <link rel="stylesheet" href="./css/hmafooter.css" />
@@ -29,7 +31,7 @@
         margin: 0;
         padding: 0;
       }
-      body {  
+      body {
         font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
         color: var(--text-dark);
         background: #fff;
@@ -132,27 +134,28 @@
 
       /* ---------- HERO ---------- */
       .hero {
-            background: radial-gradient(
-      60% 90% at 75% 22%,
-      rgba(86, 77, 255, 0.95),
-      rgba(59, 51, 182, 0.75) 35%,
-      rgba(19, 14, 63, 0.25) 58%,
-      rgba(0, 0, 0, 0) 72%
-    ),
-    linear-gradient(90deg, #000 24%, #08082e 58%, #4d49db 100%);
-    padding: 56px 0 40px;
-    text-align: center;
-    display: flex;
-    flex-flow: column;
-    height: 100vh;
-    justify-content: flex-end;
+        background:
+          radial-gradient(
+            60% 90% at 75% 22%,
+            rgba(86, 77, 255, 0.95),
+            rgba(59, 51, 182, 0.75) 35%,
+            rgba(19, 14, 63, 0.25) 58%,
+            rgba(0, 0, 0, 0) 72%
+          ),
+          linear-gradient(90deg, #000 24%, #08082e 58%, #4d49db 100%);
+        padding: 56px 0 40px;
+        text-align: center;
+        display: flex;
+        flex-flow: column;
+        height: 100vh;
+        justify-content: flex-end;
       }
       .hero h1 {
         color: #fff;
         font-size: 56px;
         font-weight: 500;
         margin-bottom: 48px;
-        letter-spacing: -.005em;
+        letter-spacing: -0.005em;
         line-height: 64px;
       }
       .search-bar {
@@ -198,11 +201,10 @@
         display: grid;
         grid-template-columns: 1.75fr 1fr 1fr;
         gap: 14px;
-        ;
       }
       .hcard {
         border-radius: 16px;
-        padding:24px;
+        padding: 24px;
         text-align: left;
         position: relative;
         overflow: hidden;
@@ -232,7 +234,7 @@
         font-size: 32px;
         font-weight: 400;
         line-height: 40px;
-        letter-spacing: -.005em;
+        letter-spacing: -0.005em;
         margin-bottom: 16px;
         /* max-width: 150px; */
       }
@@ -247,31 +249,29 @@
         background: linear-gradient(160deg, #3a2a6b, #2a1f52);
         color: #fff;
         background-image: none;
-       display: flex;
+        display: flex;
         justify-content: end;
       }
 
       .stat::before {
-  content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60%;
 
-    z-index: 3;
-    background: linear-gradient(180deg, transparent, rgb(255 255 255 / 20%), rgb(255 255 255 / 40%));
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+        z-index: 3;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgb(255 255 255 / 20%),
+          rgb(255 255 255 / 40%)
+        );
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+      }
 
-}
-
-
-
-
-
-
-      
       .hcard.stat img {
         position: absolute;
         right: 0;
@@ -312,21 +312,26 @@
       .hcard.transfer {
         background: #fff;
         color: #000000;
-        
       }
 
-      .transfer::before{
+      .transfer::before {
         content: "";
-         content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         height: 100%;
 
-        background: radial-gradient(101.4% 61.3% at 12.4% 00%, #8b00e863 0%, #d7bdff 36.292934%, rgb(168 24 255 / 6%) 86.29293355855856%, rgb(235 239 255 / 0%) 100%);
+        background: radial-gradient(
+          101.4% 61.3% at 12.4% 00%,
+          #8b00e863 0%,
+          #d7bdff 36.292934%,
+          rgb(168 24 255 / 6%) 86.29293355855856%,
+          rgb(235 239 255 / 0%) 100%
+        );
       }
-      .transfer img{
+      .transfer img {
         position: relative;
         z-index: 1;
       }
@@ -401,7 +406,8 @@
         margin-bottom: 20px;
       }
       .why-card {
-        background: var(--purple-pale);
+        background: radial-gradient(101.4% 61.3% at 12.4% 00%, #8b00e863 0%, #d7bdff 36.292934%, rgb(168 24 255 / 6%) 86.29293355855856%, rgb(235 239 255 / 0%) 100%);
+    box-shadow: 0 0 12px #00000026;
         border-radius: 18px;
         overflow: hidden;
         display: flex;
@@ -559,6 +565,7 @@
         font-size: 11px;
         color: #1a1523;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        margin-left: 15px;
       }
       .chat-bubble img {
         width: 30px;
@@ -770,11 +777,11 @@
       }
       .howto-grid {
         display: grid;
-        grid-template-columns: 0.85fr 1.15fr;
+        grid-template-columns: 1fr 1fr;
         gap: 60px;
       }
       .howto h2 {
-        font-size: 32px;
+        font-size: 42px;
         font-weight: 600;
         line-height: 1.25;
       }
@@ -789,12 +796,12 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px 4px;
-        font-size: 16px;
+        font-size: 24px;
         font-weight: 500;
         cursor: pointer;
       }
       .accordion-head .plus {
-        font-size: 18px;
+        font-size: 32px;
         color: var(--text-gray);
         transition: transform 0.2s;
         width: 20px;
@@ -872,82 +879,7 @@
         padding-bottom: 1px;
       }
 
-      /* ---------- COMPARE PRICES TABLE ---------- */
-      .compare {
-        padding: 80px 0;
-        text-align: center;
-      }
-      .compare-controls {
-        display: flex;
-        justify-content: center;
-        gap: 14px;
-        margin: 0 auto 30px;
-        max-width: 640px;
-      }
-      .compare-search {
-        flex: 1;
-        background: #f7f6fb;
-        border-radius: 10px;
-        padding: 12px 16px;
-        font-size: 13px;
-        color: #9a96a6;
-        text-align: left;
-      }
-      .compare-select {
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 12px 16px;
-        font-size: 13px;
-        min-width: 160px;
-        text-align: left;
-      }
-      table.price-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 26px;
-        text-align: left;
-      }
-      .price-table th {
-        font-size: 13px;
-        color: var(--text-gray);
-        font-weight: 500;
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--border);
-      }
-      .price-table td {
-        font-size: 14px;
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--border);
-      }
-      .price-table tr:nth-child(even) td {
-        background: #faf9fc;
-      }
-      .btn-outline {
-        border: 1px solid var(--border);
-        color: var(--text-dark);
-        font-size: 14px;
-        font-weight: 600;
-        padding: 12px 30px;
-        border-radius: 999px;
-        display: inline-block;
-      }
-
-      /* ---------- FAQ ---------- */
-      .faq {
-        padding: 80px 0;
-        text-align: center;
-      }
-      .faq p.sub {
-        color: var(--text-gray);
-        font-size: 14px;
-        margin-bottom: 40px;
-      }
-      .faq-list {
-        max-width: 760px;
-        margin: 0 auto;
-        text-align: left;
-      }
+     
 
       /* ---------- FOOTER ---------- */
       footer {
@@ -1499,190 +1431,625 @@
         }
       }
 
-
       /* the search bar css */
       /* ---------- DOMAIN AVAILABILITY SEARCH ---------- */
-.domain-search-result {
-  width: min(640px, calc(100% - 48px));
-  min-height: 0;
-  margin: -18px auto 22px;
-  color: #fff;
-  text-align: left;
-}
+      .domain-search-result {
+        width: min(640px, calc(100% - 48px));
+        min-height: 0;
+        margin: -18px auto 22px;
+        color: #fff;
+        text-align: left;
+      }
 
-.domain-search-result:empty {
-  display: none;
-}
+      .domain-search-result:empty {
+        display: none;
+      }
 
-.domain-result-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 14px 16px 14px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
-  background: rgba(13, 8, 45, 0.56);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.16);
-}
+      .domain-result-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 14px 16px 14px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 14px;
+        background: rgba(13, 8, 45, 0.56);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.16);
+      }
 
-.domain-result-card.is-available {
-  border-color: rgba(0, 197, 105, 0.7);
-}
+      .domain-result-card.is-available {
+        border-color: rgba(0, 197, 105, 0.7);
+      }
 
-.domain-result-card.is-taken {
-  border-color: rgba(255, 111, 111, 0.68);
-}
+      .domain-result-card.is-taken {
+        border-color: rgba(255, 111, 111, 0.68);
+      }
 
-.domain-result-card.is-error {
-  border-color: rgba(255, 201, 79, 0.72);
-}
+      .domain-result-card.is-error {
+        border-color: rgba(255, 201, 79, 0.72);
+      }
 
-.domain-result-main {
-  min-width: 0;
-}
+      .domain-result-main {
+        min-width: 0;
+      }
 
-.domain-result-domain {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 16px;
-  font-weight: 700;
-}
+      .domain-result-domain {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: 700;
+      }
 
-.domain-result-text {
-  display: block;
-  margin-top: 3px;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
-}
+      .domain-result-text {
+        display: block;
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 13px;
+      }
 
-.domain-result-status {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  min-width: 112px;
-  min-height: 36px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  color: #062517;
-  background: #00c569;
-  font-size: 12px;
-  font-weight: 700;
-}
+      .domain-result-status {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        min-width: 112px;
+        min-height: 36px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        color: #062517;
+        background: #00c569;
+        font-size: 12px;
+        font-weight: 700;
+      }
 
-.is-taken .domain-result-status {
-  color: #5d0a14;
-  background: #ffb4bb;
-}
+      .is-taken .domain-result-status {
+        color: #5d0a14;
+        background: #ffb4bb;
+      }
 
-.is-error .domain-result-status {
-  color: #583700;
-  background: #ffe09a;
-}
+      .is-error .domain-result-status {
+        color: #583700;
+        background: #ffe09a;
+      }
 
-.domain-search-result.is-loading .domain-result-status::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  margin-right: 7px;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: domain-spin 0.75s linear infinite;
-}
+      .domain-search-result.is-loading .domain-result-status::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        margin-right: 7px;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: domain-spin 0.75s linear infinite;
+      }
 
-@keyframes domain-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+      @keyframes domain-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
-@media (max-width: 560px) {
-  .domain-search-result {
-    width: min(640px, calc(100% - 32px));
-  }
+      @media (max-width: 560px) {
+        .domain-search-result {
+          width: min(640px, calc(100% - 32px));
+        }
 
-  .domain-result-card {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+        .domain-result-card {
+          align-items: flex-start;
+          flex-direction: column;
+        }
 
-  .domain-result-status {
-    width: 100%;
-  }
-}
+        .domain-result-status {
+          width: 100%;
+        }
+      }
 
-
-    
-/* ---------- AVAILABLE ALTERNATIVES LIST ---------- */
-.domain-alt {
-  margin-top: 12px;
-  padding: 14px 16px 8px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
-  background: rgba(13, 8, 45, 0.56);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.16);
-}
-.domain-alt-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 700;
-}
-.domain-alt-progress {
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 12px;
-  font-weight: 500;
-}
-.domain-alt-list {
-  max-height: 260px;
-  overflow-y: auto;
-}
-.domain-alt-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 15px;
-  font-weight: 600;
-}
-.domain-alt-row span:first-child {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.domain-alt-badge {
-  flex: 0 0 auto;
-  padding: 4px 10px;
-  border-radius: 999px;
-  color: #062517;
-  background: #00c569;
-  font-size: 11px;
-  font-weight: 700;
-}
-.domain-alt-empty {
-  padding: 10px 0 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
-}
-
+      /* ---------- AVAILABLE ALTERNATIVES LIST ---------- */
+      .domain-alt {
+        margin-top: 12px;
+        padding: 14px 16px 8px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 14px;
+        background: rgba(13, 8, 45, 0.56);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.16);
+      }
+      .domain-alt-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .domain-alt-progress {
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .domain-alt-list {
+        max-height: 260px;
+        overflow-y: auto;
+      }
+      .domain-alt-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .domain-alt-row span:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .domain-alt-badge {
+        flex: 0 0 auto;
+        padding: 4px 10px;
+        border-radius: 999px;
+        color: #062517;
+        background: #00c569;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .domain-alt-empty {
+        padding: 10px 0 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 13px;
+      }
     </style>
+
+
+<!-- ================= LOST SECTION ================= -->
+
+<style>
+
+/* =========================================
+   HERO SECTION — INTRO REVEAL ANIMATION
+========================================= */
+
+/* Only hide content when JavaScript is active */
+.js .hero .hero-title,
+.js .hero .search-bar,
+.js .hero .domain-search-result,
+.js .hero .hcard {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* Heading entrance */
+.js .hero .hero-title {
+  transform: translateY(42px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Search bar entrance */
+.js .hero .search-bar {
+  transform: translateY(26px) scale(0.98);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Result area stays invisible until your domain search JS adds content */
+.js .hero .domain-search-result {
+  transform: translateY(12px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+/* General hero card entrance */
+.js .hero .hcard {
+  transform: translateY(55px) scale(0.95);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease;
+}
+
+/* Make the center statistics card feel slightly more prominent */
+.js .hero .hcard.stat {
+  transform: translateY(65px) scale(0.9);
+}
+
+/* Final revealed state */
+.js .hero.is-visible .hero-title,
+.js .hero.is-visible .search-bar,
+.js .hero.is-visible .domain-search-result,
+.js .hero.is-visible .hcard {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Reveal sequence */
+.js .hero.is-visible .hero-title {
+  transition-delay: 0.1s;
+}
+
+.js .hero.is-visible .search-bar {
+  transition-delay: 0.25s;
+}
+
+.js .hero.is-visible .hcard:nth-child(1) {
+  transition-delay: 0.45s;
+}
+
+.js .hero.is-visible .hcard:nth-child(2) {
+  transition-delay: 0.58s;
+}
+
+.js .hero.is-visible .hcard:nth-child(3) {
+  transition-delay: 0.71s;
+}
+
+/* Internal card animation */
+.js .hero .hcard .badge,
+.js .hero .hcard .stat-num,
+.js .hero .hcard .stat-num2,
+.js .hero .hcard img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+/* Promo percentage badge */
+.js .hero .hcard .badge {
+  opacity: 0;
+  transform: scale(0) rotate(-25deg);
+}
+
+.js .hero.is-visible .hcard .badge {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+  transition-delay: 0.78s;
+}
+
+/* Statistic number animation */
+.js .hero .hcard .stat-num,
+.js .hero .hcard .stat-num2 {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.js .hero.is-visible .hcard .stat-num,
+.js .hero.is-visible .hcard .stat-num2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js .hero.is-visible .hcard .stat-num {
+  transition-delay: 0.8s;
+}
+
+.js .hero.is-visible .hcard .stat-num2 {
+  transition-delay: 0.9s;
+}
+
+/* Images gently zoom out into their correct position */
+.js .hero .hcard img {
+  opacity: 0;
+  transform: scale(1.16);
+}
+
+.js .hero.is-visible .hcard img {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.78s;
+}
+
+/* Card hover interaction */
+.hero .hcard {
+  transform-origin: center bottom;
+}
+
+.hero .hcard:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 22px 45px rgba(28, 16, 70, 0.16);
+}
+
+.hero .hcard:hover img {
+  transform: scale(1.06) !important;
+}
+
+/* Search bar focus interaction */
+.hero .search-bar {
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.hero .search-bar:focus-within {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 14px 35px rgba(36, 26, 74, 0.15);
+}
+
+/* Search button hover */
+.hero .search-go {
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.hero .search-go:hover {
+  transform: translateX(4px) scale(1.08);
+}
+
+/* Accessibility: show everything immediately for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .js .hero .hero-title,
+  .js .hero .search-bar,
+  .js .hero .domain-search-result,
+  .js .hero .hcard,
+  .js .hero .hcard .badge,
+  .js .hero .hcard .stat-num,
+  .js .hero .hcard .stat-num2,
+  .js .hero .hcard img {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero .hcard:hover,
+  .hero .hcard:hover img,
+  .hero .search-bar:focus-within,
+  .hero .search-go:hover {
+    transform: none !important;
+  }
+}
+
+
+  /* =========================================
+   LOST SECTION — SCROLL REVEAL ANIMATIONS
+========================================= */
+
+/* Initial states only activate after JS is loaded */
+.js .lost .lost-title,
+.js .lost .lost-card {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Section heading */
+.js .lost .lost-title {
+  transform: translateY(35px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Cards */
+.js .lost .lost-card {
+  transform: translateY(45px) scale(0.97);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease;
+}
+
+/* Final visible state */
+.js .lost.is-visible .lost-title,
+.js .lost.is-visible .lost-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Card stagger timing */
+.js .lost.is-visible .lost-card:nth-child(1) {
+  transition-delay: 0.12s;
+}
+
+.js .lost.is-visible .lost-card:nth-child(2) {
+  transition-delay: 0.24s;
+}
+
+.js .lost.is-visible .lost-card:nth-child(3) {
+  transition-delay: 0.36s;
+}
+
+/* Small extra reveal for the content inside cards */
+.js .lost .lost-card .media,
+.js .lost .lost-card .body {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .lost .lost-card .media {
+  transform: scale(1.08);
+}
+
+.js .lost .lost-card .body {
+  transform: translateY(12px);
+}
+
+.js .lost.is-visible .lost-card .media,
+.js .lost.is-visible .lost-card .body {
+  transform: translateY(0) scale(1);
+}
+
+/* Hover interaction: keeps the section feeling alive */
+.lost .lost-card {
+  overflow: hidden;
+  transform-origin: center bottom;
+}
+
+.lost .lost-card:hover {
+  transform: translateY(-10px) scale(1.01)!important;
+  box-shadow: 0 22px 45px rgba(25, 15, 60, 0.18);
+}
+
+.lost .lost-card:hover .media {
+  transform: scale(1.05) !important;
+}
+
+.lost .lost-card .media {
+  overflow: hidden;
+}
+
+/* Link micro-interaction */
+.lost .lost-card .link {
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.52s ease, transform 0.25s ease;
+}
+
+.lost .lost-card .link:hover {
+  transform: translateX(5px);
+}
+
+/* Accessibility: remove non-essential movement */
+@media (prefers-reduced-motion: reduce) {
+  .js .lost .lost-title,
+  .js .lost .lost-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .js .lost .lost-card .media,
+  .js .lost .lost-card .body,
+  .lost .lost-card,
+  .lost .lost-card .link {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+/* =========================================
+   HOW TO SECTION — LEFT / RIGHT REVEAL
+========================================= */
+
+/* Initial hidden state — only when JavaScript is active */
+.js .howto h2,
+.js .howto .accordion {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Heading enters from the left */
+.js .howto h2 {
+  transform: translateX(-85px);
+  transition:
+    opacity 0.85s ease,
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Entire accordion enters from the right */
+.js .howto .accordion {
+  transform: translateX(85px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Final revealed position */
+.js .howto.is-visible h2,
+.js .howto.is-visible .accordion {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Heading comes first */
+.js .howto.is-visible h2 {
+  transition-delay: 0.1s;
+}
+
+/* Accordion follows from the right */
+.js .howto.is-visible .accordion {
+  transition-delay: 0.22s;
+}
+
+/* =========================================
+   ACCORDION ITEMS — SMALL STAGGER REVEAL
+========================================= */
+
+.js .howto .accordion-item {
+  opacity: 0;
+  transform: translateX(25px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease;
+}
+
+/* Show accordion rows after the container is visible */
+.js .howto.is-visible .accordion-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.js .howto.is-visible .accordion-item:nth-child(1) {
+  transition-delay: 0.35s;
+}
+
+.js .howto.is-visible .accordion-item:nth-child(2) {
+  transition-delay: 0.43s;
+}
+
+.js .howto.is-visible .accordion-item:nth-child(3) {
+  transition-delay: 0.51s;
+}
+
+.js .howto.is-visible .accordion-item:nth-child(4) {
+  transition-delay: 0.59s;
+}
+
+.js .howto.is-visible .accordion-item:nth-child(5) {
+  transition-delay: 0.67s;
+}
+
+.js .howto.is-visible .accordion-item:nth-child(6) {
+  transition-delay: 0.75s;
+}
+
+/* Nice hover effect for each row */
+.howto .accordion-item {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.howto .accordion-item:hover {
+  transform: translateX(-5px);
+  box-shadow: 0 10px 28px rgba(36, 26, 74, 0.1);
+}
+
+/* Plus/minus icon animation */
+.howto .accordion-head .plus {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.howto .accordion-item.active .plus {
+  transform: rotate(180deg);
+}
+
+/* Accessibility: do not hide or animate for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .js .howto h2,
+  .js .howto .accordion,
+  .js .howto .accordion-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .howto .accordion-item:hover,
+  .howto .accordion-item.active .plus {
+    transform: none;
+  }
+}
+</style>
   </head>
   <body>
     <!-- ================= HEADER ================= -->
 
-       <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
+    <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
 
     <div class="mobile-nav-wrap">
       <nav class="mobile-blur-nav" aria-label="Primary" data-mobile-nav>
@@ -1884,46 +2251,46 @@
     <!-- ================= HERO ================= -->
     <section class="hero">
       <div class="wrap">
-        <h1>Search for a domain name</h1>
+        <h1 class="hero-title">Search for a domain name</h1>
         <form class="search-bar" id="domainSearchForm" novalidate>
-  <span class="search-icon">
-    <i class="ri-search-line" style="color: #000;"></i>
-  </span>
+          <span class="search-icon">
+            <i class="ri-search-line" style="color: #000"></i>
+          </span>
 
-  <input
-    id="domainSearchInput"
-    type="text"
-    inputmode="url"
-    autocomplete="off"
-    placeholder="Type the domain you want"
-    aria-label="Domain name"
-  />
+          <input
+            id="domainSearchInput"
+            type="text"
+            inputmode="url"
+            autocomplete="off"
+            placeholder="Type the domain you want"
+            aria-label="Domain name"
+          />
 
-  <button
-    class="search-go"
-    id="domainSearchButton"
-    type="submit"
-    aria-label="Check domain availability"
-  >
-    ➜
-  </button>
-</form>
+          <button
+            class="search-go"
+            id="domainSearchButton"
+            type="submit"
+            aria-label="Check domain availability"
+          >
+            ➜
+          </button>
+        </form>
 
-<div
-  id="domainSearchResult"
-  class="domain-search-result"
-  role="status"
-  aria-live="polite"
-></div>
+        <div
+          id="domainSearchResult"
+          class="domain-search-result"
+          role="status"
+          aria-live="polite"
+        ></div>
 
         <div class="hero-cards">
           <div class="hcard promo">
             <div class="badge">%</div>
             <div>
-                <p>Get 1 month of the Unlimited plan free</p>
-            <div class="hcard-stats">
-              Applies to .ai, .org, .net and more with 3+ year periods.
-            </div>
+              <p>Get 1 month of the Unlimited plan free</p>
+              <div class="hcard-stats">
+                Applies to .ai, .org, .net and more with 3+ year periods.
+              </div>
             </div>
           </div>
           <div class="hcard stat">
@@ -1942,28 +2309,29 @@
                 Domain transfer
               </div>
               <!-- <div class="arrow">↗</div> -->
-
             </div>
-            <img src="./assets/images/gallery/switch.webp" alt="">
+            <img src="./assets/images/gallery/switch.webp" alt="" />
             <p style="font-size: 16px; font-weight: 500; color: #000000">
               We made domain transfer easy from $9.99
             </p>
           </div>
         </div>
 
-        <div class="trust-row">
+        <!-- <div class="trust-row">
           <span>Excellent</span>
           <span class="stars">★★★★★</span>
           <span>73,466 reviews on</span>
           <strong style="color: #fff">★ Trustpilot</strong>
-        </div>
+        </div> -->
       </div>
     </section>
 
     <!-- ================= WHY BUY DOMAIN NAMES ================= -->
     <section class="section">
       <div class="wrap">
-        <h2 class="section-title">Why buy domain names at Hoffmann Medienagentur?</h2>
+        <h2 class="section-title">
+          Why buy domain names at Hoffmann Medienagentur?
+        </h2>
 
         <div class="why-grid">
           <div class="why-card">
@@ -1975,7 +2343,8 @@
             <div class="body">
               <h3>Trusted domain registrar</h3>
               <p>
-                Hoffmann Medienagentur is ICANN-accredited and offers 500+ domain extensions.
+                Hoffmann Medienagentur is ICANN-accredited and offers 500+
+                domain extensions.
               </p>
               <a class="link" href="#">Find more about domains</a>
             </div>
@@ -2008,9 +2377,9 @@
               <h3>Privacy</h3>
               <p>
                 When you register a domain, your contact details may appear in
-                public RDAP/WHOIS records. For supported extensions, Hoffmann Medienagentur
-                automatically includes free privacy protection to keep your
-                personal information hidden from third parties.
+                public RDAP/WHOIS records. For supported extensions, Hoffmann
+                Medienagentur automatically includes free privacy protection to
+                keep your personal information hidden from third parties.
               </p>
             </div>
           </div>
@@ -2021,14 +2390,15 @@
             <div class="media">
               <div class="chip-nav">
                 <span>HOME</span><span>ABOUT US</span><span>CONTACT</span>
-                <span style="margin-left: auto">🔍 🔔</span>
+                <span style="margin-left: auto"><i class="ri-search-line" style="color: #ffffff"></i> </span>
               </div>
               <div class="chat-bubble">
                 <img
                   src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=60&h=60&fit=crop"
                   alt=""
                 />
-                Hello, I would like to migrate my website to Hoffmann Medienagentur.
+                Hello, I would like to migrate my website to Hoffmann
+                Medienagentur.
               </div>
               <div class="chip-btn">Shop now</div>
             </div>
@@ -2046,11 +2416,6 @@
 
           <div
             class="why-card"
-            style="
-              background: var(--purple-pale);
-              display: flex;
-              flex-direction: column;
-            "
           >
             <div
               class="media"
@@ -2108,7 +2473,7 @@
               <h3>Quick setup, easy management</h3>
               <p>
                 Register your domain in a few clicks, then manage everything in
-                one place — renewals, DNS settings, and connections to your
+                one place renewals, DNS settings, and connections to your
                 website or email.
               </p>
             </div>
@@ -2121,51 +2486,6 @@
       </div>
     </section>
 
-    <!-- ================= TRUSTED BY 4M ================= -->
-    <section class="trusted">
-      <div class="wrap">
-        <h2 class="section-title">
-          Trusted by 4+ million website<br />owners worldwide
-        </h2>
-        <div class="testi-grid">
-          <div class="testi-card">
-            <div class="testi-top">
-              <span class="testi-name">Joanna Murray</span><span>↗</span>
-            </div>
-            <span class="stars">★★★★★</span>
-            <p>
-              I needed to get all my websites and emails in one place, so I
-              choose Hoffmann Medienagentur to make that happen. It's been brilliant! I now
-              feel like I have far more control of everything.
-            </p>
-          </div>
-          <div class="testi-card">
-            <div class="testi-top">
-              <span class="testi-name">Martynas Jucys</span><span>↗</span>
-            </div>
-            <span class="stars">★★★★★</span>
-            <p>
-              Bought several domains already. Best price deals. Everything went
-              smooth so far.
-            </p>
-          </div>
-          <div class="testi-card">
-            <div class="testi-top">
-              <span class="testi-name">Agustin Campos</span><span>↗</span>
-            </div>
-            <span class="stars">★★★★★</span>
-            <p>
-              Hoffmann Medienagentur is life changing. The support, loading speeds,
-              everything in HMA is easy. From managing websites to
-              domains. The technical team will guide you through everything.
-            </p>
-          </div>
-        </div>
-        <div class="see-more">
-          See our 73,466 reviews on <a href="#">★ Trustpilot</a>
-        </div>
-      </div>
-    </section>
 
     <!-- ================= POPULAR DOMAINS ================= -->
     <section class="popular">
@@ -2351,8 +2671,8 @@
               <h3>Hosting + domain</h3>
               <p>
                 Your domain is your website's address. Hosting keeps it online.
-                Get everything you need at Hoffmann Medienagentur, including a free domain
-                for the first year with eligible plans.
+                Get everything you need at Hoffmann Medienagentur, including a
+                free domain for the first year with eligible plans.
               </p>
             </div>
           </div>
@@ -2360,89 +2680,7 @@
       </div>
     </section>
 
-    <!-- ================= COMPARE PRICES ================= -->
-    <section class="compare">
-      <div class="wrap">
-        <h2 class="section-title">Compare domain extension prices</h2>
-        <div class="compare-controls">
-          <div class="compare-search">🔍 Find a domain extension</div>
-          <div class="compare-select">Choose from ▾ Popular</div>
-        </div>
-        <table class="price-table">
-          <thead>
-            <tr>
-              <th>Domain extension</th>
-              <th>First year</th>
-              <th>Renews at</th>
-              <th>Transfer</th>
-            </tr>
-          </thead>
-          <tbody id="priceTable">
-            <tr>
-              <td>.com</td>
-              <td>$0.01</td>
-              <td>$19.99/yr</td>
-              <td>$9.99</td>
-            </tr>
-            <tr>
-              <td>.tech</td>
-              <td>$0.99</td>
-              <td>$53.99/yr</td>
-              <td>$53.99</td>
-            </tr>
-            <tr>
-              <td>.cloud</td>
-              <td>$1.99</td>
-              <td>$25.99/yr</td>
-              <td>$21.99</td>
-            </tr>
-            <tr>
-              <td>.shop</td>
-              <td>$0.99</td>
-              <td>$39.99/yr</td>
-              <td>$34.99</td>
-            </tr>
-            <tr>
-              <td>.org</td>
-              <td>$0.99</td>
-              <td>$17.99/yr</td>
-              <td>$12.99</td>
-            </tr>
-            <tr>
-              <td>.online</td>
-              <td>$0.99</td>
-              <td>$35.99/yr</td>
-              <td>$30.99</td>
-            </tr>
-            <tr>
-              <td>.pro</td>
-              <td>$2.99</td>
-              <td>$39.99/yr</td>
-              <td>$23.99</td>
-            </tr>
-            <tr>
-              <td>.store</td>
-              <td>$0.99</td>
-              <td>$54.99/yr</td>
-              <td>$46.99</td>
-            </tr>
-            <tr>
-              <td>.space</td>
-              <td>$0.99</td>
-              <td>$22.99/yr</td>
-              <td>$27.99</td>
-            </tr>
-            <tr>
-              <td>.site</td>
-              <td>$0.99</td>
-              <td>$38.99/yr</td>
-              <td>$32.99</td>
-            </tr>
-          </tbody>
-        </table>
-        <button class="btn-outline" id="showMoreBtn">Show more</button>
-      </div>
-    </section>
+   
 
     <!-- ================= FAQ ================= -->
     <section class="faq-section" id="faqSection">
@@ -3122,45 +3360,206 @@
     </script>
 
     <!-- search bar scrip -->
-<script>
-  (function () {
-    const RESULTS_PAGE = "domain-results.html"; // the results page file
+    <script>
+      (function () {
+        const RESULTS_PAGE = "domain-results.html"; // the results page file
 
-    const form = document.getElementById("domainSearchForm");
-    const input = document.getElementById("domainSearchInput");
-    const result = document.getElementById("domainSearchResult");
-    if (!form || !input || !result) return;
+        const form = document.getElementById("domainSearchForm");
+        const input = document.getElementById("domainSearchInput");
+        const result = document.getElementById("domainSearchResult");
+        if (!form || !input || !result) return;
 
-    const escapeHtml = (v) =>
-      String(v).replace(/[&<>'"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[c]));
+        const escapeHtml = (v) =>
+          String(v).replace(
+            /[&<>'"]/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                "'": "&#39;",
+                '"': "&quot;",
+              })[c],
+          );
 
-    function normalizeDomain(v) {
-      return v.trim().toLowerCase()
-        .replace(/^https?:\/\//, "").replace(/^www\./, "")
-        .replace(/[\/?#].*$/, "").replace(/\s+/g, "");
-    }
+        function normalizeDomain(v) {
+          return v
+            .trim()
+            .toLowerCase()
+            .replace(/^https?:\/\//, "")
+            .replace(/^www\./, "")
+            .replace(/[\/?#].*$/, "")
+            .replace(/\s+/g, "");
+        }
 
-    function showError(text) {
-      result.className = "domain-search-result";
-      result.innerHTML =
-        '<div class="domain-result-card is-error"><div class="domain-result-main">' +
-        '<span class="domain-result-domain">Check input</span>' +
-        '<span class="domain-result-text">' + escapeHtml(text) + "</span></div></div>";
-    }
+        function showError(text) {
+          result.className = "domain-search-result";
+          result.innerHTML =
+            '<div class="domain-result-card is-error"><div class="domain-result-main">' +
+            '<span class="domain-result-domain">Check input</span>' +
+            '<span class="domain-result-text">' +
+            escapeHtml(text) +
+            "</span></div></div>";
+        }
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const value = normalizeDomain(input.value);
-      const name = value.split(".")[0];
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const value = normalizeDomain(input.value);
+          const name = value.split(".")[0];
 
-      if (!name || !/^[a-z0-9-]+$/.test(name)) {
-        showError("Enter a name like zeb or a full domain like zeb.com (letters, numbers and hyphens only).");
-        input.focus();
-        return;
+          if (!name || !/^[a-z0-9-]+$/.test(name)) {
+            showError(
+              "Enter a name like zeb or a full domain like zeb.com (letters, numbers and hyphens only).",
+            );
+            input.focus();
+            return;
+          }
+          window.location.href =
+            RESULTS_PAGE + "?q=" + encodeURIComponent(value);
+        });
+      })();
+    </script>
+
+
+<!-- ================= hero SECTION ================= -->
+ <script>
+  document.documentElement.classList.add("js");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const hero = document.querySelector(".hero");
+    const lostSection = document.querySelector(".lost");
+
+    /* Hero: it is visible immediately when the page opens */
+    if (hero) {
+      if (reducedMotion) {
+        hero.classList.add("is-visible");
+      } else {
+        setTimeout(() => {
+          hero.classList.add("is-visible");
+        }, 120);
       }
-      window.location.href = RESULTS_PAGE + "?q=" + encodeURIComponent(value);
+    }
+
+    /* Lost section: reveal when it enters the viewport */
+    if (lostSection) {
+      if (reducedMotion) {
+        lostSection.classList.add("is-visible");
+      } else {
+        const sectionObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.18,
+            rootMargin: "0px 0px -80px 0px",
+          }
+        );
+
+        sectionObserver.observe(lostSection);
+      }
+    }
+  });
+</script>
+<!-- ================= LOST SECTION ================= -->
+ <script>
+  document.documentElement.classList.add("js");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const lostSection = document.querySelector(".lost");
+
+    if (!lostSection) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    /* Show content normally for visitors who prefer reduced motion */
+    if (reducedMotion) {
+      lostSection.classList.add("is-visible");
+      return;
+    }
+
+    const revealLostSection = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    revealLostSection.observe(lostSection);
+  });
+</script>
+
+<!-- ================= how to get SECTION ================= -->
+<script>
+  document.documentElement.classList.add("js");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const hero = document.querySelector(".hero");
+    const lostSection = document.querySelector(".lost");
+    const howtoSection = document.querySelector(".howto");
+
+    /* Hero animation on page load */
+    if (hero) {
+      if (reducedMotion) {
+        hero.classList.add("is-visible");
+      } else {
+        setTimeout(() => {
+          hero.classList.add("is-visible");
+        }, 120);
+      }
+    }
+
+    /* Sections that animate when they enter the screen */
+    const scrollSections = [lostSection, howtoSection].filter(Boolean);
+
+    if (reducedMotion) {
+      scrollSections.forEach((section) => {
+        section.classList.add("is-visible");
+      });
+      return;
+    }
+
+    const sectionObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    scrollSections.forEach((section) => {
+      sectionObserver.observe(section);
     });
-  })();
+  });
 </script>
   </body>
 </html>
