@@ -11,7 +11,6 @@
     />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
 
-
     <link rel="stylesheet" href="./css/hma-header.css" />
     <link rel="stylesheet" href="./css/hmafooter.css" />
     <link rel="stylesheet" href="./css/mobile-navmenu.css" />
@@ -26,15 +25,11 @@
         --green: #008361;
         --green-bg: #dff5ec;
       }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
         font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
         color: var(--text);
-         background:radial-gradient(
+        background: radial-gradient(
           101.4% 61.3% at 12.4% 00%,
           #8b00e863 0%,
           rgb(215 189 255) 36.292934%,
@@ -43,28 +38,11 @@
         );
         -webkit-font-smoothing: antialiased;
       }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      button {
-        font-family: inherit;
-        cursor: pointer;
-      }
-      :focus-visible {
-        outline: 2px solid var(--purple);
-        outline-offset: 2px;
-      }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; }
+      :focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
 
-     
-
-      .page {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 200px 20px 80px;
-        height: 100vh;
-       
-      }
+      .page { max-width: 1200px; margin: 0 auto; padding: 200px 20px 80px; min-height: 100vh; }
       h1 {
         text-align: center;
         font-size: clamp(32px, 6vw, 48px);
@@ -84,270 +62,107 @@
         padding: 6px 6px 6px 18px;
         background: #fff;
       }
-      .search:focus-within {
-        border-color: var(--purple);
-      }
-      .search svg {
-        flex: 0 0 auto;
-        color: var(--gray);
-      }
+      .search:focus-within { border-color: var(--purple); }
+      .search svg { flex: 0 0 auto; color: var(--gray); }
       .search input {
-        flex: 1;
-        min-width: 0;
-        border: none;
-        outline: none;
-        font: inherit;
-        font-size: 15px;
-        padding: 8px 0;
+        flex: 1; min-width: 0; border: none; outline: none;
+        font: inherit; font-size: 15px; padding: 8px 0;
       }
       .clear {
-        flex: 0 0 auto;
-        width: 28px;
-        height: 28px;
-        border: none;
-        border-radius: 50%;
-        background: transparent;
-        color: var(--gray);
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        flex: 0 0 auto; width: 28px; height: 28px; border: none; border-radius: 50%;
+        background: transparent; color: var(--gray); font-size: 18px;
+        display: flex; align-items: center; justify-content: center;
       }
-      .clear:hover {
-        background: var(--pale);
-        color: var(--text);
-      }
-      .clear[hidden] {
-        display: none;
-      }
+      .clear:hover { background: var(--pale); color: var(--text); }
+      .clear[hidden] { display: none; }
       .go {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: none;
-        background: var(--purple);
-        color: #fff;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 32px; height: 32px; border-radius: 50%; border: none;
+        background: var(--purple); color: #fff; font-size: 15px;
+        display: flex; align-items: center; justify-content: center;
       }
-      .go:hover {
-        background: #5530d1;
-      }
+      .go:hover { background: #5530d1; }
 
       .banner {
-        background: var(--pale);
-        border-radius: 12px;
-        padding: 14px 18px;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 16px;
+        background: var(--pale); border-radius: 12px; padding: 14px 18px;
+        font-size: 15px; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
       }
-      .banner svg {
-        flex: 0 0 auto;
-      }
-      .banner.is-error {
-        background: #fff4d6;
-      }
+      .banner svg { flex: 0 0 auto; }
+      .banner.is-error { background: #fff4d6; }
 
-      .feature {
-        background: var(--pale);
-        border-radius: 16px;
-        padding: 24px;
-        margin-bottom: 44px;
-      }
+      .feature { background: var(--pale); border-radius: 16px; padding: 24px; margin-bottom: 44px; }
       .feature-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        flex-wrap: wrap;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 16px; flex-wrap: wrap;
       }
       .badge {
-        display: inline-block;
-        background: #00905d;
-        color: #fff;
-        font-size: 11px;
-        font-weight: 600;
-        padding: 3px 8px;
-        border-radius: 5px;
-        margin-bottom: 8px;
+        display: inline-block; background: #00905d; color: #fff; font-size: 11px;
+        font-weight: 600; padding: 3px 8px; border-radius: 5px; margin-bottom: 8px;
       }
-      .feature h2 {
-        font-size: 19px;
-        font-weight: 600;
-      }
-      .feature-right {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-      }
+      .feature h2 { font-size: 19px; font-weight: 600; }
+      .feature-right { display: flex; align-items: center; gap: 24px; }
       .feature-note {
-        margin-top: 18px;
-        padding-top: 16px;
-        border-top: 1px solid #dcdae3;
-        font-size: 12.5px;
-        color: var(--gray);
-        display: flex;
-        gap: 8px;
-        align-items: center;
+        margin-top: 18px; padding-top: 16px; border-top: 1px solid #dcdae3;
+        font-size: 12.5px; color: var(--gray); display: flex; gap: 8px; align-items: center;
       }
 
-      .price {
-        display: flex;
-        align-items: baseline;
-        gap: 6px;
-        white-space: nowrap;
-      }
-      .price s {
-        font-size: 12px;
-        color: var(--gray);
-      }
-      .price b {
-        font-size: 18px;
-        font-weight: 600;
-      }
+      .price { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+      .price s { font-size: 12px; color: var(--gray); }
+      .price b { font-size: 18px; font-weight: 600; }
 
-      .btn-solid,
-      .btn-line {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 15px;
-        font-weight: 600;
-        border-radius: 8px;
-        padding: 13px 22px;
-        border: 1px solid var(--purple);
-        white-space: nowrap;
+      .btn-solid, .btn-line {
+        display: inline-flex; align-items: center; justify-content: center;
+        font-size: 15px; font-weight: 600; border-radius: 8px;
+        padding: 13px 22px; border: 1px solid var(--purple); white-space: nowrap;
       }
-      .btn-solid {
-        background: var(--purple);
-        color: #fff;
-      }
-      .btn-solid:hover {
-        background: #5530d1;
-      }
-      .btn-line {
-        background: #fff;
-        color: var(--purple);
-        padding: 12px 20px;
-      }
-      .btn-line:hover {
-        background: #f2effd;
-      }
+      .btn-solid { background: var(--purple); color: #fff; }
+      .btn-solid:hover { background: #5530d1; }
+      .btn-line { background: #fff; color: var(--purple); padding: 12px 20px; }
+      .btn-line:hover { background: #f2effd; }
 
-      .more-title {
-        font-size: 15px;
-        font-weight: 600;
-        margin-bottom: 16px;
-      }
-      .chips {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-bottom: 14px;
-      }
+      .more-title { font-size: 15px; font-weight: 600; margin-bottom: 16px; }
+      .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
       .chip {
-        border: 1px solid var(--border);
-        background: #fff;
-        border-radius: 999px;
-        padding: 7px 14px;
-        font-size: 13px;
-        color: var(--text);
+        border: 1px solid var(--border); background: #fff; border-radius: 999px;
+        padding: 7px 14px; font-size: 13px; color: var(--text);
       }
-      .chip:hover {
-        background: #f7f5fc;
-      }
-      .chip.is-active {
-        background: #ebe7f7;
-        border-color: #ebe7f7;
-        font-weight: 600;
-      }
+      .chip:hover { background: #f7f5fc; }
+      .chip.is-active { background: #ebe7f7; border-color: #ebe7f7; font-weight: 600; }
 
       .row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 24px;
-        border-bottom: 1px solid var(--border);
-        border-radius: 12px;
-        transition: background 0.15s;
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        padding: 14px 24px; border-bottom: 1px solid var(--border);
+        border-radius: 12px; transition: background 0.15s;
       }
-      .row:hover {
-        background: var(--pale);
-        border-bottom-color: transparent;
-      }
+      .row:hover { background: var(--pale); border-bottom-color: transparent; }
       .row-name {
-        font-size: 19px;
-        font-weight: 600;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: 19px; font-weight: 600; min-width: 0;
+        overflow: hidden; text-overflow: ellipsis;
       }
-      .row-right {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-      }
-      .row-right .price {
-        min-width: 110px;
-        justify-content: flex-end;
-      }
+      .row-right { display: flex; align-items: center; gap: 24px; }
+      .row-right .price { min-width: 110px; justify-content: flex-end; }
 
       .status {
-        padding: 28px 24px;
-        color: var(--gray);
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        padding: 28px 24px; color: var(--gray); font-size: 14px;
+        display: flex; align-items: center; gap: 10px;
       }
       .spin {
-        width: 14px;
-        height: 14px;
-        border: 2px solid var(--purple);
-        border-right-color: transparent;
-        border-radius: 50%;
+        width: 14px; height: 14px; border: 2px solid var(--purple);
+        border-right-color: transparent; border-radius: 50%;
         animation: spin 0.75s linear infinite;
       }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .spin {
-          animation-duration: 2s;
-        }
-      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) { .spin { animation-duration: 2s; } }
 
       @media (max-width: 600px) {
-        
-        .row {
-          padding: 12px 8px;
-        }
-        .row-right {
-          gap: 12px;
-        }
-        .row-right .price {
-          min-width: 0;
-        }
-        .row-name {
-          font-size: 16px;
-        }
-        .feature-right {
-          width: 100%;
-          justify-content: space-between;
-        }
+        .row { padding: 12px 8px; }
+        .row-right { gap: 12px; }
+        .row-right .price { min-width: 0; }
+        .row-name { font-size: 16px; }
+        .feature-right { width: 100%; justify-content: space-between; }
       }
     </style>
   </head>
   <body>
-    
     <div class="mobile-nav-backdrop" data-mobile-backdrop></div>
 
     <div class="mobile-nav-wrap">
@@ -381,17 +196,11 @@
               <span class="mobile-menu-link-label">About</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
-
-            <a
-              class="mobile-menu-link"
-              href="./hmaservices.html"
-              data-mobile-link
-            >
+            <a class="mobile-menu-link" href="./hmaservices.html" data-mobile-link>
               <span class="mobile-menu-link-index">02</span>
               <span class="mobile-menu-link-label">Services</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
-
             <a class="mobile-menu-link" href="./domain.html" data-mobile-link>
               <span class="mobile-menu-link-index">03</span>
               <span class="mobile-menu-link-label">Domains</span>
@@ -402,26 +211,17 @@
               <span class="mobile-menu-link-label">Blogs</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
-
             <a class="mobile-menu-link" href="./contact.html" data-mobile-link>
               <span class="mobile-menu-link-index">05</span>
               <span class="mobile-menu-link-label">Contact</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
-            <a
-              class="mobile-menu-link"
-              href="./privacy-policy.html"
-              data-mobile-link
-            >
+            <a class="mobile-menu-link" href="./privacy-policy.html" data-mobile-link>
               <span class="mobile-menu-link-index">06</span>
               <span class="mobile-menu-link-label">Privacy and Policy</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
             </a>
-            <a
-              class="mobile-menu-link"
-              href="./legal-notice.html"
-              data-mobile-link
-            >
+            <a class="mobile-menu-link" href="./legal-notice.html" data-mobile-link>
               <span class="mobile-menu-link-index">07</span>
               <span class="mobile-menu-link-label">Legal Notice</span>
               <span class="mobile-menu-link-arrow" aria-hidden="true">↗</span>
@@ -435,21 +235,9 @@
             </div>
 
             <div class="mobile-socials" aria-label="Social links">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Instagram</a
-              >
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer"
-                >X</a
-              >
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                >LinkedIn</a
-              >
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
           </div>
         </div>
@@ -458,10 +246,7 @@
     <!-- navbar -->
     <nav class="nav-wrap">
       <a href="/" class="LogoWrapper"
-        ><img
-          src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp"
-          alt=""
-          class="Logo"
+        ><img src="./assets/images/logo/NEW-HOFFMANN-LOGO.webp" alt="" class="Logo"
       /></a>
       <div class="nav-bar" id="navBar">
         <a href="./index.html" class="nav-item" data-name="Home">
@@ -495,32 +280,16 @@
             <span class="dropdown-arrow" aria-hidden="true"></span>
           </button>
 
-          <div
-            class="services-dropdown"
-            id="services-dropdown"
-            aria-label="Services menu"
-          >
-            <a class="service-dropdown-link" href="./hmaservices.html"
-              >All Services</a
-            >
+          <div class="services-dropdown" id="services-dropdown" aria-label="Services menu">
+            <!-- <a class="service-dropdown-link" href="./hmaservices.html">All Services</a> -->
             <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
             <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
             <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
-            <a class="service-dropdown-link" href="./dpp-ready.html"
-              >DPP READY</a
-            >
-            <a class="service-dropdown-link" href="./domains-email.html"
-              >Domains &amp; Email</a
-            >
-            <a class="service-dropdown-link" href="./infrastructure.html"
-              >INFRASTRUCTURE</a
-            >
-            <a class="service-dropdown-link" href="./ai-search.html"
-              >Ai Search</a
-            >
-            <a class="service-dropdown-link" href="./costum-software.html"
-              >Custom Software</a
-            >
+            <a class="service-dropdown-link" href="./dpp-ready.html">DPP READY</a>
+            <a class="service-dropdown-link" href="./domains-email.html">Domains &amp; Email</a>
+            <a class="service-dropdown-link" href="./infrastructure.html">INFRASTRUCTURE</a>
+            <a class="service-dropdown-link" href="./ai-search.html">Ai Search</a>
+            <a class="service-dropdown-link" href="./costum-software.html">Custom Software</a>
           </div>
         </div>
 
@@ -547,39 +316,16 @@
       </div>
     </nav>
 
-
-    
-
     <main class="page">
       <h1>Find your domain name</h1>
 
       <form class="search" id="form" novalidate>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.4"
-          stroke-linecap="round"
-        >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
           <circle cx="11" cy="11" r="7" />
           <path d="M20 20l-3.5-3.5" />
         </svg>
-        <input
-          id="q"
-          type="text"
-          autocomplete="off"
-          placeholder="Type the domain you want"
-          aria-label="Domain name"
-        />
-        <button
-          class="clear"
-          id="clear"
-          type="button"
-          aria-label="Clear search"
-          hidden
-        >
+        <input id="q" type="text" autocomplete="off" placeholder="Type the domain you want" aria-label="Domain name" />
+        <button class="clear" id="clear" type="button" aria-label="Clear search" hidden>
           <i class="ri-close-line" aria-hidden="true"></i>
         </button>
         <button class="go" type="submit" aria-label="Search">&#10140;</button>
@@ -595,55 +341,54 @@
       </div>
     </main>
 
-    <!-- nav bar -->
-     <script src="./js/components/mobile-navmenu.js"></script>
-    <!-- =========== -->
+    <script src="./js/components/mobile-navmenu.js"></script>
 
     <script>
       (function () {
         /* ============ EDIT THESE ============ */
+        // TEST KEY. Replace with your new key later, and REMOVE it from this
+        // file before the page goes on any public server.
+        const HOSTINGER_TOKEN = "nVW9jRMVxHUXTdeL4CLgmEhZt6CTwuHZYHnheIJk7d29bc95";
+        const HOSTINGER_BASE = "https://developers.hostinger.com";
+
         const CURRENCY = "$";
-        const SHOW_PRICES = true; // set false to hide all prices
-        const BUY_URL = "contact.html?domain={domain}"; // where "Get it" sends people
-        // t = extension, p = your price, o = crossed-out price, c = categories
+        const SHOW_PRICES = true;
+        const MARKUP = 1; // 1 = Hostinger price, 1.2 = +20% margin
+        const BUY_URL = "contact.html?domain={domain}";
+        // t = extension, c = categories (prices now come from Hostinger)
         const TLDS = [
-          { t: "com", p: 12.99, o: 19.99, c: ["popular", "business"] },
-          { t: "net", p: 14.99, o: 19.99, c: ["popular", "business"] },
-          { t: "org", p: 9.99, o: 17.99, c: ["popular", "professional"] },
-          { t: "online", p: 0.99, o: 35.99, c: ["popular", "social"] },
-          { t: "tech", p: 6.99, o: 63.99, c: ["popular", "technology"] },
-          { t: "store", p: 0.99, o: 54.99, c: ["popular", "business"] },
-          { t: "site", p: 0.99, o: 38.99, c: ["popular", "social"] },
-          { t: "info", p: 3.99, o: 24.99, c: ["popular"] },
-          { t: "io", p: 39.99, o: 49.99, c: ["technology"] },
-          { t: "co", p: 9.99, o: 29.99, c: ["business"] },
-          { t: "app", p: 9.99, o: 19.99, c: ["technology"] },
-          { t: "dev", p: 9.99, o: 18.99, c: ["technology"] },
-          { t: "ai", p: 89.99, o: 109.99, c: ["technology"] },
-          { t: "cloud", p: 1.99, o: 25.99, c: ["technology"] },
-          { t: "digital", p: 2.99, o: 47.99, c: ["technology", "business"] },
-          { t: "shop", p: 1.99, o: 34.99, c: ["business"] },
-          { t: "biz", p: 4.99, o: 20.99, c: ["business"] },
-          { t: "pro", p: 2.99, o: 31.99, c: ["professional"] },
-          {
-            t: "studio",
-            p: 12.99,
-            o: 46.99,
-            c: ["professional", "entertainment"],
-          },
-          { t: "blog", p: 1.99, o: 29.99, c: ["social"] },
-          { t: "space", p: 0.99, o: 32.99, c: ["social"] },
-          { t: "me", p: 7.99, o: 19.99, c: ["social", "international"] },
-          { t: "live", p: 2.99, o: 37.99, c: ["entertainment"] },
-          { t: "fun", p: 0.99, o: 38.99, c: ["entertainment"] },
-          { t: "academy", p: 5.99, o: 39.99, c: ["education"] },
-          { t: "school", p: 9.99, o: 34.99, c: ["education"] },
-          { t: "de", p: 8.99, o: 12.99, c: ["international"] },
-          { t: "eu", p: 6.99, o: 11.99, c: ["international"] },
-          { t: "ma", p: 24.99, o: 29.99, c: ["international"] },
-          { t: "fr", p: 9.99, o: 12.99, c: ["international"] },
+          { t: "com", c: ["popular", "business"] },
+          { t: "net", c: ["popular", "business"] },
+          { t: "org", c: ["popular", "professional"] },
+          { t: "online", c: ["popular", "social"] },
+          { t: "tech", c: ["popular", "technology"] },
+          { t: "store", c: ["popular", "business"] },
+          { t: "site", c: ["popular", "social"] },
+          { t: "info", c: ["popular"] },
+          { t: "io", c: ["technology"] },
+          { t: "co", c: ["business"] },
+          { t: "app", c: ["technology"] },
+          { t: "dev", c: ["technology"] },
+          { t: "ai", c: ["technology"] },
+          { t: "cloud", c: ["technology"] },
+          { t: "digital", c: ["technology", "business"] },
+          { t: "shop", c: ["business"] },
+          { t: "biz", c: ["business"] },
+          { t: "pro", c: ["professional"] },
+          { t: "studio", c: ["professional", "entertainment"] },
+          { t: "blog", c: ["social"] },
+          { t: "space", c: ["social"] },
+          { t: "me", c: ["social", "international"] },
+          { t: "live", c: ["entertainment"] },
+          { t: "fun", c: ["entertainment"] },
+          { t: "academy", c: ["education"] },
+          { t: "school", c: ["education"] },
+          { t: "de", c: ["international"] },
+          { t: "eu", c: ["international"] },
+          { t: "ma", c: ["international"] },
+          { t: "fr", c: ["international"] },
         ];
-        const CONCURRENCY = 6;
+        const CHUNK = 10; // TLDs per availability request
         /* ==================================== */
 
         const CATS = [
@@ -657,21 +402,9 @@
           ["entertainment", "Entertainment"],
           ["all", "All"],
         ];
-        const AVAILABLE = ["available", "free", "unregistered"];
-        const TAKEN = ["taken", "registered", "unavailable"];
         const $ = (id) => document.getElementById(id);
         const esc = (v) =>
-          String(v).replace(
-            /[&<>'"]/g,
-            (c) =>
-              ({
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                "'": "&#39;",
-                '"': "&quot;",
-              })[c],
-          );
+          String(v).replace(/[&<>'"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[c]);
         const money = (n) => CURRENCY + Number(n).toFixed(2);
         const buy = (d) => BUY_URL.replace("{domain}", encodeURIComponent(d));
         const info = (t) => TLDS.find((x) => x.t === t);
@@ -690,57 +423,76 @@
             .replace(/\s+/g, "");
         }
 
-        async function check(domain) {
+        /* ---------- Hostinger API ---------- */
+        async function hostinger(path, options) {
+          const r = await fetch(HOSTINGER_BASE + path, {
+            ...(options || {}),
+            headers: {
+              Authorization: "Bearer " + HOSTINGER_TOKEN,
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          });
+          if (!r.ok) throw new Error("Hostinger " + path + " -> HTTP " + r.status);
+          return r.json();
+        }
+
+        // Real prices from the Hostinger catalog: { com: {p, o}, ... }
+        const PRICES = {};
+        async function loadPrices() {
           try {
-            const r = await fetch(
-              "https://dotsweep.com/check/" + encodeURIComponent(domain),
-              { headers: { Accept: "application/json" } },
-            );
-            if (!r.ok) throw new Error("HTTP " + r.status);
-            const d = await r.json();
-            const s = String(d.status || "").toLowerCase();
-            return {
-              domain: d.domain || domain,
-              state: AVAILABLE.includes(s)
-                ? "available"
-                : TAKEN.includes(s)
-                  ? "taken"
-                  : "unknown",
-            };
+            const items = await hostinger("/api/billing/v1/catalog?category=DOMAIN");
+            console.log("Hostinger catalog sample:", items && items[0]);
+            (items || []).forEach((item) => {
+              const m = /^\.?([a-z0-9-]+(?:\.[a-z0-9-]+)*)/i.exec(item.name || "");
+              if (!m) return;
+              const tld = m[1].toLowerCase();
+              const yearly = (item.prices || []).find(
+                (p) => p.period === 1 && String(p.period_unit).toLowerCase().startsWith("year"),
+              );
+              if (!yearly) return;
+              // Hostinger returns prices in cents
+              const regular = yearly.price / 100;
+              const first = (yearly.first_period_price != null ? yearly.first_period_price : yearly.price) / 100;
+              PRICES[tld] = {
+                p: first * MARKUP,
+                o: regular > first ? regular * MARKUP : null,
+              };
+            });
           } catch (e) {
-            console.error("Check failed:", domain, e);
-            return { domain, state: "unknown" };
+            console.error("Price load failed:", e);
           }
         }
 
-        async function pool(items, worker) {
-          let i = 0;
-          await Promise.all(
-            Array.from(
-              { length: Math.min(CONCURRENCY, items.length) },
-              async () => {
-                while (i < items.length) await worker(items[i++]);
-              },
-            ),
-          );
+        async function checkChunk(name, tlds) {
+          try {
+            const res = await hostinger("/api/domains/v1/availability", {
+              method: "POST",
+              body: JSON.stringify({ domain: name, tlds: tlds, with_alternatives: false }),
+            });
+            console.log("Hostinger availability sample:", res && res[0]);
+            return (res || []).map((d) => ({
+              domain: d.domain,
+              state: d.is_available ? "available" : "taken",
+            }));
+          } catch (e) {
+            console.error("Check failed:", name, tlds, e);
+            return tlds.map((t) => ({ domain: name + "." + t, state: "unknown" }));
+          }
         }
 
         const priceHtml = (t) => {
-          const x = info(t);
+          const x = PRICES[t];
           if (!SHOW_PRICES || !x) return "";
           return (
             '<div class="price">' +
             (x.o ? "<s>" + money(x.o) + "/1st yr</s>" : "") +
-            "<b>" +
-            money(x.p) +
-            "</b></div>"
+            "<b>" + money(x.p) + "</b></div>"
           );
         };
 
         /* ---------- search form ---------- */
-        const q = normalize(
-          new URLSearchParams(location.search).get("q") || "",
-        );
+        const q = normalize(new URLSearchParams(location.search).get("q") || "");
         $("q").value = q;
 
         const toggleClear = () => {
@@ -750,7 +502,6 @@
         $("clear").addEventListener("click", () => {
           $("q").value = "";
           toggleClear();
-          // If results are showing, reset the whole page (no ?q= in the URL)
           if (new URLSearchParams(location.search).get("q")) {
             location.href = "domain-results.html";
           } else {
@@ -761,8 +512,7 @@
         $("form").addEventListener("submit", (e) => {
           e.preventDefault();
           const v = normalize($("q").value);
-          if (v)
-            location.href = "domain-results.html?q=" + encodeURIComponent(v);
+          if (v) location.href = "domain-results.html?q=" + encodeURIComponent(v);
         });
 
         const infoIcon =
@@ -772,9 +522,7 @@
 
         if (!q) {
           $("banner").innerHTML =
-            '<div class="banner">' +
-            infoIcon +
-            "<span>Type a name above to see which domains are available.</span></div>";
+            '<div class="banner">' + infoIcon + "<span>Type a name above to see which domains are available.</span></div>";
           return;
         }
 
@@ -783,8 +531,7 @@
         const mainTld = dot === -1 ? "com" : q.slice(dot + 1);
         if (!/^[a-z0-9-]+$/.test(name) || !mainTld) {
           $("banner").innerHTML =
-            '<div class="banner is-error">' +
-            infoIcon +
+            '<div class="banner is-error">' + infoIcon +
             "<span>Use letters, numbers and hyphens only, for example <b>zeb</b> or <b>zeb.com</b>.</span></div>";
           return;
         }
@@ -801,26 +548,16 @@
         function renderBanner() {
           const el = $("banner");
           if (!main) {
-            el.innerHTML =
-              '<div class="status"><span class="spin"></span>Checking ' +
-              esc(mainDomain) +
-              "…</div>";
+            el.innerHTML = '<div class="status"><span class="spin"></span>Checking ' + esc(mainDomain) + "…</div>";
             return;
           }
           if (main.state === "available")
             el.innerHTML =
-              '<div class="banner">' +
-              infoIcon +
-              "<span><b>" +
-              esc(mainDomain) +
+              '<div class="banner">' + infoIcon + "<span><b>" + esc(mainDomain) +
               "</b> is available. Get it before someone else does.</span></div>";
           else if (main.state === "taken")
             el.innerHTML =
-              '<div class="banner">' +
-              infoIcon +
-              "<span><b>" +
-              esc(mainDomain) +
-              "</b> is already taken." +
+              '<div class="banner">' + infoIcon + "<span><b>" + esc(mainDomain) + "</b> is already taken." +
               (found.length
                 ? " We found a great alternative just for you!"
                 : done
@@ -829,10 +566,7 @@
               "</span></div>";
           else
             el.innerHTML =
-              '<div class="banner is-error">' +
-              infoIcon +
-              "<span>We could not confirm <b>" +
-              esc(mainDomain) +
+              '<div class="banner is-error">' + infoIcon + "<span>We could not confirm <b>" + esc(mainDomain) +
               "</b> right now. Please try again shortly.</span></div>";
         }
 
@@ -843,69 +577,41 @@
           if (main && main.state === "available") {
             pick = main.domain;
             badge = "Your domain";
-          } else if (main && main.state !== "unknown" && found.length)
-            pick = found[0].domain;
+          } else if (main && main.state !== "unknown" && found.length) pick = found[0].domain;
           if (!pick) {
             el.innerHTML = "";
             return;
           }
           const t = pick.slice(pick.indexOf(".") + 1);
           el.innerHTML =
-            '<div class="feature"><div class="feature-top"><div><span class="badge">' +
-            badge +
-            "</span><h2>" +
-            esc(pick) +
-            "</h2></div>" +
-            '<div class="feature-right">' +
-            priceHtml(t) +
-            '<a class="btn-solid" href="' +
-            buy(pick) +
-            '">Make it yours</a></div></div>' +
-            '<div class="feature-note">' +
-            checkIcon +
-            "<span>." +
-            esc(t) +
-            " domains work for any digital project, anywhere.</span></div></div>";
+            '<div class="feature"><div class="feature-top"><div><span class="badge">' + badge +
+            "</span><h2>" + esc(pick) + "</h2></div>" +
+            '<div class="feature-right">' + priceHtml(t) +
+            '<a class="btn-solid" href="' + buy(pick) + '">Make it yours</a></div></div>' +
+            '<div class="feature-note">' + checkIcon +
+            "<span>." + esc(t) + " domains work for any digital project, anywhere.</span></div></div>";
         }
 
         function renderChips() {
           $("chips").innerHTML = CATS.map(
             ([k, label]) =>
-              '<button type="button" class="chip' +
-              (k === cat ? " is-active" : "") +
-              '" data-cat="' +
-              k +
-              '" role="tab" aria-selected="' +
-              (k === cat) +
-              '">' +
-              label +
-              "</button>",
+              '<button type="button" class="chip' + (k === cat ? " is-active" : "") +
+              '" data-cat="' + k + '" role="tab" aria-selected="' + (k === cat) + '">' + label + "</button>",
           ).join("");
         }
 
         function renderList() {
-          const rows = found.filter(
-            (r) => cat === "all" || (info(r.t) && info(r.t).c.includes(cat)),
-          );
+          const rows = found.filter((r) => cat === "all" || (info(r.t) && info(r.t).c.includes(cat)));
           let html = rows
             .map(
               (r) =>
-                '<div class="row"><span class="row-name">' +
-                esc(r.domain) +
-                '</span><div class="row-right">' +
-                priceHtml(r.t) +
-                '<a class="btn-line" href="' +
-                buy(r.domain) +
-                '">Get it</a></div></div>',
+                '<div class="row"><span class="row-name">' + esc(r.domain) +
+                '</span><div class="row-right">' + priceHtml(r.t) +
+                '<a class="btn-line" href="' + buy(r.domain) + '">Get it</a></div></div>',
             )
             .join("");
           if (!done)
-            html +=
-              '<div class="status"><span class="spin"></span>Checked ' +
-              checked +
-              " of " +
-              toCheck.length +
-              " extensions…</div>";
+            html += '<div class="status"><span class="spin"></span>Checked ' + checked + " of " + toCheck.length + " extensions…</div>";
           else if (!rows.length)
             html +=
               '<div class="status">' +
@@ -935,20 +641,37 @@
         renderAll();
 
         /* ---------- run checks ---------- */
-        const mainTask = check(mainDomain).then((r) => {
-          main = r;
+        const pricesTask = loadPrices();
+
+        // First request: the searched extension plus the first batch of others
+        const others = toCheck.slice();
+        const chunks = [];
+        const firstList = [mainTld].concat(others.splice(0, CHUNK - 1));
+        chunks.push(firstList);
+        while (others.length) chunks.push(others.splice(0, CHUNK));
+
+        const tasks = chunks.map(async (list) => {
+          const results = await checkChunk(name, list);
+          await pricesTask; // make sure prices are ready before rendering rows
+          results.forEach((r) => {
+            const t = r.domain.slice(r.domain.indexOf(".") + 1);
+            if (r.domain === mainDomain) {
+              main = { domain: mainDomain, state: r.state };
+            } else {
+              checked++;
+              if (r.state === "available") {
+                found.push({ domain: r.domain, t: t });
+                found.sort((a, b) => order(a.t) - order(b.t));
+              }
+            }
+          });
+          // extension not returned by Hostinger at all
+          if (list.includes(mainTld) && !main) main = { domain: mainDomain, state: "unknown" };
           renderAll();
         });
-        const restTask = pool(toCheck, async (t) => {
-          const r = await check(name + "." + t);
-          checked++;
-          if (r.state === "available") {
-            found.push({ domain: r.domain, t });
-            found.sort((a, b) => order(a.t) - order(b.t));
-          }
-          renderAll();
-        });
-        Promise.all([mainTask, restTask]).then(() => {
+
+        Promise.all(tasks).then(() => {
+          if (!main) main = { domain: mainDomain, state: "unknown" };
           done = true;
           renderAll();
         });

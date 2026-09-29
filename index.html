@@ -2155,7 +2155,7 @@
 
     #cpoc-services-hover-v2 .cpoc-services-intro {
       margin: 0;
-      max-width: 39rem;
+      max-width: 53rem;
       color: #fff !important;
       font-size: clamp(15px, 1.5vw, 18px);
       line-height: 1.6;
@@ -3446,6 +3446,142 @@
   </style>
 
 
+<!-- animation -->
+  <Style>
+ .js .cpoc-services-hover .cpoc-services-heading,
+.js .cpoc-services-hover .cpoc-services-intro {
+  opacity: 0;
+  transform: translateY(20px);
+}
+/* =========================================
+   FIX — WORD-BY-WORD TEXT REVEAL
+========================================= */
+
+/*
+  Important:
+  The h2 and paragraph must stay visible.
+  Only individual .reveal-word spans start hidden.
+*/
+.js .cpoc-services-hover .cpoc-services-heading,
+.js .cpoc-services-hover .cpoc-services-intro {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hide every generated word initially */
+.js .cpoc-services-hover .reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(5px);
+  will-change: opacity, transform, filter;
+  transition:
+    opacity 0.52s ease,
+    transform 0.52s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.52s ease;
+}
+
+/* Reveal words only after section gets .is-visible */
+.js .cpoc-services-hover.is-visible .reveal-word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Keeps correct spacing between inline-block word spans */
+.cpoc-services-hover .reveal-space {
+  white-space: pre;
+}
+
+/* Preserve the title line-break */
+.cpoc-services-hover .cpoc-services-heading br {
+  display: block;
+  content: "";
+  margin: 0;
+}
+
+/* Eyebrow remains a normal reveal */
+.js .cpoc-services-hover .gp-services-eyebrow-wrap {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .cpoc-services-hover.is-visible .gp-services-eyebrow-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   PROJECT ROWS — ONE BY ONE
+========================================= */
+
+.js .cpoc-services-hover .cpoc-project-row {
+  opacity: 0;
+  transform: translateY(50px) scale(0.98);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.72s ease,
+    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .cpoc-services-hover .cpoc-project-row.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Titles inside each project row */
+.js .cpoc-services-hover .cpoc-project-title {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease 0.14s,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.14s;
+}
+
+.js .cpoc-services-hover .cpoc-project-row.is-revealed .cpoc-project-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Media zoom-out */
+.js .cpoc-services-hover .cpoc-project-card-media {
+  overflow: hidden;
+}
+
+.js .cpoc-services-hover .cpoc-project-card-image {
+  transform: scale(1.1);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js
+  .cpoc-services-hover
+  .cpoc-project-row.is-revealed
+  .cpoc-project-card-image {
+  transform: scale(1);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .js .cpoc-services-hover .gp-services-eyebrow-wrap,
+  .js .cpoc-services-hover .reveal-word,
+  .js .cpoc-services-hover .cpoc-project-row,
+  .js .cpoc-services-hover .cpoc-project-title {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .js .cpoc-services-hover .cpoc-project-card-image {
+    transform: none;
+    transition: none;
+  }
+}
+  </Style>
+
 </head>
 
 <body>
@@ -3555,7 +3691,7 @@
         </button>
 
         <div class="services-dropdown" id="services-dropdown" aria-label="Services menu">
-          <a class="service-dropdown-link" href="./hmaservices.html">All Services</a>
+          <!-- <a class="service-dropdown-link" href="./hmaservices.html">All Services</a> -->
           <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
           <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
           <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
@@ -4208,7 +4344,7 @@
         </h2>
 
         <p class="cpoc-services-intro">
-          Every engagement begins with a different business challenge — a fragmented digital presence,
+          Every engagement begins with a different business challenge a fragmented digital presence,
           unclear positioning, inconsistent content or operations that no longer scale. Selected work is
           presented anonymously where confidentiality requires it.
         </p>
@@ -6301,6 +6437,186 @@ void main() {
     })();
   </script>
 
+
+
+<!-- animation -->
+
+<script>
+  document.documentElement.classList.add("js");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#cpoc-services-hover-v2");
+
+    if (!section) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const heading = section.querySelector(".cpoc-services-heading");
+    const intro = section.querySelector(".cpoc-services-intro");
+    const projectRows = [
+      ...section.querySelectorAll(".cpoc-project-row"),
+    ];
+
+    /*
+      Converts text into:
+      <span class="reveal-word">Selected</span>
+      <span class="reveal-space"> </span>
+      <span class="reveal-word">systems</span>
+      ...
+      
+      It does not remove the <br> in your title.
+    */
+    function splitWords(element) {
+      if (!element || element.dataset.wordsReady === "true") return;
+
+      const textWalker = document.createTreeWalker(
+        element,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode(node) {
+            return node.nodeValue.trim().length
+              ? NodeFilter.FILTER_ACCEPT
+              : NodeFilter.FILTER_REJECT;
+          },
+        }
+      );
+
+      const textNodes = [];
+      let node;
+
+      while ((node = textWalker.nextNode())) {
+        textNodes.push(node);
+      }
+
+      textNodes.forEach((textNode) => {
+        const fragment = document.createDocumentFragment();
+        const parts = textNode.nodeValue.split(/(\s+)/);
+
+        parts.forEach((part) => {
+          if (!part) return;
+
+          if (/^\s+$/.test(part)) {
+            const space = document.createElement("span");
+            space.className = "reveal-space";
+            space.textContent = part;
+            fragment.appendChild(space);
+            return;
+          }
+
+          const word = document.createElement("span");
+          word.className = "reveal-word";
+          word.textContent = part;
+          fragment.appendChild(word);
+        });
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      });
+
+      element.dataset.wordsReady = "true";
+    }
+
+    /* Create the word spans before the section is revealed */
+    splitWords(heading);
+    splitWords(intro);
+
+    function revealSection() {
+      if (section.dataset.revealed === "true") return;
+
+      section.dataset.revealed = "true";
+      section.classList.add("is-visible");
+
+      const headingWords = [
+        ...section.querySelectorAll(
+          ".cpoc-services-heading .reveal-word"
+        ),
+      ];
+
+      const introWords = [
+        ...section.querySelectorAll(
+          ".cpoc-services-intro .reveal-word"
+        ),
+      ];
+
+      /* No animation for visitors using reduced-motion */
+      if (reducedMotion) {
+        projectRows.forEach((row) => {
+          row.classList.add("is-revealed");
+        });
+        return;
+      }
+
+      /*
+        Heading words:
+        first word starts after 180ms
+        every next word starts 75ms later
+      */
+      const headingStart = 180;
+      const headingSpeed = 75;
+
+      headingWords.forEach((word, index) => {
+        word.style.transitionDelay = `${
+          headingStart + index * headingSpeed
+        }ms`;
+      });
+
+      /*
+        Intro starts after the heading is done.
+        It is faster because it contains more words.
+      */
+      const headingEnd =
+        headingStart + headingWords.length * headingSpeed;
+
+      const introStart = headingEnd + 220;
+      const introSpeed = 22;
+
+      introWords.forEach((word, index) => {
+        word.style.transitionDelay = `${
+          introStart + index * introSpeed
+        }ms`;
+      });
+
+      /*
+        Projects start only after the intro finishes.
+        Every project starts 580ms after the previous project.
+      */
+      const introEnd = introStart + introWords.length * introSpeed;
+      const projectStart = introEnd + 450;
+      const projectGap = 580;
+
+      projectRows.forEach((row, index) => {
+        setTimeout(() => {
+          row.classList.add("is-revealed");
+        }, projectStart + index * projectGap);
+      });
+    }
+
+    /* Immediate fallback */
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      revealSection();
+      return;
+    }
+
+    /* Reveal only once after section enters viewport */
+    const observer = new IntersectionObserver(
+      (entries, activeObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          revealSection();
+          activeObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    observer.observe(section);
+  });
+</script>
 </body>
 
 </html>

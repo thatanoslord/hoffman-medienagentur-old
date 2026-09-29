@@ -1722,6 +1722,158 @@
         opacity: 0.92;
       }
     </style>
+
+
+<!-- animation -->
+ <style>
+  /* =========================================
+   BLOG PAGE — INDIVIDUAL FADE REVEALS
+========================================= */
+
+:root {
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-duration: 0.72s;
+}
+
+/* -----------------------------------------
+   Common start state
+----------------------------------------- */
+
+.js .blog-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+  transition:
+    opacity var(--reveal-duration) ease,
+    transform var(--reveal-duration) var(--reveal-ease);
+}
+
+/* Final visible state */
+.js .blog-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -----------------------------------------
+   HERO
+----------------------------------------- */
+
+.js .hero .section-label {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s var(--reveal-ease);
+}
+
+.js .hero #hero-title {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.78s ease,
+    transform 0.78s var(--reveal-ease);
+}
+
+.js .hero.is-visible .section-label,
+.js .hero.is-visible #hero-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js .hero.is-visible .section-label {
+  transition-delay: 0.1s;
+}
+
+.js .hero.is-visible #hero-title {
+  transition-delay: 0.25s;
+}
+
+/* -----------------------------------------
+   RECENT BLOG CARD DETAILS
+----------------------------------------- */
+
+.js .recent-blog-card .recent-blog-image,
+.js .recent-blog-card .recent-blog-body {
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s var(--reveal-ease);
+}
+
+.js .recent-blog-card .recent-blog-image {
+  overflow: hidden;
+}
+
+.js .recent-blog-card .recent-blog-image img {
+  transform: scale(1.1);
+  transition: transform 1s var(--reveal-ease);
+}
+
+.js .recent-blog-card.is-revealed .recent-blog-image img {
+  transform: scale(1);
+}
+
+/* -----------------------------------------
+   GRID CARD DETAILS
+----------------------------------------- */
+
+.js .card .card-image {
+  overflow: hidden;
+}
+
+.js .card .card-image img {
+  transform: scale(1.1);
+  transition: transform 1s var(--reveal-ease);
+}
+
+.js .card.is-revealed .card-image img {
+  transform: scale(1);
+}
+
+/* -----------------------------------------
+   Hover effects
+----------------------------------------- */
+
+.recent-blog-card,
+.card {
+  transform-origin: center bottom;
+}
+
+.recent-blog-card.is-revealed:hover,
+.card.is-revealed:hover {
+  transform: translateY(-8px);
+}
+
+.recent-blog-card:hover .recent-blog-image img,
+.card:hover .card-image img {
+  transform: scale(1.06);
+}
+
+/* -----------------------------------------
+   Reduced motion accessibility
+----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .js .blog-reveal,
+  .js .hero .section-label,
+  .js .hero #hero-title {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .js .recent-blog-card .recent-blog-image img,
+  .js .card .card-image img {
+    transform: none;
+    transition: none;
+  }
+
+  .recent-blog-card.is-revealed:hover,
+  .card.is-revealed:hover {
+    transform: none;
+  }
+}
+ </style>
+
   </head>
 
   <body>
@@ -1878,9 +2030,9 @@
             id="services-dropdown"
             aria-label="Services menu"
           >
-            <a class="service-dropdown-link" href="./hmaservices.html"
+            <!-- <a class="service-dropdown-link" href="./hmaservices.html"
               >All Services</a
-            >
+            > -->
             <a class="service-dropdown-link" href="./ignition.html">IGNITION</a>
             <a class="service-dropdown-link" href="./egine.html">ENGINE</a>
             <a class="service-dropdown-link" href="./ai-ops.html">AI OPS</a>
@@ -3003,5 +3155,149 @@
         }
       })();
     </script>
+
+    <!-- animation -->
+     <script>
+  document.documentElement.classList.add("js");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const hero = document.querySelector(".hero");
+    const recentSection = document.querySelector(".recent-blogs-section");
+    const allBlogsSection = document.querySelector(".blog-wrap");
+
+    /*
+      Makes an element a reveal target.
+      A delay is added as inline style for staggered animation.
+    */
+    function prepareReveal(element, delay = 0) {
+      if (!element) return;
+
+      element.classList.add("blog-reveal");
+      element.style.transitionDelay = `${delay}ms`;
+    }
+
+    /*
+      Shows all targets inside a section.
+      Useful for reduced-motion users and old-browser fallback.
+    */
+    function showAll(section) {
+      if (!section) return;
+
+      section.querySelectorAll(".blog-reveal").forEach((element) => {
+        element.classList.add("is-revealed");
+      });
+    }
+
+    /* -------------------------------------
+       HERO — immediate intro animation
+    ------------------------------------- */
+
+    if (hero) {
+      if (reducedMotion) {
+        hero.classList.add("is-visible");
+      } else {
+        setTimeout(() => {
+          hero.classList.add("is-visible");
+        }, 100);
+      }
+    }
+
+    /* -------------------------------------
+       RECENT BLOGS — targets + delays
+    ------------------------------------- */
+
+    if (recentSection) {
+      const recentLabel = recentSection.querySelector(
+        ".section-label--light"
+      );
+      const recentTitle = recentSection.querySelector(
+        "#recent-blogs-title"
+      );
+      const recentLink = recentSection.querySelector(
+        ".recent-blogs-link"
+      );
+      const recentCards = [
+        ...recentSection.querySelectorAll(".recent-blog-card"),
+      ];
+
+      prepareReveal(recentLabel, 0);
+      prepareReveal(recentTitle, 100);
+      prepareReveal(recentLink, 180);
+
+      recentCards.forEach((card, index) => {
+        prepareReveal(card, 260 + index * 130);
+      });
+    }
+
+    /* -------------------------------------
+       ALL BLOGS — targets + delays
+    ------------------------------------- */
+
+    if (allBlogsSection) {
+      const allLabel = allBlogsSection.querySelector(
+        ".all-blogs-label"
+      );
+      const allTitle = allBlogsSection.querySelector(
+        "#all-blogs-title"
+      );
+      const filterButtons = [
+        ...allBlogsSection.querySelectorAll(".filter-pill"),
+      ];
+      const blogCards = [
+        ...allBlogsSection.querySelectorAll(".blog-grid .card"),
+      ];
+      const loadMoreButton = allBlogsSection.querySelector(
+        ".load-more-btn"
+      );
+
+      prepareReveal(allLabel, 0);
+      prepareReveal(allTitle, 100);
+
+      filterButtons.forEach((button, index) => {
+        prepareReveal(button, 180 + index * 65);
+      });
+
+      blogCards.forEach((card, index) => {
+        prepareReveal(card, 300 + index * 110);
+      });
+
+      prepareReveal(loadMoreButton, 980);
+    }
+
+    /*
+      Sections below the hero:
+      reveal only when visitor reaches each section.
+    */
+    const scrollSections = [recentSection, allBlogsSection].filter(Boolean);
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      scrollSections.forEach(showAll);
+      return;
+    }
+
+    const sectionObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          showAll(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -70px 0px",
+      }
+    );
+
+    scrollSections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+  });
+</script>
   </body>
 </html>

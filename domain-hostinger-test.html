@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hostinger Domain + Pricing API Test</title>
+
+  <style>
+    :root {
+      --bg: #0e0629;
+      --surface: #1a1140;
+      --surface-hover: #211650;
+      --text: #ffffff;
+      --muted: #bdb5d4;
+      --purple-light: #c9bbff;
+      --green: #83edb2;
+      --green-text: #073d29;
+      --red: #ffb5bc;
+      --red-text: #5d0d1a;
+      --yellow: #ffd98d;
+      --yellow-text: #5a4000;
+      --line: rgba(255, 255, 255, 0.15);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 85% 5%,
+          rgba(139, 109, 242, 0.34),
+          transparent 32rem
+        ),
+        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--purple-light);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(38px, 7vw, 70px);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 20px 0 35px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .search {
+      display: flex;
+      gap: 10px;
+      padding: 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 18px;
+      border: 0;
+      outline: 0;
+      color: white;
+      background: transparent;
+      font: inherit;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.48);
+    }
+
+    button {
+      flex: 0 0 auto;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: 999px;
+      color: #160c35;
+      background: #ffffff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--purple-light);
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.7;
+      transform: none;
+    }
+
+    .message {
+      min-height: 24px;
+      margin: 16px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .message.error {
+      color: var(--red);
+    }
+
+    .results {
+      display: none;
+      margin-top: 38px;
+    }
+
+    .results.is-visible {
+      display: block;
+    }
+
+    .results-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .results h2 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 36px);
+      letter-spacing: -0.04em;
+    }
+
+    .results-summary {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .result-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .domain-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 20px;
+      align-items: center;
+      padding: 19px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.55s ease,
+        transform 0.55s var(--ease),
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .domain-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .domain-card:hover {
+      border-color: rgba(201, 187, 255, 0.55);
+      background: var(--surface-hover);
+    }
+
+    .domain-card.is-unavailable {
+      opacity: 0.76;
+    }
+
+    .domain-name {
+      display: block;
+      overflow: hidden;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .domain-note {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .domain-price {
+      min-width: 190px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .domain-price strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .domain-price small {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .status {
+      display: inline-flex;
+      min-width: 108px;
+      justify-content: center;
+      padding: 9px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .status--available {
+      color: var(--green-text);
+      background: var(--green);
+    }
+
+    .status--unavailable {
+      color: var(--red-text);
+      background: var(--red);
+    }
+
+    .status--restricted,
+    .status--unknown {
+      color: var(--yellow-text);
+      background: var(--yellow);
+    }
+
+    .request-button {
+      grid-column: 1 / -1;
+      display: none;
+      justify-self: end;
+      padding: 10px 15px;
+      border-radius: 999px;
+      color: #160c35;
+      background: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .domain-card.is-available .request-button {
+      display: inline-flex;
+    }
+
+    .request-button:hover {
+      background: var(--purple-light);
+      transform: translateY(-2px);
+    }
+
+    .debug {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.14);
+    }
+
+    summary {
+      padding: 14px 16px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    pre {
+      max-height: 360px;
+      margin: 0;
+      padding: 0 16px 16px;
+      overflow: auto;
+      color: #d6cff3;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .notice {
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        padding-top: 48px;
+      }
+
+      .search {
+        flex-wrap: wrap;
+        border-radius: 20px;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .results-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .results-summary {
+        text-align: left;
+      }
+
+      .domain-card {
+        grid-template-columns: 1fr auto;
+        gap: 14px;
+      }
+
+      .domain-price {
+        grid-column: 1 / 2;
+        min-width: 0;
+        text-align: left;
+      }
+
+      .status {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+      }
+
+      .request-button {
+        grid-column: 1 / -1;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <p class="eyebrow">Hostinger API test</p>
+
+    <h1>Check domain availability and catalog pricing.</h1>
+
+    <p class="intro">
+      This temporary tool checks multiple domain extensions with Hostinger, then
+      tests the Hostinger Billing Catalog endpoint for catalog information.
+    </p>
+
+    <form id="domainForm" class="search" novalidate>
+      <input
+        id="domainInput"
+        type="text"
+        autocomplete="off"
+        inputmode="url"
+        placeholder="example.com"
+        aria-label="Domain name"
+      />
+
+      <button id="searchButton" type="submit">
+        Check domains
+      </button>
+    </form>
+
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+
+    <section id="results" class="results" aria-live="polite">
+      <div class="results-head">
+        <h2>Domain options</h2>
+        <span id="resultsSummary" class="results-summary"></span>
+      </div>
+
+      <div id="resultList" class="result-list"></div>
+
+      <div class="debug">
+        <details>
+          <summary>Show raw availability response</summary>
+          <pre id="availabilityResponse"></pre>
+        </details>
+
+        <details>
+          <summary>Show raw Billing Catalog response</summary>
+          <pre id="catalogResponse"></pre>
+        </details>
+      </div>
+
+      <p class="notice">
+        The availability API can confirm whether a domain is currently available.
+        Catalog amounts, if found, must still be verified during the final
+        Hostinger purchase flow because promotions, taxes, premium status,
+        registration duration and renewals can change the final total.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    /*
+      TEMPORARY LOCAL TEST ONLY.
+
+      1. Revoke the previously exposed token.
+      2. Create a NEW short-lived test token in Hostinger hPanel.
+      3. Paste it below only for private testing.
+      4. Before publishing, move all Hostinger fetch calls into PHP.
+    */
+
+    const HOSTINGER_API_TOKEN = "rEKYyPp6AwhdfYfzX7DwDa2VVVXokjZ3kIBu5N680f7a3a18";
+
+    const HOSTINGER_AVAILABILITY_URL =
+      "https://developers.hostinger.com/api/domains/v1/availability";
+
+    const HOSTINGER_CATALOG_URL =
+      "https://developers.hostinger.com/api/billing/v1/catalog";
+
+    const TLDS = [
+      "com",
+      "de",
+      "net",
+      "org",
+      "io",
+      "ai",
+      "co",
+      "online",
+      "shop",
+      "store",
+      "tech"
+    ];
+
+    const form = document.querySelector("#domainForm");
+    const input = document.querySelector("#domainInput");
+    const button = document.querySelector("#searchButton");
+    const message = document.querySelector("#message");
+    const results = document.querySelector("#results");
+    const resultsSummary = document.querySelector("#resultsSummary");
+    const resultList = document.querySelector("#resultList");
+    const availabilityResponse = document.querySelector(
+      "#availabilityResponse"
+    );
+    const catalogResponse = document.querySelector("#catalogResponse");
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (character) => {
+        const map = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        };
+
+        return map[character];
+      });
+    }
+
+    function normaliseDomain(value) {
+      return value
+        .trim()
+        .toLowerCase()
+        .replace(/^https?:\/\//, "")
+        .replace(/^www\./, "")
+        .replace(/[/?#].*$/, "")
+        .replace(/\.+$/, "");
+    }
+
+    function getDomainName(value) {
+      return normaliseDomain(value)
+        .split(".")[0]
+        .replace(/[^a-z0-9-]/g, "");
+    }
+
+    function validDomainName(name) {
+      return /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(name);
+    }
+
+    function setMessage(text = "", type = "") {
+      message.textContent = text;
+      message.classList.toggle("error", type === "error");
+    }
+
+    function setLoading(isLoading) {
+      button.disabled = isLoading;
+      button.textContent = isLoading ? "Checking..." : "Check domains";
+    }
+
+    /*
+      Fixed guard:
+      It checks only whether the token is empty or still a placeholder.
+      It does NOT compare your new test token against an old exposed token.
+    */
+    function hasTestToken() {
+      return (
+        HOSTINGER_API_TOKEN &&
+        HOSTINGER_API_TOKEN !== "rEKYyPp6AwhdfYfzX7DwDa2VVVXokjZ3kIBu5N680f7a3a18"
+      );
+    }
+
+    async function apiRequest(url, options = {}) {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          Authorization: `Bearer ${HOSTINGER_API_TOKEN}`,
+          Accept: "application/json",
+          ...(options.headers || {})
+        }
+      });
+
+      const responseText = await response.text();
+
+      let data;
+
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        data = {
+          raw_text: responseText
+        };
+      }
+
+      return {
+        ok: response.ok,
+        status: response.status,
+        data
+      };
+    }
+
+    function getDomainResults(data) {
+      if (Array.isArray(data)) return data;
+      if (Array.isArray(data?.data)) return data.data;
+      if (data?.data) return [data.data];
+      return [];
+    }
+
+    function sortResults(items) {
+      return [...items].sort((first, second) => {
+        const firstAvailable = first.is_available === true ? 1 : 0;
+        const secondAvailable = second.is_available === true ? 1 : 0;
+
+        return secondAvailable - firstAvailable;
+      });
+    }
+
+    function getStatus(result) {
+      if (result.is_available === true) {
+        return {
+          label: "Available",
+          className: "status--available",
+          cardClass: "is-available",
+          note: result.restriction
+            ? `Registration restriction: ${result.restriction}`
+            : "Available according to Hostinger."
+        };
+      }
+
+      if (result.restriction) {
+        return {
+          label: "Restricted",
+          className: "status--restricted",
+          cardClass: "is-restricted",
+          note: `Registration restriction: ${result.restriction}`
+        };
+      }
+
+      if (result.is_available === false) {
+        return {
+          label: "Unavailable",
+          className: "status--unavailable",
+          cardClass: "is-unavailable",
+          note: "Already registered or unavailable."
+        };
+      }
+
+      return {
+        label: "Unknown",
+        className: "status--unknown",
+        cardClass: "is-unknown",
+        note: "Hostinger did not return a clear availability status."
+      };
+    }
+
+    /*
+      This page does NOT call an assumed price field.
+      It keeps price wording accurate until the correct catalog/purchase response
+      is verified from your own Hostinger account.
+    */
+    function priceMarkup() {
+      return `
+        <div class="domain-price">
+          <strong>Price pending</strong>
+          <small>Check Billing Catalog response below</small>
+        </div>
+      `;
+    }
+
+    function renderResult(result, index) {
+      const status = getStatus(result);
+      const domain = result.domain || "Unknown domain";
+
+      const card = document.createElement("article");
+
+      card.className = `domain-card ${status.cardClass}`;
+
+      card.innerHTML = `
+        <div>
+          <span class="domain-name">${escapeHtml(domain)}</span>
+          <span class="domain-note">${escapeHtml(status.note)}</span>
+        </div>
+
+        ${priceMarkup()}
+
+        <span class="status ${status.className}">
+          ${escapeHtml(status.label)}
+        </span>
+
+        ${
+          result.is_available === true
+            ? `
+              <a
+                class="request-button"
+                href="./contact.html?domain=${encodeURIComponent(domain)}"
+              >
+                Request this domain
+              </a>
+            `
+            : ""
+        }
+      `;
+
+      resultList.appendChild(card);
+
+      window.setTimeout(() => {
+        card.classList.add("is-visible");
+      }, index * 85);
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const domainName = getDomainName(input.value);
+
+      if (!validDomainName(domainName)) {
+        setMessage(
+          "Enter a domain name such as leglay.com or leglay.",
+          "error"
+        );
+
+        input.focus();
+        return;
+      }
+
+      if (!hasTestToken()) {
+        setMessage(
+          "Paste a newly generated temporary Hostinger API token first.",
+          "error"
+        );
+
+        return;
+      }
+
+      setLoading(true);
+      setMessage("Checking availability and Billing Catalog...");
+      results.classList.remove("is-visible");
+      resultList.innerHTML = "";
+      availabilityResponse.textContent = "";
+      catalogResponse.textContent = "";
+
+      try {
+        /*
+          Availability and catalog are independent requests.
+          The availability request may work even if catalog access is blocked.
+        */
+        const [availabilityRequest, catalogRequest] = await Promise.all([
+          apiRequest(HOSTINGER_AVAILABILITY_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              domain: domainName,
+              tlds: TLDS
+            })
+          }),
+
+          apiRequest(HOSTINGER_CATALOG_URL, {
+            method: "GET"
+          })
+        ]);
+
+        availabilityResponse.textContent = JSON.stringify(
+          {
+            http_status: availabilityRequest.status,
+            response: availabilityRequest.data
+          },
+          null,
+          2
+        );
+
+        catalogResponse.textContent = JSON.stringify(
+          {
+            http_status: catalogRequest.status,
+            response: catalogRequest.data
+          },
+          null,
+          2
+        );
+
+        if (!availabilityRequest.ok) {
+          throw new Error(
+            availabilityRequest.data?.message ||
+            availabilityRequest.data?.error ||
+            `Availability API returned HTTP ${availabilityRequest.status}.`
+          );
+        }
+
+        const domainResults = getDomainResults(availabilityRequest.data);
+
+        if (!domainResults.length) {
+          throw new Error(
+            "Hostinger returned no domain results. Open the availability response below."
+          );
+        }
+
+        const sortedResults = sortResults(domainResults);
+
+        const availableCount = sortedResults.filter(
+          (item) => item.is_available === true
+        ).length;
+
+        resultsSummary.textContent =
+          `${availableCount} available of ${sortedResults.length} checked`;
+
+        sortedResults.forEach((item, index) => {
+          renderResult(item, index);
+        });
+
+        results.classList.add("is-visible");
+
+        if (!catalogRequest.ok) {
+          setMessage(
+            `Availability works. Billing Catalog returned HTTP ${catalogRequest.status}. Open its raw response below to see why.`,
+            "error"
+          );
+        } else {
+          setMessage(
+            "Availability and Billing Catalog requests completed. Open the raw catalog response to inspect available price fields."
+          );
+        }
+      } catch (error) {
+        console.error("Hostinger API error:", error);
+
+        setMessage(
+          error.message ||
+            "The request failed. Inspect the raw API response and browser console.",
+          "error"
+        );
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>
