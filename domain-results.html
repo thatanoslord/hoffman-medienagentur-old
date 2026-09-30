@@ -343,12 +343,12 @@
 
     <script src="./js/components/mobile-navmenu.js"></script>
 
-    <script>
+        <script>
       (function () {
         /* ============ EDIT THESE ============ */
-        // TEST KEY. Replace with your new key later, and REMOVE it from this
-        // file before the page goes on any public server.
-      const API_URL = "/api/check-domain.php";
+        // No token here anymore. The token lives in the server-side .env file
+        // and is used only by /api/check-domain.php.
+        const API_URL = "/api/check-domain.php";
 
         const CURRENCY = "$";
         const SHOW_PRICES = true;
@@ -387,7 +387,7 @@
           { t: "ma", c: ["international"] },
           { t: "fr", c: ["international"] },
         ];
-        const CHUNK = 10; // TLDs per availability request
+        const CHUNK = 10; // TLDs per availability request (the PHP allows max 15)
         /* ==================================== */
 
         const CATS = [
@@ -422,17 +422,20 @@
             .replace(/\s+/g, "");
         }
 
-        /* ---------- Hostinger API ---------- */
-        async function hostinger(path, options) {
-          const r = await fetch(HOSTINGER_BASE + path, {
-            ...(options || {}),
-            headers: {
-              Authorization: "Bearer " + HOSTINGER_TOKEN,
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          });
-          if (!r.ok) throw new Error("Hostinger " + path + " -> HTTP " + r.status);
+        /* ---------- Backend API (PHP) ---------- */
+        // action = "availability" (POST with a body) or "prices" (GET)
+        async function api(action, body) {
+          const r = await fetch(
+            API_URL + "?action=" + action,
+            body
+              ? {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(body),
+                }
+              : {},
+          );
+          if (!r.ok) throw new Error("API " + action + " -> HTTP " + r.status);
           return r.json();
         }
 
@@ -440,8 +443,7 @@
         const PRICES = {};
         async function loadPrices() {
           try {
-            const items = await hostinger("/api/billing/v1/catalog?category=DOMAIN");
-            console.log("Hostinger catalog sample:", items && items[0]);
+            const items = await api("prices");
             (items || []).forEach((item) => {
               const m = /^\.?([a-z0-9-]+(?:\.[a-z0-9-]+)*)/i.exec(item.name || "");
               if (!m) return;
@@ -465,11 +467,7 @@
 
         async function checkChunk(name, tlds) {
           try {
-            const res = await hostinger("/api/domains/v1/availability", {
-              method: "POST",
-              body: JSON.stringify({ domain: name, tlds: tlds, with_alternatives: false }),
-            });
-            console.log("Hostinger availability sample:", res && res[0]);
+            const res = await api("availability", { domain: name, tlds: tlds });
             return (res || []).map((d) => ({
               domain: d.domain,
               state: d.is_available ? "available" : "taken",
