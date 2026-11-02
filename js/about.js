@@ -132,15 +132,29 @@
           var track = document.getElementById(trackId);
           if (!track) return;
 
+          var group = track.querySelector(".brands-strip__group");
+          var viewport = track.parentElement;
+          if (!group || !viewport) return;
+
           var direction = track.dataset.direction === "left" ? -1 : 1;
           var pos = 0;
-          var halfWidth = 0;
+          var loopWidth = 0;
           var rafId = null;
 
           function measure() {
-            halfWidth = track.scrollWidth / 2;
+            loopWidth =
+              group.getBoundingClientRect().width +
+              parseFloat(getComputedStyle(track).columnGap || "0");
+            if (loopWidth <= 0) return;
+
+            while (track.scrollWidth <= viewport.clientWidth + loopWidth) {
+              var duplicate = group.cloneNode(true);
+              duplicate.setAttribute("aria-hidden", "true");
+              track.appendChild(duplicate);
+            }
+
             if (direction === 1) {
-              pos = -halfWidth;
+              pos = -loopWidth;
             } else {
               pos = 0;
             }
@@ -150,12 +164,12 @@
           function animate() {
             pos += direction * baseSpeed;
 
-            if (direction === -1 && pos <= -halfWidth) {
+            if (direction === -1 && pos <= -loopWidth) {
               pos = 0;
             }
 
             if (direction === 1 && pos >= 0) {
-              pos = -halfWidth;
+              pos = -loopWidth;
             }
 
             track.style.transform = "translateX(" + pos + "px)";

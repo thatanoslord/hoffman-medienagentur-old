@@ -661,6 +661,19 @@ html {
           /* reuse the same keyframes, just play backwards */
         }
 
+        .brands-strip,
+        .brands-strip__viewport {
+          overflow: hidden;
+        }
+
+        .brands-strip__track {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          width: max-content;
+          will-change: transform;
+        }
+
         .brands-strip:hover .brands-strip__track {
           animation-play-state: paused;
           /* optional nicety */
