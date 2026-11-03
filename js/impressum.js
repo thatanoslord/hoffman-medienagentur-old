@@ -1,56 +1,91 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const servicesItem = document.querySelector(".nav-item--services");
-  const servicesTrigger = servicesItem?.querySelector(".nav-trigger");
 
-  if (servicesItem && servicesTrigger) {
-    const closeServicesMenu = () => {
-      servicesItem.classList.remove("is-open");
-      servicesTrigger.setAttribute("aria-expanded", "false");
-    };
+      document.addEventListener("DOMContentLoaded", () => {
+        const navBar = document.getElementById("navBar");
+        const servicesItem = document.querySelector(".nav-item--services");
+        const servicesTrigger = servicesItem?.querySelector(".nav-trigger");
 
-    servicesTrigger.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
+        if (navBar) {
+          const regularNavItems = navBar.querySelectorAll(
+            ".nav-item:not(.nav-item--services)",
+          );
 
-      const shouldOpen = !servicesItem.classList.contains("is-open");
-      servicesItem.classList.toggle("is-open", shouldOpen);
-      servicesTrigger.setAttribute("aria-expanded", String(shouldOpen));
-    });
+          regularNavItems.forEach((item) => {
+            item.addEventListener("click", () => {
+              regularNavItems.forEach((link) => {
+                link.classList.remove("active");
 
-    document.addEventListener("click", (event) => {
-      if (!servicesItem.contains(event.target)) {
-        closeServicesMenu();
-      }
-    });
+                const oldLamp = link.querySelector(".lamp");
+                if (oldLamp) oldLamp.remove();
+              });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeServicesMenu();
-        servicesTrigger.focus();
-      }
-    });
-  }
+              item.classList.add("active");
 
-  const revealItems = document.querySelectorAll(
-    ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid",
-  );
+              const lamp = document.createElement("span");
+              lamp.className = "lamp";
+              lamp.innerHTML = `
+            <span class="lamp-top">
+              <span class="glow glow-1"></span>
+              <span class="glow glow-2"></span>
+              <span class="glow glow-3"></span>
+            </span>
+          `;
 
-  if (!("IntersectionObserver" in window)) {
-    revealItems.forEach((item) => item.classList.add("is-visible"));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries, currentObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          currentObserver.unobserve(entry.target);
+              item.appendChild(lamp);
+            });
+          });
         }
-      });
-    },
-    { threshold: 0.5 },
-  );
 
-  revealItems.forEach((item) => observer.observe(item));
-});
+        if (!servicesItem || !servicesTrigger) return;
+
+        function closeServicesMenu() {
+          servicesItem.classList.remove("is-open");
+          servicesTrigger.setAttribute("aria-expanded", "false");
+        }
+
+        servicesTrigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const shouldOpen = !servicesItem.classList.contains("is-open");
+
+          servicesItem.classList.toggle("is-open", shouldOpen);
+          servicesTrigger.setAttribute("aria-expanded", String(shouldOpen));
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!servicesItem.contains(event.target)) {
+            closeServicesMenu();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeServicesMenu();
+            servicesTrigger.focus();
+          }
+        });
+      });
+    
+
+      (function () {
+        const revealItems = document.querySelectorAll(
+          ".reveal-footer-up, .reveal-footer-link, .reveal-footer-brand, .reveal-footer-copy, .reveal-grid",
+        );
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+          },
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    
